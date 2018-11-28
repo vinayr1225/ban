@@ -6132,6 +6132,9 @@ msgstr ""
 msgid "Remind later"
 msgstr ""
 
+msgid "Remote mirror not found."
+msgstr ""
+
 msgid "Remove"
 msgstr ""
 

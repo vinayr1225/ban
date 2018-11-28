@@ -31,6 +31,7 @@ const Api = {
   branchSinglePath: '/api/:version/projects/:id/repository/branches/:branch',
   createBranchPath: '/api/:version/projects/:id/repository/branches',
   releasesPath: '/api/:version/projects/:id/releases',
+  projectRemoteMirrorPath: '/api/:version/projects/:project_id/remote_mirrors/:remote_mirror_id',
 
   group(groupId, callback) {
     const url = Api.buildUrl(Api.groupPath).replace(':id', groupId);
@@ -319,6 +320,14 @@ const Api = {
     const url = Api.buildUrl(this.releasesPath).replace(':id', encodeURIComponent(id));
 
     return axios.get(url);
+  },
+
+  deleteProjectRemoteMirror(projectId, remoteMirrorId) {
+    const url = Api.buildUrl(this.projectRemoteMirrorPath)
+      .replace(':project_id', encodeURIComponent(projectId))
+      .replace(':remote_mirror_id', remoteMirrorId);
+
+    return axios.delete(url).then(({ data }) => data);
   },
 
   buildUrl(url) {
