@@ -135,6 +135,7 @@ describe Projects::LfsPointers::LfsDownloadService do
       let(:lfs_object) { LfsDownloadObject.new(oid: oid, size: size, link: download_link_with_credentials) }
 
       before do
+        WebMock.reset!
         WebMock.stub_request(:get, download_link).with(headers: { 'Authorization' => 'Basic dXNlcjpwYXNzd29yZA==' }).to_return(body: lfs_content)
       end
 
