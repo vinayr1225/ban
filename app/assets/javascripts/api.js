@@ -30,6 +30,7 @@ const Api = {
   commitPipelinesPath: '/:project_id/commit/:sha/pipelines',
   branchSinglePath: '/api/:version/projects/:id/repository/branches/:branch',
   createBranchPath: '/api/:version/projects/:id/repository/branches',
+  projectPullMirrorPath: '/api/:version/projects/:project_id/mirror',
   releasesPath: '/api/:version/projects/:id/releases',
   projectRemoteMirrorPath: '/api/:version/projects/:project_id/remote_mirrors/:remote_mirror_id',
 
@@ -320,6 +321,15 @@ const Api = {
     const url = Api.buildUrl(this.releasesPath).replace(':id', encodeURIComponent(id));
 
     return axios.get(url);
+  },
+
+  deleteProjectPullMirror(projectId) {
+    const url = Api.buildUrl(this.projectPullMirrorPath).replace(
+      ':project_id',
+      encodeURIComponent(projectId),
+    );
+
+    return axios.delete(url);
   },
 
   deleteProjectRemoteMirror(projectId, remoteMirrorId) {

@@ -52,6 +52,7 @@ The following API resources are available in the project context:
 | [Project-level variables](project_level_variables.md) | `/projects/:id/variables`                                                                                                                                                 |
 | [Project import/export](project_import_export.md)     | `/projects/:id/export`, `/projects/import`, `/projects/:id/import`                                                                                                        |
 | [Project milestones](milestones.md)                   | `/projects/:id/milestones`                                                                                                                                                |
+| [Project mirror](project_mirror.md)                   | `/projects/:id/mirror`                                                                                                                                                    |
 | [Project remote mirrors](project_remote_mirrors.md)   | `/projects/:id/remote_mirrors`                                                                                                                                            |
 | [Project snippets](project_snippets.md)               | `/projects/:id/snippets`                                                                                                                                                  |
 | [Project templates](project_templates.md)             | `/projects/:id/templates`                                                                                                                                                 |
@@ -124,6 +125,88 @@ The following API resources are available outside of project and group contexts 
 | [Version](version.md)                             | `/version`                                                              |
 
 ### Templates API resources
+
+## API Resources
+
+The following API resources are available:
+
+- [Applications](applications.md)
+- [Avatar](avatar.md)
+- [Award emoji](award_emoji.md)
+- [Branches](branches.md)
+- [Broadcast messages](broadcast_messages.md)
+- [Code snippets](snippets.md)
+- [Commits](commits.md)
+- [Container Registry](container_registry.md)
+- [Custom attributes](custom_attributes.md)
+- [Deploy keys](deploy_keys.md), and [deploy keys for multiple projects](deploy_key_multiple_projects.md)
+- [Deployments](deployments.md)
+- [Discussions](discussions.md) (threaded comments)
+- [Environments](environments.md)
+- [Events](events.md)
+- [Feature flags](features.md)
+- Group-related resources, including:
+  - [Groups](groups.md)
+  - [Group access requests](access_requests.md)
+  - [Group badges](group_badges.md)
+  - [Group issue boards](group_boards.md)
+  - [Group labels](group_labels.md)
+  - [Group-level variables](group_level_variables.md)
+  - [Group members](members.md)
+  - [Group milestones](group_milestones.md)
+- [Issues](issues.md)
+- [Issue boards](boards.md)
+- [Jobs](jobs.md)
+- [Keys](keys.md)
+- [Labels](labels.md)
+- [Markdown](markdown.md)
+- [Merge requests](merge_requests.md)
+- [Namespaces](namespaces.md)
+- [Notes](notes.md) (comments)
+- [Notification settings](notification_settings.md)
+- [Pages domains](pages_domains.md)
+- [Pipelines](pipelines.md)
+- [Pipeline schedules](pipeline_schedules.md)
+- [Pipeline triggers](pipeline_triggers.md) and [triggering pipelines](../ci/triggers/README.md)
+- Project-related resources, including:
+  - [Projects](projects.md) including setting Webhooks
+  - [Project access requests](access_requests.md)
+  - [Project badges](project_badges.md)
+  - [Project clusters](project_clusters.md)
+  - [Project-level variables](project_level_variables.md)
+  - [Project import/export](project_import_export.md)
+  - [Project import from GitHub](import.md)
+  - [Project remote mirrors](project_remote_mirrors.md)
+  - [Project mirror](project_mirror.md)
+  - [Project members](members.md)
+  - [Project milestones](milestones.md)
+  - [Project snippets](project_snippets.md)
+  - [Project templates](project_templates.md) (see also [Templates API Resources](#templates-api-resources))
+- [Protected branches](protected_branches.md)
+- [Protected tags](protected_tags.md)
+- [Repositories](repositories.md)
+- [Repository files](repository_files.md)
+- [Repository submodules](repository_submodules.md)
+- [Resource label events](resource_label_events.md)
+- [Runners](runners.md)
+- [Search](search.md)
+- [Services](services.md)
+- [Settings](settings.md)
+- [Sidekiq metrics](sidekiq_metrics.md)
+- [System hooks](system_hooks.md)
+- [Tags](tags.md)
+- [Releases](releases/index.md)
+- Release Assets
+  - [Links](releases/links.md)
+- [Todos](todos.md)
+- [Users](users.md)
+- [Validate CI configuration](lint.md) (linting)
+- [Version](version.md)
+- [Wikis](wikis.md)
+
+See also [V3 to V4](v3_to_v4.md).
+
+### Templates API Resources
 
 Endpoints are available for:
 

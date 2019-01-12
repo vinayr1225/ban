@@ -1553,6 +1553,10 @@ Read more in the [Project import/export](project_import_export.md) documentation
 
 Read more in the [Project members](members.md) documentation.
 
+## Project mirror
+
+Read more in the [Project mirror](project_mirror.md) documentation.
+
 ## Project badges
 
 Read more in the [Project Badges](project_badges.md) documentation.
