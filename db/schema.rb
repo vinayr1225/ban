@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190204115450) do
+ActiveRecord::Schema.define(version: 20190213100701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1749,6 +1749,17 @@ ActiveRecord::Schema.define(version: 20190204115450) do
     t.index ["project_id"], name: "index_prometheus_metrics_on_project_id", using: :btree
   end
 
+  create_table "prometheus_queries", force: :cascade do |t|
+    t.integer "prometheus_metric_id", null: false
+    t.string "identifier"
+    t.string "query", null: false
+    t.string "unit", null: false
+    t.string "legend"
+    t.datetime_with_timezone "created_at", null: false
+    t.datetime_with_timezone "updated_at", null: false
+    t.index ["prometheus_metric_id"], name: "index_prometheus_queries_on_prometheus_metric_id", using: :btree
+  end
+
   create_table "protected_branch_merge_access_levels", force: :cascade do |t|
     t.integer "protected_branch_id", null: false
     t.integer "access_level", default: 40, null: false
@@ -2465,6 +2476,7 @@ ActiveRecord::Schema.define(version: 20190204115450) do
   add_foreign_key "project_statistics", "projects", on_delete: :cascade
   add_foreign_key "projects", "pool_repositories", name: "fk_6e5c14658a", on_delete: :nullify
   add_foreign_key "prometheus_metrics", "projects", on_delete: :cascade
+  add_foreign_key "prometheus_queries", "prometheus_metrics", on_delete: :cascade
   add_foreign_key "protected_branch_merge_access_levels", "protected_branches", name: "fk_8a3072ccb3", on_delete: :cascade
   add_foreign_key "protected_branch_push_access_levels", "protected_branches", name: "fk_9ffc86a3d9", on_delete: :cascade
   add_foreign_key "protected_branches", "projects", name: "fk_7a9c6d93e7", on_delete: :cascade
