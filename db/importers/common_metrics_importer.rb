@@ -17,6 +17,7 @@ module Importers
       system: 2
     }
 
+    has_many :prometheus_queries
     scope :common, -> { where(common: true) }
 
     GROUP_TITLES = {
@@ -32,6 +33,10 @@ module Importers
     }.freeze
   end
 
+  class PrometheusQuery < ActiveRecord::Base
+    belongs_to :prometheus_metric
+  end
+
   class CommonMetricsImporter
     MissingQueryId = Class.new(StandardError)
 
@@ -43,10 +48,11 @@ module Importers
 
     def execute
       PrometheusMetric.reset_column_information
+      PrometheusQuery.reset_column_information
 
-      process_content do |id, attributes|
-        find_or_build_metric!(id)
-          .update!(**attributes)
+      process_content do |metric_attributes|
+        find_or_build_metric!(metric_attributes)
+          .update!(**metric_attributes)
       end
     end
 
@@ -59,39 +65,49 @@ module Importers
     end
 
     def process_group(group, &blk)
-      attributes = {
+      metric_attributes = {
         group: find_group_title_key(group['group'])
       }
 
       group['metrics'].map do |metric|
-        process_metric(metric, attributes, &blk)
+        process_metric(metric, metric_attributes, &blk)
       end
     end
 
-    def process_metric(metric, attributes, &blk)
-      attributes = attributes.merge(
+    def process_metric(metric, metric_attributes, &blk)
+      queries = metric['queries'].map do |query|
+        process_query(query)
+      end
+
+      yield metric_attributes.merge(
         title: metric['title'],
-        y_label: metric['y_label'])
-
-      metric['queries'].map do |query|
-        process_metric_query(query, attributes, &blk)
-      end
+        y_label: metric['y_label'],
+        prometheus_queries: queries
+      )
     end
 
-    def process_metric_query(query, attributes, &blk)
-      attributes = attributes.merge(
+    def process_query(query)
+      prometheus_query = find_or_build_query!(query['id'])
+      prometheus_query.assign_attributes(
         legend: query['label'],
         query: query['query_range'],
-        unit: query['unit'])
-
-      yield(query['id'], attributes)
+        unit: query['unit']
+      )
+      prometheus_query
     end
 
-    def find_or_build_metric!(id)
+    def find_or_build_query!(id)
       raise MissingQueryId unless id
 
-      PrometheusMetric.common.find_by(identifier: id) ||
-        PrometheusMetric.new(common: true, identifier: id)
+      PrometheusQuery.find_by(identifier: id) ||
+        PrometheusQuery.new(identifier: id)
+    end
+
+    def find_or_build_metric!(metric_attributes)
+      target_attributes = metric_attributes.slice(:group, :title, :y_label)
+
+      PrometheusMetric.common.find_by(target_attributes) ||
+        PrometheusMetric.new(common: true)
     end
 
     def find_group_title_key(title)

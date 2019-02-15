@@ -95,28 +95,7 @@ class PrometheusMetric < ActiveRecord::Base
   end
 
   def queries
-    [
-      {
-        query_range: query,
-        unit: unit,
-        label: legend,
-        series: query_series
-      }.compact
-    ]
-  end
-
-  def query_series
-    case legend
-    when 'Status Code'
-      [{
-        label: 'status_code',
-        when: [
-          { value: '2xx', color: 'green' },
-          { value: '4xx', color: 'orange' },
-          { value: '5xx', color: 'red' }
-        ]
-      }]
-    end
+    prometheus_queries.map(&:to_query_hash)
   end
 
   private
