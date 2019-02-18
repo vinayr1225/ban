@@ -25,7 +25,8 @@ module Ci
     belongs_to :erased_by, class_name: 'User'
 
     RUNNER_FEATURES = {
-      upload_multiple_artifacts: -> (build) { build.publishes_artifacts_reports? }
+      upload_multiple_artifacts: -> (build) { build.publishes_artifacts_reports? },
+      refspecs: -> (build) { build.merge_request? }
     }.freeze
 
     has_one :deployment, as: :deployable, class_name: 'Deployment'
@@ -463,6 +464,8 @@ module Ci
 
     def merge_request
       return @merge_request if defined?(@merge_request)
+
+      @merge_request ||= pipeline.merge_request if merge_request?
 
       @merge_request ||=
         begin

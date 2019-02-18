@@ -36,14 +36,18 @@ module HasRef
   def refspecs
     spec = []
 
+    if merge_request?
+      spec << "+#{merge_request.ref_path}:#{merge_request.ref_path}"
+    end
+
     if git_depth > 0
-      if branch? || merge_request?
+      if branch?
         spec << "+#{git_branch_ref}:refs/remotes/origin/#{ref}"
       elsif tag?
         spec << "+#{git_tag_ref}:#{git_tag_ref}"
       end
     else
-      if branch? || merge_request? || tag?
+      if branch? || tag?
         spec << '+refs/heads/*:refs/remotes/origin/*'
         spec << '+refs/tags/*:refs/tags/*'
       end
