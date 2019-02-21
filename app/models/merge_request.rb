@@ -1369,10 +1369,14 @@ class MergeRequest < ActiveRecord::Base
     source_project.repository.squash_in_progress?(id)
   end
 
+  def merge_ref_sha
+    project.repository.commit(merge_ref_path)
+  end
+
   private
 
   def find_actual_head_pipeline
     source_project&.ci_pipelines
-                  &.latest_for_merge_request(self, source_branch, diff_head_sha)
+                  &.latest_for_merge_request(self, source_branch, [diff_head_sha, merge_ref_sha])
   end
 end
