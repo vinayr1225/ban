@@ -3,7 +3,6 @@
 module Clusters
   module Applications
     class UpdateService
-
       private
 
       def worker_class(application)
