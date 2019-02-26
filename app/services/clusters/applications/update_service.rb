@@ -27,9 +27,9 @@ module Clusters
             application.oauth_application = create_oauth_application(application, request)
           end
 
-          application.save!
+          application.make_scheduled!
 
-          Clusters::Applications::ScheduleUpdateService.new(application).execute
+          ClusterUpdateAppWorker.perform_async(application.name, application.id)
         end
       end
 
