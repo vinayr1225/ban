@@ -11,7 +11,7 @@ class Clusters::ApplicationsController < Clusters::BaseController
       .execute(request)
 
     head :no_content
-  rescue Clusters::Applications::CreateService::InvalidApplicationError
+  rescue Clusters::Applications::BaseService::InvalidApplicationError
     render_404
   rescue StandardError
     head :bad_request
@@ -23,7 +23,7 @@ class Clusters::ApplicationsController < Clusters::BaseController
       .execute(request)
 
     head :no_content
-  rescue Clusters::Applications::UpdateService::InvalidApplicationError
+  rescue Clusters::Applications::BaseService::InvalidApplicationError
     render_404
   rescue StandardError
     head :bad_request
