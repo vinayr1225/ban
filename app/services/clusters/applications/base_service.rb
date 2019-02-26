@@ -13,8 +13,6 @@ module Clusters
         @params = params.dup
       end
 
-      protected
-
       def execute(request)
         instantiate_application.tap do |application|
           if application.has_attribute?(:hostname)
@@ -36,6 +34,8 @@ module Clusters
           worker.perform_async(application.name, application.id)
         end
       end
+
+      protected
 
       def worker_class(application)
         raise NotImplementedError

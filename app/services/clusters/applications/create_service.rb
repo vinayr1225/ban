@@ -3,9 +3,6 @@
 module Clusters
   module Applications
     class CreateService < BaseService
-      def execute(request)
-        super
-      end
 
       private
 
