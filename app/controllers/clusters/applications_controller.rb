@@ -7,7 +7,7 @@ class Clusters::ApplicationsController < Clusters::BaseController
 
   def create
     Clusters::Applications::CreateService
-      .new(@cluster, current_user, create_cluster_application_params)
+      .new(@cluster, current_user, cluster_application_params)
       .execute(request)
 
     head :no_content
@@ -19,7 +19,7 @@ class Clusters::ApplicationsController < Clusters::BaseController
 
   def update
     Clusters::Applications::UpdateService
-      .new(@cluster, current_user, update_cluster_application_params)
+      .new(@cluster, current_user, cluster_application_params)
       .execute(request)
 
     head :no_content
@@ -35,11 +35,7 @@ class Clusters::ApplicationsController < Clusters::BaseController
     @cluster ||= clusterable.clusters.find(params[:id]) || render_404
   end
 
-  def create_cluster_application_params
-    params.permit(:application, :hostname, :email)
-  end
-
-  def update_cluster_application_params
+  def cluster_application_params
     params.permit(:application, :hostname, :email)
   end
 end
