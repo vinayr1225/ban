@@ -50,7 +50,7 @@ module Clusters
       end
 
       def instantiate_application
-        builder.call(@cluster)
+        builder.call(@cluster) || raise(InvalidApplicationError, "invalid application: #{application_name}")
       end
 
       def builder

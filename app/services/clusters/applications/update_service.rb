@@ -13,7 +13,7 @@ module Clusters
         {
           "helm" => -> (cluster) { cluster.application_helm },
           "ingress" => -> (cluster) { cluster.application_ingress },
-          "cert_manager" => -> (cluster) { cluster.application_cert_managerr }
+          "cert_manager" => -> (cluster) { cluster.application_cert_manager }
         }.tap do |hash|
           hash.merge!(project_builders) if cluster.project_type?
         end
