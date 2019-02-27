@@ -2,7 +2,7 @@
 
 module Clusters
   module Applications
-    class CreateService < BaseService
+    class CreateService < Clusters::Applications::BaseService
       private
 
       def worker_class(application)

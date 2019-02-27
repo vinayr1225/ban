@@ -2,7 +2,7 @@
 
 module Clusters
   module Applications
-    class UpdateService
+    class UpdateService < Clusters::Applications::BaseService
       private
 
       def worker_class(application)
