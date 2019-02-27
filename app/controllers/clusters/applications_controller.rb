@@ -6,21 +6,25 @@ class Clusters::ApplicationsController < Clusters::BaseController
   before_action :authorize_update_cluster!, only: [:update]
 
   def create
-    Clusters::Applications::CreateService
+    request_handler do
+      Clusters::Applications::CreateService
       .new(@cluster, current_user, cluster_application_params)
       .execute(request)
-
-    head :no_content
-  rescue Clusters::Applications::BaseService::InvalidApplicationError
-    render_404
-  rescue StandardError
-    head :bad_request
+    end
   end
 
   def update
-    Clusters::Applications::UpdateService
-      .new(@cluster, current_user, cluster_application_params)
-      .execute(request)
+    request_handler do
+      Clusters::Applications::UpdateService
+        .new(@cluster, current_user, cluster_application_params)
+        .execute(request)
+    end
+  end
+
+  private
+
+  def request_handler
+    yield
 
     head :no_content
   rescue Clusters::Applications::BaseService::InvalidApplicationError
@@ -28,8 +32,6 @@ class Clusters::ApplicationsController < Clusters::BaseController
   rescue StandardError
     head :bad_request
   end
-
-  private
 
   def cluster
     @cluster ||= clusterable.clusters.find(params[:id]) || render_404
