@@ -64,8 +64,9 @@ module Clusters
       end
 
       def update_command
-        install_command.version = version
-        install_command
+        command = install_command
+        command.version = version
+        command
       end
 
       def schedule_status_update
