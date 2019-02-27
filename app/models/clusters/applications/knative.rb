@@ -63,12 +63,6 @@ module Clusters
         )
       end
 
-      def update_command
-        command = install_command
-        command.version = version
-        command
-      end
-
       def schedule_status_update
         return unless installed?
         return if external_ip
