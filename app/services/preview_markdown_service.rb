@@ -32,7 +32,7 @@ class PreviewMarkdownService < BaseService
   def find_suggestions(text)
     return [] unless params[:preview_suggestions]
 
-    Banzai::SuggestionsParser.parse(text)
+    Banzai::SuggestionsParser.parse(text).map(&:to_hash)
   end
 
   def find_commands_target

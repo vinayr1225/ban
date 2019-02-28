@@ -19,16 +19,24 @@ class Suggestion < ApplicationRecord
     position.file_path
   end
 
-  # For now, suggestions only serve as a way to send patches that
-  # will change a single line (being able to apply multiple in the same place),
-  # which explains `from_line` and `to_line` being the same line.
-  # We'll iterate on that in https://gitlab.com/gitlab-org/gitlab-ce/issues/53310
-  # when allowing multi-line suggestions.
   def from_line
-    position.new_line
+    position.new_line - lines_above
   end
-  alias_method :to_line, :from_line
 
+  def to_line
+    position.new_line + lines_below
+  end
+
+  # TODO: persist it
+  def lines_above
+    0
+  end
+
+  def lines_below
+    0
+  end
+
+  # TODO: Is that even needed? I think we can remove it.
   def from_original_line
     original_position.new_line
   end

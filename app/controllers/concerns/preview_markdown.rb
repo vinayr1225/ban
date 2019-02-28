@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+#
+# 1. Give the merge request IID to the params
+# 2. Give the file path (the preview is scoped by file)
 
 module PreviewMarkdown
   extend ActiveSupport::Concern

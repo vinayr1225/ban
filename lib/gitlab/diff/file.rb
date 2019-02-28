@@ -140,6 +140,9 @@ module Gitlab
         old_blob_lazy&.itself
       end
 
+      # TODO: Add tests with:
+      # - Negative from_line
+      # - to_line surpassing the lines containing in the blob
       def new_blob_lines_between(from_line, to_line)
         return [] unless new_blob
 
