@@ -59,7 +59,7 @@ describe Clusters::Applications::UpdateService do
         end
 
         it 'raises StateMachines::InvalidTransition' do
-          expect(ClusterUpdateAppWorker).to_not receive(:perform_async)
+          expect(ClusterUpdateAppWorker).not_to receive(:perform_async)
 
           expect { subject }
             .to raise_exception { StateMachines::InvalidTransition }
