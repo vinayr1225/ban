@@ -60,6 +60,16 @@ export default {
       required: false,
       default: null,
     },
+    filePath: {
+      type: String,
+      required: false,
+      default: null,
+    },
+    targetLine: {
+      type: Number,
+      required: false,
+      default: null,
+    },
     helpPagePath: {
       type: String,
       required: false,

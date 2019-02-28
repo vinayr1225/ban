@@ -48,10 +48,13 @@ export default {
         noteableType: this.noteableType,
         noteTargetLine: this.noteTargetLine,
         diffViewType: this.diffViewType,
-        diffFile: this.getDiffFileByHash(this.diffFileHash),
+        diffFile: this.diffFile(),
         linePosition: this.linePosition,
       };
     },
+    diffFile() {
+      return this.getDiffFileByHash(this.diffFileHash);
+    }
   },
   mounted() {
     if (this.isLoggedIn) {
@@ -102,6 +105,8 @@ export default {
       :line-code="line.line_code"
       :line="line"
       :help-page-path="helpPagePath"
+      :file-path="diffFile.file_path"
+      :target-line="noteTargetLine.new_line"
       save-button-title="Comment"
       class="diff-comment-form"
       @handleFormUpdateAddToReview="addToReview"

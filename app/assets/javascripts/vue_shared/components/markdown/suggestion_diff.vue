@@ -6,7 +6,7 @@ export default {
     SuggestionDiffHeader,
   },
   props: {
-    newLines: {
+    toContent: {
       type: Array,
       required: true,
     },

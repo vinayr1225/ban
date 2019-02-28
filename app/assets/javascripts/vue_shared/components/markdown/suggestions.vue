@@ -6,21 +6,24 @@ import Flash from '~/flash';
 export default {
   components: { SuggestionDiff },
   props: {
-    fromLine: {
-      type: Number,
-      required: false,
-      default: 0,
-    },
-    fromContent: {
-      type: String,
-      required: false,
-      default: '',
-    },
-    lineType: {
-      type: String,
-      required: false,
-      default: '',
-    },
+    // TODO: it shouldn't need that
+    // fromLine: {
+    //   type: Number,
+    //   required: false,
+    //   default: 0,
+    // },
+    // TODO: it shouldn't need that
+    // fromContent: {
+    //   type: String,
+    //   required: false,
+    //   default: '',
+    // },
+    // TODO: it shouldn't need that
+    // lineType: {
+    //   type: String,
+    //   required: false,
+    //   default: '',
+    // },
     suggestions: {
       type: Array,
       required: false,
@@ -30,11 +33,12 @@ export default {
       type: String,
       required: true,
     },
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
+    // TODO: it shouldn't need that
+    // disabled: {
+    //   type: Boolean,
+    //   required: false,
+    //   default: false,
+    // },
     helpPagePath: {
       type: String,
       required: true,
@@ -65,14 +69,15 @@ export default {
       const { container } = this.$refs;
       const suggestionElements = container.querySelectorAll('.js-render-suggestion');
 
-      if (this.lineType === 'old') {
-        Flash('Unable to apply suggestions to a deleted line.', 'alert', this.$el);
-      }
+      // TODO: Move logic to suggestion component
+      // TODO: Use suggestion.suggestible_lines?
+      // if (this.lineType === 'old') {
+      //   Flash('Unable to apply suggestions to a deleted line.', 'alert', this.$el);
+      // }
 
       suggestionElements.forEach((suggestionEl, i) => {
         const suggestionParentEl = suggestionEl.parentElement;
-        const newLines = this.extractNewLines(suggestionParentEl);
-        const diffComponent = this.generateDiff(newLines, i);
+        const diffComponent = this.generateDiff(i);
         diffComponent.$mount(suggestionParentEl);
       });
 
@@ -101,11 +106,12 @@ export default {
       const { suggestions, disabled, helpPagePath } = this;
       const suggestion =
         suggestions && suggestions[suggestionIndex] ? suggestions[suggestionIndex] : {};
-      const fromContent = suggestion.from_content || this.fromContent;
-      const fromLine = suggestion.from_line || this.fromLine;
+      const fromContent = suggestion.from_content;// || this.fromContent;
+      const toContent = suggestion.to_content;// || this.fromContent;
+      const fromLine = 0; //suggestion.from_line;// || this.fromLine;
       const SuggestionDiffComponent = Vue.extend(SuggestionDiff);
       const suggestionDiff = new SuggestionDiffComponent({
-        propsData: { newLines, fromLine, fromContent, disabled, suggestion, helpPagePath },
+        propsData: { toContent, fromLine, fromContent, disabled, suggestion, helpPagePath },
       });
 
       suggestionDiff.$on('apply', ({ suggestionId, callback }) => {
