@@ -8,8 +8,8 @@ class Clusters::ApplicationsController < Clusters::BaseController
   def create
     request_handler do
       Clusters::Applications::CreateService
-      .new(@cluster, current_user, cluster_application_params)
-      .execute(request)
+        .new(@cluster, current_user, cluster_application_params)
+        .execute(request)
     end
   end
 
