@@ -10,22 +10,22 @@ or define a specific company role, e.g. "Release Manager".
 
 Existing personas are: (copy relevant personas out of this comment, and delete any persona that does not apply)
 
-- [Parker](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#parker-product-manager), Product Manager
+- [Parker](https://design.gitlab.com/research/personas/#persona-parker), Product Manager
 /label ~"Persona: Product Manager"
 
-- [Delaney](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#delaney-development-team-lead), Development Team Lead
+- [Delaney](https://design.gitlab.com/research/personas/#persona-delaney), Development Team Lead
 /label ~"Persona: Development Team Lead"
 
-- [Sasha](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sasha-software-developer), Software Developer
+- [Sasha](https://design.gitlab.com/research/personas/#persona-sasha), Software Developer
 /label ~"Persona: Software developer"
 
-- [Devon](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#devon-devops-engineer), DevOps Engineer
+- [Devon](https://design.gitlab.com/research/personas/#persona-devon), DevOps Engineer
 /label ~"Persona: DevOps Engineer"
 
-- [Sidney](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sidney-systems-administrator), Systems Administrator
+- [Sidney](https://design.gitlab.com/research/personas/#persona-sidney), Systems Administrator
 /label ~"Persona: Systems Administrator"
 
-- [Sam](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sam-security-analyst), Security Analyst
+- [Sam](https://design.gitlab.com/research/personas/#persona-sam), Security Analyst
 /label ~"Persona: Security Analyst"
 -->
 
