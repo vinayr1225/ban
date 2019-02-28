@@ -10,6 +10,10 @@ describe Projects::Clusters::ApplicationsController do
   end
 
   describe 'POST create' do
+    subject do
+      post :create, params: params.merge(namespace_id: project.namespace, project_id: project)
+    end
+
     let(:cluster) { create(:cluster, :project, :provided_by_gcp) }
     let(:project) { cluster.project }
     let(:application) { 'helm' }
@@ -26,7 +30,7 @@ describe Projects::Clusters::ApplicationsController do
       it 'schedule an application installation' do
         expect(ClusterInstallAppWorker).to receive(:perform_async).with(application, anything).once
 
-        expect { go }.to change { current_application.count }
+        expect { subject }.to change { current_application.count }
         expect(response).to have_http_status(:no_content)
         expect(cluster.application_helm).to be_scheduled
       end
@@ -37,7 +41,7 @@ describe Projects::Clusters::ApplicationsController do
         end
 
         it 'return 404' do
-          expect { go }.not_to change { current_application.count }
+          expect { subject }.not_to change { current_application.count }
           expect(response).to have_http_status(:not_found)
         end
       end
@@ -46,9 +50,7 @@ describe Projects::Clusters::ApplicationsController do
         let(:application) { 'unkwnown-app' }
 
         it 'return 404' do
-          go
-
-          expect(response).to have_http_status(:not_found)
+          is_expected.to have_http_status(:not_found)
         end
       end
 
@@ -58,9 +60,7 @@ describe Projects::Clusters::ApplicationsController do
         end
 
         it 'returns 400' do
-          go
-
-          expect(response).to have_http_status(:bad_request)
+          is_expected.to have_http_status(:bad_request)
         end
       end
     end
@@ -70,18 +70,14 @@ describe Projects::Clusters::ApplicationsController do
         allow(ClusterInstallAppWorker).to receive(:perform_async)
       end
 
-      it { expect { go }.to be_allowed_for(:admin) }
-      it { expect { go }.to be_allowed_for(:owner).of(project) }
-      it { expect { go }.to be_allowed_for(:maintainer).of(project) }
-      it { expect { go }.to be_denied_for(:developer).of(project) }
-      it { expect { go }.to be_denied_for(:reporter).of(project) }
-      it { expect { go }.to be_denied_for(:guest).of(project) }
-      it { expect { go }.to be_denied_for(:user) }
-      it { expect { go }.to be_denied_for(:external) }
-    end
-
-    def go
-      post :create, params: params.merge(namespace_id: project.namespace, project_id: project)
+      it { expect { subject }.to be_allowed_for(:admin) }
+      it { expect { subject }.to be_allowed_for(:owner).of(project) }
+      it { expect { subject }.to be_allowed_for(:maintainer).of(project) }
+      it { expect { subject }.to be_denied_for(:developer).of(project) }
+      it { expect { subject }.to be_denied_for(:reporter).of(project) }
+      it { expect { subject }.to be_denied_for(:guest).of(project) }
+      it { expect { subject }.to be_denied_for(:user) }
+      it { expect { subject }.to be_denied_for(:external) }
     end
   end
 end
