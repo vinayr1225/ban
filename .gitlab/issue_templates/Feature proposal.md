@@ -5,27 +5,27 @@
 ### Target audience
 
 <!--- For whom are we doing this? Include a [persona](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas/)
-listed below, if applicable, along with its [label](https://gitlab.com/groups/gitlab-org/-/labels?utf8=%E2%9C%93&subscribed=&search=persona%3A),
+listed below, if applicable, along with its [label](https://gitlab.com/groups/gitlab-org/-/labels?search=persona%3A),
 or define a specific company role, e.g. "Release Manager".
 
 Existing personas are: (copy relevant personas out of this comment, and delete any persona that does not apply)
 
-- Parker, Product Manager, https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#parker-product-manager
+- [Parker](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#parker-product-manager), Product Manager
 /label ~"Persona: Product Manager"
 
-- Delaney, Development Team Lead, https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#delaney-development-team-lead
+- [Delaney](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#delaney-development-team-lead), Development Team Lead
 /label ~"Persona: Development Team Lead"
 
-- Sasha, Software Developer, https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sasha-software-developer
+- [Sasha](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sasha-software-developer), Software Developer
 /label ~"Persona: Software developer"
 
-- Devon, DevOps Engineer, https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#devon-devops-engineer
+- [Devon](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#devon-devops-engineer), DevOps Engineer
 /label ~"Persona: DevOps Engineer"
 
-- Sidney, Systems Administrator, https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sidney-systems-administrator
+- [Sidney](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sidney-systems-administrator), Systems Administrator
 /label ~"Persona: Systems Administrator"
 
-- Sam, Security Analyst, https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sam-security-analyst
+- [Sam](https://about.gitlab.com/handbook/marketing/product-marketing/roles-personas#sam-security-analyst), Security Analyst
 /label ~"Persona: Security Analyst"
 -->
 
