@@ -1,0 +1,5 @@
+---
+title: Fix showing empty blocks in ci lint
+merge_request:
+author:
+type: fixed

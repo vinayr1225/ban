@@ -17,9 +17,12 @@
             %tr
               %td #{stage.capitalize} Job - #{build[:name]}
               %td
-                %pre= job[:before_script].to_a.join('\n')
-                %pre= job[:script].to_a.join('\n')
-                %pre= job[:after_script].to_a.join('\n')
+                - if job[:before_script]
+                  %pre= job[:before_script].to_a.join('\n')
+                - if job[:script]
+                  %pre= job[:script].to_a.join('\n')
+                - if job[:after_script]
+                  %pre= job[:after_script].to_a.join('\n')
 
                 %br
                 %b= _("Tag list:")
