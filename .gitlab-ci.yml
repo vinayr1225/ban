@@ -684,7 +684,6 @@ gitlab:assets:compile:
     - gitlab-org
 
 gitlab:ui:visual:
-  <<: *except-docs
   tags:
     - gitlab-org
   before_script: []
@@ -706,6 +705,7 @@ gitlab:ui:visual:
   except:
     refs:
       - master
+      - /(^docs[\/-].*|.*-docs$)
     variables:
       - $CI_COMMIT_MESSAGE =~ /\[skip visual\]/i
   artifacts:
