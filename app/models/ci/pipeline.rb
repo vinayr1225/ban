@@ -742,6 +742,10 @@ module Ci
       triggered_by_merge_request? && target_sha == merge_request.target_branch_sha
     end
 
+    def merge_request_ref?
+      MergeRequest.merge_request_ref?(ref)
+    end
+
     private
 
     def ci_yaml_from_repo

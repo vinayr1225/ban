@@ -54,7 +54,7 @@ class PipelineEntity < Grape::Entity
 
     expose :tag?, as: :tag
     expose :branch?, as: :branch
-    expose :merge_request_event?, as: :merge_request
+    expose :merge_request_ref?, as: :merge_request
   end
 
   expose :commit, using: CommitEntity
