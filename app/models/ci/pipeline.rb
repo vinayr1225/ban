@@ -742,6 +742,10 @@ module Ci
       triggered_by_merge_request? && target_sha == merge_request.target_branch_sha
     end
 
+    def branch_ref?
+      !tag && !merge_request_ref?
+    end
+
     def merge_request_ref?
       MergeRequest.merge_request_ref?(ref)
     end

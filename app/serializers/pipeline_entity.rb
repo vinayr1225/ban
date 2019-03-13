@@ -53,7 +53,7 @@ class PipelineEntity < Grape::Entity
     end
 
     expose :tag?, as: :tag
-    expose :branch?, as: :branch
+    expose :branch_ref?, as: :branch
     expose :merge_request_ref?, as: :merge_request
   end
 
