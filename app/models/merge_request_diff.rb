@@ -308,6 +308,11 @@ class MergeRequestDiff < ActiveRecord::Base
 
     # Faster inserts
     Gitlab::Database.bulk_insert('merge_request_diff_files', rows)
+  rescue ActiveRecord::RecordNotUnique
+    ids = rows.map { |row| row[:merge_request_diff_id] }.uniq.sort
+
+    Gitlab::Sentry.track_exception(e, extra: { ids: ids })
+    Rails.logger.info("#{self.class.name}: rows inserted twice for IDs #{ids}")
   end
 
   def build_external_merge_request_diff_files(diffs)

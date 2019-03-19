@@ -26,6 +26,11 @@ class MergeRequestDiffCommit < ActiveRecord::Base
     end
 
     Gitlab::Database.bulk_insert(self.table_name, rows)
+  rescue ActiveRecord::RecordNotUnique => e
+    ids = rows.map { |row| row[:merge_request_diff_id] }.uniq.sort
+
+    Rails.logger.info("#{self.class.name}: rows inserted twice for IDs #{ids}")
+    Gitlab::Sentry.track_exception(e, extra: { ids: ids })
   end
 
   def to_hash
