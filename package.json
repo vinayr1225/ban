@@ -167,6 +167,7 @@
     "eslint-plugin-jest": "^22.3.0",
     "gettext-extractor": "^3.4.3",
     "gettext-extractor-vue": "^4.0.2",
+    "eslint-plugin-vue": "^5.2.2",
     "graphql-tag": "^2.10.0",
     "istanbul": "^0.4.5",
     "jasmine-core": "^2.9.0",
