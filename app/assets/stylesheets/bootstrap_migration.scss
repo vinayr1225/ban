@@ -189,8 +189,14 @@ table {
 
 .dropdown-toggle::after,
 .dropright .dropdown-menu-toggle::after {
-  // Remove bootstrap's dropdown caret
-  display: none;
+  // Replace bootstrap's dropdown caret
+  -webkit-font-smoothing: antialiased;
+  border: none;
+  color: #c4c4c4;
+  content: "\f078";
+  font: normal normal normal 10px/1 FontAwesome;
+  height: auto;
+  width: auto;
 }
 
 h3.popover-header {
