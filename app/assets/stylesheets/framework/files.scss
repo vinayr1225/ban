@@ -29,14 +29,24 @@
     @extend .table;
   }
 
-  .file-title {
-    position: relative;
+  .file-title.file-title-flex-parent{
     background-color: $gray-light;
+    border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
     margin: 0;
     text-align: left;
-    padding: 10px $gl-padding;
+    padding: $gl-padding-4 $gl-padding;
     word-wrap: break-word;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: $border-radius-default $border-radius-default 0 0;
+
+    &.is-stuck {
+      border-radius: 0;
+    }
 
     &.file-title-clear {
       padding-left: 0;
@@ -49,7 +59,7 @@
     }
 
     .file-actions {
-      position: absolute;
+      position: static;
       top: 5px;
       right: 15px;
       margin-left: auto;
@@ -58,15 +68,50 @@
         padding: 0 10px;
         font-size: 13px;
         line-height: 28px;
+        display: inline-block;
+        float: none;
       }
     }
 
-    a:not(.btn) {
+    a {
       color: $gl-text-color;
     }
 
     .left-options {
       margin-top: -3px;
+    }
+
+    .file-header-content {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 30px;
+      width: auto;
+  
+      @media (max-width: map-get($grid-breakpoints, sm)-1) {
+        width: 100%;
+      }
+    }
+
+    .btn-clipboard {
+      position: absolute;
+      right: 0;
+    }
+
+    small {
+      margin: 0 10px 0 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      display: block;
+  
+      .file-actions {
+        white-space: normal;
+  
+        .btn-group {
+          padding-top: 5px;
+        }
+      }
     }
   }
 
@@ -322,77 +367,6 @@ span.idiff {
   }
 }
 
-.file-title-flex-parent {
-  &,
-  .file-holder & {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    background-color: $gray-light;
-    border-bottom: 1px solid $border-color;
-    border-top: 1px solid $border-color;
-    padding: 5px $gl-padding;
-    margin: 0;
-    border-radius: $border-radius-default $border-radius-default 0 0;
-
-    &.is-stuck {
-      border-radius: 0;
-    }
-  }
-
-  .file-header-content {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding-right: 30px;
-    position: relative;
-    width: auto;
-
-    @media (max-width: map-get($grid-breakpoints, sm)-1) {
-      width: 100%;
-    }
-  }
-
-  .file-holder & {
-    .file-actions {
-      position: static;
-    }
-  }
-
-  .btn-clipboard {
-    position: absolute;
-    right: 0;
-  }
-
-  a {
-    color: $gl-text-color;
-  }
-
-  small {
-    margin: 0 10px 0 0;
-  }
-
-  .file-actions .btn {
-    padding: 0 10px;
-    font-size: 13px;
-    line-height: 28px;
-    display: inline-block;
-    float: none;
-  }
-
-  @include media-breakpoint-down(xs) {
-    display: block;
-
-    .file-actions {
-      white-space: normal;
-
-      .btn-group {
-        padding-top: 5px;
-      }
-    }
-  }
-}
 
 .is-stl-loading {
   .stl-controls {
