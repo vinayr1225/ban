@@ -144,7 +144,6 @@ export default {
       :collapsible="true"
       :expanded="!isCollapsed"
       :add-merge-request-buttons="true"
-      class="js-file-title file-title"
       @toggleFile="handleToggle"
       @showForkMessage="showForkMessage"
     />
