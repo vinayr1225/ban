@@ -1,5 +1,8 @@
 # GraphQL API (Alpha)
 
+- [README](README.md)
+- [doc](doc.md)
+
 > [Introduced][ce-19008] in GitLab 11.0.
 
 [GraphQL](https://graphql.org/) is a query language for APIs that

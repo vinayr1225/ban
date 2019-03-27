@@ -15,6 +15,11 @@ GET /projects/:id/releases/:tag_name/assets/links
 
 | Attribute     | Type           | Required | Description                             |
 | ------------- | -------------- | -------- | --------------------------------------- |
+| `id`          | integer/string | yes      | The ID or [URL-encoded path of the project](README.md#namespaced-path-encoding). |
+| `id`          | integer/string | yes      | The ID or [URL-encoded path of the project](READMEa.md#namespaced-path-encoding). |
+| `id`          | integer/string | yes      | The ID or [URL-encoded path of the project](README.md). |
+| `id`          | integer/string | yes      | The ID or [URL-encoded path of the project](./README.md). |
+| `id`          | integer/string | yes      | The ID or [URL-encoded path of the project](../README.md). |
 | `id`          | integer/string | yes      | The ID or [URL-encoded path of the project](../README.md#namespaced-path-encoding). |
 | `tag_name`    | string         | yes      | The tag associated with the Release. |
 

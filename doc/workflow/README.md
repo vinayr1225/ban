@@ -2,6 +2,8 @@
 comments: false
 ---
 
+[index](index.md)
+
 # Workflow
 
 - [Automatic issue closing](../user/project/issues/automatic_issue_closing.md)
