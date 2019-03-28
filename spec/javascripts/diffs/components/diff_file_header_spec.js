@@ -606,6 +606,7 @@ describe('diff_file_header', () => {
 
       vm = mountComponentWithStore(Component, { props, store });
 
+      // TODO: Make test look for proper icon
       expect(vm.$el.querySelector('.js-expand-file').textContent).toContain('Show changes only');
     });
 
@@ -614,6 +615,7 @@ describe('diff_file_header', () => {
 
       vm = mountComponentWithStore(Component, { props, store });
 
+      // TODO: Make test look for proper icon
       expect(vm.$el.querySelector('.js-expand-file').textContent).toContain('Show full file');
     });
 

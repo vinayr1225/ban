@@ -246,6 +246,20 @@ export default {
         v-html="viewReplacedFileButtonText"
       >
       </a>
+      <gl-button
+        v-if="showExpandDiffToFullFileEnabled"
+        class="expand-file js-expand-file"
+        @click="toggleFullDiff(diffFile.file_path)"
+      >
+        <gl-loading-icon v-if="diffFile.isLoadingFullFile" inline />
+        <template v-else-if="diffFile.isShowingFullFile">
+          <icon :title="s__('MRDiff|Show changes only')" name="todo-add" />
+        </template>
+        <template v-else>
+          <icon :title="s__('MRDiff|Show full file')" name="todo-done" />
+        </template>
+      </gl-button>
+
       <gl-tooltip :target="() => $refs.viewButton" placement="bottom">
         <span v-html="viewFileButtonText"></span>
       </gl-tooltip>
@@ -256,19 +270,6 @@ export default {
         class="view-file js-view-file-button"
       >
         <icon name="external-link" />
-      </gl-button>
-      <gl-button
-        v-if="showExpandDiffToFullFileEnabled"
-        class="expand-file js-expand-file"
-        @click="toggleFullDiff(diffFile.file_path)"
-      >
-        <template v-if="diffFile.isShowingFullFile">
-          {{ s__('MRDiff|Show changes only') }}
-        </template>
-        <template v-else>
-          {{ s__('MRDiff|Show full file') }}
-        </template>
-        <gl-loading-icon v-if="diffFile.isLoadingFullFile" inline />
       </gl-button>
 
       <a
