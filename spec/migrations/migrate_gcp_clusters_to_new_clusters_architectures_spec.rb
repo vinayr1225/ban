@@ -62,10 +62,10 @@ describe MigrateGcpClustersToNewClustersArchitectures, :migration do
     it 'correctly migrate to new clusters architectures' do
       migrate!
 
-      expect(described_class::Cluster.size).to eq(1)
-      expect(described_class::ClustersProject.size).to eq(1)
-      expect(described_class::ProvidersGcp.size).to eq(1)
-      expect(described_class::PlatformsKubernetes.size).to eq(1)
+      expect(described_class::Cluster.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(described_class::ClustersProject.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(described_class::ProvidersGcp.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(described_class::PlatformsKubernetes.count).to eq(1) # rubocop:disable Performance/SizeAll
 
       expect(cluster.user_id).to eq(user.id)
       expect(cluster.enabled).to be_truthy
@@ -138,10 +138,10 @@ describe MigrateGcpClustersToNewClustersArchitectures, :migration do
     it 'correctly migrate to new clusters architectures' do
       migrate!
 
-      expect(described_class::Cluster.size).to eq(1)
-      expect(described_class::ClustersProject.size).to eq(1)
-      expect(described_class::ProvidersGcp.size).to eq(1)
-      expect(described_class::PlatformsKubernetes.size).to eq(1)
+      expect(described_class::Cluster.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(described_class::ClustersProject.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(described_class::ProvidersGcp.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(described_class::PlatformsKubernetes.count).to eq(1) # rubocop:disable Performance/SizeAll
 
       expect(cluster.user_id).to eq(user.id)
       expect(cluster.enabled).to be_truthy

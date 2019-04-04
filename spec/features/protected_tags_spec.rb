@@ -22,7 +22,7 @@ describe 'Protected Tags', :js do
       click_on "Protect"
 
       within(".protected-tags-list") { expect(page).to have_content('some-tag') }
-      expect(ProtectedTag.size).to eq(1)
+      expect(ProtectedTag.count).to eq(1) # rubocop:disable Performance/SizeAll
       expect(ProtectedTag.last.name).to eq('some-tag')
     end
 
@@ -53,7 +53,7 @@ describe 'Protected Tags', :js do
       click_on "Protect"
 
       within(".protected-tags-list") { expect(page).to have_content('*-stable') }
-      expect(ProtectedTag.size).to eq(1)
+      expect(ProtectedTag.count).to eq(1) # rubocop:disable Performance/SizeAll
       expect(ProtectedTag.last.name).to eq('*-stable')
     end
 

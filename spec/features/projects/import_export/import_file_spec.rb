@@ -40,7 +40,7 @@ describe 'Import/Export - project import integration test', :js do
         attach_file('file', file)
         click_on 'Import project'
 
-        expect(Project.size).to eq(1)
+        expect(Project.count).to eq(1) # rubocop:disable Performance/SizeAll
 
         project = Project.last
         expect(project).not_to be_nil

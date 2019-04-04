@@ -80,7 +80,7 @@ describe Projects::DestroyService do
       let!(:async) { true }
 
       it 'destroys them' do
-        expect(RemoteMirror.size).to eq(0)
+        expect(RemoteMirror.count).to eq(0) # rubocop:disable Performance/SizeAll
       end
     end
 

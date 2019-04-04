@@ -277,7 +277,7 @@ describe Ci::CreatePipelineService do
       stub_ci_pipeline_yaml_file(nil)
 
       expect(execute_service).not_to be_persisted
-      expect(Ci::Pipeline.size).to eq(0)
+      expect(Ci::Pipeline.count).to eq(0) # rubocop:disable Performance/SizeAll
     end
 
     shared_examples 'a failed pipeline' do
@@ -443,7 +443,7 @@ describe Ci::CreatePipelineService do
 
         expect(result).not_to be_persisted
         expect(Ci::Build.all).to be_empty
-        expect(Ci::Pipeline.size).to eq(0)
+        expect(Ci::Pipeline.count).to eq(0) # rubocop:disable Performance/SizeAll
       end
     end
 
@@ -561,7 +561,7 @@ describe Ci::CreatePipelineService do
 
         it 'does not create a pipeline' do
           expect(execute_service).not_to be_persisted
-          expect(Ci::Pipeline.size).to eq(0)
+          expect(Ci::Pipeline.count).to eq(0) # rubocop:disable Performance/SizeAll
         end
       end
 
@@ -575,7 +575,7 @@ describe Ci::CreatePipelineService do
         it 'creates a protected pipeline' do
           expect(pipeline).to be_persisted
           expect(pipeline).to be_protected
-          expect(Ci::Pipeline.size).to eq(1)
+          expect(Ci::Pipeline.count).to eq(1) # rubocop:disable Performance/SizeAll
         end
       end
 
@@ -586,7 +586,7 @@ describe Ci::CreatePipelineService do
         it 'does not create a pipeline' do
           expect(execute_service(trigger_request: trigger_request))
             .not_to be_persisted
-          expect(Ci::Pipeline.size).to eq(0)
+          expect(Ci::Pipeline.count).to eq(0) # rubocop:disable Performance/SizeAll
         end
       end
 
@@ -602,7 +602,7 @@ describe Ci::CreatePipelineService do
         it 'does not create a pipeline' do
           expect(execute_service(trigger_request: trigger_request))
             .not_to be_persisted
-          expect(Ci::Pipeline.size).to eq(0)
+          expect(Ci::Pipeline.count).to eq(0) # rubocop:disable Performance/SizeAll
         end
       end
 
@@ -618,7 +618,7 @@ describe Ci::CreatePipelineService do
         it 'creates a pipeline' do
           expect(execute_service(trigger_request: trigger_request))
             .to be_persisted
-          expect(Ci::Pipeline.size).to eq(1)
+          expect(Ci::Pipeline.count).to eq(1) # rubocop:disable Performance/SizeAll
         end
       end
     end
@@ -651,7 +651,7 @@ describe Ci::CreatePipelineService do
         it 'creates an unprotected pipeline' do
           expect(pipeline).to be_persisted
           expect(pipeline).not_to be_protected
-          expect(Ci::Pipeline.size).to eq(1)
+          expect(Ci::Pipeline.count).to eq(1) # rubocop:disable Performance/SizeAll
         end
       end
     end

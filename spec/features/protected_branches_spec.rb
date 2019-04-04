@@ -14,7 +14,7 @@ describe 'Protected Branches', :js do
     describe 'Delete protected branch' do
       before do
         create(:protected_branch, project: project, name: 'fix')
-        expect(ProtectedBranch.size).to eq(1)
+        expect(ProtectedBranch.count).to eq(1) # rubocop:disable Performance/SizeAll
       end
 
       it 'does not allow developer to removes protected branch' do
@@ -37,7 +37,7 @@ describe 'Protected Branches', :js do
     describe 'Delete protected branch' do
       before do
         create(:protected_branch, project: project, name: 'fix')
-        expect(ProtectedBranch.size).to eq(1)
+        expect(ProtectedBranch.count).to eq(1) # rubocop:disable Performance/SizeAll
       end
 
       it 'removes branch after modal confirmation' do
@@ -75,7 +75,7 @@ describe 'Protected Branches', :js do
         click_on "Protect"
 
         within(".protected-branches-list") { expect(page).to have_content('some-branch') }
-        expect(ProtectedBranch.size).to eq(1)
+        expect(ProtectedBranch.count).to eq(1) # rubocop:disable Performance/SizeAll
         expect(ProtectedBranch.last.name).to eq('some-branch')
       end
 
@@ -109,7 +109,7 @@ describe 'Protected Branches', :js do
         click_on "Protect"
 
         within(".protected-branches-list") { expect(page).to have_content('*-stable') }
-        expect(ProtectedBranch.size).to eq(1)
+        expect(ProtectedBranch.count).to eq(1) # rubocop:disable Performance/SizeAll
         expect(ProtectedBranch.last.name).to eq('*-stable')
       end
 

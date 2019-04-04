@@ -11,7 +11,7 @@ describe Projects::DetectRepositoryLanguagesService, :clean_gitlab_redis_shared_
         subject.execute
 
         expect(ProgrammingLanguage.exists?(name: 'Ruby')).to be(true)
-        expect(ProgrammingLanguage.size).to be(4)
+        expect(ProgrammingLanguage.count).to be(4) # rubocop:disable Performance/SizeAll
       end
 
       it 'inserts the repository langauges' do

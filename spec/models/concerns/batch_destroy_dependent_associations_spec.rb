@@ -31,11 +31,11 @@ describe BatchDestroyDependentAssociations do
     it 'destroys multiple builds' do
       create(:ci_build, project: project)
 
-      expect(Ci::Build.size).to eq(2)
+      expect(Ci::Build.count).to eq(2) # rubocop:disable Performance/SizeAll
 
       project.destroy_dependent_associations_in_batches
 
-      expect(Ci::Build.size).to eq(0)
+      expect(Ci::Build.count).to eq(0) # rubocop:disable Performance/SizeAll
     end
 
     it 'destroys builds in batches' do
@@ -44,19 +44,19 @@ describe BatchDestroyDependentAssociations do
 
       project.destroy_dependent_associations_in_batches
 
-      expect(Ci::Build.size).to eq(0)
-      expect(Todo.size).to eq(1)
-      expect(User.size).to be > 0
-      expect(NotificationSetting.size).to eq(User.size)
+      expect(Ci::Build.count).to eq(0) # rubocop:disable Performance/SizeAll
+      expect(Todo.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(User.count).to be > 0 # rubocop:disable Performance/SizeAll
+      expect(NotificationSetting.count).to eq(User.count) # rubocop:disable Performance/SizeAll
     end
 
     it 'excludes associations' do
       project.destroy_dependent_associations_in_batches(exclude: [:builds])
 
-      expect(Ci::Build.size).to eq(1)
-      expect(Todo.size).to eq(1)
-      expect(User.size).to be > 0
-      expect(NotificationSetting.size).to eq(User.size)
+      expect(Ci::Build.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(Todo.count).to eq(1) # rubocop:disable Performance/SizeAll
+      expect(User.count).to be > 0 # rubocop:disable Performance/SizeAll
+      expect(NotificationSetting.count).to eq(User.count) # rubocop:disable Performance/SizeAll
     end
   end
 end

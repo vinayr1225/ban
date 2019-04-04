@@ -15,14 +15,14 @@ describe ForkNetworkMember do
     it 'removes the fork network if it was the last member' do
       fork_network.fork_network_members.destroy_all # rubocop: disable DestroyAll
 
-      expect(ForkNetwork.size).to eq(0)
+      expect(ForkNetwork.count).to eq(0) # rubocop:disable Performance/SizeAll
     end
 
     it 'does not destroy the fork network if there are members left' do
       fork_network_member.destroy!
 
       # The root of the fork network is left
-      expect(ForkNetwork.size).to eq(1)
+      expect(ForkNetwork.count).to eq(1) # rubocop:disable Performance/SizeAll
     end
   end
 end

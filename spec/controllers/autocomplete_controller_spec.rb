@@ -90,7 +90,7 @@ describe AutocompleteController do
       end
 
       it { expect(json_response).to be_kind_of(Array) }
-      it { expect(json_response.size).to eq User.size }
+      it { expect(json_response.size).to eq User.count } # rubocop:disable Performance/SizeAll
     end
 
     context 'user order' do

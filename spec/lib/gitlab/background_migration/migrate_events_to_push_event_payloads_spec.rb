@@ -340,7 +340,7 @@ describe Gitlab::BackgroundMigration::MigrateEventsToPushEventPayloads, :migrati
     it 'creates a push event payload for an event' do
       payload = migration.create_push_event_payload(event)
 
-      expect(PushEventPayload.size).to eq(1)
+      expect(PushEventPayload.count).to eq(1) # rubocop:disable Performance/SizeAll
       expect(payload.valid?).to eq(true)
     end
 
@@ -349,7 +349,7 @@ describe Gitlab::BackgroundMigration::MigrateEventsToPushEventPayloads, :migrati
 
       expect { migration.create_push_event_payload(event) }.to raise_error(ActiveRecord::InvalidForeignKey)
 
-      expect(PushEventPayload.size).to eq(0)
+      expect(PushEventPayload.count).to eq(0) # rubocop:disable Performance/SizeAll
     end
 
     it 'encodes and decodes the commit IDs from and to binary data' do

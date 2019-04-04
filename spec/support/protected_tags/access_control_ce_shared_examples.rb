@@ -17,7 +17,7 @@ RSpec.shared_examples "protected tags > access control > CE" do
 
       click_on "Protect"
 
-      expect(ProtectedTag.size).to eq(1)
+      expect(ProtectedTag.count).to eq(1) # rubocop:disable Performance/SizeAll
       expect(ProtectedTag.last.create_access_levels.map(&:access_level)).to eq([access_type_id])
     end
 
@@ -28,7 +28,7 @@ RSpec.shared_examples "protected tags > access control > CE" do
 
       click_on "Protect"
 
-      expect(ProtectedTag.size).to eq(1)
+      expect(ProtectedTag.count).to eq(1) # rubocop:disable Performance/SizeAll
 
       within(".protected-tags-list") do
         find(".js-allowed-to-create").click

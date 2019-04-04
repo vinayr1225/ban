@@ -170,7 +170,7 @@ describe MergeRequest do
         merge_request = create(:merge_request)
 
         expect(merge_request.metrics).to be_persisted
-        expect(MergeRequest::Metrics.size).to eq(1)
+        expect(MergeRequest::Metrics.count).to eq(1) # rubocop:disable Performance/SizeAll
       end
 
       it 'does not duplicate metrics for a merge request' do
@@ -178,7 +178,7 @@ describe MergeRequest do
 
         merge_request.mark_as_merged!
 
-        expect(MergeRequest::Metrics.size).to eq(1)
+        expect(MergeRequest::Metrics.count).to eq(1) # rubocop:disable Performance/SizeAll
       end
     end
 

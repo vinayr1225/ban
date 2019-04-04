@@ -13,7 +13,7 @@ shared_examples 'issuable notes filter' do
     get :discussions, params: params.merge(notes_filter: notes_filter)
 
     expect(user.reload.notes_filter_for(issuable)).to eq(notes_filter)
-    expect(UserPreference.size).to eq(1)
+    expect(UserPreference.count).to eq(1) # rubocop:disable Performance/SizeAll
   end
 
   it 'expires notes e-tag cache for issuable if filter changed' do

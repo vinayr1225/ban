@@ -277,7 +277,7 @@ describe Issues::UpdateService, :mailer do
         end
 
         it 'does not create any new todos' do
-          expect(Todo.size).to eq(1)
+          expect(Todo.count).to eq(1) # rubocop:disable Performance/SizeAll
         end
       end
 
@@ -291,7 +291,7 @@ describe Issues::UpdateService, :mailer do
         end
 
         it 'creates only 1 new todo' do
-          expect(Todo.size).to eq(2)
+          expect(Todo.count).to eq(2) # rubocop:disable Performance/SizeAll
         end
       end
 

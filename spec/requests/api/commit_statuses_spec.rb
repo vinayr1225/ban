@@ -236,7 +236,7 @@ describe API::CommitStatuses do
           end
 
           it 'does not create a new commit status' do
-            expect(CommitStatus.size).to eq 1
+            expect(CommitStatus.count).to eq 1 # rubocop:disable Performance/SizeAll
           end
         end
       end
@@ -257,7 +257,7 @@ describe API::CommitStatuses do
         end
 
         it 'retries a commit status' do
-          expect(CommitStatus.size).to eq 2
+          expect(CommitStatus.count).to eq 2 # rubocop:disable Performance/SizeAll
           expect(CommitStatus.first).to be_retried
           expect(CommitStatus.last.pipeline).to be_success
         end

@@ -64,7 +64,7 @@ describe 'Using U2F (Universal 2nd Factor) Devices for Authentication', :js do
 
         expect(page).to have_content(first_device.name)
         expect(page).to have_content(second_device.name)
-        expect(U2fRegistration.size).to eq(2)
+        expect(U2fRegistration.count).to eq(2) # rubocop:disable Performance/SizeAll
       end
 
       it 'allows deleting a device' do
@@ -99,7 +99,7 @@ describe 'Using U2F (Universal 2nd Factor) Devices for Authentication', :js do
       register_u2f_device(u2f_device, name: 'My other device')
       expect(page).to have_content('Your U2F device was registered')
 
-      expect(U2fRegistration.size).to eq(2)
+      expect(U2fRegistration.count).to eq(2) # rubocop:disable Performance/SizeAll
     end
 
     context "when there are form errors" do
@@ -113,7 +113,7 @@ describe 'Using U2F (Universal 2nd Factor) Devices for Authentication', :js do
         expect(page).to have_content('Your device was successfully set up')
         click_on 'Register U2F device'
 
-        expect(U2fRegistration.size).to eq(0)
+        expect(U2fRegistration.count).to eq(0) # rubocop:disable Performance/SizeAll
         expect(page).to have_content("The form contains the following error")
         expect(page).to have_content("did not send a valid JSON response")
       end
@@ -133,7 +133,7 @@ describe 'Using U2F (Universal 2nd Factor) Devices for Authentication', :js do
         register_u2f_device
 
         expect(page).to have_content('Your U2F device was registered')
-        expect(U2fRegistration.size).to eq(1)
+        expect(U2fRegistration.count).to eq(1) # rubocop:disable Performance/SizeAll
       end
     end
   end
