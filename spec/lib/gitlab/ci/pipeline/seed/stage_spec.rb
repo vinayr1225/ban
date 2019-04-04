@@ -111,8 +111,8 @@ describe Gitlab::Ci::Pipeline::Seed::Stage do
     it 'builds a valid stage object with all builds' do
       subject.to_resource.save!
 
-      expect(pipeline.reload.stages.count).to eq 1
-      expect(pipeline.reload.builds.count).to eq 2
+      expect(pipeline.reload.stages.size).to eq 1
+      expect(pipeline.reload.builds.size).to eq 2
       expect(pipeline.builds).to all(satisfy { |job| job.stage_id.present? })
       expect(pipeline.builds).to all(satisfy { |job| job.pipeline.present? })
       expect(pipeline.builds).to all(satisfy { |job| job.project.present? })
@@ -128,8 +128,8 @@ describe Gitlab::Ci::Pipeline::Seed::Stage do
       pipeline.save!
 
       expect(stage).not_to be_persisted
-      expect(pipeline.reload.stages.count).to eq 0
-      expect(pipeline.reload.builds.count).to eq 0
+      expect(pipeline.reload.stages.size).to eq 0
+      expect(pipeline.reload.builds.size).to eq 0
     end
   end
 end

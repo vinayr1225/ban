@@ -20,7 +20,7 @@ class StuckImportJobsWorker
   def mark_import_states_without_jid_as_failed!
     enqueued_import_states_without_jid.each do |import_state|
       import_state.mark_as_failed(error_message)
-    end.count
+    end.size
   end
 
   # rubocop: disable CodeReuse/ActiveRecord
@@ -42,7 +42,7 @@ class StuckImportJobsWorker
 
     completed_import_states.each do |import_state|
       import_state.mark_as_failed(error_message)
-    end.count
+    end.size
   end
   # rubocop: enable CodeReuse/ActiveRecord
 

@@ -12,12 +12,12 @@ describe Users::KeysCountService, :use_clean_rails_memory_store_caching do
     end
 
     it 'returns the number of SSH keys as an Integer' do
-      expect(service.count).to eq(1)
+      expect(service.size).to eq(1)
     end
 
     it 'caches the number of keys in Redis', :request_store do
       service.delete_cache
-      control_count = ActiveRecord::QueryRecorder.new { service.count }.count
+      control_count = ActiveRecord::QueryRecorder.new { service.count }.size
       service.delete_cache
 
       expect { 2.times { service.count } }.not_to exceed_query_limit(control_count)
@@ -35,7 +35,7 @@ describe Users::KeysCountService, :use_clean_rails_memory_store_caching do
 
   describe '#delete_cache' do
     it 'removes the cache' do
-      service.count
+      service.size
       service.delete_cache
 
       expect(Rails.cache.fetch(service.cache_key, raw: true)).to be_nil
@@ -52,7 +52,7 @@ describe Users::KeysCountService, :use_clean_rails_memory_store_caching do
         2.times { service.uncached_count }
       end
 
-      expect(recorder.count).to be > 0
+      expect(recorder.size).to be > 0
     end
   end
 

@@ -44,7 +44,7 @@ describe API::Releases do
       it 'returns releases ordered by created_at' do
         get api("/projects/#{project.id}/releases", maintainer)
 
-        expect(json_response.count).to eq(2)
+        expect(json_response.size).to eq(2)
         expect(json_response.first['tag_name']).to eq(release_2.tag)
         expect(json_response.second['tag_name']).to eq(release_1.tag)
       end
@@ -62,7 +62,7 @@ describe API::Releases do
       it 'returns the tag' do
         get api("/projects/#{project.id}/releases", maintainer)
 
-        expect(json_response.count).to eq(1)
+        expect(json_response.size).to eq(1)
         expect(json_response.first['tag_name']).to eq('v1.1.5')
         expect(release).to be_tag_missing
       end
@@ -185,7 +185,7 @@ describe API::Releases do
         it 'contains link information as assets' do
           get api("/projects/#{project.id}/releases/v0.1", maintainer)
 
-          expect(json_response['assets']['links'].count).to eq(1)
+          expect(json_response['assets']['links'].size).to eq(1)
           expect(json_response['assets']['links'].first['id']).to eq(link.id)
           expect(json_response['assets']['links'].first['name'])
             .to eq('release-18.04.dmg')
@@ -369,7 +369,7 @@ describe API::Releases do
           it 'creates an asset with specified parameters' do
             post api("/projects/#{project.id}/releases", maintainer), params: params
 
-            expect(json_response['assets']['links'].count).to eq(1)
+            expect(json_response['assets']['links'].size).to eq(1)
             expect(json_response['assets']['links'].first['name']).to eq('beta')
             expect(json_response['assets']['links'].first['url'])
               .to eq('https://dosuken.example.com/inspection.exe')
@@ -397,7 +397,7 @@ describe API::Releases do
           it 'creates two assets with specified parameters' do
             post api("/projects/#{project.id}/releases", maintainer), params: params
 
-            expect(json_response['assets']['links'].count).to eq(2)
+            expect(json_response['assets']['links'].size).to eq(2)
             expect(json_response['assets']['links'].map { |h| h['name'] })
               .to match_array(%w[alpha beta])
             expect(json_response['assets']['links'].map { |h| h['url'] })

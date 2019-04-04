@@ -40,7 +40,7 @@ describe 'Merge request < User sees mini pipeline graph', :js do
 
       after = ActiveRecord::QueryRecorder.new { visit_merge_request(format: :json, serializer: 'widget') }
 
-      expect(before.count).to eq(after.count)
+      expect(before.size).to eq(after.size)
       expect(before.cached_count).to eq(after.cached_count)
     end
   end

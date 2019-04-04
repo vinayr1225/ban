@@ -14,6 +14,6 @@ class ForkNetworkMember < ApplicationRecord
   def cleanup_fork_network
     # Explicitly using `#count` makes sure we have the correct number if the
     # relation was loaded in the fork_network.
-    fork_network.destroy if fork_network.fork_network_members.count == 0
+    fork_network.destroy if fork_network.fork_network_members.size == 0
   end
 end

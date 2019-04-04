@@ -36,7 +36,7 @@ describe DeploymentEntity do
     let!(:other_deployment) { create(:deployment, deployable: other_build) }
 
     it 'returns another manual action' do
-      expect(subject[:manual_actions].count).to eq(1)
+      expect(subject[:manual_actions].size).to eq(1)
       expect(subject[:manual_actions].first[:name]).to eq('another deploy')
     end
 

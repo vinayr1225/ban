@@ -90,7 +90,7 @@ describe AutocompleteController do
       end
 
       it { expect(json_response).to be_kind_of(Array) }
-      it { expect(json_response.size).to eq User.count }
+      it { expect(json_response.size).to eq User.size }
     end
 
     context 'user order' do
@@ -364,7 +364,7 @@ describe AutocompleteController do
         sign_in(user)
         get :award_emojis
 
-        expect(json_response.count).to eq 4
+        expect(json_response.size).to eq 4
         expect(json_response[0]).to match('name' => 'star')
         expect(json_response[1]).to match('name' => 'thumbsup')
         expect(json_response[2]).to match('name' => 'tea')

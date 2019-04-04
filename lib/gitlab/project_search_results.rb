@@ -34,7 +34,7 @@ module Gitlab
     end
 
     def blobs_count
-      @blobs_count ||= blobs.count
+      @blobs_count ||= blobs.size
     end
 
     # rubocop: disable CodeReuse/ActiveRecord
@@ -45,7 +45,7 @@ module Gitlab
       @limited_notes_count = 0
 
       types.each do |type|
-        @limited_notes_count += notes_finder(type).limit(count_limit).count
+        @limited_notes_count += notes_finder(type).limit(count_limit).size
         break if @limited_notes_count >= count_limit
       end
 
@@ -54,11 +54,11 @@ module Gitlab
     # rubocop: enable CodeReuse/ActiveRecord
 
     def wiki_blobs_count
-      @wiki_blobs_count ||= wiki_blobs.count
+      @wiki_blobs_count ||= wiki_blobs.size
     end
 
     def commits_count
-      @commits_count ||= commits.count
+      @commits_count ||= commits.size
     end
 
     def single_commit_result?

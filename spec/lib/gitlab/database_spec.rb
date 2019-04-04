@@ -73,7 +73,7 @@ describe Gitlab::Database do
     it 'memoizes the result' do
       count = ActiveRecord::QueryRecorder
         .new { 2.times { described_class.version } }
-        .count
+        .size
 
       expect(count).to eq(1)
     end

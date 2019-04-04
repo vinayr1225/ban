@@ -15,7 +15,7 @@ describe Ci::Stage, :models do
 
     describe '#statuses' do
       it 'returns all commit statuses' do
-        expect(stage.statuses.count).to be 2
+        expect(stage.statuses.size).to be 2
       end
     end
 
@@ -269,8 +269,8 @@ describe Ci::Stage, :models do
           stage.number_of_warnings.to_i
         end
 
-        expect(lazy_queries.count).to eq 0
-        expect(synced_queries.count).to eq 1
+        expect(lazy_queries.size).to eq 0
+        expect(synced_queries.size).to eq 1
 
         expect(stage.number_of_warnings.inspect).to include 'BatchLoader'
         expect(stage.number_of_warnings).to eq 1

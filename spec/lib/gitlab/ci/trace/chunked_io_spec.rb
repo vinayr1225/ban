@@ -258,7 +258,7 @@ describe Gitlab::Ci::Trace::ChunkedIO, :clean_gitlab_redis_cache do
 
     shared_examples 'all line matching' do
       it do
-        (0...sample_trace_raw.lines.count).each do
+        (0...sample_trace_raw.lines.size).each do
           expect(chunked_io.readline).to eq(string_io.readline)
         end
       end
@@ -440,7 +440,7 @@ describe Gitlab::Ci::Trace::ChunkedIO, :clean_gitlab_redis_cache do
       expect { subject }.to change { chunked_io.size }
         .from(sample_trace_raw.bytesize).to(0)
 
-      expect(Ci::BuildTraceChunk.where(build: build).count).to eq(0)
+      expect(Ci::BuildTraceChunk.where(build: build).size).to eq(0)
     end
   end
 end

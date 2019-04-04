@@ -74,7 +74,7 @@ module Gitlab
           private
 
           def nesting_too_deep?
-            ancestors.count > MAX_NESTING_LEVELS
+            ancestors.size > MAX_NESTING_LEVELS
           end
 
           def circular_dependency?

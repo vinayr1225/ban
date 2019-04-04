@@ -41,7 +41,7 @@ module Gitlab
           if estimate < EXACT_COUNT_THRESHOLD
             # The table is considered small, the assumption here is that
             # the exact count will be fast anyways.
-            model.count
+            model.size
           else
             # The table is considered large, let's only count on a sample.
             tablesample_count(model, estimate)

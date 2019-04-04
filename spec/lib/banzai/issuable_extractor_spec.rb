@@ -35,7 +35,7 @@ describe Banzai::IssuableExtractor do
 
       second_call_queries = ActiveRecord::QueryRecorder.new do
         extractor.extract([issue_link, merge_request_link])
-      end.count
+      end.size
 
       expect(second_call_queries).to eq 0
     end

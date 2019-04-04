@@ -204,3 +204,7 @@ Style/ReturnNil:
 # nil values on the left hand side
 Performance/RegexpMatch:
   Enabled: false
+
+# Enforces the use of `size` instead of `count`
+Performance/SizeAll:
+  Enabled: true

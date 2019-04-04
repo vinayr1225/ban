@@ -21,7 +21,7 @@ describe AddPipelineBuildForeignKey, :migration do
   end
 
   it 'adds foreign key after removing orphans' do
-    expect(builds.all.count).to eq 6
+    expect(builds.all.size).to eq 6
     expect(foreign_key_exists?(:ci_builds, :ci_pipelines, column: :commit_id)).to be_falsey
 
     migrate!

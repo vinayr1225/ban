@@ -284,21 +284,21 @@ describe Milestone do
       it 'returns milestones filtered by project' do
         milestones = described_class.for_projects_and_groups(projects, [])
 
-        expect(milestones.count).to eq(1)
+        expect(milestones.size).to eq(1)
         expect(milestones.first.project_id).to eq(project.id)
       end
 
       it 'returns milestones filtered by group' do
         milestones = described_class.for_projects_and_groups([], groups)
 
-        expect(milestones.count).to eq(1)
+        expect(milestones.size).to eq(1)
         expect(milestones.first.group_id).to eq(group.id)
       end
 
       it 'returns milestones filtered by both project and group' do
         milestones = described_class.for_projects_and_groups(projects, groups)
 
-        expect(milestones.count).to eq(2)
+        expect(milestones.size).to eq(2)
         expect(milestones).to contain_exactly(project.milestones.first, group.milestones.first)
       end
     end

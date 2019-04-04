@@ -31,7 +31,7 @@ describe Projects::MirrorsController do
 
         expect(response).to redirect_to(project_settings_repository_path(project, anchor: 'js-push-remote-settings'))
 
-        expect(RemoteMirror.count).to eq(1)
+        expect(RemoteMirror.size).to eq(1)
         expect(RemoteMirror.first).to have_attributes(
           auth_method: 'ssh_public_key',
           url: 'ssh://git@example.com',

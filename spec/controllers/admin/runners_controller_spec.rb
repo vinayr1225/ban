@@ -19,7 +19,7 @@ describe Admin::RunnersController do
     it 'avoids N+1 queries', :request_store do
       get :index
 
-      control_count = ActiveRecord::QueryRecorder.new { get :index }.count
+      control_count = ActiveRecord::QueryRecorder.new { get :index }.size
 
       create(:ci_runner, :tagged_only)
 

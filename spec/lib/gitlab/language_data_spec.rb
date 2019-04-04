@@ -13,7 +13,7 @@ describe Gitlab::LanguageData do
 
       2.times do
         expect(described_class.extensions).to be_a(Set)
-        expect(described_class.extensions.count).to be > 0
+        expect(described_class.extensions.size).to be > 0
         # Sanity check for known extensions
         expect(described_class.extensions).to include(*%w(.rb .yml .json))
       end

@@ -31,7 +31,7 @@ describe BitbucketServer::Representation::Comment do
   end
 
   describe '#comments' do
-    it { expect(subject.comments.count).to eq(4) }
+    it { expect(subject.comments.size).to eq(4) }
     it { expect(subject.comments).to all( be_a(described_class) ) }
     it { expect(subject.comments.map(&:note)).to match_array(["Hello world", "Ok", "hello", "hi"]) }
 

@@ -20,47 +20,47 @@ describe Projects::OverwriteProjectService do
   describe '#execute' do
     shared_examples 'overwrite actions' do
       it 'moves deploy keys' do
-        deploy_keys_count = project_from.deploy_keys_projects.count
+        deploy_keys_count = project_from.deploy_keys_projects.size
 
         subject.execute(project_from)
 
-        expect(project_to.deploy_keys_projects.count).to eq deploy_keys_count
+        expect(project_to.deploy_keys_projects.size).to eq deploy_keys_count
       end
 
       it 'moves notification settings' do
-        notification_count = project_from.notification_settings.count
+        notification_count = project_from.notification_settings.size
 
         subject.execute(project_from)
 
-        expect(project_to.notification_settings.count).to eq notification_count
+        expect(project_to.notification_settings.size).to eq notification_count
       end
 
       it 'moves users stars' do
-        stars_count = project_from.users_star_projects.count
+        stars_count = project_from.users_star_projects.size
 
         subject.execute(project_from)
         project_to.reload
 
-        expect(project_to.users_star_projects.count).to eq stars_count
+        expect(project_to.users_star_projects.size).to eq stars_count
         expect(project_to.star_count).to eq stars_count
       end
 
       it 'moves project group links' do
-        group_links_count = project_from.project_group_links.count
+        group_links_count = project_from.project_group_links.size
 
         subject.execute(project_from)
 
-        expect(project_to.project_group_links.count).to eq group_links_count
+        expect(project_to.project_group_links.size).to eq group_links_count
       end
 
       it 'moves memberships and authorizations' do
-        members_count = project_from.project_members.count
-        project_authorizations = project_from.project_authorizations.count
+        members_count = project_from.project_members.size
+        project_authorizations = project_from.project_authorizations.size
 
         subject.execute(project_from)
 
-        expect(project_to.project_members.count).to eq members_count
-        expect(project_to.project_authorizations.count).to eq project_authorizations
+        expect(project_to.project_members.size).to eq members_count
+        expect(project_to.project_authorizations.size).to eq project_authorizations
       end
 
       context 'moves lfs objects relationships' do
@@ -69,11 +69,11 @@ describe Projects::OverwriteProjectService do
         end
 
         it do
-          lfs_objects_count = project_from.lfs_objects.count
+          lfs_objects_count = project_from.lfs_objects.size
 
           subject.execute(project_from)
 
-          expect(project_to.lfs_objects.count).to eq lfs_objects_count
+          expect(project_to.lfs_objects.size).to eq lfs_objects_count
         end
       end
 
@@ -120,13 +120,13 @@ describe Projects::OverwriteProjectService do
     context 'forks' do
       context 'when moving a root forked project' do
         it 'moves the descendant forks' do
-          expect(project_from.forks.count).to eq 2
-          expect(project_to.forks.count).to eq 0
+          expect(project_from.forks.size).to eq 2
+          expect(project_to.forks.size).to eq 0
 
           subject.execute(project_from)
 
-          expect(project_from.forks.count).to eq 0
-          expect(project_to.forks.count).to eq 2
+          expect(project_from.forks.size).to eq 0
+          expect(project_to.forks.size).to eq 2
           expect(lvl1_forked_project_1.forked_from_project).to eq project_to
           expect(lvl1_forked_project_1.fork_network_member.forked_from_project).to eq project_to
           expect(lvl1_forked_project_2.forked_from_project).to eq project_to
@@ -147,13 +147,13 @@ describe Projects::OverwriteProjectService do
         let(:project_to) { create(:project, namespace: lvl1_forked_project_1.namespace) }
 
         it 'moves the descendant forks' do
-          expect(lvl1_forked_project_1.forks.count).to eq 2
-          expect(project_to.forks.count).to eq 0
+          expect(lvl1_forked_project_1.forks.size).to eq 2
+          expect(project_to.forks.size).to eq 0
 
           subject.execute(lvl1_forked_project_1)
 
-          expect(lvl1_forked_project_1.forks.count).to eq 0
-          expect(project_to.forks.count).to eq 2
+          expect(lvl1_forked_project_1.forks.size).to eq 0
+          expect(project_to.forks.size).to eq 2
           expect(lvl2_forked_project_1_1.forked_from_project).to eq project_to
           expect(lvl2_forked_project_1_1.fork_network_member.forked_from_project).to eq project_to
           expect(lvl2_forked_project_1_2.forked_from_project).to eq project_to

@@ -19,7 +19,7 @@ describe Issuable::BulkUpdateService do
       result = bulk_update(issues, state_event: 'close')
 
       expect(result[:success]).to be_truthy
-      expect(result[:count]).to eq(issues.count)
+      expect(result[:count]).to eq(issues.size)
     end
 
     it 'closes all the issues passed' do
@@ -64,7 +64,7 @@ describe Issuable::BulkUpdateService do
       result = bulk_update(issues, state_event: 'reopen')
 
       expect(result[:success]).to be_truthy
-      expect(result[:count]).to eq(issues.count)
+      expect(result[:count]).to eq(issues.size)
     end
 
     it 'reopens all the issues passed' do

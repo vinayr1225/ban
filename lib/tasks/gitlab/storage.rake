@@ -33,7 +33,7 @@ namespace :gitlab do
         next
       end
 
-      legacy_projects_count = Project.with_unmigrated_storage.count
+      legacy_projects_count = Project.with_unmigrated_storage.size
 
       if legacy_projects_count == 0
         warn 'There are no projects requiring storage migration. Nothing to do!'
@@ -85,7 +85,7 @@ namespace :gitlab do
         next
       end
 
-      hashed_projects_count = Project.with_storage_feature(:repository).count
+      hashed_projects_count = Project.with_storage_feature(:repository).size
 
       if hashed_projects_count == 0
         warn 'There are no projects that can have storage rolledback. Nothing to do!'

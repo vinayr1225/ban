@@ -14,15 +14,15 @@ describe Gitlab::Import::MergeRequestCreator do
       let(:attributes) { HashWithIndifferentAccess.new(merge_request.attributes.except("merge_params")) }
 
       it 'updates the data' do
-        commits_count = commits.count
+        commits_count = commits.size
         merge_request.merge_request_diffs.destroy_all # rubocop: disable DestroyAll
 
-        expect(merge_request.merge_request_diffs.count).to eq(0)
+        expect(merge_request.merge_request_diffs.size).to eq(0)
 
         subject.execute(attributes)
 
-        expect(merge_request.reload.merge_request_diffs.count).to eq(1)
-        expect(merge_request.reload.merge_request_diffs.first.commits.count).to eq(commits_count)
+        expect(merge_request.reload.merge_request_diffs.size).to eq(1)
+        expect(merge_request.reload.merge_request_diffs.first.commits.size).to eq(commits_count)
       end
     end
 
@@ -36,7 +36,7 @@ describe Gitlab::Import::MergeRequestCreator do
         expect { subject.execute(attributes) }.to change { MergeRequest.count }.by(1)
 
         new_mr = MergeRequest.last
-        expect(new_mr.merge_request_diffs.count).to eq(1)
+        expect(new_mr.merge_request_diffs.size).to eq(1)
       end
     end
   end

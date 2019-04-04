@@ -14,7 +14,7 @@ describe Discussion do
     it 'returns a discussion of the right type' do
       discussion = described_class.build([first_note, second_note], merge_request)
       expect(discussion).to be_a(DiffDiscussion)
-      expect(discussion.notes.count).to be(2)
+      expect(discussion.notes.size).to be(2)
       expect(discussion.first_note).to be(first_note)
       expect(discussion.noteable).to be(merge_request)
     end

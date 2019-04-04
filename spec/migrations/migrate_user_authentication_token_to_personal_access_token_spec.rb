@@ -11,7 +11,7 @@ describe MigrateUserAuthenticationTokenToPersonalAccessToken, :migration do
   it 'migrates private tokens to Personal Access Tokens' do
     migrate!
 
-    expect(personal_access_tokens.count).to eq(2)
+    expect(personal_access_tokens.size).to eq(2)
 
     user_token = personal_access_tokens.find_by(user_id: user.id)
     admin_token = personal_access_tokens.find_by(user_id: admin.id)

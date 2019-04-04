@@ -95,7 +95,7 @@ describe Snippets::NotesController do
         it "returns 1 note" do
           get :index, params: { snippet_id: private_snippet }
 
-          expect(JSON.parse(response.body)['notes'].count).to eq(1)
+          expect(JSON.parse(response.body)['notes'].size).to eq(1)
         end
       end
     end
@@ -112,7 +112,7 @@ describe Snippets::NotesController do
       it "does not return any note" do
         get :index, params: { snippet_id: public_snippet }
 
-        expect(JSON.parse(response.body)['notes'].count).to eq(0)
+        expect(JSON.parse(response.body)['notes'].size).to eq(0)
       end
     end
   end

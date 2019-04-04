@@ -41,11 +41,11 @@ class GroupEntity < Grape::Entity
   end
 
   expose :number_projects_with_delimiter do |group|
-    number_with_delimiter(GroupProjectsFinder.new(group: group, current_user: request.current_user).execute.count)
+    number_with_delimiter(GroupProjectsFinder.new(group: group, current_user: request.current_user).execute.size)
   end
 
   expose :number_users_with_delimiter do |group|
-    number_with_delimiter(group.users.count)
+    number_with_delimiter(group.users.size)
   end
 
   expose :avatar_url do |group|

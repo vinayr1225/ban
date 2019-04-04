@@ -242,7 +242,7 @@ describe API::Runner, :clean_gitlab_redis_shared_state do
           delete api('/runners'), params: { token: runner.token }
 
           expect(response).to have_gitlab_http_status 204
-          expect(Ci::Runner.count).to eq(0)
+          expect(Ci::Runner.size).to eq(0)
         end
 
         it_behaves_like '412 response' do
@@ -638,7 +638,7 @@ describe API::Runner, :clean_gitlab_redis_shared_state do
 
               expect(response).to have_gitlab_http_status(201)
               expect(json_response['id']).to eq(test_job.id)
-              expect(json_response['dependencies'].count).to eq(2)
+              expect(json_response['dependencies'].size).to eq(2)
               expect(json_response['dependencies']).to include(
                 { 'id' => job.id, 'name' => job.name, 'token' => job.token },
                 { 'id' => job2.id, 'name' => job2.name, 'token' => job2.token })
@@ -658,7 +658,7 @@ describe API::Runner, :clean_gitlab_redis_shared_state do
 
               expect(response).to have_gitlab_http_status(201)
               expect(json_response['id']).to eq(test_job.id)
-              expect(json_response['dependencies'].count).to eq(1)
+              expect(json_response['dependencies'].size).to eq(1)
               expect(json_response['dependencies']).to include(
                 { 'id' => job.id, 'name' => job.name, 'token' => job.token,
                   'artifacts_file' => { 'filename' => 'ci_build_artifacts.zip', 'size' => 106365 } })
@@ -684,7 +684,7 @@ describe API::Runner, :clean_gitlab_redis_shared_state do
 
               expect(response).to have_gitlab_http_status(201)
               expect(json_response['id']).to eq(test_job.id)
-              expect(json_response['dependencies'].count).to eq(1)
+              expect(json_response['dependencies'].size).to eq(1)
               expect(json_response['dependencies'][0]).to include('id' => job2.id, 'name' => job2.name, 'token' => job2.token)
             end
           end
@@ -708,7 +708,7 @@ describe API::Runner, :clean_gitlab_redis_shared_state do
 
               expect(response).to have_gitlab_http_status(201)
               expect(json_response['id']).to eq(empty_dependencies_job.id)
-              expect(json_response['dependencies'].count).to eq(0)
+              expect(json_response['dependencies'].size).to eq(0)
             end
           end
 

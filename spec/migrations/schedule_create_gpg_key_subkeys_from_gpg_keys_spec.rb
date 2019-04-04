@@ -21,11 +21,11 @@ describe ScheduleCreateGpgKeySubkeysFromGpgKeys, :migration, :sidekiq do
 
   it 'schedules background migrations' do
     perform_enqueued_jobs do
-      expect(GpgKeySubkey.count).to eq(0)
+      expect(GpgKeySubkey.size).to eq(0)
 
       migrate!
 
-      expect(GpgKeySubkey.count).to eq(3)
+      expect(GpgKeySubkey.size).to eq(3)
     end
   end
 end

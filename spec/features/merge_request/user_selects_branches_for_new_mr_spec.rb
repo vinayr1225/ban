@@ -83,7 +83,7 @@ describe 'Merge request > User selects branches for new MR', :js do
     find('.js-target-branch-dropdown .dropdown-content li', match: :first)
     target_items = all('.js-target-branch-dropdown .dropdown-content li')
 
-    expect(target_items.count).to be > 1
+    expect(target_items.size).to be > 1
   end
 
   context 'when target project cannot be viewed by the current user' do

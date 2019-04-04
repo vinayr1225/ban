@@ -302,7 +302,7 @@ describe PushEvent do
       event.action = Event::CREATED
       event.validate_push_action
 
-      expect(event.errors.count).to eq(1)
+      expect(event.errors.size).to eq(1)
     end
   end
 end

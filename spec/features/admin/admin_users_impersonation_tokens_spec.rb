@@ -42,7 +42,7 @@ describe 'Admin > Users > Impersonation Tokens', :js do
       expect(active_impersonation_tokens).to have_text('In')
       expect(active_impersonation_tokens).to have_text('api')
       expect(active_impersonation_tokens).to have_text('read_user')
-      expect(PersonalAccessTokensFinder.new(impersonation: true).execute.count).to equal(1)
+      expect(PersonalAccessTokensFinder.new(impersonation: true).execute.size).to equal(1)
       expect(created_impersonation_token).not_to be_empty
     end
   end

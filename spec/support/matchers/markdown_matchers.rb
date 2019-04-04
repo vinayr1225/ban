@@ -198,7 +198,7 @@ module MarkdownMatchers
     match do |actual|
       color_chips = actual.css('code > span.gfm-color_chip > span')
 
-      expect(color_chips.count).to eq(9)
+      expect(color_chips.size).to eq(9)
 
       [
         '#F00', '#F00A', '#FF0000', '#FF0000AA', 'RGB(0,255,0)',

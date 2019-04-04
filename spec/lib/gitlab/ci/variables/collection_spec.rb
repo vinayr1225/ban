@@ -85,14 +85,14 @@ describe Gitlab::Ci::Variables::Collection do
       collection = described_class.new([{ key: 'TEST', value: '1' }])
       variables = [{ key: 'TEST', value: 'something' }]
 
-      expect((collection + variables).count).to eq 2
+      expect((collection + variables).size).to eq 2
     end
 
     it 'makes it possible to combine with another collection' do
       collection = described_class.new([{ key: 'TEST', value: '1' }])
       other = described_class.new([{ key: 'TEST', value: '2' }])
 
-      expect((collection + other).count).to eq 2
+      expect((collection + other).size).to eq 2
     end
   end
 

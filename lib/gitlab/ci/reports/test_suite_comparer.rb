@@ -47,11 +47,11 @@ module Gitlab
         end
 
         def resolved_count
-          resolved_failures.count
+          resolved_failures.size
         end
 
         def failed_count
-          new_failures.count + existing_failures.count
+          new_failures.size + existing_failures.size
         end
       end
     end

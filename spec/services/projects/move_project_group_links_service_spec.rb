@@ -18,26 +18,26 @@ describe Projects::MoveProjectGroupLinksService do
     end
 
     it 'moves the group links from one project to another' do
-      expect(project_with_groups.project_group_links.count).to eq 3
-      expect(target_project.project_group_links.count).to eq 0
+      expect(project_with_groups.project_group_links.size).to eq 3
+      expect(target_project.project_group_links.size).to eq 0
 
       subject.execute(project_with_groups)
 
-      expect(project_with_groups.project_group_links.count).to eq 0
-      expect(target_project.project_group_links.count).to eq 3
+      expect(project_with_groups.project_group_links.size).to eq 0
+      expect(target_project.project_group_links.size).to eq 3
     end
 
     it 'does not move existent group links in the current project' do
       target_project.project_group_links.create(group: maintainer_group, group_access: Gitlab::Access::MAINTAINER)
       target_project.project_group_links.create(group: developer_group, group_access: Gitlab::Access::DEVELOPER)
 
-      expect(project_with_groups.project_group_links.count).to eq 3
-      expect(target_project.project_group_links.count).to eq 2
+      expect(project_with_groups.project_group_links.size).to eq 3
+      expect(target_project.project_group_links.size).to eq 2
 
       subject.execute(project_with_groups)
 
-      expect(project_with_groups.project_group_links.count).to eq 0
-      expect(target_project.project_group_links.count).to eq 3
+      expect(project_with_groups.project_group_links.size).to eq 0
+      expect(target_project.project_group_links.size).to eq 3
     end
 
     it 'rollbacks changes if transaction fails' do
@@ -45,8 +45,8 @@ describe Projects::MoveProjectGroupLinksService do
 
       expect { subject.execute(project_with_groups) }.to raise_error(StandardError)
 
-      expect(project_with_groups.project_group_links.count).to eq 3
-      expect(target_project.project_group_links.count).to eq 0
+      expect(project_with_groups.project_group_links.size).to eq 3
+      expect(target_project.project_group_links.size).to eq 0
     end
 
     context 'when remove_remaining_elements is false' do
@@ -58,7 +58,7 @@ describe Projects::MoveProjectGroupLinksService do
 
         subject.execute(project_with_groups, options)
 
-        expect(project_with_groups.project_group_links.count).not_to eq 0
+        expect(project_with_groups.project_group_links.size).not_to eq 0
       end
     end
   end

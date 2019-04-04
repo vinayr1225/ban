@@ -44,7 +44,7 @@ describe Gitlab::BackgroundMigration::PopulateClusterKubernetesNamespaceTable, :
     it 'should create a Clusters::KubernetesNamespace per Clusters::Project' do
       expect do
         migration.perform
-      end.to change(Clusters::KubernetesNamespace, :count).by(cluster_projects_table.count)
+      end.to change(Clusters::KubernetesNamespace, :count).by(cluster_projects_table.size)
     end
 
     it_behaves_like 'consistent kubernetes namespace attributes' do
@@ -75,7 +75,7 @@ describe Gitlab::BackgroundMigration::PopulateClusterKubernetesNamespaceTable, :
     it 'creates limited number of Clusters::KubernetesNamespace' do
       expect do
         migration.perform
-      end.to change(Clusters::KubernetesNamespace, :count).by(with_no_kubernetes_namespace.count)
+      end.to change(Clusters::KubernetesNamespace, :count).by(with_no_kubernetes_namespace.size)
     end
 
     it 'should not modify clusters with Clusters::KubernetesNamespace' do
@@ -83,7 +83,7 @@ describe Gitlab::BackgroundMigration::PopulateClusterKubernetesNamespaceTable, :
 
       with_kubernetes_namespace.each do |cluster|
         kubernetes_namespace = cluster_kubernetes_namespaces_table.where(cluster_id: cluster.id)
-        expect(kubernetes_namespace.count).to eq(1)
+        expect(kubernetes_namespace.size).to eq(1)
       end
     end
 

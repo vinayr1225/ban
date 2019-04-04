@@ -7,7 +7,7 @@ describe Gitaly::Server do
     let(:storages) { Gitlab.config.repositories.storages }
 
     it 'includes all storages' do
-      expect(storages.count).to eq(described_class.all.count)
+      expect(storages.size).to eq(described_class.all.size)
       expect(storages.keys).to eq(described_class.all.map(&:storage))
     end
   end

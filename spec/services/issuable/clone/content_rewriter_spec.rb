@@ -105,7 +105,7 @@ describe Issuable::Clone::ContentRewriter do
       end
 
       it 'copies all the issue notes' do
-        expect(new_issue.notes.count).to eq(3)
+        expect(new_issue.notes.size).to eq(3)
       end
 
       it 'does not change the note attributes' do

@@ -170,7 +170,7 @@ describe MergeRequest do
         merge_request = create(:merge_request)
 
         expect(merge_request.metrics).to be_persisted
-        expect(MergeRequest::Metrics.count).to eq(1)
+        expect(MergeRequest::Metrics.size).to eq(1)
       end
 
       it 'does not duplicate metrics for a merge request' do
@@ -178,7 +178,7 @@ describe MergeRequest do
 
         merge_request.mark_as_merged!
 
-        expect(MergeRequest::Metrics.count).to eq(1)
+        expect(MergeRequest::Metrics.size).to eq(1)
       end
     end
 
@@ -203,7 +203,7 @@ describe MergeRequest do
           .to change { merge_request.reload.merge_request_assignees.first.assignee }
           .from(user).to(another_user)
 
-        expect(merge_request.merge_request_assignees.count).to eq(1)
+        expect(merge_request.merge_request_assignees.size).to eq(1)
       end
     end
   end
@@ -795,7 +795,7 @@ describe MergeRequest do
 
     it "includes notes for commits" do
       expect(merge_request.commits).not_to be_empty
-      expect(merge_request.related_notes.count).to eq(2)
+      expect(merge_request.related_notes.size).to eq(2)
     end
 
     it "includes notes for commits from target project as well" do
@@ -803,14 +803,14 @@ describe MergeRequest do
                               project: merge_request.target_project)
 
       expect(merge_request.commits).not_to be_empty
-      expect(merge_request.related_notes.count).to eq(3)
+      expect(merge_request.related_notes.size).to eq(3)
     end
 
     it "excludes system notes for commits" do
       system_note = create(:note_on_commit, :system, commit_id: merge_request.commits.first.id,
                                                      project: merge_request.project)
 
-      expect(merge_request.related_notes.count).to eq(2)
+      expect(merge_request.related_notes.size).to eq(2)
       expect(merge_request.related_notes).not_to include(system_note)
     end
   end
@@ -1915,7 +1915,7 @@ describe MergeRequest do
       it 'returns merging note creation date' do
         expect(merge_request.reload.metrics).to be_nil
         expect(merge_request.merge_event).to be_nil
-        expect(merge_request.notes.count).to eq(1)
+        expect(merge_request.notes.size).to eq(1)
         expect(merge_request.merged_at).to eq(merge_request.notes.first.created_at)
       end
     end

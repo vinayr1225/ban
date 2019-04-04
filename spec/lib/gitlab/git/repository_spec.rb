@@ -49,7 +49,7 @@ describe Gitlab::Git::Repository, :seed_helper do
       end
 
       it { expect(File.readlink(hooks_dir)).to eq(target_hooks_dir) }
-      it { expect(Dir[File.join(repo_path, "hooks.old.*/my-file")].count).to eq(1) }
+      it { expect(Dir[File.join(repo_path, "hooks.old.*/my-file")].size).to eq(1) }
     end
 
     context 'hooks is a valid symlink' do
@@ -1142,7 +1142,7 @@ describe Gitlab::Git::Repository, :seed_helper do
       end
 
       it 'returns the count of local branches' do
-        expect(repository.branch_count).to eq(repository.local_branches.count)
+        expect(repository.branch_count).to eq(repository.local_branches.size)
       end
 
       context 'with Gitaly disabled' do
@@ -1151,7 +1151,7 @@ describe Gitlab::Git::Repository, :seed_helper do
         end
 
         it 'returns the count of local branches' do
-          expect(repository.branch_count).to eq(repository.local_branches.count)
+          expect(repository.branch_count).to eq(repository.local_branches.size)
         end
       end
     end

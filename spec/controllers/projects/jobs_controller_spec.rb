@@ -80,7 +80,7 @@ describe Projects::JobsController, :clean_gitlab_redis_shared_state do
 
       it 'verifies number of queries', :request_store do
         recorded = ActiveRecord::QueryRecorder.new { get_index }
-        expect(recorded.count).to be_within(5).of(7)
+        expect(recorded.size).to be_within(5).of(7)
       end
 
       def create_job(name, status)

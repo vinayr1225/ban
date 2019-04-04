@@ -90,7 +90,7 @@ class Projects::MergeRequestsController < Projects::MergeRequests::ApplicationCo
         .with_pagination(request, response)
         .represent(@pipelines),
       count: {
-        all: @pipelines.count
+        all: @pipelines.size
       }
     }
   end

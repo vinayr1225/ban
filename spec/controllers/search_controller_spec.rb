@@ -54,7 +54,7 @@ describe SearchController do
 
         get :show, params: { project_id: project.id, scope: 'notes', search: note.note }
 
-        expect(assigns[:search_objects].count).to eq(0)
+        expect(assigns[:search_objects].size).to eq(0)
       end
     end
 
@@ -64,7 +64,7 @@ describe SearchController do
 
       get :show, params: { project_id: project.id, scope: 'notes', search: note.note }
 
-      expect(assigns[:search_objects].count).to eq(0)
+      expect(assigns[:search_objects].size).to eq(0)
     end
 
     it "doesn't expose comments on snippets" do
@@ -73,7 +73,7 @@ describe SearchController do
 
       get :show, params: { project_id: project.id, scope: 'notes', search: note.note }
 
-      expect(assigns[:search_objects].count).to eq(0)
+      expect(assigns[:search_objects].size).to eq(0)
     end
   end
 end

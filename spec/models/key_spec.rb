@@ -193,7 +193,7 @@ describe Key, :mailer do
 
         key = create(:personal_key)
 
-        expect(Users::KeysCountService.new(key.user).count).to eq(1)
+        expect(Users::KeysCountService.new(key.user).size).to eq(1)
       end
     end
 

@@ -21,7 +21,7 @@ module BitbucketServer
       raise StopIteration if over_limit?
 
       @page = fetch_next_page
-      @total += @page.items.count
+      @total += @page.items.size
       @page.items
     end
 

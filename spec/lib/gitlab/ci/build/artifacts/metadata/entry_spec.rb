@@ -126,7 +126,7 @@ describe Gitlab::Ci::Build::Artifacts::Metadata::Entry do
 
     describe '#children' do
       subject { |example| path(example).children }
-      it { expect(subject.count).to eq 3 }
+      it { expect(subject.size).to eq 3 }
     end
   end
 

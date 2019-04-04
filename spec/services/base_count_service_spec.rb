@@ -19,7 +19,7 @@ describe BaseCountService, :use_clean_rails_memory_store_caching do
         .to receive(:uncached_count)
         .and_return(5)
 
-      expect(service.count).to eq(5)
+      expect(service.size).to eq(5)
     end
   end
 

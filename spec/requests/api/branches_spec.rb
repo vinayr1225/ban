@@ -22,7 +22,7 @@ describe API::Branches do
     shared_examples_for 'repository branches' do
       RSpec::Matchers.define :has_up_to_merged_branch_names_count do |expected|
         match do |actual|
-          expected >= actual[:merged_branch_names].count
+          expected >= actual[:merged_branch_names].size
         end
       end
 

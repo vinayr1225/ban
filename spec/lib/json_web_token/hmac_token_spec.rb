@@ -9,7 +9,7 @@ describe JSONWebToken::HMACToken do
   shared_examples 'a valid, non-expired token' do
     it 'is an Array with two elements' do
       expect(decoded_token).to be_a(Array)
-      expect(decoded_token.count).to eq(2)
+      expect(decoded_token.size).to eq(2)
     end
 
     it 'contains the following keys in the first Array element Hash - jti, iat, nbf, exp' do

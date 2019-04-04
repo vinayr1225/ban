@@ -17,7 +17,7 @@ describe GroupDescendant, :nested_groups do
         # make sure the subsub_group does not have anything cached
         test_group = create(:group, parent: subsub_group).reload
 
-        query_count = ActiveRecord::QueryRecorder.new { test_group.hierarchy }.count
+        query_count = ActiveRecord::QueryRecorder.new { test_group.hierarchy }.size
 
         expect(query_count).to eq(1)
       end
@@ -26,7 +26,7 @@ describe GroupDescendant, :nested_groups do
         test_group = create(:group, parent: subsub_group).reload
 
         recorder = ActiveRecord::QueryRecorder.new { test_group.hierarchy(subgroup) }
-        expect(recorder.count).to eq(1)
+        expect(recorder.size).to eq(1)
       end
 
       it 'builds a hierarchy for a group' do

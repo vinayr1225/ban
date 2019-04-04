@@ -30,23 +30,23 @@ describe Ci::ProcessPipelineService, '#execute' do
 
       succeed_pending
 
-      expect(builds.success.count).to eq(2)
+      expect(builds.success.size).to eq(2)
 
       succeed_pending
 
-      expect(builds.success.count).to eq(4)
+      expect(builds.success.size).to eq(4)
 
       succeed_pending
 
-      expect(builds.success.count).to eq(5)
+      expect(builds.success.size).to eq(5)
     end
 
     it 'does not process pipeline if existing stage is running' do
       expect(process_pipeline).to be_truthy
-      expect(builds.pending.count).to eq(2)
+      expect(builds.pending.size).to eq(2)
 
       expect(process_pipeline).to be_falsey
-      expect(builds.pending.count).to eq(2)
+      expect(builds.pending.size).to eq(2)
     end
   end
 

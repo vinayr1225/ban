@@ -10,7 +10,7 @@ describe 'projects/merge_requests/creations/_new_submit.html.haml' do
     assign(:merge_request, merge_request)
     assign(:commits, merge_request.commits)
     assign(:hidden_commit_count, 0)
-    assign(:total_commit_count, merge_request.commits.count)
+    assign(:total_commit_count, merge_request.commits.size)
     assign(:project, merge_request.target_project)
     assign(:mr_presenter, merge_request.present(current_user: merge_request.author))
 

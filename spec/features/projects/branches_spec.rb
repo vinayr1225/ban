@@ -131,7 +131,7 @@ describe 'Branches' do
       end
 
       it 'avoids a N+1 query in branches index' do
-        control_count = ActiveRecord::QueryRecorder.new { visit project_branches_path(project) }.count
+        control_count = ActiveRecord::QueryRecorder.new { visit project_branches_path(project) }.size
 
         %w(one two three four five).each { |ref| repository.add_branch(user, ref, 'master') }
 

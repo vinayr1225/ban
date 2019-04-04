@@ -218,12 +218,12 @@ describe Groups::TransferService, :postgresql do
         end
 
         it 'should return the group as children of the new parent' do
-          expect(new_parent_group.children.count).to eq(1)
+          expect(new_parent_group.children.size).to eq(1)
           expect(new_parent_group.children.first).to eq(group)
         end
 
         it 'should create a redirect for the group' do
-          expect(group.redirect_routes.count).to eq(1)
+          expect(group.redirect_routes.size).to eq(1)
         end
       end
 
@@ -244,9 +244,9 @@ describe Groups::TransferService, :postgresql do
         end
 
         it 'should create redirects for the subgroups' do
-          expect(group.redirect_routes.count).to eq(1)
-          expect(subgroup1.redirect_routes.count).to eq(1)
-          expect(subgroup2.redirect_routes.count).to eq(1)
+          expect(group.redirect_routes.size).to eq(1)
+          expect(subgroup1.redirect_routes.size).to eq(1)
+          expect(subgroup2.redirect_routes.size).to eq(1)
         end
 
         context 'when the new parent has a higher visibility than the children' do
@@ -287,9 +287,9 @@ describe Groups::TransferService, :postgresql do
         end
 
         it 'should create permanent redirects for the projects' do
-          expect(group.redirect_routes.count).to eq(1)
-          expect(project1.redirect_routes.count).to eq(1)
-          expect(project2.redirect_routes.count).to eq(1)
+          expect(group.redirect_routes.size).to eq(1)
+          expect(project1.redirect_routes.size).to eq(1)
+          expect(project2.redirect_routes.size).to eq(1)
         end
 
         context 'when the new parent has a higher visibility than the projects' do
@@ -339,11 +339,11 @@ describe Groups::TransferService, :postgresql do
         end
 
         it 'should create redirect for the subgroups and projects' do
-          expect(group.redirect_routes.count).to eq(1)
-          expect(subgroup1.redirect_routes.count).to eq(1)
-          expect(subgroup2.redirect_routes.count).to eq(1)
-          expect(project1.redirect_routes.count).to eq(1)
-          expect(project2.redirect_routes.count).to eq(1)
+          expect(group.redirect_routes.size).to eq(1)
+          expect(subgroup1.redirect_routes.size).to eq(1)
+          expect(subgroup2.redirect_routes.size).to eq(1)
+          expect(project1.redirect_routes.size).to eq(1)
+          expect(project2.redirect_routes.size).to eq(1)
         end
       end
 
@@ -381,11 +381,11 @@ describe Groups::TransferService, :postgresql do
         end
 
         it 'should create redirect for the subgroups and projects' do
-          expect(group.redirect_routes.count).to eq(1)
-          expect(project1.redirect_routes.count).to eq(1)
-          expect(subgroup1.redirect_routes.count).to eq(1)
-          expect(nested_subgroup.redirect_routes.count).to eq(1)
-          expect(nested_project.redirect_routes.count).to eq(1)
+          expect(group.redirect_routes.size).to eq(1)
+          expect(project1.redirect_routes.size).to eq(1)
+          expect(subgroup1.redirect_routes.size).to eq(1)
+          expect(nested_subgroup.redirect_routes.size).to eq(1)
+          expect(nested_project.redirect_routes.size).to eq(1)
         end
       end
 

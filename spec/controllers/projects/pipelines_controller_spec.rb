@@ -38,17 +38,17 @@ describe Projects::PipelinesController do
         expect(response).to match_response_schema('pipeline')
 
         expect(json_response).to include('pipelines')
-        expect(json_response['pipelines'].count).to eq 5
+        expect(json_response['pipelines'].size).to eq 5
         expect(json_response['count']['all']).to eq '5'
         expect(json_response['count']['running']).to eq '1'
         expect(json_response['count']['pending']).to eq '1'
         expect(json_response['count']['finished']).to eq '3'
 
         json_response.dig('pipelines', 0, 'details', 'stages').tap do |stages|
-          expect(stages.count).to eq 3
+          expect(stages.size).to eq 3
         end
 
-        expect(queries.count).to be
+        expect(queries.size).to be
       end
     end
 
@@ -64,14 +64,14 @@ describe Projects::PipelinesController do
         expect(response).to match_response_schema('pipeline')
 
         expect(json_response).to include('pipelines')
-        expect(json_response['pipelines'].count).to eq 5
+        expect(json_response['pipelines'].size).to eq 5
         expect(json_response['count']['all']).to eq '5'
         expect(json_response['count']['running']).to eq '1'
         expect(json_response['count']['pending']).to eq '1'
         expect(json_response['count']['finished']).to eq '3'
 
         json_response.dig('pipelines', 0, 'details', 'stages').tap do |stages|
-          expect(stages.count).to eq 3
+          expect(stages.size).to eq 3
         end
       end
 
@@ -80,7 +80,7 @@ describe Projects::PipelinesController do
           get_pipelines_index_json
         end
 
-        expect(queries.count).to be <= 36
+        expect(queries.size).to be <= 36
       end
     end
 
@@ -173,7 +173,7 @@ describe Projects::PipelinesController do
       end
 
       it 'does not perform N + 1 queries' do
-        control_count = ActiveRecord::QueryRecorder.new { get_pipeline_json }.count
+        control_count = ActiveRecord::QueryRecorder.new { get_pipeline_json }.size
 
         create_build('test', 1, 'rspec 1')
         create_build('test', 1, 'spinach 0')
@@ -182,7 +182,7 @@ describe Projects::PipelinesController do
         create_build('post deploy', 3, 'pages 1')
         create_build('post deploy', 3, 'pages 2')
 
-        new_count = ActiveRecord::QueryRecorder.new { get_pipeline_json }.count
+        new_count = ActiveRecord::QueryRecorder.new { get_pipeline_json }.size
 
         expect(new_count).to be_within(12).of(control_count)
       end

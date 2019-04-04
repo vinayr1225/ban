@@ -70,7 +70,7 @@ describe Issues::CreateService do
           state: :pending
         }
 
-        expect(Todo.where(attributes).count).to eq 1
+        expect(Todo.where(attributes).size).to eq 1
       end
 
       context 'when label belongs to project group' do

@@ -79,7 +79,7 @@ describe GlobalMilestone do
 
     context 'when building a collection of milestones' do
       it 'has all project milestones' do
-        expect(global_milestones.count).to eq(6)
+        expect(global_milestones.size).to eq(6)
       end
 
       it 'has all project milestones titles' do
@@ -105,7 +105,7 @@ describe GlobalMilestone do
       it 'does not add more queries' do
         control_count = ActiveRecord::QueryRecorder.new do
           described_class.build_collection(projects, {})
-        end.count
+        end.size
 
         create_list(:milestone, 3, project: project3)
 

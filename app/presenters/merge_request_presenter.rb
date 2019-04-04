@@ -156,7 +156,7 @@ class MergeRequestPresenter < Gitlab::View::Presenter::Delegated
                                                    ).assignable_issues
     path = assign_related_issues_project_merge_request_path(project, merge_request)
     if issues.present?
-      pluralize_this_issue = issues.count > 1 ? "these issues" : "this issue"
+      pluralize_this_issue = issues.size > 1 ? "these issues" : "this issue"
       link_to "Assign yourself to #{pluralize_this_issue}", path, method: :post
     end
     # rubocop: enable CodeReuse/ServiceClass

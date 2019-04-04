@@ -459,7 +459,7 @@ describe ProjectTeam do
 
         queries = ActiveRecord::QueryRecorder.new { access_levels(all_users) }
 
-        expect(queries.count).to eq(1)
+        expect(queries.size).to eq(1)
         expect(queries.log_message).to match(/\W#{new_user.id}\W/)
         expect(queries.log_message).to match(/\W#{second_new_user.id}\W/)
         expect(queries.log_message).not_to match(/\W#{promoted_guest.id}\W/)

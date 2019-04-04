@@ -31,7 +31,7 @@ describe Projects::PipelineSchedulesController do
     end
 
     it 'avoids N + 1 queries', :request_store do
-      control_count = ActiveRecord::QueryRecorder.new { visit_pipelines_schedules }.count
+      control_count = ActiveRecord::QueryRecorder.new { visit_pipelines_schedules }.size
 
       create_list(:ci_pipeline_schedule, 2, project: project)
 

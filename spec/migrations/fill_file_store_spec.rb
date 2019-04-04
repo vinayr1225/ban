@@ -22,22 +22,22 @@ describe FillFileStore, :migration do
   end
 
   it 'correctly migrates nullified file_store/store column' do
-    expect(job_artifacts.where(file_store: nil).count).to eq(1)
-    expect(lfs_objects.where(file_store: nil).count).to eq(1)
-    expect(uploads.where(store: nil).count).to eq(1)
+    expect(job_artifacts.where(file_store: nil).size).to eq(1)
+    expect(lfs_objects.where(file_store: nil).size).to eq(1)
+    expect(uploads.where(store: nil).size).to eq(1)
 
-    expect(job_artifacts.where(file_store: 1).count).to eq(0)
-    expect(lfs_objects.where(file_store: 1).count).to eq(0)
-    expect(uploads.where(store: 1).count).to eq(0)
+    expect(job_artifacts.where(file_store: 1).size).to eq(0)
+    expect(lfs_objects.where(file_store: 1).size).to eq(0)
+    expect(uploads.where(store: 1).size).to eq(0)
 
     migrate!
 
-    expect(job_artifacts.where(file_store: nil).count).to eq(0)
-    expect(lfs_objects.where(file_store: nil).count).to eq(0)
-    expect(uploads.where(store: nil).count).to eq(0)
+    expect(job_artifacts.where(file_store: nil).size).to eq(0)
+    expect(lfs_objects.where(file_store: nil).size).to eq(0)
+    expect(uploads.where(store: nil).size).to eq(0)
 
-    expect(job_artifacts.where(file_store: 1).count).to eq(1)
-    expect(lfs_objects.where(file_store: 1).count).to eq(1)
-    expect(uploads.where(store: 1).count).to eq(1)
+    expect(job_artifacts.where(file_store: 1).size).to eq(1)
+    expect(lfs_objects.where(file_store: 1).size).to eq(1)
+    expect(uploads.where(store: 1).size).to eq(1)
   end
 end

@@ -9,7 +9,7 @@ describe Projects::OpenIssuesCountService do
         create(:issue, :opened, project: project)
         create(:issue, :opened, confidential: true, project: project)
 
-        expect(described_class.new(project).count).to eq(1)
+        expect(described_class.new(project).size).to eq(1)
       end
     end
 
@@ -25,7 +25,7 @@ describe Projects::OpenIssuesCountService do
           create(:issue, :opened, project: project)
           create(:issue, :opened, confidential: true, project: project)
 
-          expect(described_class.new(project, user).count).to eq(2)
+          expect(described_class.new(project, user).size).to eq(2)
         end
 
         it 'uses total_open_issues_count cache key' do
@@ -42,7 +42,7 @@ describe Projects::OpenIssuesCountService do
           create(:issue, :opened, project: project)
           create(:issue, :opened, confidential: true, project: project)
 
-          expect(described_class.new(project, user).count).to eq(1)
+          expect(described_class.new(project, user).size).to eq(1)
         end
 
         it 'uses public_open_issues_count cache key' do

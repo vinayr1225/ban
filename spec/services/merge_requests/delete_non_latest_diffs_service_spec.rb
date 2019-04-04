@@ -15,7 +15,7 @@ describe MergeRequests::DeleteNonLatestDiffsService, :clean_gitlab_redis_shared_
     it 'schedules non-latest merge request diffs removal' do
       diffs = merge_request.merge_request_diffs
 
-      expect(diffs.count).to eq(4)
+      expect(diffs.size).to eq(4)
 
       Timecop.freeze do
         expect(DeleteDiffFilesWorker)

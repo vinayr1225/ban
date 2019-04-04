@@ -324,7 +324,7 @@ describe Clusters::Cluster do
         another_project = create(:project)
         control_count = ActiveRecord::QueryRecorder.new do
           described_class.ancestor_clusters_for_clusterable(another_project, hierarchy_order: hierarchy_order)
-        end.count
+        end.size
 
         cluster2 = create(:cluster, :provided_by_gcp, :group)
         child2 = cluster2.group

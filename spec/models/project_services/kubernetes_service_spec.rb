@@ -103,7 +103,7 @@ describe KubernetesService, :use_clean_rails_memory_store_caching do
       end
 
       it 'should not include a deprecation message as error' do
-        expect(kubernetes_service.errors.messages.count).to eq(0)
+        expect(kubernetes_service.errors.messages.size).to eq(0)
       end
 
       it 'should update attributes' do

@@ -23,7 +23,7 @@ class BaseCountService
   end
 
   def uncached_count
-    relation_for_count.count
+    relation_for_count.size
   end
 
   def delete_cache

@@ -40,7 +40,7 @@ shared_examples 'languages and percentages JSON response' do
 
       expect(response).to have_gitlab_http_status(:ok)
       expect(json_response).to eq(expected_languages)
-      expect(json_response.count).to be > 1
+      expect(json_response.size).to be > 1
     end
   end
 end

@@ -173,7 +173,7 @@ module Gitlab
       end
 
       def count(relation, fallback: -1)
-        relation.count
+        relation.size
       rescue ActiveRecord::StatementInvalid
         fallback
       end

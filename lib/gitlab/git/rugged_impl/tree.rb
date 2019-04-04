@@ -64,7 +64,7 @@ module Gitlab
           def rugged_flatten_tree(repository, sha, tree, root_path)
             subtree = tree_entries_from_rugged(repository, sha, tree.path, false)
 
-            if subtree.count == 1 && subtree.first.dir?
+            if subtree.size == 1 && subtree.first.dir?
               File.join(tree.name, rugged_flatten_tree(repository, sha, subtree.first, root_path))
             else
               tree.name

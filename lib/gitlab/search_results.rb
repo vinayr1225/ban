@@ -43,7 +43,7 @@ module Gitlab
 
     # rubocop: disable CodeReuse/ActiveRecord
     def limited_projects_count
-      @limited_projects_count ||= projects.limit(count_limit).count
+      @limited_projects_count ||= projects.limit(count_limit).size
     end
     # rubocop: enable CodeReuse/ActiveRecord
 
@@ -56,26 +56,26 @@ module Gitlab
       # and confidential issues user has access to, is too complex.
       # It's faster to try to fetch all public issues first, then only
       # if necessary try to fetch all issues.
-      sum = issues(public_only: true).limit(count_limit).count
-      @limited_issues_count = sum < count_limit ? issues.limit(count_limit).count : sum
+      sum = issues(public_only: true).limit(count_limit).size
+      @limited_issues_count = sum < count_limit ? issues.limit(count_limit).size : sum
     end
     # rubocop: enable CodeReuse/ActiveRecord
 
     # rubocop: disable CodeReuse/ActiveRecord
     def limited_merge_requests_count
-      @limited_merge_requests_count ||= merge_requests.limit(count_limit).count
+      @limited_merge_requests_count ||= merge_requests.limit(count_limit).size
     end
     # rubocop: enable CodeReuse/ActiveRecord
 
     # rubocop: disable CodeReuse/ActiveRecord
     def limited_milestones_count
-      @limited_milestones_count ||= milestones.limit(count_limit).count
+      @limited_milestones_count ||= milestones.limit(count_limit).size
     end
     # rubocop: enable CodeReuse/ActiveRecord
 
     # rubocop:disable CodeReuse/ActiveRecord
     def limited_users_count
-      @limited_users_count ||= users.limit(count_limit).count
+      @limited_users_count ||= users.limit(count_limit).size
     end
     # rubocop:enable CodeReuse/ActiveRecord
 

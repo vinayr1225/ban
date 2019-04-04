@@ -20,7 +20,7 @@ describe Groups::UpdateService do
 
         it "does not change permission level" do
           service.execute
-          expect(public_group.errors.count).to eq(1)
+          expect(public_group.errors.size).to eq(1)
 
           expect(TodosDestroyer::GroupPrivateWorker).not_to receive(:perform_in)
         end
@@ -44,7 +44,7 @@ describe Groups::UpdateService do
 
         it "does not change permission level" do
           service.execute
-          expect(internal_group.errors.count).to eq(1)
+          expect(internal_group.errors.size).to eq(1)
         end
       end
 
@@ -90,7 +90,7 @@ describe Groups::UpdateService do
 
     it "does not change permission level" do
       service.execute
-      expect(internal_group.errors.count).to eq(1)
+      expect(internal_group.errors.size).to eq(1)
     end
   end
 

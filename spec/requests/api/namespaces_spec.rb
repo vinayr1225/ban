@@ -35,7 +35,7 @@ describe API::Namespaces do
         expect(response).to have_gitlab_http_status(200)
         expect(response).to include_pagination_headers
         expect(json_response).to be_an Array
-        expect(json_response.length).to eq(Namespace.count)
+        expect(json_response.length).to eq(Namespace.size)
       end
 
       it "admin: returns an array of matched namespaces" do

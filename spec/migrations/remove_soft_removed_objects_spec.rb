@@ -24,7 +24,7 @@ describe RemoveSoftRemovedObjects, :migration do
 
       run_migration
 
-      expect(Issue.count).to eq(1)
+      expect(Issue.size).to eq(1)
       expect(Issue.first).to eq(regular_issue)
     end
 

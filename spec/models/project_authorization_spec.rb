@@ -12,7 +12,7 @@ describe ProjectAuthorization do
       described_class
         .insert_authorizations([[user.id, project1.id, Gitlab::Access::MAINTAINER]])
 
-      expect(user.project_authorizations.count).to eq(1)
+      expect(user.project_authorizations.size).to eq(1)
     end
 
     it 'inserts rows in batches' do
@@ -21,7 +21,7 @@ describe ProjectAuthorization do
         [user.id, project2.id, Gitlab::Access::MAINTAINER]
       ], 1)
 
-      expect(user.project_authorizations.count).to eq(2)
+      expect(user.project_authorizations.size).to eq(2)
     end
   end
 end

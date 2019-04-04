@@ -13,7 +13,7 @@ describe BitbucketServer::Page do
       page = described_class.new(response, :pull_request)
 
       expect(page.items.first).to be_a(BitbucketServer::Representation::PullRequest)
-      expect(page.items.count).to eq(1)
+      expect(page.items.size).to eq(1)
     end
   end
 

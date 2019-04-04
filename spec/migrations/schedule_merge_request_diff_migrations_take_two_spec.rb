@@ -36,11 +36,11 @@ describe ScheduleMergeRequestDiffMigrationsTakeTwo, :migration, :sidekiq do
     perform_enqueued_jobs do
       non_empty = 'st_commits IS NOT NULL OR st_diffs IS NOT NULL'
 
-      expect(merge_request_diffs.where(non_empty).count).to eq 3
+      expect(merge_request_diffs.where(non_empty).size).to eq 3
 
       migrate!
 
-      expect(merge_request_diffs.where(non_empty).count).to eq 0
+      expect(merge_request_diffs.where(non_empty).size).to eq 0
     end
   end
 end

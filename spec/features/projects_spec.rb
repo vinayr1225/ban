@@ -264,7 +264,7 @@ describe 'Project' do
     it 'removes a project' do
       expect { remove_with_confirm('Remove project', project.path) }.to change { Project.count }.by(-1)
       expect(page).to have_content "Project '#{project.full_name}' is in the process of being deleted."
-      expect(Project.all.count).to be_zero
+      expect(Project.all.size).to be_zero
       expect(project.issues).to be_empty
       expect(project.merge_requests).to be_empty
     end

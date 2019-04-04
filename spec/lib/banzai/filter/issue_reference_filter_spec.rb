@@ -28,7 +28,7 @@ describe Banzai::Filter::IssueReferenceFilter do
       single_reference = "Issue #{issue.to_reference}"
       multiple_references = "Issues #{issue.to_reference} and #{another_issue.to_reference}"
 
-      control_count = ActiveRecord::QueryRecorder.new { reference_filter(single_reference).to_html }.count
+      control_count = ActiveRecord::QueryRecorder.new { reference_filter(single_reference).to_html }.size
 
       expect { reference_filter(multiple_references).to_html }.not_to exceed_query_limit(control_count)
     end

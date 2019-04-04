@@ -73,7 +73,7 @@ describe Groups::MilestonesController do
 
         milestones = JSON.parse(response.body)
 
-        expect(milestones.count).to eq(2)
+        expect(milestones.size).to eq(2)
         expect(milestones.first["title"]).to eq("group milestone")
         expect(milestones.second["title"]).to eq("legacy")
         expect(response).to have_gitlab_http_status(200)

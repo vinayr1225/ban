@@ -7,12 +7,12 @@ module Gitlab
         include Presenters::IssueBase
 
         def present
-          text = if @resource.count >= 5
+          text = if @resource.size >= 5
                    "Here are the first 5 issues I found:"
                  elsif @resource.one?
                    "Here is the only issue I found:"
                  else
-                   "Here are the #{@resource.count} issues I found:"
+                   "Here are the #{@resource.size} issues I found:"
                  end
 
           ephemeral_response(text: text, attachments: attachments)

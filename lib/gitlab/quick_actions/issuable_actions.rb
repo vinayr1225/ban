@@ -61,7 +61,7 @@ module Gitlab
         explanation do |labels_param|
           labels = find_label_references(labels_param)
 
-          "Adds #{labels.join(' ')} #{'label'.pluralize(labels.count)}." if labels.any?
+          "Adds #{labels.join(' ')} #{'label'.pluralize(labels.size)}." if labels.any?
         end
         params '~label1 ~"label 2"'
         types Issuable
@@ -85,7 +85,7 @@ module Gitlab
         explanation do |labels_param = nil|
           if labels_param.present?
             labels = find_label_references(labels_param)
-            "Removes #{labels.join(' ')} #{'label'.pluralize(labels.count)}." if labels.any?
+            "Removes #{labels.join(' ')} #{'label'.pluralize(labels.size)}." if labels.any?
           else
             'Removes all labels.'
           end
@@ -115,7 +115,7 @@ module Gitlab
         desc 'Replace all label(s)'
         explanation do |labels_param|
           labels = find_label_references(labels_param)
-          "Replaces all labels with #{labels.join(' ')} #{'label'.pluralize(labels.count)}." if labels.any?
+          "Replaces all labels with #{labels.join(' ')} #{'label'.pluralize(labels.size)}." if labels.any?
         end
         params '~label1 ~"label 2"'
         types Issuable

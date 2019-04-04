@@ -15,7 +15,7 @@ module Gitlab
         end
 
         def value
-          @value ||= IssuesFinder.new(@current_user, project_id: @project.id).execute.created_after(@from).count
+          @value ||= IssuesFinder.new(@current_user, project_id: @project.id).execute.created_after(@from).size
         end
       end
     end

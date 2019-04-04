@@ -202,11 +202,11 @@ describe Gitlab::ImportExport::ProjectTreeSaver do
       end
 
       it 'has custom attributes' do
-        expect(saved_project_json['custom_attributes'].count).to eq(2)
+        expect(saved_project_json['custom_attributes'].size).to eq(2)
       end
 
       it 'has badges' do
-        expect(saved_project_json['project_badges'].count).to eq(2)
+        expect(saved_project_json['project_badges'].size).to eq(2)
       end
 
       it 'does not complain about non UTF-8 characters in MR diff files' do

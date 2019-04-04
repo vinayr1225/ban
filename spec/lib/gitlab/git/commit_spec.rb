@@ -569,7 +569,7 @@ describe Gitlab::Git::Commit, :seed_helper do
     subject { commit.diffs }
 
     it { is_expected.to be_kind_of Gitlab::Git::DiffCollection }
-    it { expect(subject.count).to eq(2) }
+    it { expect(subject.size).to eq(2) }
     it { expect(subject.first).to be_kind_of Gitlab::Git::Diff }
   end
 

@@ -63,7 +63,7 @@ module Gitlab
           end
 
           def verify_duplicates!(location)
-            if expandset.count >= MAX_INCLUDES
+            if expandset.size >= MAX_INCLUDES
               raise TooManyIncludesError, "Maximum of #{MAX_INCLUDES} nested includes are allowed!"
             end
 

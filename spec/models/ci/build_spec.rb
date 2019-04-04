@@ -185,7 +185,7 @@ describe Ci::Build do
           end
         end
 
-        expect(recorded.count).to eq(2)
+        expect(recorded.size).to eq(2)
       end
     end
   end
@@ -800,7 +800,7 @@ describe Ci::Build do
       it "executes UPDATE query" do
         recorded = ActiveRecord::QueryRecorder.new { subject }
 
-        expect(recorded.log.select { |l| l.match?(/UPDATE.*ci_builds/) }.count).to eq(1)
+        expect(recorded.log.select { |l| l.match?(/UPDATE.*ci_builds/) }.size).to eq(1)
       end
     end
 
@@ -808,7 +808,7 @@ describe Ci::Build do
       it 'does not execute UPDATE query' do
         recorded = ActiveRecord::QueryRecorder.new { subject }
 
-        expect(recorded.log.select { |l| l.match?(/UPDATE.*ci_builds/) }.count).to eq(0)
+        expect(recorded.log.select { |l| l.match?(/UPDATE.*ci_builds/) }.size).to eq(0)
       end
     end
   end
@@ -1077,7 +1077,7 @@ describe Ci::Build do
       end
 
       it 'removes all job_artifacts' do
-        expect(build.job_artifacts.count).to eq(0)
+        expect(build.job_artifacts.size).to eq(0)
       end
 
       it 'erases build trace in trace file' do

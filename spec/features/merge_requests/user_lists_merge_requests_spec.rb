@@ -123,6 +123,6 @@ describe 'Merge requests > User lists merge requests' do
   end
 
   def count_merge_requests
-    page.all('ul.mr-list > li').count
+    page.all('ul.mr-list > li').size
   end
 end

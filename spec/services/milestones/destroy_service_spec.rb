@@ -35,7 +35,7 @@ describe Milestones::DestroyService do
 
       event = Event.where(project_id: milestone.project_id, target_type: 'Milestone')
 
-      expect(event.count).to eq(1)
+      expect(event.size).to eq(1)
     end
 
     context 'group milestones' do

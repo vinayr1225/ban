@@ -31,15 +31,15 @@ describe AddUniqueConstraintToProjectFeaturesProjectId, :migration do
       expect(migration.index_exists?(:project_features, :project_id, name: 'index_project_features_on_project_id_unique')).to be false
 
       project_1_features = features.where(project_id: 1)
-      expect(project_1_features.count).to eq(1)
+      expect(project_1_features.size).to eq(1)
       expect(project_1_features.first.id).to eq(2)
 
       project_2_features = features.where(project_id: 2)
-      expect(project_2_features.count).to eq(1)
+      expect(project_2_features.size).to eq(1)
       expect(project_2_features.first.id).to eq(5)
 
       project_3_features = features.where(project_id: 3)
-      expect(project_3_features.count).to eq(1)
+      expect(project_3_features.size).to eq(1)
       expect(project_3_features.first.id).to eq(6)
     end
   end

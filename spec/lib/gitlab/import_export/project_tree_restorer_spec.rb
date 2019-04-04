@@ -51,11 +51,11 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       end
 
       it 'has the same label associated to two issues' do
-        expect(ProjectLabel.find_by_title('test2').issues.count).to eq(2)
+        expect(ProjectLabel.find_by_title('test2').issues.size).to eq(2)
       end
 
       it 'has milestones associated to two separate issues' do
-        expect(Milestone.find_by_description('test milestone').issues.count).to eq(2)
+        expect(Milestone.find_by_description('test milestone').issues.size).to eq(2)
       end
 
       it 'creates a valid pipeline note' do
@@ -118,11 +118,11 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       end
 
       it 'has the correct data for merge request diff files' do
-        expect(MergeRequestDiffFile.where.not(diff: nil).count).to eq(55)
+        expect(MergeRequestDiffFile.where.not(diff: nil).size).to eq(55)
       end
 
       it 'has the correct data for merge request diff commits' do
-        expect(MergeRequestDiffCommit.count).to eq(77)
+        expect(MergeRequestDiffCommit.size).to eq(77)
       end
 
       it 'has the correct data for merge request latest_merge_request_diff' do
@@ -136,11 +136,11 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       end
 
       it 'has project labels' do
-        expect(ProjectLabel.count).to eq(2)
+        expect(ProjectLabel.size).to eq(2)
       end
 
       it 'has no group labels' do
-        expect(GroupLabel.count).to eq(0)
+        expect(GroupLabel.size).to eq(0)
       end
 
       it 'has a project feature' do
@@ -148,11 +148,11 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       end
 
       it 'has custom attributes' do
-        expect(@project.custom_attributes.count).to eq(2)
+        expect(@project.custom_attributes.size).to eq(2)
       end
 
       it 'has badges' do
-        expect(@project.project_badges.count).to eq(2)
+        expect(@project.project_badges.size).to eq(2)
       end
 
       it 'restores the correct service' do
@@ -208,11 +208,11 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
 
       context 'when restoring hierarchy of pipeline, stages and jobs' do
         it 'restores pipelines' do
-          expect(Ci::Pipeline.all.count).to be 5
+          expect(Ci::Pipeline.all.size).to be 5
         end
 
         it 'restores pipeline stages' do
-          expect(Ci::Stage.all.count).to be 6
+          expect(Ci::Stage.all.size).to be 6
         end
 
         it 'correctly restores association between stage and a pipeline' do
@@ -220,7 +220,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
         end
 
         it 'restores statuses' do
-          expect(CommitStatus.all.count).to be 10
+          expect(CommitStatus.all.size).to be 10
         end
 
         it 'correctly restores association between a stage and a job' do
@@ -267,7 +267,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
   shared_examples 'restores group correctly' do |**results|
     it 'has group label' do
       expect(project.group.labels.size).to eq(results.fetch(:labels, 0))
-      expect(project.group.labels.where(type: "GroupLabel").where.not(project_id: nil).count).to eq(0)
+      expect(project.group.labels.where(type: "GroupLabel").where.not(project_id: nil).size).to eq(0)
     end
 
     it 'has group milestone' do
@@ -391,7 +391,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       it 'does not import any templated services' do
         restored_project_json
 
-        expect(project.services.where(template: true).count).to eq(0)
+        expect(project.services.where(template: true).size).to eq(0)
       end
 
       it 'imports labels' do
@@ -401,7 +401,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
 
         restored_project_json
 
-        expect(project.labels.count).to eq(1)
+        expect(project.labels.size).to eq(1)
       end
 
       it 'imports milestones' do
@@ -411,8 +411,8 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
 
         restored_project_json
 
-        expect(project.group.milestones.count).to eq(1)
-        expect(project.milestones.count).to eq(0)
+        expect(project.group.milestones.size).to eq(1)
+        expect(project.milestones.size).to eq(0)
       end
     end
 
@@ -433,7 +433,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
 
         restored_project_json
 
-        expect(project.milestones.count).to eq(2)
+        expect(project.milestones.size).to eq(2)
         expect(Milestone.find_by_title('Another milestone').iid).to eq(1)
         expect(Milestone.find_by_title('Group-level milestone').iid).to eq(2)
       end

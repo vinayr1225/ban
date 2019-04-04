@@ -210,7 +210,7 @@ describe Gitlab::UsageData do
       expect(subject[:uuid]).to eq(Gitlab::CurrentSettings.uuid)
       expect(subject[:version]).to eq(Gitlab::VERSION)
       expect(subject[:installation_type]).to eq(Gitlab::INSTALLATION_TYPE)
-      expect(subject[:active_user_count]).to eq(User.active.count)
+      expect(subject[:active_user_count]).to eq(User.active.size)
       expect(subject[:recorded_at]).to be_a(Time)
     end
   end
@@ -240,7 +240,7 @@ describe Gitlab::UsageData do
 
       counts = described_class.approximate_counts.values
 
-      expect(counts.count).to eq(described_class::APPROXIMATE_COUNT_MODELS.count)
+      expect(counts.size).to eq(described_class::APPROXIMATE_COUNT_MODELS.size)
       expect(counts.any? { |count| count < 0 }).to be_falsey
     end
 

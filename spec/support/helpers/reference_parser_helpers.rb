@@ -16,7 +16,7 @@ module ReferenceParserHelpers
       control = record_queries.call(control_links)
       actual = record_queries.call(actual_links)
 
-      expect(actual.count).to be <= control.count
+      expect(actual.size).to be <= control.size
       expect(actual.cached_count).to be <= control.cached_count
     end
   end
@@ -36,7 +36,7 @@ module ReferenceParserHelpers
       control = record_queries.call(control_links)
       actual = record_queries.call(actual_links)
 
-      expect(actual.count).to be <= control.count
+      expect(actual.size).to be <= control.size
       expect(actual.cached_count).to be <= control.cached_count
     end
   end

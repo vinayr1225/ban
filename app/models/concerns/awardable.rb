@@ -84,11 +84,11 @@ module Awardable
   end
 
   def downvotes
-    award_emoji.downvotes.count
+    award_emoji.downvotes.size
   end
 
   def upvotes
-    award_emoji.upvotes.count
+    award_emoji.upvotes.size
   end
 
   def emoji_awardable?

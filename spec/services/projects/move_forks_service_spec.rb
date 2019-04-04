@@ -16,13 +16,13 @@ describe Projects::MoveForksService do
   describe '#execute' do
     context 'when moving a root forked project' do
       it 'moves the descendant forks' do
-        expect(project_with_forks.forks.count).to eq 2
-        expect(target_project.forks.count).to eq 0
+        expect(project_with_forks.forks.size).to eq 2
+        expect(target_project.forks.size).to eq 0
 
         subject.execute(project_with_forks)
 
-        expect(project_with_forks.forks.count).to eq 0
-        expect(target_project.forks.count).to eq 2
+        expect(project_with_forks.forks.size).to eq 0
+        expect(target_project.forks.size).to eq 2
         expect(lvl1_forked_project_1.forked_from_project).to eq target_project
         expect(lvl1_forked_project_1.fork_network_member.forked_from_project).to eq target_project
         expect(lvl1_forked_project_2.forked_from_project).to eq target_project
@@ -42,13 +42,13 @@ describe Projects::MoveForksService do
 
     context 'when moving a intermediate forked project' do
       it 'moves the descendant forks' do
-        expect(lvl1_forked_project_1.forks.count).to eq 2
-        expect(target_project.forks.count).to eq 0
+        expect(lvl1_forked_project_1.forks.size).to eq 2
+        expect(target_project.forks.size).to eq 0
 
         subject.execute(lvl1_forked_project_1)
 
-        expect(lvl1_forked_project_1.forks.count).to eq 0
-        expect(target_project.forks.count).to eq 2
+        expect(lvl1_forked_project_1.forks.size).to eq 0
+        expect(target_project.forks.size).to eq 2
         expect(lvl2_forked_project_1_1.forked_from_project).to eq target_project
         expect(lvl2_forked_project_1_1.fork_network_member.forked_from_project).to eq target_project
         expect(lvl2_forked_project_1_2.forked_from_project).to eq target_project
@@ -89,8 +89,8 @@ describe Projects::MoveForksService do
 
       expect { subject.execute(project_with_forks) }.to raise_error(StandardError)
 
-      expect(project_with_forks.forks.count).to eq 2
-      expect(target_project.forks.count).to eq 0
+      expect(project_with_forks.forks.size).to eq 2
+      expect(target_project.forks.size).to eq 0
     end
   end
 end

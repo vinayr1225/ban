@@ -6,7 +6,7 @@ module ConfigLint
 
     if failures.present?
       puts failures
-      exit failures.count
+      exit failures.size
     end
   end
 end

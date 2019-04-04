@@ -30,7 +30,7 @@ module Gitlab
             active_metrics = group.metrics.count { |metric| metric.required_metrics.all?(&lookup.method(:has_key?)) }
 
             groups[group][:active_metrics] += active_metrics
-            groups[group][:metrics_missing_requirements] += group.metrics.count - active_metrics
+            groups[group][:metrics_missing_requirements] += group.metrics.size - active_metrics
           end
 
           groups

@@ -55,7 +55,7 @@ describe Gitlab::Highlight do
       html = Nokogiri::HTML(result)
       lines = html.search('.s')
 
-      expect(lines.count).to eq(3)
+      expect(lines.size).to eq(3)
       expect(lines[0].text).to eq('"""This is line 1 of a multi-line comment.')
       expect(lines[1].text).to eq('        This is line 2.')
       expect(lines[2].text).to eq('        """')

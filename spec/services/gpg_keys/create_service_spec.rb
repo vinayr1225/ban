@@ -25,7 +25,7 @@ describe GpgKeys::CreateService do
     it 'generates the gpg subkeys' do
       gpg_key = subject.execute
 
-      expect(gpg_key.subkeys.count).to eq(2)
+      expect(gpg_key.subkeys.size).to eq(2)
     end
   end
 end

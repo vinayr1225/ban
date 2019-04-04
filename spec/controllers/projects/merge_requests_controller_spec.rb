@@ -843,7 +843,7 @@ describe Projects::MergeRequestsController do
       # we're trying to reduce the overall number of queries for this method.
       # set a hard limit for now. https://gitlab.com/gitlab-org/gitlab-ce/issues/52287
       it 'keeps queries in check' do
-        control_count = ActiveRecord::QueryRecorder.new { get_ci_environments_status }.count
+        control_count = ActiveRecord::QueryRecorder.new { get_ci_environments_status }.size
 
         expect(control_count).to be <= 137
       end

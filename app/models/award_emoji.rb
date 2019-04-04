@@ -43,7 +43,7 @@ class AwardEmoji < ApplicationRecord
         .where(user: user)
         .group(:name)
         .order('count_all DESC, name ASC')
-        .count
+        .size
     end
   end
 

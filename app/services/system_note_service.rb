@@ -267,7 +267,7 @@ module SystemNoteService
   def diff_discussion_outdated(discussion, project, author, change_position)
     merge_request = discussion.noteable
     diff_refs = change_position.diff_refs
-    version_index = merge_request.merge_request_diffs.viewable.count
+    version_index = merge_request.merge_request_diffs.viewable.size
 
     text_parts = ["changed this line in"]
     if version_params = merge_request.version_params_for(diff_refs)

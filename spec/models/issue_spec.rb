@@ -33,7 +33,7 @@ describe Issue do
         issue = create(:issue)
 
         expect(issue.metrics).to be_persisted
-        expect(Issue::Metrics.count).to eq(1)
+        expect(Issue::Metrics.size).to eq(1)
       end
 
       it 'does not create duplicate metrics for an issue' do
@@ -42,7 +42,7 @@ describe Issue do
         issue.close!
 
         expect(issue.metrics).to be_persisted
-        expect(Issue::Metrics.count).to eq(1)
+        expect(Issue::Metrics.size).to eq(1)
       end
 
       it 'records current metrics' do

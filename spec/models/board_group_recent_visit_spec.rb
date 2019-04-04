@@ -31,7 +31,7 @@ describe BoardGroupRecentVisit do
         Timecop.freeze do
           described_class.visited!(user, board)
 
-          expect(described_class.count).to eq 1
+          expect(described_class.size).to eq 1
           expect(described_class.first.updated_at).to be_like_time(Time.zone.now)
         end
       end

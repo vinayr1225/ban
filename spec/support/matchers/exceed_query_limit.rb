@@ -15,7 +15,7 @@ module ExceedQueryLimitHelpers
 
   def expected_count
     if expected.is_a?(ActiveRecord::QueryRecorder)
-      expected.count
+      expected.size
     else
       expected
     end
@@ -25,7 +25,7 @@ module ExceedQueryLimitHelpers
     @actual_count ||= if @query
                         recorder.log.select { |recorded| recorded =~ @query }.size
                       else
-                        recorder.count
+                        recorder.size
                       end
   end
 

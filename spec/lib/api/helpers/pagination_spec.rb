@@ -39,7 +39,7 @@ describe API::Helpers::Pagination do
         let(:query) { base_query.merge(per_page: 2) }
 
         it 'returns appropriate amount of resources' do
-          expect(subject.paginate(resource).count).to eq 2
+          expect(subject.paginate(resource).size).to eq 2
         end
 
         it 'returns the first two records (by id desc)' do
@@ -62,7 +62,7 @@ describe API::Helpers::Pagination do
         let(:query) { base_query.merge(per_page: 2, ks_prev_id: projects[1].id) }
 
         it 'returns appropriate amount of resources' do
-          expect(subject.paginate(resource).count).to eq 1
+          expect(subject.paginate(resource).size).to eq 1
         end
 
         it 'returns the third record' do
@@ -85,7 +85,7 @@ describe API::Helpers::Pagination do
         let(:query) { base_query.merge(per_page: 2, ks_prev_id: projects[2].id) }
 
         it 'returns appropriate amount of resources' do
-          expect(subject.paginate(resource).count).to eq 0
+          expect(subject.paginate(resource).size).to eq 0
         end
 
         it 'adds appropriate headers' do
@@ -236,7 +236,7 @@ describe API::Helpers::Pagination do
 
         shared_examples 'paginated response' do
           it 'returns appropriate amount of resources' do
-            expect(subject.paginate(resource).count).to eq 2
+            expect(subject.paginate(resource).size).to eq 2
           end
 
           it 'executes only one SELECT COUNT query' do
@@ -306,7 +306,7 @@ describe API::Helpers::Pagination do
         let(:query) { base_query.merge(page: 2, per_page: 2) }
 
         it 'returns appropriate amount of resources' do
-          expect(subject.paginate(resource).count).to eq 1
+          expect(subject.paginate(resource).size).to eq 1
         end
 
         it 'adds appropriate headers' do
@@ -355,7 +355,7 @@ describe API::Helpers::Pagination do
         let(:query) { base_query.merge(page: 1, per_page: 2) }
 
         it 'returns appropriate amount of resources' do
-          expect(subject.paginate(resource).count).to eq 0
+          expect(subject.paginate(resource).size).to eq 0
         end
 
         it 'adds appropriate headers' do

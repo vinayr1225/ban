@@ -3,7 +3,7 @@ namespace :gitlab do
     desc "GitLab | Disable Two-factor authentication (2FA) for all users"
     task disable_for_all_users: :gitlab_environment do
       scope = User.with_two_factor
-      count = scope.count
+      count = scope.size
 
       if count > 0
         puts "This will disable 2FA for #{count.to_s.color(:red)} users..."

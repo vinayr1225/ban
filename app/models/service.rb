@@ -138,7 +138,7 @@ class Service < ApplicationRecord
     events = self.class.supported_events
 
     # No need to disable individual triggers when there is only one
-    if events.count == 1
+    if events.size == 1
       []
     else
       events

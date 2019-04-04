@@ -52,9 +52,9 @@ describe Gitlab::BackgroundMigration::PopulateUntrackedUploads, :sidekiq, :migra
         subject.perform(1, untracked_files_for_uploads.reorder(:id).last.id)
       end.to change { uploads.count }.from(4).to(8)
 
-      expect(get_uploads(user2, 'User').count).to eq(1)
-      expect(get_uploads(project2, 'Project').count).to eq(2)
-      expect(get_uploads(appearance, 'Appearance').count).to eq(2)
+      expect(get_uploads(user2, 'User').size).to eq(1)
+      expect(get_uploads(project2, 'Project').size).to eq(2)
+      expect(get_uploads(appearance, 'Appearance').size).to eq(2)
     end
 
     it 'deletes rows after processing them' do
@@ -68,9 +68,9 @@ describe Gitlab::BackgroundMigration::PopulateUntrackedUploads, :sidekiq, :migra
     it 'does not create duplicate uploads of already tracked files' do
       subject.perform(1, untracked_files_for_uploads.last.id)
 
-      expect(get_uploads(user1, 'User').count).to eq(1)
-      expect(get_uploads(project1, 'Project').count).to eq(2)
-      expect(get_uploads(appearance, 'Appearance').count).to eq(2)
+      expect(get_uploads(user1, 'User').size).to eq(1)
+      expect(get_uploads(project1, 'Project').size).to eq(2)
+      expect(get_uploads(appearance, 'Appearance').size).to eq(2)
     end
 
     it 'uses the start and end batch ids [only 1st half]' do
@@ -82,14 +82,14 @@ describe Gitlab::BackgroundMigration::PopulateUntrackedUploads, :sidekiq, :migra
         subject.perform(start_id, end_id)
       end.to change { uploads.count }.from(4).to(6)
 
-      expect(get_uploads(user1, 'User').count).to eq(1)
-      expect(get_uploads(user2, 'User').count).to eq(1)
-      expect(get_uploads(appearance, 'Appearance').count).to eq(2)
-      expect(get_uploads(project1, 'Project').count).to eq(2)
-      expect(get_uploads(project2, 'Project').count).to eq(0)
+      expect(get_uploads(user1, 'User').size).to eq(1)
+      expect(get_uploads(user2, 'User').size).to eq(1)
+      expect(get_uploads(appearance, 'Appearance').size).to eq(2)
+      expect(get_uploads(project1, 'Project').size).to eq(2)
+      expect(get_uploads(project2, 'Project').size).to eq(0)
 
       # Only 4 have been either confirmed or added to uploads
-      expect(untracked_files_for_uploads.count).to eq(4)
+      expect(untracked_files_for_uploads.size).to eq(4)
     end
 
     it 'uses the start and end batch ids [only 2nd half]' do
@@ -101,14 +101,14 @@ describe Gitlab::BackgroundMigration::PopulateUntrackedUploads, :sidekiq, :migra
         subject.perform(start_id, end_id)
       end.to change { uploads.count }.from(4).to(6)
 
-      expect(get_uploads(user1, 'User').count).to eq(1)
-      expect(get_uploads(user2, 'User').count).to eq(0)
-      expect(get_uploads(appearance, 'Appearance').count).to eq(1)
-      expect(get_uploads(project1, 'Project').count).to eq(2)
-      expect(get_uploads(project2, 'Project').count).to eq(2)
+      expect(get_uploads(user1, 'User').size).to eq(1)
+      expect(get_uploads(user2, 'User').size).to eq(0)
+      expect(get_uploads(appearance, 'Appearance').size).to eq(1)
+      expect(get_uploads(project1, 'Project').size).to eq(2)
+      expect(get_uploads(project2, 'Project').size).to eq(2)
 
       # Only 4 have been either confirmed or added to uploads
-      expect(untracked_files_for_uploads.count).to eq(4)
+      expect(untracked_files_for_uploads.size).to eq(4)
     end
 
     it 'does not drop the temporary tracking table after processing the batch, if there are still untracked rows' do
@@ -125,13 +125,13 @@ describe Gitlab::BackgroundMigration::PopulateUntrackedUploads, :sidekiq, :migra
 
     it 'does not block a whole batch because of one bad path' do
       untracked_files_for_uploads.create!(path: "#{Gitlab::BackgroundMigration::PrepareUntrackedUploads::RELATIVE_UPLOAD_DIR}/#{get_full_path(project2)}/._7d37bf4c747916390e596744117d5d1a")
-      expect(untracked_files_for_uploads.count).to eq(9)
-      expect(uploads.count).to eq(4)
+      expect(untracked_files_for_uploads.size).to eq(9)
+      expect(uploads.size).to eq(4)
 
       subject.perform(1, untracked_files_for_uploads.last.id)
 
-      expect(untracked_files_for_uploads.count).to eq(1)
-      expect(uploads.count).to eq(8)
+      expect(untracked_files_for_uploads.size).to eq(1)
+      expect(uploads.size).to eq(8)
     end
 
     it 'an unparseable path is shown in error output' do

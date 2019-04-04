@@ -37,7 +37,7 @@ module Projects
         # we have to remove all tags due
         # to Docker Distribution bug unable
         # to delete single tag
-        return unless tags.count == other_tags.count
+        return unless tags.size == other_tags.size
 
         # delete all tags
         tags.map(&:delete)

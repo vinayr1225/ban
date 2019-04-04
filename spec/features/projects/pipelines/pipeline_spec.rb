@@ -88,7 +88,7 @@ describe 'Pipeline', :js do
       visit_pipeline
 
       within '.pipeline-info' do
-        expect(page).to have_content("#{pipeline.statuses.count} jobs " \
+        expect(page).to have_content("#{pipeline.statuses.size} jobs " \
                                       "for #{pipeline.ref} ")
         expect(page).to have_link(pipeline.ref,
           href: project_commits_path(pipeline.project, pipeline.ref))
@@ -337,7 +337,7 @@ describe 'Pipeline', :js do
 
       it 'shows the pipeline information' do
         within '.pipeline-info' do
-          expect(page).to have_content("#{pipeline.statuses.count} jobs " \
+          expect(page).to have_content("#{pipeline.statuses.size} jobs " \
                                        "for !#{merge_request.iid} " \
                                        "with #{merge_request.source_branch}")
           expect(page).to have_link("!#{merge_request.iid}",
@@ -356,7 +356,7 @@ describe 'Pipeline', :js do
 
         it 'shows the pipeline information' do
           within '.pipeline-info' do
-            expect(page).to have_content("#{pipeline.statuses.count} jobs " \
+            expect(page).to have_content("#{pipeline.statuses.size} jobs " \
                                          "for !#{merge_request.iid} " \
                                          "with #{merge_request.source_branch}")
             expect(page).to have_link("!#{merge_request.iid}",
@@ -392,7 +392,7 @@ describe 'Pipeline', :js do
 
       it 'shows the pipeline information' do
         within '.pipeline-info' do
-          expect(page).to have_content("#{pipeline.statuses.count} jobs " \
+          expect(page).to have_content("#{pipeline.statuses.size} jobs " \
                                        "for !#{merge_request.iid} " \
                                        "with #{merge_request.source_branch} " \
                                        "into #{merge_request.target_branch}")
@@ -414,7 +414,7 @@ describe 'Pipeline', :js do
 
         it 'shows the pipeline information' do
           within '.pipeline-info' do
-            expect(page).to have_content("#{pipeline.statuses.count} jobs " \
+            expect(page).to have_content("#{pipeline.statuses.size} jobs " \
                                        "for !#{merge_request.iid} " \
                                        "with #{merge_request.source_branch} " \
                                        "into #{merge_request.target_branch}")

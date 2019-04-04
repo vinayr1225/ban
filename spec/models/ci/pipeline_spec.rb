@@ -63,7 +63,7 @@ describe Ci::Pipeline, :mailer do
 
       pipeline.save!
 
-      expect(pipeline.processables.reload.count).to eq 3
+      expect(pipeline.processables.reload.size).to eq 3
     end
   end
 
@@ -822,7 +822,7 @@ describe Ci::Pipeline, :mailer do
       it 'returns preseeded stage seeds object' do
         expect(pipeline.stage_seeds)
           .to all(be_a Gitlab::Ci::Pipeline::Seed::Base)
-        expect(pipeline.stage_seeds.count).to eq 1
+        expect(pipeline.stage_seeds.size).to eq 1
       end
 
       context 'when no refs policy is specified' do
@@ -1662,7 +1662,7 @@ describe Ci::Pipeline, :mailer do
       # by just sending "to_i" to them.
       amount = ActiveRecord::QueryRecorder
         .new { pipelines.each { |p| p.number_of_warnings.to_i } }
-        .count
+        .size
 
       expect(amount).to eq(1)
     end
@@ -2722,7 +2722,7 @@ describe Ci::Pipeline, :mailer do
     it 'memoizes the returned relation' do
       query_count = ActiveRecord::QueryRecorder
         .new { 2.times { pipeline.latest_builds_with_artifacts.to_a } }
-        .count
+        .size
 
       expect(query_count).to eq(1)
     end

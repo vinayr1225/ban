@@ -25,8 +25,8 @@ module Issuable
       end
 
       {
-        count:    items.count,
-        success:  !items.count.zero?
+        count:    items.size,
+        success:  !items.size.zero?
       }
     end
     # rubocop: enable CodeReuse/ActiveRecord

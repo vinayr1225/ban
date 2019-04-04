@@ -9,7 +9,7 @@ namespace :gitlab do
       puts '' # Add some separation in the output
 
       identities = Identity.where(provider: old_provider)
-      identity_count = identities.count
+      identity_count = identities.size
 
       if identities.empty?
         puts "Found no user identities with '#{old_provider}' provider."

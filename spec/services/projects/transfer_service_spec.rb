@@ -91,7 +91,7 @@ describe Projects::TransferService do
       it 'creates kubernetes namespace for the project' do
         subject
 
-        expect(project.kubernetes_namespaces.count).to eq(1)
+        expect(project.kubernetes_namespaces.size).to eq(1)
 
         kubernetes_namespace = group_cluster.kubernetes_namespaces.first
         expect(kubernetes_namespace).to be_present

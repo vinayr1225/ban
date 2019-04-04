@@ -24,14 +24,14 @@ RSpec.describe Release do
     subject { release.assets_count }
 
     it 'returns the number of sources' do
-      is_expected.to eq(Releases::Source::FORMATS.count)
+      is_expected.to eq(Releases::Source::FORMATS.size)
     end
 
     context 'when a links exists' do
       let!(:link) { create(:release_link, release: release) }
 
       it 'counts the link as an asset' do
-        is_expected.to eq(1 + Releases::Source::FORMATS.count)
+        is_expected.to eq(1 + Releases::Source::FORMATS.size)
       end
     end
   end

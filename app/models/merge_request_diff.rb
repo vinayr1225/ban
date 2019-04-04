@@ -377,7 +377,7 @@ class MergeRequestDiff < ApplicationRecord
   # external storage. If external storage isn't an option for this diff, the
   # method is a no-op.
   def migrate_files_to_external_storage!
-    return if stored_externally? || !use_external_diff? || merge_request_diff_files.count == 0
+    return if stored_externally? || !use_external_diff? || merge_request_diff_files.size == 0
 
     rows = build_merge_request_diff_files(merge_request_diff_files)
 

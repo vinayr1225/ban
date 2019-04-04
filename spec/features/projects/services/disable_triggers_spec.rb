@@ -17,7 +17,7 @@ describe 'Disable individual triggers' do
     let(:service_name) { 'JIRA' }
 
     it 'shows trigger checkboxes' do
-      event_count = JiraService.supported_events.count
+      event_count = JiraService.supported_events.size
       expect(event_count).to be > 1
 
       expect(page).to have_content "Trigger"

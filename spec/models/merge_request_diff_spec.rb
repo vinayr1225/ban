@@ -14,7 +14,7 @@ describe MergeRequestDiff do
       subject.base_commit_sha = subject.head_commit_sha = subject.start_commit_sha = 'foobar'
 
       expect(subject.valid?).to be false
-      expect(subject.errors.count).to eq 3
+      expect(subject.errors.size).to eq 3
       expect(subject.errors).to all(include('is not a valid SHA'))
     end
   end
@@ -24,8 +24,8 @@ describe MergeRequestDiff do
 
     it { expect(subject).to be_valid }
     it { expect(subject).to be_persisted }
-    it { expect(subject.commits.count).to eq(29) }
-    it { expect(subject.diffs.count).to eq(20) }
+    it { expect(subject.commits.size).to eq(29) }
+    it { expect(subject.diffs.size).to eq(20) }
     it { expect(subject.head_commit_sha).to eq('b83d6e391c22777fca1ed3012fce84f633d7fed0') }
     it { expect(subject.base_commit_sha).to eq('ae73cb07c9eeaf35924a10f713b364d32b2dd34f') }
     it { expect(subject.start_commit_sha).to eq('0b4bc9a49b562e85de7cc9e834518ea6828729b9') }
@@ -114,7 +114,7 @@ describe MergeRequestDiff do
       it 'respects the limit' do
         stub_external_diffs_setting(enabled: true)
 
-        expect(described_class.ids_for_external_storage_migration(limit: 3).count).to eq(3)
+        expect(described_class.ids_for_external_storage_migration(limit: 3).size).to eq(3)
       end
     end
   end
@@ -240,7 +240,7 @@ describe MergeRequestDiff do
           end
 
           it 'only serializes diff files found by query' do
-            expect(diff_with_commits.merge_request_diff_files.count).to be > 10
+            expect(diff_with_commits.merge_request_diff_files.size).to be > 10
             expect_any_instance_of(MergeRequestDiffFile).to receive(:to_hash).once
 
             diffs
@@ -410,13 +410,13 @@ describe MergeRequestDiff do
     it 'returns one SHA' do
       commits = diff_with_commits.commits_by_shas([commit_shas.first, Gitlab::Git::BLANK_SHA])
 
-      expect(commits.count).to eq(1)
+      expect(commits.size).to eq(1)
     end
 
     it 'returns all matching SHAs' do
       commits = diff_with_commits.commits_by_shas(commit_shas)
 
-      expect(commits.count).to eq(commit_shas.count)
+      expect(commits.size).to eq(commit_shas.size)
       expect(commits.map(&:sha)).to match_array(commit_shas)
     end
   end

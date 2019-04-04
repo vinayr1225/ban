@@ -1,7 +1,7 @@
 # These shared examples expect a `snippets` array of snippets
 RSpec.shared_examples 'paginated snippets' do |remote: false|
   it "is limited to #{Snippet.default_per_page} items per page" do
-    expect(page.all('.snippets-list-holder .snippet-row').count).to eq(Snippet.default_per_page)
+    expect(page.all('.snippets-list-holder .snippet-row').size).to eq(Snippet.default_per_page)
   end
 
   context 'clicking on the link to the second page' do

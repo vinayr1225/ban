@@ -137,13 +137,13 @@ describe StuckCiJobsWorker do
       let!(:job) { create(:ci_build, :scheduled, scheduled_at: 2.hours.ago) }
 
       it 'drops the stale scheduled build' do
-        expect(Ci::Build.scheduled.count).to eq(1)
+        expect(Ci::Build.scheduled.size).to eq(1)
         expect(job).to be_scheduled
 
         worker.perform
         job.reload
 
-        expect(Ci::Build.scheduled.count).to eq(0)
+        expect(Ci::Build.scheduled.size).to eq(0)
         expect(job).to be_failed
         expect(job).to be_stale_schedule
       end
@@ -153,12 +153,12 @@ describe StuckCiJobsWorker do
       let!(:job) { create(:ci_build, :scheduled, scheduled_at: 30.minutes.ago) }
 
       it 'does not drop the stale scheduled build yet' do
-        expect(Ci::Build.scheduled.count).to eq(1)
+        expect(Ci::Build.scheduled.size).to eq(1)
         expect(job).to be_scheduled
 
         worker.perform
 
-        expect(Ci::Build.scheduled.count).to eq(1)
+        expect(Ci::Build.scheduled.size).to eq(1)
         expect(job).to be_scheduled
       end
     end

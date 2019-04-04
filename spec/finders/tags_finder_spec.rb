@@ -42,7 +42,7 @@ describe TagsFinder do
         result = tags_finder.execute
 
         expect(result.first.name).to eq('v1.0.0')
-        expect(result.count).to eq(1)
+        expect(result.size).to eq(1)
       end
 
       it 'does not find any tags with that name' do
@@ -50,7 +50,7 @@ describe TagsFinder do
 
         result = tags_finder.execute
 
-        expect(result.count).to eq(0)
+        expect(result.size).to eq(0)
       end
     end
 
@@ -62,7 +62,7 @@ describe TagsFinder do
         result = tags_finder.execute
 
         expect(result.first.name).to eq('v1.1.0')
-        expect(result.count).to eq(2)
+        expect(result.size).to eq(2)
       end
 
       it 'filters tags by name and sorts by last_updated' do
@@ -72,7 +72,7 @@ describe TagsFinder do
         result = tags_finder.execute
 
         expect(result.first.name).to eq('v1.0.0')
-        expect(result.count).to eq(2)
+        expect(result.size).to eq(2)
       end
     end
   end

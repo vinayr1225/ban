@@ -43,7 +43,7 @@ describe BranchesFinder do
         result = branches_finder.execute
 
         expect(result.first.name).to eq('fix')
-        expect(result.count).to eq(1)
+        expect(result.size).to eq(1)
       end
 
       it 'filters branches by name ignoring letter case' do
@@ -52,7 +52,7 @@ describe BranchesFinder do
         result = branches_finder.execute
 
         expect(result.first.name).to eq('fix')
-        expect(result.count).to eq(1)
+        expect(result.size).to eq(1)
       end
 
       it 'does not find any branch with that name' do
@@ -60,7 +60,7 @@ describe BranchesFinder do
 
         result = branches_finder.execute
 
-        expect(result.count).to eq(0)
+        expect(result.size).to eq(0)
       end
     end
 
@@ -72,7 +72,7 @@ describe BranchesFinder do
         result = branches_finder.execute
 
         expect(result.first.name).to eq('feature_conflict')
-        expect(result.count).to eq(2)
+        expect(result.size).to eq(2)
       end
 
       it 'filters branches by name and sorts by recently_updated, with exact matches first' do
@@ -83,7 +83,7 @@ describe BranchesFinder do
 
         expect(result.first.name).to eq('feature')
         expect(result.second.name).to eq('feature_conflict')
-        expect(result.count).to eq(2)
+        expect(result.size).to eq(2)
       end
 
       it 'filters branches by name and sorts by last_updated' do
@@ -93,7 +93,7 @@ describe BranchesFinder do
         result = branches_finder.execute
 
         expect(result.first.name).to eq('feature')
-        expect(result.count).to eq(2)
+        expect(result.size).to eq(2)
       end
 
       it 'filters branches by name that begins with' do
@@ -103,7 +103,7 @@ describe BranchesFinder do
         result = branches_finder.execute
 
         expect(result.first.name).to eq('feature_conflict')
-        expect(result.count).to eq(1)
+        expect(result.size).to eq(1)
       end
 
       it 'filters branches by name that ends with' do
@@ -113,7 +113,7 @@ describe BranchesFinder do
         result = branches_finder.execute
 
         expect(result.first.name).to eq('feature')
-        expect(result.count).to eq(1)
+        expect(result.size).to eq(1)
       end
     end
   end

@@ -37,7 +37,7 @@ describe DeleteDiffFilesWorker do
       merge_request_diff.reload
 
       expect(merge_request_diff.state).to eq('collected')
-      expect(merge_request_diff.merge_request_diff_files.count).to eq(20)
+      expect(merge_request_diff.merge_request_diff_files.size).to eq(20)
     end
   end
 end

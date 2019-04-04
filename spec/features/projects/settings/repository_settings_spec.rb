@@ -214,7 +214,7 @@ describe 'Projects > Settings > Repository settings' do
         end
 
         expect(page).to have_content('Repository cleanup has started')
-        expect(RepositoryCleanupWorker.jobs.count).to eq(1)
+        expect(RepositoryCleanupWorker.jobs.size).to eq(1)
       end
     end
   end

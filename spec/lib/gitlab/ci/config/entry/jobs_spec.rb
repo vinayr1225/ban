@@ -78,7 +78,7 @@ describe Gitlab::Ci::Config::Entry::Jobs do
 
     describe '#descendants' do
       it 'creates valid descendant nodes' do
-        expect(entry.descendants.count).to eq 3
+        expect(entry.descendants.size).to eq 3
         expect(entry.descendants.first(2))
           .to all(be_an_instance_of(Gitlab::Ci::Config::Entry::Job))
         expect(entry.descendants.last)

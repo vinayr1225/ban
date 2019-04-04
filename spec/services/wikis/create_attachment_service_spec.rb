@@ -193,7 +193,7 @@ describe Wikis::CreateAttachmentService do
       service.execute
 
       files = wiki.repository.ls_files('HEAD')
-      expect(files.count).to eq 1
+      expect(files.size).to eq 1
       expect(files.first).to match(file_path_regex)
     end
 

@@ -44,12 +44,12 @@ describe Gitlab::BackgroundMigration::DeserializeMergeRequestDiffsAndCommits, :m
       end
 
       it 'creates correct entries in the merge_request_diff_commits table' do
-        expect(updated_merge_request_diff.merge_request_diff_commits.count).to eq(expected_commits.count)
+        expect(updated_merge_request_diff.merge_request_diff_commits.size).to eq(expected_commits.size)
         expect(updated_merge_request_diff.commits.map(&:to_hash)).to eq(expected_commits)
       end
 
       it 'creates correct entries in the merge_request_diff_files table' do
-        expect(updated_merge_request_diff.merge_request_diff_files.count).to eq(expected_diffs.count)
+        expect(updated_merge_request_diff.merge_request_diff_files.size).to eq(expected_diffs.size)
         expect(diffs_to_hashes(updated_merge_request_diff.raw_diffs)).to eq(expected_diffs)
       end
 
@@ -163,8 +163,8 @@ describe Gitlab::BackgroundMigration::DeserializeMergeRequestDiffsAndCommits, :m
         end
 
         it 'ends up with the correct rows' do
-          expect(updated_merge_request_diff.commits.count).to eq(29)
-          expect(updated_merge_request_diff.raw_diffs.count).to eq(20)
+          expect(updated_merge_request_diff.commits.size).to eq(29)
+          expect(updated_merge_request_diff.raw_diffs.size).to eq(20)
         end
       end
 

@@ -82,7 +82,7 @@ describe Projects::PropagateServiceTemplate do
       end
 
       it 'creates services for all projects' do
-        expect(Service.all.reload.count).to eq(project_total + 2)
+        expect(Service.all.reload.size).to eq(project_total + 2)
       end
     end
 

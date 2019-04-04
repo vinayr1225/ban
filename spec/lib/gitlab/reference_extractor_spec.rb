@@ -287,7 +287,7 @@ describe Gitlab::ReferenceExtractor do
 
       prefixes.each do |prefix, referables|
         expected_count = multiple_allowed[prefix] || 1
-        expect(referables.count).to eq(expected_count)
+        expect(referables.size).to eq(expected_count)
       end
     end
   end

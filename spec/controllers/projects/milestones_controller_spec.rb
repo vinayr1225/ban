@@ -56,7 +56,7 @@ describe Projects::MilestonesController do
 
         milestones = assigns(:milestones)
 
-        expect(milestones.count).to eq(1)
+        expect(milestones.size).to eq(1)
         expect(milestones.where(project_id: nil)).to be_empty
       end
 
@@ -108,7 +108,7 @@ describe Projects::MilestonesController do
         it "queries projects milestones and groups milestones" do
           milestones = assigns(:milestones)
 
-          expect(milestones.count).to eq(2)
+          expect(milestones.size).to eq(2)
           expect(milestones).to match_array([milestone, group_milestone])
         end
       end
@@ -125,7 +125,7 @@ describe Projects::MilestonesController do
         it "queries projects milestones and all ancestors milestones" do
           milestones = assigns(:milestones)
 
-          expect(milestones.count).to eq(3)
+          expect(milestones.size).to eq(3)
           expect(milestones).to match_array([milestone, group_milestone, subgroup_milestone])
         end
       end

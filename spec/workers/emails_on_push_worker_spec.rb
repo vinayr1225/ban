@@ -97,7 +97,7 @@ describe EmailsOnPushWorker, :mailer do
       end
 
       it "gracefully handles an input SMTP error" do
-        expect(ActionMailer::Base.deliveries.count).to eq(0)
+        expect(ActionMailer::Base.deliveries.size).to eq(0)
       end
     end
 
@@ -120,7 +120,7 @@ describe EmailsOnPushWorker, :mailer do
         it "sends the mail to each of the recipients" do
           perform
 
-          expect(ActionMailer::Base.deliveries.count).to eq(5)
+          expect(ActionMailer::Base.deliveries.size).to eq(5)
           expect(email_recipients).to contain_exactly(*recipients.split)
         end
 
@@ -138,7 +138,7 @@ describe EmailsOnPushWorker, :mailer do
         it "accepts emails separated by whitespace" do
           perform
 
-          expect(ActionMailer::Base.deliveries.count).to eq(2)
+          expect(ActionMailer::Base.deliveries.size).to eq(2)
           expect(email_recipients).to contain_exactly("johndoe@example.com", "janedoe@example.com")
         end
       end
@@ -149,7 +149,7 @@ describe EmailsOnPushWorker, :mailer do
         it "accepts both kind of emails" do
           perform
 
-          expect(ActionMailer::Base.deliveries.count).to eq(2)
+          expect(ActionMailer::Base.deliveries.size).to eq(2)
           expect(email_recipients).to contain_exactly("johndoe@example.com", "janedoe@example.com")
         end
       end
@@ -160,7 +160,7 @@ describe EmailsOnPushWorker, :mailer do
         it "accepts emails separated by newlines" do
           perform
 
-          expect(ActionMailer::Base.deliveries.count).to eq(2)
+          expect(ActionMailer::Base.deliveries.size).to eq(2)
           expect(email_recipients).to contain_exactly("johndoe@example.com", "janedoe@example.com")
         end
       end

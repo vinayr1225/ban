@@ -570,7 +570,7 @@ describe User do
         @user.update!(email: 'new_primary@example.com')
         @user.reload
 
-        expect(@user.emails.count).to eq 2
+        expect(@user.emails.size).to eq 2
         expect(@user.emails.pluck(:email)).to match_array([@secondary.email, 'primary@example.com'])
       end
 
@@ -578,7 +578,7 @@ describe User do
         @user.update!(email: @secondary.email)
         @user.reload
 
-        expect(@user.emails.count).to eq 1
+        expect(@user.emails.size).to eq 1
         expect(@user.emails.first.email).to eq 'primary@example.com'
       end
 
@@ -586,7 +586,7 @@ describe User do
         @user.update!(email: @secondary.email)
         @user.reload
 
-        expect(@user.emails.count).to eq 1
+        expect(@user.emails.size).to eq 1
         expect(@user.emails.first.confirmed_at).not_to eq nil
       end
     end
@@ -995,7 +995,7 @@ describe User do
           control_count =
             ActiveRecord::QueryRecorder.new(skip_cached: false) do
               user.manageable_groups_with_routes.map(&:route)
-            end.count
+            end.size
 
           create(:group, parent: subgroup)
 
@@ -2522,7 +2522,7 @@ describe User do
     end
 
     it 'refreshes the list of authorized projects' do
-      expect(user.project_authorizations.count).to eq(2)
+      expect(user.project_authorizations.size).to eq(2)
     end
 
     it 'stores the correct access levels' do
@@ -2707,7 +2707,7 @@ describe User do
     end
 
     it 'only counts active and non internal users' do
-      expect(described_class.active.count).to eq(1)
+      expect(described_class.active.size).to eq(1)
     end
   end
 
@@ -3149,7 +3149,7 @@ describe User do
 
         queries = ActiveRecord::QueryRecorder.new { access_levels(all_projects) }
 
-        expect(queries.count).to eq(1)
+        expect(queries.size).to eq(1)
         expect(queries.log_message).to match(/\W(#{second_maintainer_project.id}, #{second_developer_project.id})\W/)
         expect(access_levels(all_projects)).to eq(expected_all)
       end
@@ -3228,7 +3228,7 @@ describe User do
 
         queries = ActiveRecord::QueryRecorder.new { access_levels(all_groups) }
 
-        expect(queries.count).to eq(1)
+        expect(queries.size).to eq(1)
         expect(queries.log_message).to match(/\W(#{second_maintainer_group.id}, #{second_developer_group.id})\W/)
         expect(access_levels(all_groups)).to eq(expected_all)
       end

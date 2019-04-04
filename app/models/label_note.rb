@@ -78,13 +78,13 @@ class LabelNote < Note
     existing_refs = label_refs.select { |ref| ref.present? }.sort
     refs_str = existing_refs.empty? ? nil : existing_refs.join(' ')
 
-    deleted = label_refs.count - existing_refs.count
+    deleted = label_refs.size - existing_refs.size
     deleted_str = deleted == 0 ? nil : "#{deleted} deleted"
 
     return unless refs_str || deleted_str
 
     label_list_str = [refs_str, deleted_str].compact.join(' + ')
-    suffix = 'label'.pluralize(deleted > 0 ? deleted : existing_refs.count)
+    suffix = 'label'.pluralize(deleted > 0 ? deleted : existing_refs.size)
 
     "#{prefix} #{label_list_str} #{suffix}"
   end

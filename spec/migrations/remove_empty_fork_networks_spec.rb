@@ -24,12 +24,12 @@ describe RemoveEmptyForkNetworks, :migration do
   end
 
   it 'deletes only the fork network without members' do
-    expect(fork_networks.count).to eq(2)
+    expect(fork_networks.size).to eq(2)
 
     migrate!
 
     expect(fork_networks.find_by(id: empty_network.id)).to be_nil
     expect(fork_networks.find_by(id: other_network.id)).not_to be_nil
-    expect(fork_networks.count).to eq(1)
+    expect(fork_networks.size).to eq(1)
   end
 end

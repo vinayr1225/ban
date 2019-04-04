@@ -524,7 +524,7 @@ class User < ApplicationRecord
     # Return true if there is only single non-internal user in the deployment,
     # ghost user is ignored.
     def single_user?
-      User.non_internal.limit(2).count == 1
+      User.non_internal.limit(2).size == 1
     end
 
     def single_user
@@ -802,7 +802,7 @@ class User < ApplicationRecord
 
   # rubocop: disable CodeReuse/ServiceClass
   def require_ssh_key?
-    count = Users::KeysCountService.new(self).count
+    count = Users::KeysCountService.new(self).size
 
     count.zero? && Gitlab::ProtocolAccess.allowed?('ssh')
   end

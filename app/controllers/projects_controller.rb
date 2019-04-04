@@ -110,7 +110,7 @@ class ProjectsController < Projects::ApplicationController
       format.html
       format.json do
         load_events
-        pager_json('events/_events', @events.count)
+        pager_json('events/_events', @events.size)
       end
     end
   end

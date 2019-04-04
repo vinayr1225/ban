@@ -519,7 +519,7 @@ describe Event do
 
       events = described_class.preload(:target).all.to_a
       count = ActiveRecord::QueryRecorder
-        .new { events.first.target.author }.count
+        .new { events.first.target.author }.size
 
       # This expectation exists to make sure the test doesn't pass when the
       # author is for some reason not loaded at all.

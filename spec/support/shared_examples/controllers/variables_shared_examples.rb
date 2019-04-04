@@ -8,7 +8,7 @@ shared_examples 'GET #show lists all variables' do
   it 'has only one variable' do
     subject
 
-    expect(json_response['variables'].count).to eq(1)
+    expect(json_response['variables'].size).to eq(1)
   end
 end
 

@@ -53,7 +53,7 @@ namespace :gitlab do
         puts "#{hook.project.name.truncate(20).ljust(20)} -> #{hook.url}"
       end
 
-      puts "\n#{web_hooks.count} webhooks found."
+      puts "\n#{web_hooks.size} webhooks found."
     end
   end
 

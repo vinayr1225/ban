@@ -56,7 +56,7 @@ describe MailScheduler::NotificationServiceWorker do
     it 'serializes arguments as global IDs when scheduling' do
       described_class.perform_async(method, key)
 
-      expect(described_class.jobs.count).to eq(1)
+      expect(described_class.jobs.size).to eq(1)
       expect(described_class.jobs.first).to include('args' => [method, *serialize(key)])
     end
 
@@ -79,7 +79,7 @@ describe MailScheduler::NotificationServiceWorker do
         it 'serializes as a serializable Hash' do
           described_class.perform_async(method, parameters)
 
-          expect(described_class.jobs.count).to eq(1)
+          expect(described_class.jobs.size).to eq(1)
           expect(deserialize(described_class.jobs.first['args']))
             .to eq([method, hash])
         end

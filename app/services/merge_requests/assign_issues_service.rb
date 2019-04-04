@@ -20,7 +20,7 @@ module MergeRequests
       end
 
       {
-        count: assignable_issues.count
+        count: assignable_issues.size
       }
     end
 

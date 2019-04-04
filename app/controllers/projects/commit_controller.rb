@@ -56,7 +56,7 @@ class Projects::CommitController < Projects::ApplicationController
             .with_pagination(request, response)
             .represent(@pipelines),
           count: {
-            all: @pipelines.count
+            all: @pipelines.size
           }
         }
       end
@@ -148,7 +148,7 @@ class Projects::CommitController < Projects::ApplicationController
     opts[:ignore_whitespace_change] = true if params[:format] == 'diff'
 
     @diffs = commit.diffs(opts)
-    @notes_count = commit.notes.count
+    @notes_count = commit.notes.size
 
     @environment = EnvironmentsFinder.new(@project, current_user, commit: @commit).execute.last
   end

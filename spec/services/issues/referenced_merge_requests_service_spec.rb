@@ -39,7 +39,7 @@ describe Issues::ReferencedMergeRequestsService do
     context 'performance' do
       it 'does not run extra queries when extra namespaces are included', :use_clean_rails_memory_store_caching do
         service.execute(issue) # warm cache
-        control_count = ActiveRecord::QueryRecorder.new { service.execute(issue) }.count
+        control_count = ActiveRecord::QueryRecorder.new { service.execute(issue) }.size
 
         third_project = create(:project, :public)
         create_closing_mr(source_project: third_project)
@@ -95,7 +95,7 @@ describe Issues::ReferencedMergeRequestsService do
     context 'performance' do
       it 'does not run a query for each note author', :use_clean_rails_memory_store_caching do
         service.referenced_merge_requests(issue) # warm cache
-        control_count = ActiveRecord::QueryRecorder.new { service.referenced_merge_requests(issue) }.count
+        control_count = ActiveRecord::QueryRecorder.new { service.referenced_merge_requests(issue) }.size
 
         create(:note, project: project, noteable: issue, author: create(:user))
         service.referenced_merge_requests(issue) # warm cache
@@ -121,7 +121,7 @@ describe Issues::ReferencedMergeRequestsService do
     context 'performance' do
       it 'does not run a query for each note author', :use_clean_rails_memory_store_caching do
         service.closed_by_merge_requests(issue) # warm cache
-        control_count = ActiveRecord::QueryRecorder.new { service.closed_by_merge_requests(issue) }.count
+        control_count = ActiveRecord::QueryRecorder.new { service.closed_by_merge_requests(issue) }.size
 
         create(:note, :system, project: project, noteable: issue, author: create(:user))
         service.closed_by_merge_requests(issue) # warm cache

@@ -280,7 +280,7 @@ describe API::Events do
       it 'avoids N+1 queries' do
         control_count = ActiveRecord::QueryRecorder.new(skip_cached: false) do
           get api("/projects/#{private_project.id}/events", user), params: { target_type: :merge_request }
-        end.count
+        end.size
 
         create_event(merge_request2)
 

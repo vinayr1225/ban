@@ -73,7 +73,7 @@ describe MergeRequests::UpdateService, :mailer do
         expect(@merge_request.title).to eq('New title')
         expect(@merge_request.assignee).to eq(user2)
         expect(@merge_request).to be_closed
-        expect(@merge_request.labels.count).to eq(1)
+        expect(@merge_request.labels.size).to eq(1)
         expect(@merge_request.labels.first.title).to eq(label.name)
         expect(@merge_request.target_branch).to eq('target')
         expect(@merge_request.merge_params['force_remove_source_branch']).to eq('1')
@@ -273,7 +273,7 @@ describe MergeRequests::UpdateService, :mailer do
         end
 
         it 'does not create any new todos' do
-          expect(Todo.count).to eq(1)
+          expect(Todo.size).to eq(1)
         end
       end
 
@@ -287,7 +287,7 @@ describe MergeRequests::UpdateService, :mailer do
         end
 
         it 'creates only 1 new todo' do
-          expect(Todo.count).to eq(2)
+          expect(Todo.size).to eq(2)
         end
       end
 
@@ -311,7 +311,7 @@ describe MergeRequests::UpdateService, :mailer do
             state: :pending
           }
 
-          expect(Todo.where(attributes).count).to eq 1
+          expect(Todo.where(attributes).size).to eq 1
         end
       end
 

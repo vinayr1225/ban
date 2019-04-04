@@ -10,7 +10,7 @@ describe Gitlab::Blame do
     let(:subject) { described_class.new(blob, commit).groups(highlight: false) }
 
     it 'groups lines properly' do
-      expect(subject.count).to eq(18)
+      expect(subject.size).to eq(18)
       expect(subject[0][:commit].sha).to eq('913c66a37b4a45b9769037c55c2d238bd0942d2e')
       expect(subject[0][:lines]).to eq(["require 'fileutils'", "require 'open3'", ""])
 

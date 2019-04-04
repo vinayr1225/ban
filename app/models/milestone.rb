@@ -109,7 +109,7 @@ class Milestone < ApplicationRecord
     end
 
     def count_by_state
-      reorder(nil).group(:state).count
+      reorder(nil).group(:state).size
     end
 
     def predefined?(milestone)
@@ -206,7 +206,7 @@ class Milestone < ApplicationRecord
                .for_projects_and_groups(projects, groups)
                .reorder(nil)
                .group(:state)
-               .count
+               .size
 
     {
         opened: counts['active'] || 0,
@@ -253,7 +253,7 @@ class Milestone < ApplicationRecord
   end
 
   def can_be_closed?
-    active? && issues.opened.count.zero?
+    active? && issues.opened.size.zero?
   end
 
   def author_id

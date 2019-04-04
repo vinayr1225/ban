@@ -31,7 +31,7 @@ class Release < ApplicationRecord
   end
 
   def assets_count
-    links.count + sources.count
+    links.size + sources.size
   end
 
   def sources

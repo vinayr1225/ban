@@ -26,7 +26,7 @@ module Ci
     end
 
     def statuses_count
-      @statuses_count ||= statuses.count
+      @statuses_count ||= statuses.size
     end
 
     def status

@@ -167,8 +167,8 @@ describe EventCreateService do
       expect { service.push(project, user, push_data) }
         .to raise_error(RuntimeError)
 
-      expect(Event.count).to eq(0)
-      expect(PushEventPayload.count).to eq(0)
+      expect(Event.size).to eq(0)
+      expect(PushEventPayload.size).to eq(0)
     end
   end
 

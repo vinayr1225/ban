@@ -26,10 +26,10 @@ describe Gitlab::BackgroundMigration::DeleteConflictingRedirectRoutesRange, :mig
 
   # No-op. See https://gitlab.com/gitlab-com/infrastructure/issues/3460#note_53223252
   it 'NO-OP: does not delete any redirect_routes' do
-    expect(redirect_routes.count).to eq(8)
+    expect(redirect_routes.size).to eq(8)
 
     described_class.new.perform(1, 5)
 
-    expect(redirect_routes.count).to eq(8)
+    expect(redirect_routes.size).to eq(8)
   end
 end

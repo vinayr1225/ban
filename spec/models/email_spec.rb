@@ -38,8 +38,8 @@ describe Email do
       create(:email, :confirmed, user: user)
       create(:email, user: user)
 
-      expect(user.emails.count).to eq 2
-      expect(user.emails.confirmed.count).to eq 1
+      expect(user.emails.size).to eq 2
+      expect(user.emails.confirmed.size).to eq 1
     end
   end
 

@@ -36,7 +36,7 @@ describe NamespacesHelper do
 
       options = helper.namespaces_options(user_group.id, display_path: true, extra_group: build(:group, name: admin_group.name))
 
-      expect(options.scan("data-name=\"#{admin_group.name}\"").count).to eq(1)
+      expect(options.scan("data-name=\"#{admin_group.name}\"").size).to eq(1)
       expect(options).to include(admin_group.name)
     end
 

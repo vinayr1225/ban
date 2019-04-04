@@ -83,7 +83,7 @@ describe RecordsUploads do
       uploader.store!(upload_fixture('rails_sample.jpg'))
 
       expect { existing.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect(Upload.count).to eq(1)
+      expect(Upload.size).to eq(1)
     end
   end
 

@@ -206,11 +206,11 @@ module API
 
         conflict!('Email has already been taken') if params[:email] &&
             User.by_any_email(params[:email].downcase)
-                .where.not(id: user.id).count > 0
+                .where.not(id: user.id).size > 0
 
         conflict!('Username has already been taken') if params[:username] &&
             User.by_username(params[:username])
-                .where.not(id: user.id).count > 0
+                .where.not(id: user.id).size > 0
 
         user_params = declared_params(include_missing: false)
         identity_attrs = user_params.slice(:provider, :extern_uid)

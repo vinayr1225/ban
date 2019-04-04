@@ -37,9 +37,9 @@ describe Gitlab::Prometheus::AdditionalMetricsParser do
       end
 
       it 'parses to two metric groups with 2 and 1 metric respectively' do
-        expect(subject.count).to eq(2)
-        expect(subject[0].metrics.count).to eq(2)
-        expect(subject[1].metrics.count).to eq(1)
+        expect(subject.size).to eq(2)
+        expect(subject[0].metrics.size).to eq(2)
+        expect(subject[1].metrics.size).to eq(1)
       end
 
       it 'provide group data' do
@@ -50,7 +50,7 @@ describe Gitlab::Prometheus::AdditionalMetricsParser do
       it 'provides metrics data' do
         metrics = subject.flat_map(&:metrics)
 
-        expect(metrics.count).to eq(3)
+        expect(metrics.size).to eq(3)
         expect(metrics[0]).to have_attributes(title: 'title', required_metrics: %w(metric_a metric_b), weight: 1)
         expect(metrics[1]).to have_attributes(title: 'title', required_metrics: %w(metric_a), weight: 1)
         expect(metrics[2]).to have_attributes(title: 'title', required_metrics: %w{metric_a}, weight: 1)
@@ -59,7 +59,7 @@ describe Gitlab::Prometheus::AdditionalMetricsParser do
       it 'provides query data' do
         queries = subject.flat_map(&:metrics).flat_map(&:queries)
 
-        expect(queries.count).to eq(3)
+        expect(queries.size).to eq(3)
         expect(queries[0]).to eq(query_range: 'query_range_a', label: 'label', unit: 'unit')
         expect(queries[1]).to eq(query_range: 'query_range_empty')
         expect(queries[2]).to eq(query_range: 'query_range_a')

@@ -22,7 +22,7 @@ describe MigrateImportAttributesDataFromProjectsToProjectMirrorData, :sidekiq, :
   it 'schedules delayed background migrations in batches in bulk' do
     Sidekiq::Testing.fake! do
       Timecop.freeze do
-        expect(projects.where.not(import_status: :none).count).to eq(2)
+        expect(projects.where.not(import_status: :none).size).to eq(2)
 
         subject.up
 
@@ -42,7 +42,7 @@ describe MigrateImportAttributesDataFromProjectsToProjectMirrorData, :sidekiq, :
     it 'schedules delayed background migrations in batches in bulk for rollback' do
       Sidekiq::Testing.fake! do
         Timecop.freeze do
-          expect(import_state.where.not(status: :none).count).to eq(2)
+          expect(import_state.where.not(status: :none).size).to eq(2)
 
           subject.down
 

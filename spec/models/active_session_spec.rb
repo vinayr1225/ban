@@ -106,7 +106,7 @@ RSpec.describe ActiveSession, :clean_gitlab_redis_shared_state do
 
         session = ActiveSession.list(user)
 
-        expect(session.count).to eq 1
+        expect(session.size).to eq 1
         expect(session.first).to have_attributes(
           ip_address: '127.0.0.1',
           browser: 'Mobile Safari',

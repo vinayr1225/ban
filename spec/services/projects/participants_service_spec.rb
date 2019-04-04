@@ -11,7 +11,7 @@ describe Projects::ParticipantsService do
       group_1.add_owner(user)
 
       service.groups # Run general application warmup queries
-      control_count = ActiveRecord::QueryRecorder.new { service.groups }.count
+      control_count = ActiveRecord::QueryRecorder.new { service.groups }.size
 
       group_2 = create(:group)
       group_2.add_owner(user)

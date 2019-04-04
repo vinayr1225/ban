@@ -117,13 +117,13 @@ module TreeHelper
       part_path = ""
       parts = @path.split('/')
 
-      yield('..', File.join(*parts.first(parts.count - 2))) if parts.count > max_links
+      yield('..', File.join(*parts.first(parts.size - 2))) if parts.size > max_links
 
       parts.each do |part|
         part_path = File.join(part_path, part) unless part_path.empty?
         part_path = part if part_path.empty?
 
-        next if parts.count > max_links && !parts.last(2).include?(part)
+        next if parts.size > max_links && !parts.last(2).include?(part)
 
         yield(part, part_path)
       end

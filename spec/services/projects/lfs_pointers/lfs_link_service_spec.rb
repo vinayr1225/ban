@@ -16,11 +16,11 @@ describe Projects::LfsPointers::LfsLinkService do
 
   describe '#execute' do
     it 'links existing lfs objects to the project' do
-      expect(project.all_lfs_objects.count).to eq 2
+      expect(project.all_lfs_objects.size).to eq 2
 
       linked = subject.execute(new_oid_list.keys)
 
-      expect(project.all_lfs_objects.count).to eq 3
+      expect(project.all_lfs_objects.size).to eq 3
       expect(linked.size).to eq 3
     end
 

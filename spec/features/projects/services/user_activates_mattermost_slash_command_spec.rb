@@ -105,7 +105,7 @@ describe 'Set up Mattermost slash commands', :js do
       select_element = find('#mattermost_team_id')
 
       expect(select_element['disabled']).to be_falsey
-      expect(select_element.all('option').count).to eq(3)
+      expect(select_element.all('option').size).to eq(3)
     end
 
     it 'shows an error alert with the error message if there is an error requesting teams' do

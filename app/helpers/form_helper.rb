@@ -4,7 +4,7 @@ module FormHelper
   def form_errors(model, type: 'form')
     return unless model.errors.any?
 
-    pluralized = 'error'.pluralize(model.errors.count)
+    pluralized = 'error'.pluralize(model.errors.size)
     headline   = "The #{type} contains the following #{pluralized}:"
 
     content_tag(:div, class: 'alert alert-danger', id: 'error_explanation') do

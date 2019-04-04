@@ -30,13 +30,13 @@ describe TrendingProject do
     end
 
     it 'populates the trending projects table' do
-      expect(described_class.count).to eq(2)
+      expect(described_class.size).to eq(2)
     end
 
     it 'removes existing rows before populating the table' do
       described_class.refresh!
 
-      expect(described_class.count).to eq(2)
+      expect(described_class.size).to eq(2)
     end
 
     it 'stores the project IDs for every trending project' do
@@ -51,8 +51,8 @@ describe TrendingProject do
     end
 
     it 'stores only public projects' do
-      expect(described_class.where(project_id: [public_project1.id, public_project2.id]).count).to eq(2)
-      expect(described_class.where(project_id: [private_project.id, internal_project.id]).count).to eq(0)
+      expect(described_class.where(project_id: [public_project1.id, public_project2.id]).size).to eq(2)
+      expect(described_class.where(project_id: [private_project.id, internal_project.id]).size).to eq(0)
     end
   end
 end

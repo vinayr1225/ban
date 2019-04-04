@@ -113,7 +113,7 @@ describe Gitlab::BitbucketServerImport::Importer do
       expect { subject.execute }.to change { MergeRequest.count }.by(1)
 
       merge_request = MergeRequest.first
-      expect(merge_request.notes.count).to eq(1)
+      expect(merge_request.notes.size).to eq(1)
       note = merge_request.notes.first
       expect(note.note).to end_with(@pr_note.note)
       expect(note.author).to eq(project.owner)
@@ -161,8 +161,8 @@ describe Gitlab::BitbucketServerImport::Importer do
       expect { subject.execute }.to change { MergeRequest.count }.by(1)
 
       merge_request = MergeRequest.first
-      expect(merge_request.notes.count).to eq(2)
-      expect(merge_request.notes.map(&:discussion_id).uniq.count).to eq(1)
+      expect(merge_request.notes.size).to eq(2)
+      expect(merge_request.notes.map(&:discussion_id).uniq.size).to eq(1)
 
       notes = merge_request.notes.order(:id).to_a
       start_note = notes.first
@@ -230,7 +230,7 @@ describe Gitlab::BitbucketServerImport::Importer do
       expect { subject.execute }.to change { MergeRequest.count }.by(1)
 
       merge_request = MergeRequest.first
-      expect(merge_request.notes.count).to eq(2)
+      expect(merge_request.notes.size).to eq(2)
       notes = merge_request.notes
 
       expect(notes.first.note).to start_with('*Comment on .gitmodules')

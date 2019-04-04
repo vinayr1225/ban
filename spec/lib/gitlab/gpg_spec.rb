@@ -156,7 +156,7 @@ describe Gitlab::Gpg::CurrentKeyChain do
       described_class.add(GpgHelpers::User1.public_key)
 
       keys = GPGME::Key.find(:public, GpgHelpers::User1.fingerprint)
-      expect(keys.count).to eq 1
+      expect(keys.size).to eq 1
       expect(keys.first).to have_attributes(
         email: GpgHelpers::User1.emails.first,
         fingerprint: GpgHelpers::User1.fingerprint

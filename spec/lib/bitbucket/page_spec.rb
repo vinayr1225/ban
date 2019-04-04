@@ -13,7 +13,7 @@ describe Bitbucket::Page do
       page = described_class.new(response, :user)
 
       expect(page.items.first).to be_a(Bitbucket::Representation::User)
-      expect(page.items.count).to eq(1)
+      expect(page.items.size).to eq(1)
     end
   end
 

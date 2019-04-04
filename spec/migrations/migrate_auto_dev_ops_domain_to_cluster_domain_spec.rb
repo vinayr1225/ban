@@ -28,7 +28,7 @@ describe MigrateAutoDevOpsDomainToClusterDomain, :migration do
     it 'should not update cluster project' do
       migrate!
 
-      expect(clusters_without_domain.count).to eq(clusters_table.count)
+      expect(clusters_without_domain.size).to eq(clusters_table.size)
     end
   end
 
@@ -38,7 +38,7 @@ describe MigrateAutoDevOpsDomainToClusterDomain, :migration do
     it 'should update all cluster projects' do
       migrate!
 
-      expect(clusters_with_domain.count).to eq(clusters_table.count)
+      expect(clusters_with_domain.size).to eq(clusters_table.size)
     end
   end
 
@@ -52,7 +52,7 @@ describe MigrateAutoDevOpsDomainToClusterDomain, :migration do
     it 'should only update specific cluster projects' do
       migrate!
 
-      expect(clusters_with_domain.count).to eq(20)
+      expect(clusters_with_domain.size).to eq(20)
 
       project_auto_devops_with_domain.each do |project_auto_devops|
         cluster_project = find_cluster_project(project_auto_devops.project_id)
@@ -61,7 +61,7 @@ describe MigrateAutoDevOpsDomainToClusterDomain, :migration do
         expect(cluster.domain).to be_present
       end
 
-      expect(clusters_without_domain.count).to eq(25)
+      expect(clusters_without_domain.size).to eq(25)
 
       project_auto_devops_without_domain.each do |project_auto_devops|
         cluster_project = find_cluster_project(project_auto_devops.project_id)

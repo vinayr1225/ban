@@ -25,8 +25,8 @@ class Projects::EnvironmentsController < Projects::ApplicationController
 
         render json: {
           environments: serialize_environments(request, response, params[:nested]),
-          available_count: project.environments.available.count,
-          stopped_count: project.environments.stopped.count
+          available_count: project.environments.available.size,
+          stopped_count: project.environments.stopped.size
         }
       end
     end
@@ -45,8 +45,8 @@ class Projects::EnvironmentsController < Projects::ApplicationController
       format.json do
         render json: {
           environments: serialize_environments(request, response),
-          available_count: folder_environments.available.count,
-          stopped_count: folder_environments.stopped.count
+          available_count: folder_environments.available.size,
+          stopped_count: folder_environments.stopped.size
         }
       end
     end

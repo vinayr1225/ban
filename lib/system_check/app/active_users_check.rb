@@ -6,7 +6,7 @@ module SystemCheck
       set_name 'Active users:'
 
       def multi_check
-        active_users = User.active.count
+        active_users = User.active.size
 
         if active_users > 0
           $stdout.puts active_users.to_s.color(:green)

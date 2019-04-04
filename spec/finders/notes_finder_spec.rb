@@ -43,7 +43,7 @@ describe NotesFinder do
 
       notes = described_class.new(project, user).execute
 
-      expect(notes.count).to eq(1)
+      expect(notes.size).to eq(1)
     end
 
     it 'finds notes on snippets' do
@@ -51,7 +51,7 @@ describe NotesFinder do
 
       notes = described_class.new(project, user).execute
 
-      expect(notes.count).to eq(1)
+      expect(notes.size).to eq(1)
     end
 
     it "excludes notes on commits the author can't download" do
@@ -61,13 +61,13 @@ describe NotesFinder do
 
       notes = described_class.new(project, create(:user), params).execute
 
-      expect(notes.count).to eq(0)
+      expect(notes.size).to eq(0)
     end
 
     it 'succeeds when no notes found' do
       notes = described_class.new(project, create(:user)).execute
 
-      expect(notes.count).to eq(0)
+      expect(notes.size).to eq(0)
     end
 
     context 'on restricted projects' do
@@ -84,7 +84,7 @@ describe NotesFinder do
 
         notes = described_class.new(project, create(:user)).execute
 
-        expect(notes.count).to eq(0)
+        expect(notes.size).to eq(0)
       end
 
       it 'publicly excludes notes on issues' do
@@ -92,7 +92,7 @@ describe NotesFinder do
 
         notes = described_class.new(project, create(:user)).execute
 
-        expect(notes.count).to eq(0)
+        expect(notes.size).to eq(0)
       end
 
       it 'publicly excludes notes on snippets' do
@@ -100,7 +100,7 @@ describe NotesFinder do
 
         notes = described_class.new(project, create(:user)).execute
 
-        expect(notes.count).to eq(0)
+        expect(notes.size).to eq(0)
       end
     end
 
@@ -148,7 +148,7 @@ describe NotesFinder do
 
         notes = described_class.new(project, user, params).execute
 
-        expect(notes.count).to eq(1)
+        expect(notes.size).to eq(1)
       end
 
       it 'finds notes on personal snippets' do
@@ -157,7 +157,7 @@ describe NotesFinder do
 
         notes = described_class.new(project, user, params).execute
 
-        expect(notes.count).to eq(1)
+        expect(notes.size).to eq(1)
       end
 
       it 'raises an exception for an invalid target_type' do
@@ -244,11 +244,11 @@ describe NotesFinder do
       let(:number_of_noteable_types) { 4 }
 
       specify 'project_id check' do
-        expect(sql.scan(/project_id/).count).to be >= (number_of_noteable_types + 2)
+        expect(sql.scan(/project_id/).size).to be >= (number_of_noteable_types + 2)
       end
 
       specify 'search filter' do
-        expect(sql.scan(/LIKE/).count).to be >= number_of_noteable_types
+        expect(sql.scan(/LIKE/).size).to be >= number_of_noteable_types
       end
     end
   end

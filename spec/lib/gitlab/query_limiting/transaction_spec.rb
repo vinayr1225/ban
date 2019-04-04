@@ -66,11 +66,11 @@ describe Gitlab::QueryLimiting::Transaction do
     it 'increments the number of executed queries' do
       transaction = described_class.new
 
-      expect(transaction.count).to be_zero
+      expect(transaction.size).to be_zero
 
       transaction.increment
 
-      expect(transaction.count).to eq(1)
+      expect(transaction.size).to eq(1)
     end
   end
 

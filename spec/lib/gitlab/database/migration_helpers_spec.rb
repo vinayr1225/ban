@@ -436,13 +436,13 @@ describe Gitlab::Database::MigrationHelpers do
       it 'updates all the rows in a table' do
         model.update_column_in_batches(:projects, :import_error, 'foo')
 
-        expect(Project.where(import_error: 'foo').count).to eq(5)
+        expect(Project.where(import_error: 'foo').size).to eq(5)
       end
 
       it 'updates boolean values correctly' do
         model.update_column_in_batches(:projects, :archived, true)
 
-        expect(Project.where(archived: true).count).to eq(5)
+        expect(Project.where(archived: true).size).to eq(5)
       end
 
       context 'when a block is supplied' do
@@ -453,7 +453,7 @@ describe Gitlab::Database::MigrationHelpers do
             query.where(t[:id].eq(first_id))
           end
 
-          expect(Project.where(archived: true).count).to eq(1)
+          expect(Project.where(archived: true).size).to eq(1)
         end
       end
 
@@ -461,7 +461,7 @@ describe Gitlab::Database::MigrationHelpers do
         it 'updates the value as a SQL expression' do
           model.update_column_in_batches(:projects, :star_count, Arel.sql('1+1'))
 
-          expect(Project.sum(:star_count)).to eq(2 * Project.count)
+          expect(Project.sum(:star_count)).to eq(2 * Project.size)
         end
       end
     end

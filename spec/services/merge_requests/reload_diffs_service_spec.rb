@@ -46,7 +46,7 @@ describe MergeRequests::ReloadDiffsService, :use_clean_rails_memory_store_cachin
 
         control_count = ActiveRecord::QueryRecorder.new do
           subject.execute
-        end.count
+        end.size
 
         expect { subject.execute }.not_to exceed_query_limit(control_count)
       end

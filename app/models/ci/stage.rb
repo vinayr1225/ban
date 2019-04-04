@@ -110,7 +110,7 @@ module Ci
           .latest
           .failed_but_allowed
           .group(:stage_id)
-          .count
+          .size
           .each { |id, amount| loader.call(id, amount) }
       end
     end

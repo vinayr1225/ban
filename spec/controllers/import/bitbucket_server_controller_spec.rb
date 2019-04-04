@@ -169,7 +169,7 @@ describe Import::BitbucketServerController do
 
       get :jobs
 
-      expect(json_response.count).to eq(1)
+      expect(json_response.size).to eq(1)
       expect(json_response.first['id']).to eq(created_project.id)
       expect(json_response.first['import_status']).to eq('none')
     end

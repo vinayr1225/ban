@@ -23,7 +23,7 @@ describe DropDuplicateProtectedTags, :migration do
 
     migrate!
 
-    expect(protected_tags.all.count).to eq 3
+    expect(protected_tags.all.size).to eq 3
     expect(protected_tags.all.pluck(:id)).to contain_exactly(tag2.id, tag4.id, tag5.id)
   end
 
@@ -34,7 +34,7 @@ describe DropDuplicateProtectedTags, :migration do
 
     migrate!
 
-    expect(protected_tags.all.count).to eq 3
+    expect(protected_tags.all.size).to eq 3
     expect(protected_tags.all.pluck(:id)).to contain_exactly(tag1.id, tag2.id, tag3.id)
   end
 end

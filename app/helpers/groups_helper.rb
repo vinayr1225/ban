@@ -35,14 +35,14 @@ module GroupsHelper
     IssuesFinder
       .new(current_user, group_id: @group.id, state: state, non_archived: true, include_subgroups: true)
       .execute
-      .count
+      .size
   end
 
   def group_merge_requests_count(state:)
     MergeRequestsFinder
       .new(current_user, group_id: @group.id, state: state, non_archived: true, include_subgroups: true)
       .execute
-      .count
+      .size
   end
 
   def group_icon_url(group, options = {})

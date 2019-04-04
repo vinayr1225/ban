@@ -230,8 +230,8 @@ module Gitlab
 
         log_info(stage: 'import_pull_request_comments', message: 'finished', iid: merge_request.iid,
                  merge_event_found: merge_event.present?,
-                 inline_comments_count: inline_comments.count,
-                 standalone_pr_comments: pr_comments.count)
+                 inline_comments_count: inline_comments.size,
+                 standalone_pr_comments: pr_comments.size)
       end
 
       # rubocop: disable CodeReuse/ActiveRecord

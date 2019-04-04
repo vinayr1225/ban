@@ -118,7 +118,7 @@ module Issuable
     end
 
     def has_multiple_assignees?
-      assignees.count > 1
+      assignees.size > 1
     end
 
     def milestone_available?
@@ -290,7 +290,7 @@ module Issuable
       notes.to_a.count { |note| !note.system? }
     else
       # do the count query
-      notes.user.count
+      notes.user.size
     end
   end
 

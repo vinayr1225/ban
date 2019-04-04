@@ -286,7 +286,7 @@ describe Gitlab::Git::Blob, :seed_helper do
     it 'returns a list of Gitlab::Git::Blob' do
       blobs = described_class.batch_lfs_pointers(repository, [lfs_blob.id])
 
-      expect(blobs.count).to eq(1)
+      expect(blobs.size).to eq(1)
       expect(blobs).to all( be_a(Gitlab::Git::Blob) )
       expect(blobs).to be_an(Array)
     end
@@ -294,7 +294,7 @@ describe Gitlab::Git::Blob, :seed_helper do
     it 'accepts blob IDs as a lazy enumerator' do
       blobs = described_class.batch_lfs_pointers(repository, [lfs_blob.id].lazy)
 
-      expect(blobs.count).to eq(1)
+      expect(blobs.size).to eq(1)
       expect(blobs).to all( be_a(Gitlab::Git::Blob) )
     end
 

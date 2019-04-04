@@ -556,7 +556,7 @@ describe IssuesFinder do
           project.project_feature.update!(issues_access_level: ProjectFeature::DISABLED)
         end
 
-        expect(issues.count).to eq 0
+        expect(issues.size).to eq 0
       end
     end
   end

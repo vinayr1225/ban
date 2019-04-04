@@ -83,7 +83,7 @@ describe API::Members do
         expect(response).to have_gitlab_http_status(200)
         expect(response).to include_pagination_headers
         expect(json_response).to be_an Array
-        expect(json_response.count).to eq(1)
+        expect(json_response.size).to eq(1)
         expect(json_response.first['username']).to eq(maintainer.username)
       end
 
@@ -93,7 +93,7 @@ describe API::Members do
         expect(response).to have_gitlab_http_status(200)
         expect(response).to include_pagination_headers
         expect(json_response).to be_an Array
-        expect(json_response.count).to eq(2)
+        expect(json_response.size).to eq(2)
         expect(json_response.map { |u| u['id'] }).to match_array [maintainer.id, developer.id]
       end
     end
@@ -205,7 +205,7 @@ describe API::Members do
 
               expect(response).to have_gitlab_http_status(201)
             end.to change { source.members.count }.by(1)
-            expect(source.requesters.count).to eq(0)
+            expect(source.requesters.size).to eq(0)
             expect(json_response['id']).to eq(access_requester.id)
             expect(json_response['access_level']).to eq(Member::MAINTAINER)
           end

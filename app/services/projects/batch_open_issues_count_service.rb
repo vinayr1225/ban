@@ -8,7 +8,7 @@ module Projects
     # rubocop: disable CodeReuse/ActiveRecord
     def global_count
       @global_count ||= begin
-        count_service.query(project_ids).group(:project_id).count
+        count_service.query(project_ids).group(:project_id).size
       end
     end
     # rubocop: enable CodeReuse/ActiveRecord

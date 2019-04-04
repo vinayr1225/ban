@@ -93,7 +93,7 @@ describe 'Recent searches', :js do
     find('.filtered-search-history-clear-button').click
     items_after = all('.filtered-search-history-dropdown-item', count: 0)
 
-    expect(items_after.count).to eq(0)
+    expect(items_after.size).to eq(0)
   end
 
   it 'shows flash error when failed to parse saved history' do

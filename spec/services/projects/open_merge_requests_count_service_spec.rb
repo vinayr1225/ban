@@ -9,7 +9,7 @@ describe Projects::OpenMergeRequestsCountService do
              source_project: project,
              target_project: project)
 
-      expect(described_class.new(project).count).to eq(1)
+      expect(described_class.new(project).size).to eq(1)
     end
   end
 end

@@ -38,11 +38,11 @@ describe Gitlab::BackgroundMigration::MigrateBuildStage, :migration, schema: 201
   end
 
   it 'correctly migrates builds stages' do
-    expect(stages.count).to be_zero
+    expect(stages.size).to be_zero
 
     described_class.new.perform(1, 6)
 
-    expect(stages.count).to eq 3
+    expect(stages.size).to eq 3
     expect(stages.all.pluck(:name)).to match_array %w[test build deploy]
     expect(jobs.where(stage_id: nil)).to be_one
     expect(jobs.find_by(stage_id: nil).id).to eq 6

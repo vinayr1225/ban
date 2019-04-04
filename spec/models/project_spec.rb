@@ -1663,7 +1663,7 @@ describe Project do
       row = described_class.eager_load_namespace_and_owner.to_a.first
       recorder = ActiveRecord::QueryRecorder.new { row.namespace.owner }
 
-      expect(recorder.count).to be_zero
+      expect(recorder.size).to be_zero
     end
   end
 
@@ -4281,8 +4281,8 @@ describe Project do
     it 'returns the project and the project group badges' do
       create(:group_badge, group: create(:group))
 
-      expect(Badge.count).to eq 4
-      expect(project.badges.count).to eq 3
+      expect(Badge.size).to eq 4
+      expect(project.badges.size).to eq 3
     end
 
     if Group.supports_nested_objects?
@@ -4295,7 +4295,7 @@ describe Project do
         end
 
         it 'returns the project and the project nested groups badges' do
-          expect(project.badges.count).to eq 5
+          expect(project.badges.size).to eq 5
         end
       end
     end
@@ -4584,7 +4584,7 @@ describe Project do
 
       services = subject.find_or_initialize_services
 
-      expect(services.count).to eq 1
+      expect(services.size).to eq 1
       expect(services).to include(PushoverService)
     end
   end
@@ -4595,7 +4595,7 @@ describe Project do
     it 'avoids N+1 database queries' do
       allow(Service).to receive(:available_services_names).and_return(%w(prometheus pushover))
 
-      control_count = ActiveRecord::QueryRecorder.new { subject.find_or_initialize_service('prometheus') }.count
+      control_count = ActiveRecord::QueryRecorder.new { subject.find_or_initialize_service('prometheus') }.size
 
       allow(Service).to receive(:available_services_names).and_call_original
 

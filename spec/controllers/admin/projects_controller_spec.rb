@@ -35,7 +35,7 @@ describe Admin::ProjectsController do
     it 'does not have N+1 queries', :use_clean_rails_memory_store_caching, :request_store do
       get :index
 
-      control_count = ActiveRecord::QueryRecorder.new { get :index }.count
+      control_count = ActiveRecord::QueryRecorder.new { get :index }.size
 
       create(:project)
 

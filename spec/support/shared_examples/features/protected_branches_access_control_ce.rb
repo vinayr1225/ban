@@ -22,7 +22,7 @@ shared_examples "protected branches > access control > CE" do
 
       click_on "Protect"
 
-      expect(ProtectedBranch.count).to eq(1)
+      expect(ProtectedBranch.size).to eq(1)
       expect(ProtectedBranch.last.push_access_levels.map(&:access_level)).to eq([access_type_id])
     end
 
@@ -45,7 +45,7 @@ shared_examples "protected branches > access control > CE" do
 
       click_on "Protect"
 
-      expect(ProtectedBranch.count).to eq(1)
+      expect(ProtectedBranch.size).to eq(1)
 
       within(".protected-branches-list") do
         find(".js-allowed-to-push").click
@@ -85,7 +85,7 @@ shared_examples "protected branches > access control > CE" do
 
       click_on "Protect"
 
-      expect(ProtectedBranch.count).to eq(1)
+      expect(ProtectedBranch.size).to eq(1)
       expect(ProtectedBranch.last.merge_access_levels.map(&:access_level)).to eq([access_type_id])
     end
 
@@ -108,7 +108,7 @@ shared_examples "protected branches > access control > CE" do
 
       click_on "Protect"
 
-      expect(ProtectedBranch.count).to eq(1)
+      expect(ProtectedBranch.size).to eq(1)
 
       within(".protected-branches-list") do
         find(".js-allowed-to-merge").click

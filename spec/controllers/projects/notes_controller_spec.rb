@@ -57,7 +57,7 @@ describe Projects::NotesController do
 
         get :index, params: request_params
 
-        expect(notes_json.count).to eq(1)
+        expect(notes_json.size).to eq(1)
         expect(notes_json.first[:id].to_i).to eq(comment.id)
       end
 
@@ -184,7 +184,7 @@ describe Projects::NotesController do
       it 'filters notes that the user should not see' do
         get :index, params: request_params
 
-        expect(parsed_response[:notes].count).to eq(1)
+        expect(parsed_response[:notes].size).to eq(1)
         expect(note_json[:id]).to eq(note.id.to_s)
       end
 
@@ -196,7 +196,7 @@ describe Projects::NotesController do
 
         control_count = ActiveRecord::QueryRecorder.new do
           get :index, params: request_params
-        end.count
+        end.size
 
         RequestStore.clear!
 

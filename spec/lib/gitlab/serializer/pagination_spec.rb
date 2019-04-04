@@ -23,7 +23,7 @@ describe Gitlab::Serializer::Pagination do
       end
 
       it 'correctly paginates the resource' do
-        expect(subject.count).to be 2
+        expect(subject.size).to be 2
       end
 
       it 'appends relevant headers' do

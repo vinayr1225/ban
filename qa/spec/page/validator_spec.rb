@@ -64,7 +64,7 @@ describe QA::Page::Validator do
 
       describe '#errors' do
         it 'returns errors' do
-          expect(subject.errors.count).to eq 2
+          expect(subject.errors.size).to eq 2
         end
       end
 

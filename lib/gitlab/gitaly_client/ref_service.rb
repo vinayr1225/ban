@@ -109,11 +109,11 @@ module Gitlab
       end
 
       def count_tag_names
-        tag_names.count
+        tag_names.size
       end
 
       def count_branch_names
-        branch_names.count
+        branch_names.size
       end
 
       def local_branches(sort_by: nil)

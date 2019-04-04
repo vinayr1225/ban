@@ -52,7 +52,7 @@ describe Gitlab::QueryLimiting do
       end
 
       it 'does not increment the number of SQL queries executed in the block' do
-        before = transaction.count
+        before = transaction.size
 
         described_class.whitelist('https://example.com')
 
@@ -60,7 +60,7 @@ describe Gitlab::QueryLimiting do
           User.count
         end
 
-        expect(transaction.count).to eq(before)
+        expect(transaction.size).to eq(before)
       end
     end
   end

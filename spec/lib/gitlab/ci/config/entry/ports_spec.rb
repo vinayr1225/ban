@@ -37,7 +37,7 @@ describe Gitlab::Ci::Config::Entry::Ports do
     context 'when any of the ports' do
       before do
         expect(entry).not_to be_valid
-        expect(entry.errors.count).to eq 1
+        expect(entry.errors.size).to eq 1
       end
 
       context 'have the same name' do

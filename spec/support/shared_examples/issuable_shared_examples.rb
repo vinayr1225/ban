@@ -84,11 +84,11 @@ shared_examples 'updating a single task' do
     end
 
     it 'raises an exception' do
-      expect(Note.count).to eq(2)
+      expect(Note.size).to eq(2)
       expect do
         update_issuable(update_task: { index: 2, checked: true, line_source: '- [ ] Task 2', line_number: 2 })
       end.to raise_error(ActiveRecord::StaleObjectError)
-      expect(Note.count).to eq(2)
+      expect(Note.size).to eq(2)
     end
   end
 

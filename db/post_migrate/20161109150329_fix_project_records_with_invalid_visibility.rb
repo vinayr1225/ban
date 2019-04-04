@@ -25,7 +25,7 @@ class FixProjectRecordsWithInvalidVisibility < ActiveRecord::Migration[4.2]
     # statements, in addition to the SELECT: one per visibility_level
     loop do
       to_update = connection.exec_query(finder_sql)
-      break if to_update.rows.count == 0
+      break if to_update.rows.size == 0
 
       # row[0] is projects.id, row[1] is namespaces.visibility_level
       updates = to_update.rows.each_with_object(Hash.new {|h, k| h[k] = [] }) do |row, obj|

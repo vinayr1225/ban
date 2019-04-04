@@ -202,7 +202,7 @@ module Gitlab
           def validate_each(record, attribute, value)
             return unless value.is_a?(Array)
 
-            ports_size = value.count
+            ports_size = value.size
             return if ports_size <= 1
 
             named_ports = value.select { |e| e.is_a?(Hash) }.map { |e| e[:name] }.compact.map(&:downcase)
@@ -222,7 +222,7 @@ module Gitlab
             value = ports(value)
             return unless value.is_a?(Array)
 
-            ports_size = value.count
+            ports_size = value.size
             return if ports_size <= 1
 
             if transform_ports(value).size != ports_size

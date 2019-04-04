@@ -39,18 +39,18 @@ describe MigratePipelineStages, :migration do
   end
 
   it 'correctly migrates pipeline stages' do
-    expect(stages.count).to be_zero
+    expect(stages.size).to be_zero
 
     migrate!
 
-    expect(stages.count).to eq 6
+    expect(stages.size).to eq 6
     expect(stages.all.pluck(:name))
       .to match_array %w[test build deploy test:1 test:2 deploy]
     expect(stages.where(pipeline_id: 1).order(:id).pluck(:name))
       .to eq %w[test build deploy]
     expect(stages.where(pipeline_id: 2).order(:id).pluck(:name))
       .to eq %w[test:1 test:2 deploy]
-    expect(stages.where(pipeline_id: 3).count).to be_zero
-    expect(stages.where(project_id: 789).count).to be_zero
+    expect(stages.where(pipeline_id: 3).size).to be_zero
+    expect(stages.where(project_id: 789).size).to be_zero
   end
 end

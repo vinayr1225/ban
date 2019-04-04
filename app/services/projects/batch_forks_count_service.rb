@@ -10,7 +10,7 @@ module Projects
       @global_count ||= begin
         count_service.query(project_ids)
                      .group(:forked_from_project_id)
-                     .count
+                     .size
       end
     end
     # rubocop: enable CodeReuse/ActiveRecord

@@ -52,7 +52,7 @@ describe ResourceEvents::MergeIntoNotesService do
         "added #{label2.to_reference} label"
       ]
 
-      expect(notes.count).to eq 3
+      expect(notes.size).to eq 3
       expect(notes.map(&:note)).to match_array expected
     end
 
@@ -63,7 +63,7 @@ describe ResourceEvents::MergeIntoNotesService do
       notes = described_class.new(resource, user,
                                   last_fetched_at: 2.days.ago.to_i).execute
 
-      expect(notes.count).to eq 1
+      expect(notes.size).to eq 1
       expect(notes.first.discussion_id).to eq event.discussion_id
     end
 

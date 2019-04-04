@@ -193,7 +193,7 @@ describe Notes::QuickActionsService do
         _, update_params = service.execute(note)
         service.apply_updates(update_params, note)
 
-        expect(note.noteable.assignees.count).to eq(1)
+        expect(note.noteable.assignees.size).to eq(1)
       end
     end
   end

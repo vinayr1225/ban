@@ -15,7 +15,7 @@ namespace :gitlab do
 
         ArchiveTraceWorker.bulk_perform_async(job_ids)
 
-        logger.info("Scheduled #{job_ids.count} jobs. From #{job_ids.min} to #{job_ids.max}")
+        logger.info("Scheduled #{job_ids.size} jobs. From #{job_ids.min} to #{job_ids.max}")
       end
     end
 

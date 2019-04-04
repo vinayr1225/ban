@@ -197,25 +197,25 @@ module Ci
           let!(:unrelated_group_runner) { create(:ci_runner, :group, groups: [unrelated_group]) }
 
           it 'does not consider builds from other group runners' do
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 6
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 6
             execute(group_runner)
 
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 5
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 5
             execute(group_runner)
 
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 4
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 4
             execute(group_runner)
 
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 3
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 3
             execute(group_runner)
 
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 2
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 2
             execute(group_runner)
 
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 1
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 1
             execute(group_runner)
 
-            expect(described_class.new(group_runner).send(:builds_for_group_runner).count).to eq 0
+            expect(described_class.new(group_runner).send(:builds_for_group_runner).size).to eq 0
             expect(execute(group_runner)).to be_nil
           end
         end

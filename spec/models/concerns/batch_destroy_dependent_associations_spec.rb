@@ -31,11 +31,11 @@ describe BatchDestroyDependentAssociations do
     it 'destroys multiple builds' do
       create(:ci_build, project: project)
 
-      expect(Ci::Build.count).to eq(2)
+      expect(Ci::Build.size).to eq(2)
 
       project.destroy_dependent_associations_in_batches
 
-      expect(Ci::Build.count).to eq(0)
+      expect(Ci::Build.size).to eq(0)
     end
 
     it 'destroys builds in batches' do
@@ -44,19 +44,19 @@ describe BatchDestroyDependentAssociations do
 
       project.destroy_dependent_associations_in_batches
 
-      expect(Ci::Build.count).to eq(0)
-      expect(Todo.count).to eq(1)
-      expect(User.count).to be > 0
-      expect(NotificationSetting.count).to eq(User.count)
+      expect(Ci::Build.size).to eq(0)
+      expect(Todo.size).to eq(1)
+      expect(User.size).to be > 0
+      expect(NotificationSetting.size).to eq(User.size)
     end
 
     it 'excludes associations' do
       project.destroy_dependent_associations_in_batches(exclude: [:builds])
 
-      expect(Ci::Build.count).to eq(1)
-      expect(Todo.count).to eq(1)
-      expect(User.count).to be > 0
-      expect(NotificationSetting.count).to eq(User.count)
+      expect(Ci::Build.size).to eq(1)
+      expect(Todo.size).to eq(1)
+      expect(User.size).to be > 0
+      expect(NotificationSetting.size).to eq(User.size)
     end
   end
 end

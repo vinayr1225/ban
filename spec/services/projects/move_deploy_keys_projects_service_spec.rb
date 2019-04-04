@@ -13,25 +13,25 @@ describe Projects::MoveDeployKeysProjectsService do
     end
 
     it 'moves the user\'s deploy keys from one project to another' do
-      expect(project_with_deploy_keys.deploy_keys_projects.count).to eq 2
-      expect(target_project.deploy_keys_projects.count).to eq 0
+      expect(project_with_deploy_keys.deploy_keys_projects.size).to eq 2
+      expect(target_project.deploy_keys_projects.size).to eq 0
 
       subject.execute(project_with_deploy_keys)
 
-      expect(project_with_deploy_keys.deploy_keys_projects.count).to eq 0
-      expect(target_project.deploy_keys_projects.count).to eq 2
+      expect(project_with_deploy_keys.deploy_keys_projects.size).to eq 0
+      expect(target_project.deploy_keys_projects.size).to eq 2
     end
 
     it 'does not link existent deploy_keys in the current project' do
       target_project.deploy_keys << project_with_deploy_keys.deploy_keys.first
 
-      expect(project_with_deploy_keys.deploy_keys_projects.count).to eq 2
-      expect(target_project.deploy_keys_projects.count).to eq 1
+      expect(project_with_deploy_keys.deploy_keys_projects.size).to eq 2
+      expect(target_project.deploy_keys_projects.size).to eq 1
 
       subject.execute(project_with_deploy_keys)
 
-      expect(project_with_deploy_keys.deploy_keys_projects.count).to eq 0
-      expect(target_project.deploy_keys_projects.count).to eq 2
+      expect(project_with_deploy_keys.deploy_keys_projects.size).to eq 0
+      expect(target_project.deploy_keys_projects.size).to eq 2
     end
 
     it 'rollbacks changes if transaction fails' do
@@ -39,8 +39,8 @@ describe Projects::MoveDeployKeysProjectsService do
 
       expect { subject.execute(project_with_deploy_keys) }.to raise_error(StandardError)
 
-      expect(project_with_deploy_keys.deploy_keys_projects.count).to eq 2
-      expect(target_project.deploy_keys_projects.count).to eq 0
+      expect(project_with_deploy_keys.deploy_keys_projects.size).to eq 2
+      expect(target_project.deploy_keys_projects.size).to eq 0
     end
 
     context 'when remove_remaining_elements is false' do
@@ -51,7 +51,7 @@ describe Projects::MoveDeployKeysProjectsService do
 
         subject.execute(project_with_deploy_keys, options)
 
-        expect(project_with_deploy_keys.deploy_keys_projects.count).not_to eq 0
+        expect(project_with_deploy_keys.deploy_keys_projects.size).not_to eq 0
       end
     end
   end

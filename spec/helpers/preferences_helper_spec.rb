@@ -76,7 +76,7 @@ describe PreferencesHelper do
       end
 
       it 'returns the default when id is invalid' do
-        stub_user(theme_id: Gitlab::Themes.count + 5)
+        stub_user(theme_id: Gitlab::Themes.size + 5)
 
         allow(Gitlab.config.gitlab).to receive(:default_theme).and_return(1)
 
@@ -104,7 +104,7 @@ describe PreferencesHelper do
 
       it 'returns the default when id is invalid' do
         allow(helper).to receive(:current_user)
-          .and_return(double(color_scheme_id: Gitlab::ColorSchemes.count + 5))
+          .and_return(double(color_scheme_id: Gitlab::ColorSchemes.size + 5))
       end
     end
 

@@ -74,7 +74,7 @@ describe EnvironmentSerializer do
       end
 
       it 'represents one standalone environment' do
-        expect(subject.count).to eq 1
+        expect(subject.size).to eq 1
         expect(subject.first[:name]).to eq 'staging'
         expect(subject.first[:size]).to eq 1
         expect(subject.first[:latest][:name]).to eq 'staging'
@@ -88,7 +88,7 @@ describe EnvironmentSerializer do
       end
 
       it 'represents one item that is a folder' do
-        expect(subject.count).to eq 1
+        expect(subject.size).to eq 1
         expect(subject.first[:name]).to eq 'staging'
         expect(subject.first[:size]).to eq 2
         expect(subject.first[:latest][:name]).to eq 'staging/my-review-2'
@@ -105,7 +105,7 @@ describe EnvironmentSerializer do
       end
 
       it 'represents multiple items grouped within folders' do
-        expect(subject.count).to eq 3
+        expect(subject.size).to eq 3
 
         expect(subject.first[:name]).to eq 'production'
         expect(subject.first[:size]).to eq 1
@@ -158,7 +158,7 @@ describe EnvironmentSerializer do
         end
 
         it 'serializes appropriate number of objects' do
-          expect(subject.count).to be 2
+          expect(subject.size).to be 2
         end
 
         it 'appends relevant headers' do
@@ -186,7 +186,7 @@ describe EnvironmentSerializer do
         end
 
         it 'paginates grouped items including ordering' do
-          expect(subject.count).to eq 2
+          expect(subject.size).to eq 2
           expect(subject.first[:name]).to eq 'production'
           expect(subject.second[:name]).to eq 'staging'
         end

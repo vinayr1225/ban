@@ -50,7 +50,7 @@ describe EachBatch do
           relation.update_all(updated_at: time)
         end
 
-        expect(model.where(updated_at: time).count).to eq(5)
+        expect(model.where(updated_at: time).size).to eq(5)
       end
     end
 

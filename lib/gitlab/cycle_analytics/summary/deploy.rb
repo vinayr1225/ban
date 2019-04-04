@@ -9,7 +9,7 @@ module Gitlab
         end
 
         def value
-          @value ||= @project.deployments.where("created_at > ?", @from).count
+          @value ||= @project.deployments.where("created_at > ?", @from).size
         end
       end
     end

@@ -111,11 +111,11 @@ describe Gitlab::BackgroundMigration::CreateForkNetworkMembershipsRange, :migrat
     end
 
     it 'only processes a single batch of links at a time' do
-      expect(fork_network_members.count).to eq(10)
+      expect(fork_network_members.size).to eq(10)
 
       migration.perform(8, 10)
 
-      expect(fork_network_members.count).to eq(12)
+      expect(fork_network_members.size).to eq(12)
     end
 
     it 'knows when not all memberships within a batch have been created' do

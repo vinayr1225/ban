@@ -269,7 +269,7 @@ module Network
       leaves.push(commit) if commit.space.zero?
 
       loop do
-        return leaves if commit.parents(@map).count.zero?
+        return leaves if commit.parents(@map).size.zero?
 
         commit = commit.parents(@map).first
 

@@ -40,7 +40,7 @@ module Gitlab
         def with_open_files
           @rewritten_fields.each do |field, tmp_path|
             parsed_field = Rack::Utils.parse_nested_query(field)
-            raise "unexpected field: #{field.inspect}" unless parsed_field.count == 1
+            raise "unexpected field: #{field.inspect}" unless parsed_field.size == 1
 
             key, value = parsed_field.first
             if value.nil?
@@ -60,7 +60,7 @@ module Gitlab
 
         # This function calls itself recursively
         def decorate_params_value(path_hash, value_hash)
-          unless path_hash.is_a?(Hash) && path_hash.count == 1
+          unless path_hash.is_a?(Hash) && path_hash.size == 1
             raise "invalid path: #{path_hash.inspect}"
           end
 

@@ -52,7 +52,7 @@ describe GenerateMissingRoutes, :migration do
 
       described_class.new.up
 
-      expect(routes.count).to eq(1)
+      expect(routes.size).to eq(1)
     end
 
     it 'does not create routes for projects that already have a route' do
@@ -78,7 +78,7 @@ describe GenerateMissingRoutes, :migration do
 
       described_class.new.up
 
-      expect(routes.count).to eq(2)
+      expect(routes.size).to eq(2)
     end
   end
 end

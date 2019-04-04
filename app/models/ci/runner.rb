@@ -188,7 +188,7 @@ module Ci
     end
 
     def belongs_to_one_project?
-      runner_projects.count == 1
+      runner_projects.size == 1
     end
 
     def assigned_to_group?

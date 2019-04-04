@@ -20,9 +20,9 @@ module Gitlab
 
         existing_count = @project.all_lfs_objects
                                  .where(oid: new_lfs_pointers.map(&:lfs_oid))
-                                 .count
+                                 .size
 
-        existing_count != new_lfs_pointers.count
+        existing_count != new_lfs_pointers.size
       end
       # rubocop: enable CodeReuse/ActiveRecord
     end

@@ -37,7 +37,7 @@ describe Gitlab::Email::Handler do
           handler.new('email', address).can_handle?
         end
 
-        expect(matched_handlers.count).to eq(1), "#{address} matches #{matched_handlers.count} handlers: #{matched_handlers}"
+        expect(matched_handlers.size).to eq(1), "#{address} matches #{matched_handlers.size} handlers: #{matched_handlers}"
       end
     end
   end

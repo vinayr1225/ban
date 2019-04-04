@@ -54,11 +54,11 @@ describe ScheduleMergeRequestLatestMergeRequestDiffIdMigrations, :migration, :si
 
   it 'schedules background migrations' do
     perform_enqueued_jobs do
-      expect(merge_requests_table.where(latest_merge_request_diff_id: nil).count).to eq 3
+      expect(merge_requests_table.where(latest_merge_request_diff_id: nil).size).to eq 3
 
       migrate!
 
-      expect(merge_requests_table.where(latest_merge_request_diff_id: nil).count).to eq 0
+      expect(merge_requests_table.where(latest_merge_request_diff_id: nil).size).to eq 0
     end
   end
 end

@@ -40,7 +40,7 @@ describe MergeRequests::AssignIssuesService do
                                    merge_request: merge_request,
                                    closes_issues: [issue, issue2])
 
-    expect(service2.assignable_issues.count).to eq 2
+    expect(service2.assignable_issues.size).to eq 2
   end
 
   it 'assigns these to the merge request owner' do
@@ -56,6 +56,6 @@ describe MergeRequests::AssignIssuesService do
       closes_issues: [external_issue]
     )
 
-    expect(service.assignable_issues.count).to eq 0
+    expect(service.assignable_issues.size).to eq 0
   end
 end

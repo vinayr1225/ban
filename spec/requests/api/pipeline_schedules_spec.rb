@@ -42,7 +42,7 @@ describe API::PipelineSchedules do
 
         control_count = ActiveRecord::QueryRecorder.new do
           get api("/projects/#{project.id}/pipeline_schedules", developer)
-        end.count
+        end.size
 
         create_pipeline_schedules(10)
 

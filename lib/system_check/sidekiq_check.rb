@@ -52,7 +52,7 @@ module SystemCheck
 
     def sidekiq_process_count
       ps_ux, _ = Gitlab::Popen.popen(%w(ps uxww))
-      ps_ux.scan(/sidekiq \d+\.\d+\.\d+/).count
+      ps_ux.scan(/sidekiq \d+\.\d+\.\d+/).size
     end
   end
 end

@@ -300,7 +300,7 @@ describe Projects::CreateService, '#execute' do
     it 'creates a service from this template' do
       project = create_project(user, opts)
 
-      expect(project.services.count).to eq 1
+      expect(project.services.size).to eq 1
     end
   end
 

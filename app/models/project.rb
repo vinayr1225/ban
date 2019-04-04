@@ -1543,13 +1543,13 @@ class Project < ApplicationRecord
 
   # rubocop: disable CodeReuse/ServiceClass
   def open_issues_count(current_user = nil)
-    Projects::OpenIssuesCountService.new(self, current_user).count
+    Projects::OpenIssuesCountService.new(self, current_user).size
   end
   # rubocop: enable CodeReuse/ServiceClass
 
   # rubocop: disable CodeReuse/ServiceClass
   def open_merge_requests_count
-    Projects::OpenMergeRequestsCountService.new(self).count
+    Projects::OpenMergeRequestsCountService.new(self).size
   end
   # rubocop: enable CodeReuse/ServiceClass
 
@@ -1943,7 +1943,7 @@ class Project < ApplicationRecord
 
   # rubocop: disable CodeReuse/ServiceClass
   def forks_count
-    Projects::ForksCountService.new(self).count
+    Projects::ForksCountService.new(self).size
   end
   # rubocop: enable CodeReuse/ServiceClass
 

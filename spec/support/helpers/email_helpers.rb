@@ -12,7 +12,7 @@ module EmailHelpers
 
     users.each { |user| should_email(user, recipients: recipients) }
 
-    expect(recipients.count).to eq(users.count)
+    expect(recipients.size).to eq(users.size)
   end
 
   def should_email(user, times: 1, recipients: email_recipients)

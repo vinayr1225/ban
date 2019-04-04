@@ -32,7 +32,7 @@ describe Labels::AvailableLabelsService do
         it 'creates new labels for not found titles' do
           result = described_class.new(user, project, labels: label_titles).find_or_create_by_titles
 
-          expect(result.count).to eq(5)
+          expect(result.size).to eq(5)
           expect(result).to include(project_label, group_label)
           expect(result).not_to include(other_project_label, other_group_label)
         end
@@ -56,7 +56,7 @@ describe Labels::AvailableLabelsService do
         it 'creates new labels for not found titles' do
           result = described_class.new(user, group, labels: label_titles).find_or_create_by_titles
 
-          expect(result.count).to eq(5)
+          expect(result.size).to eq(5)
           expect(result).to include(group_label)
           expect(result).not_to include(project_label, other_project_label, other_group_label)
         end

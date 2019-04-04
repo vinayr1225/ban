@@ -26,14 +26,14 @@ describe Projects::CountService do
     it 'returns the number of rows' do
       allow(service).to receive(:uncached_count).and_return(1)
 
-      expect(service.count).to eq(1)
+      expect(service.size).to eq(1)
     end
 
     it 'caches the number of rows', :use_clean_rails_memory_store_caching do
       expect(service).to receive(:uncached_count).once.and_return(1)
 
       2.times do
-        expect(service.count).to eq(1)
+        expect(service.size).to eq(1)
       end
     end
   end
@@ -48,7 +48,7 @@ describe Projects::CountService do
 
       service.refresh_cache
 
-      expect(service.count).to eq(1)
+      expect(service.size).to eq(1)
     end
   end
 
@@ -60,9 +60,9 @@ describe Projects::CountService do
     it 'removes the cache' do
       expect(service).to receive(:uncached_count).twice.and_return(1)
 
-      service.count
+      service.size
       service.delete_cache
-      service.count
+      service.size
     end
   end
 

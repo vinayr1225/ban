@@ -29,7 +29,7 @@ describe Gitlab::Ci::Build::Artifacts::Metadata do
       end
 
       it 'matches metadata for every path' do
-        expect(subject.keys.count).to eq 4
+        expect(subject.keys.size).to eq 4
       end
 
       it 'return Hashes for each metadata' do
@@ -138,7 +138,7 @@ describe Gitlab::Ci::Build::Artifacts::Metadata do
 
         metadata = described_class.new(stream, 'public', { recursive: true })
 
-        expect(metadata.find_entries!.count).to eq entry_count
+        expect(metadata.find_entries!.size).to eq entry_count
       end
     end
   end

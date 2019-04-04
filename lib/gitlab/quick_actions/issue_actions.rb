@@ -47,7 +47,7 @@ module Gitlab
         types Issue
         condition do
           current_user.can?(:"update_#{quick_action_target.to_ability_name}", quick_action_target) &&
-            quick_action_target.project.boards.count == 1
+            quick_action_target.project.boards.size == 1
         end
         # rubocop: disable CodeReuse/ActiveRecord
         command :board_move do |target_list_name|

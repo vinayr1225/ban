@@ -13,22 +13,22 @@ describe Projects::MoveLfsObjectsProjectsService do
 
   describe '#execute' do
     it 'links the lfs objects from existent in source project' do
-      expect(target_project.lfs_objects.count).to eq 0
+      expect(target_project.lfs_objects.size).to eq 0
 
       subject.execute(project_with_lfs_objects)
 
-      expect(project_with_lfs_objects.reload.lfs_objects.count).to eq 0
-      expect(target_project.reload.lfs_objects.count).to eq 3
+      expect(project_with_lfs_objects.reload.lfs_objects.size).to eq 0
+      expect(target_project.reload.lfs_objects.size).to eq 3
     end
 
     it 'does not link existent lfs_object in the current project' do
       target_project.lfs_objects << project_with_lfs_objects.lfs_objects.first(2)
 
-      expect(target_project.lfs_objects.count).to eq 2
+      expect(target_project.lfs_objects.size).to eq 2
 
       subject.execute(project_with_lfs_objects)
 
-      expect(target_project.lfs_objects.count).to eq 3
+      expect(target_project.lfs_objects.size).to eq 3
     end
 
     it 'rollbacks changes if transaction fails' do
@@ -36,8 +36,8 @@ describe Projects::MoveLfsObjectsProjectsService do
 
       expect { subject.execute(project_with_lfs_objects) }.to raise_error(StandardError)
 
-      expect(project_with_lfs_objects.lfs_objects.count).to eq 3
-      expect(target_project.lfs_objects.count).to eq 0
+      expect(project_with_lfs_objects.lfs_objects.size).to eq 3
+      expect(target_project.lfs_objects.size).to eq 0
     end
 
     context 'when remove_remaining_elements is false' do
@@ -48,7 +48,7 @@ describe Projects::MoveLfsObjectsProjectsService do
 
         subject.execute(project_with_lfs_objects, options)
 
-        expect(project_with_lfs_objects.lfs_objects.count).not_to eq 0
+        expect(project_with_lfs_objects.lfs_objects.size).not_to eq 0
       end
     end
   end

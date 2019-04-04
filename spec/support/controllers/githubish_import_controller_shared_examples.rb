@@ -127,7 +127,7 @@ shared_examples 'a GitHub-ish import controller: GET status' do
 
     control_count = ActiveRecord::QueryRecorder.new(skip_cached: false) do
       get :status, format: :json
-    end.count
+    end.size
 
     stub_client(repos: [repo, org_repo], orgs: [])
     group_b = create(:group)

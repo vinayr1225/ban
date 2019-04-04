@@ -13,7 +13,7 @@ shared_examples 'issuable notes filter' do
     get :discussions, params: params.merge(notes_filter: notes_filter)
 
     expect(user.reload.notes_filter_for(issuable)).to eq(notes_filter)
-    expect(UserPreference.count).to eq(1)
+    expect(UserPreference.size).to eq(1)
   end
 
   it 'expires notes e-tag cache for issuable if filter changed' do
@@ -48,7 +48,7 @@ shared_examples 'issuable notes filter' do
     get :discussions, params: params
     discussions = JSON.parse(response.body)
 
-    expect(discussions.count).to eq(1)
+    expect(discussions.size).to eq(1)
     expect(discussions.first["notes"].first["system"]).to be(false)
   end
 
@@ -58,7 +58,7 @@ shared_examples 'issuable notes filter' do
     get :discussions, params: params
     discussions = JSON.parse(response.body)
 
-    expect(discussions.count).to eq(1)
+    expect(discussions.size).to eq(1)
     expect(discussions.first["notes"].first["system"]).to be(true)
   end
 

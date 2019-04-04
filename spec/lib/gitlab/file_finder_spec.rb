@@ -13,19 +13,19 @@ describe Gitlab::FileFinder do
     it 'filters by name' do
       results = subject.find('files filename:wm.svg')
 
-      expect(results.count).to eq(1)
+      expect(results.size).to eq(1)
     end
 
     it 'filters by path' do
       results = subject.find('white path:images')
 
-      expect(results.count).to eq(1)
+      expect(results.size).to eq(1)
     end
 
     it 'filters by extension' do
       results = subject.find('files extension:svg')
 
-      expect(results.count).to eq(1)
+      expect(results.size).to eq(1)
     end
   end
 end

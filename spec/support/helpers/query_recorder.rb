@@ -25,11 +25,11 @@ module ActiveRecord
     end
 
     def count
-      @log.count
+      @log.size
     end
 
     def cached_count
-      @cached.count
+      @cached.size
     end
 
     def log_message

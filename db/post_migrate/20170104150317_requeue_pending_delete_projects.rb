@@ -15,7 +15,7 @@ class RequeuePendingDeleteProjects < ActiveRecord::Migration[4.2]
     loop do
       ids = pending_delete_batch
 
-      break if ids.rows.count.zero?
+      break if ids.rows.size.zero?
 
       args = ids.map { |id| [id['id'], admin.id, {}] }
 

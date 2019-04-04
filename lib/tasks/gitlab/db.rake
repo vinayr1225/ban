@@ -52,7 +52,7 @@ namespace :gitlab do
     task configure: :environment do
       # Check if we have existing db tables
       # The schema_migrations table will still exist if drop_tables was called
-      if ActiveRecord::Base.connection.tables.count > 1
+      if ActiveRecord::Base.connection.tables.size > 1
         Rake::Task['db:migrate'].invoke
       else
         # Add post-migrate paths to ensure we mark all migrations as up

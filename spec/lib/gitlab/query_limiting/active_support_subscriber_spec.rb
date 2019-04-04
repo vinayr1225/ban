@@ -11,7 +11,7 @@ describe Gitlab::QueryLimiting::ActiveSupportSubscriber do
 
   describe '#sql' do
     it 'increments the number of executed SQL queries' do
-      User.count
+      User.size
 
       expect(transaction)
         .to have_received(:increment)
@@ -21,8 +21,8 @@ describe Gitlab::QueryLimiting::ActiveSupportSubscriber do
     context 'when the query is actually a rails cache hit' do
       it 'does not increment the number of executed SQL queries' do
         ActiveRecord::Base.connection.cache do
-          User.count
-          User.count
+          User.size
+          User.size
         end
 
         expect(transaction)

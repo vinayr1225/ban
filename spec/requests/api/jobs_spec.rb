@@ -105,7 +105,7 @@ describe API::Jobs do
         first_build.user = create(:user)
         first_build.save
 
-        control_count = ActiveRecord::QueryRecorder.new { go }.count
+        control_count = ActiveRecord::QueryRecorder.new { go }.size
 
         second_pipeline = create(:ci_empty_pipeline, project: project, sha: project.commit.id, ref: project.default_branch)
         second_build = create(:ci_build, :trace_artifact, :artifacts, :test_reports, pipeline: second_pipeline)
@@ -240,7 +240,7 @@ describe API::Jobs do
       it 'avoids N+1 queries' do
         control_count = ActiveRecord::QueryRecorder.new(skip_cached: false) do
           get api("/projects/#{project.id}/pipelines/#{pipeline.id}/jobs", api_user), params: query
-        end.count
+        end.size
 
         3.times { create(:ci_build, :trace_artifact, :artifacts, :test_reports, pipeline: pipeline) }
 
@@ -910,7 +910,7 @@ describe API::Jobs do
 
       it 'erases job content' do
         expect(response).to have_gitlab_http_status(201)
-        expect(job.job_artifacts.count).to eq(0)
+        expect(job.job_artifacts.size).to eq(0)
         expect(job.trace.exist?).to be_falsy
         expect(job.artifacts_file.exists?).to be_falsy
         expect(job.artifacts_metadata.exists?).to be_falsy

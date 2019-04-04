@@ -389,7 +389,7 @@ describe WikiPage do
     it "returns an array of all commits for the page" do
       3.times { |i| page.update(content: "content #{i}") }
 
-      expect(page.versions.count).to eq(4)
+      expect(page.versions.size).to eq(4)
     end
 
     it 'returns instances of WikiPageVersion' do

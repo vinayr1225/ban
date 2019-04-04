@@ -40,7 +40,7 @@ describe ApplicationWorker do
       Sidekiq::Testing.fake! do
         worker.bulk_perform_async([['Foo', [1]], ['Foo', [2]]])
 
-        expect(worker.jobs.count).to eq 2
+        expect(worker.jobs.size).to eq 2
         expect(worker.jobs).to all(include('enqueued_at'))
       end
     end
@@ -52,7 +52,7 @@ describe ApplicationWorker do
         Sidekiq::Testing.fake! do
           worker.bulk_perform_in(1.minute, [['Foo', [1]], ['Foo', [2]]])
 
-          expect(worker.jobs.count).to eq 2
+          expect(worker.jobs.size).to eq 2
           expect(worker.jobs).to all(include('at'))
         end
       end

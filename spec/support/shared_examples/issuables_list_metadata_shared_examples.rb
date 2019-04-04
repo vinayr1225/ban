@@ -42,7 +42,7 @@ shared_examples 'issuables list meta-data' do |issuable_type, action = nil|
       issuable.update!(source_project: fork_project(project))
     end
 
-    expect { get_action(action, project) }.not_to exceed_query_limit(control.count)
+    expect { get_action(action, project) }.not_to exceed_query_limit(control.size)
   end
 
   describe "when given empty collection" do

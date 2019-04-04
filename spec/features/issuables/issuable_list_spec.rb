@@ -14,7 +14,7 @@ describe 'issuable list' do
 
   issuable_types.each do |issuable_type|
     it "avoids N+1 database queries for #{issuable_type.to_s.humanize.pluralize}" do
-      control_count = ActiveRecord::QueryRecorder.new { visit_issuable_list(issuable_type) }.count
+      control_count = ActiveRecord::QueryRecorder.new { visit_issuable_list(issuable_type) }.size
 
       create_issuables(issuable_type)
 

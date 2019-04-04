@@ -38,7 +38,7 @@ describe ManualInverseAssociation do
         query_count = ActiveRecord::QueryRecorder.new do
           instance.manual_association
           instance.reload_manual_association
-        end.count
+        end.size
 
         expect(query_count).to eq(2)
       end

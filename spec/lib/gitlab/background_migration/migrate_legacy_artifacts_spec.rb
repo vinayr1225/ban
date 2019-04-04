@@ -49,7 +49,7 @@ describe Gitlab::BackgroundMigration::MigrateLegacyArtifacts, :migration, schema
       end
 
       it 'does not have new artifacts yet' do
-        expect(job_artifacts.count).to be_zero
+        expect(job_artifacts.size).to be_zero
       end
 
       context 'when the record exists inside of the range of a background migration' do
@@ -139,7 +139,7 @@ describe Gitlab::BackgroundMigration::MigrateLegacyArtifacts, :migration, schema
       let!(:job) { jobs.create!(commit_id: pipeline.id, project_id: project.id, status: :success) }
 
       it 'does not have the legacy artifacts in database' do
-        expect(jobs.count).to eq(1)
+        expect(jobs.size).to eq(1)
         expect(jobs.pluck('artifacts_file, artifacts_file_store, artifacts_size, artifacts_expire_at')).to eq([[nil, nil, nil, nil]])
         expect(jobs.pluck('artifacts_metadata, artifacts_metadata_store')).to eq([[nil, nil]])
       end

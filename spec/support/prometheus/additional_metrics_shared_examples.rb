@@ -140,8 +140,8 @@ RSpec.shared_examples 'additional metrics query' do
 
         expect(query_result).to match_schema('prometheus/additional_metrics_query_result')
 
-        expect(query_result.count).to eq(2)
-        expect(query_result).to all(satisfy { |r| r[:metrics].count == 1 })
+        expect(query_result.size).to eq(2)
+        expect(query_result).to all(satisfy { |r| r[:metrics].size == 1 })
 
         expect(query_result[0][:metrics].first).to include(queries_with_result_a)
         expect(query_result[1][:metrics].first).to include(queries_with_result_b)
@@ -159,8 +159,8 @@ RSpec.shared_examples 'additional metrics query' do
 
         expect(query_result).to match_schema('prometheus/additional_metrics_query_result')
 
-        expect(query_result.count).to eq(1)
-        expect(query_result).to all(satisfy { |r| r[:metrics].count == 1 })
+        expect(query_result.size).to eq(1)
+        expect(query_result).to all(satisfy { |r| r[:metrics].size == 1 })
 
         expect(query_result.first[:metrics].first).to include(queries_with_result)
       end

@@ -25,7 +25,7 @@ describe Gitlab::IssuableMetadata do
     it 'aggregates stats on issues' do
       data = subject.issuable_meta_data(Issue.all.limit(10), 'Issue')
 
-      expect(data.count).to eq(2)
+      expect(data.size).to eq(2)
       expect(data[issue.id].upvotes).to eq(1)
       expect(data[issue.id].downvotes).to eq(0)
       expect(data[issue.id].user_notes_count).to eq(0)
@@ -48,7 +48,7 @@ describe Gitlab::IssuableMetadata do
     it 'aggregates stats on merge requests' do
       data = subject.issuable_meta_data(MergeRequest.all.limit(10), 'MergeRequest')
 
-      expect(data.count).to eq(2)
+      expect(data.size).to eq(2)
       expect(data[merge_request.id].upvotes).to eq(1)
       expect(data[merge_request.id].downvotes).to eq(1)
       expect(data[merge_request.id].user_notes_count).to eq(1)

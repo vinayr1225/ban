@@ -56,7 +56,7 @@ module MilestonesHelper
   # and we need to add the total
   # rubocop: disable CodeReuse/ActiveRecord
   def milestone_counts(milestones)
-    counts = milestones.reorder(nil).group(:state).count
+    counts = milestones.reorder(nil).group(:state).size
 
     {
       opened: counts['active'] || 0,
@@ -158,9 +158,9 @@ module MilestonesHelper
 
     content = []
 
-    content << n_("1 open merge request", "%d open merge requests", merge_requests.opened.count) % merge_requests.opened.count if merge_requests.opened.any?
-    content << n_("1 closed merge request", "%d closed merge requests", merge_requests.closed.count) % merge_requests.closed.count if merge_requests.closed.any?
-    content << n_("1 merged merge request", "%d merged merge requests", merge_requests.merged.count) % merge_requests.merged.count if merge_requests.merged.any?
+    content << n_("1 open merge request", "%d open merge requests", merge_requests.opened.size) % merge_requests.opened.size if merge_requests.opened.any?
+    content << n_("1 closed merge request", "%d closed merge requests", merge_requests.closed.size) % merge_requests.closed.size if merge_requests.closed.any?
+    content << n_("1 merged merge request", "%d merged merge requests", merge_requests.merged.size) % merge_requests.merged.size if merge_requests.merged.any?
 
     content.join('<br />').html_safe
   end

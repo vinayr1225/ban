@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
       format.json do
         load_events
-        pager_json("events/_events", @events.count, events: @events)
+        pager_json("events/_events", @events.size, events: @events)
       end
     end
   end
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { render 'show' }
       format.json do
-        pager_json("shared/projects/_list", @projects.count, projects: @projects, skip_pagination: skip_pagination, skip_namespace: skip_namespace, compact_mode: compact_mode)
+        pager_json("shared/projects/_list", @projects.size, projects: @projects, skip_pagination: skip_pagination, skip_namespace: skip_namespace, compact_mode: compact_mode)
       end
     end
   end

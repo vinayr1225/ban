@@ -55,7 +55,7 @@ module SeedRepo
     MESSAGE          = "Empty commit".freeze
     AUTHOR_FULL_NAME = "Rémy Coutable".freeze
     FILES            = [].freeze
-    FILES_COUNT      = FILES.count
+    FILES_COUNT      = FILES.size
   end
 
   module EncodingCommit
@@ -64,7 +64,7 @@ module SeedRepo
     MESSAGE          = "Add ISO-8859-encoded file".freeze
     AUTHOR_FULL_NAME = "Stan Hu".freeze
     FILES            = ["encoding/iso8859.txt"].freeze
-    FILES_COUNT      = FILES.count
+    FILES_COUNT      = FILES.size
   end
 
   module FirstCommit
@@ -82,7 +82,7 @@ module SeedRepo
     MESSAGE          = "Merge branch 'master' into 'master'".freeze
     AUTHOR_FULL_NAME = "Stan Hu".freeze
     FILES            = ["bin/executable"].freeze
-    FILES_COUNT      = FILES.count
+    FILES_COUNT      = FILES.size
   end
 
   module Repo

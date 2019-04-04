@@ -244,7 +244,7 @@ describe Gitlab::HttpIO do
 
     shared_examples 'all line matching' do
       it 'reads a line' do
-        (0...file_body.lines.count).each do
+        (0...file_body.lines.size).each do
           expect(http_io.readline).to eq(string_io.readline)
         end
       end

@@ -13,18 +13,18 @@ describe Projects::MoveUsersStarProjectsService do
     end
 
     it 'moves the user\'s stars from one project to another' do
-      expect(project_with_stars.users_star_projects.count).to eq 2
+      expect(project_with_stars.users_star_projects.size).to eq 2
       expect(project_with_stars.star_count).to eq 2
-      expect(target_project.users_star_projects.count).to eq 0
+      expect(target_project.users_star_projects.size).to eq 0
       expect(target_project.star_count).to eq 0
 
       subject.execute(project_with_stars)
       project_with_stars.reload
       target_project.reload
 
-      expect(project_with_stars.users_star_projects.count).to eq 0
+      expect(project_with_stars.users_star_projects.size).to eq 0
       expect(project_with_stars.star_count).to eq 0
-      expect(target_project.users_star_projects.count).to eq 2
+      expect(target_project.users_star_projects.size).to eq 2
       expect(target_project.star_count).to eq 2
     end
 
@@ -33,9 +33,9 @@ describe Projects::MoveUsersStarProjectsService do
 
       expect { subject.execute(project_with_stars) }.to raise_error(StandardError)
 
-      expect(project_with_stars.users_star_projects.count).to eq 2
+      expect(project_with_stars.users_star_projects.size).to eq 2
       expect(project_with_stars.star_count).to eq 2
-      expect(target_project.users_star_projects.count).to eq 0
+      expect(target_project.users_star_projects.size).to eq 0
       expect(target_project.star_count).to eq 0
     end
   end

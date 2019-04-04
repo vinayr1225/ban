@@ -388,7 +388,7 @@ describe API::Groups do
 
         control_count = ActiveRecord::QueryRecorder.new do
           get api("/groups/#{group1.id}", admin)
-        end.count
+        end.size
 
         create(:project, namespace: group1)
 
@@ -607,7 +607,7 @@ describe API::Groups do
 
         control_count = ActiveRecord::QueryRecorder.new do
           get api("/groups/#{group1.id}/projects", admin)
-        end.count
+        end.size
 
         create(:project, namespace: group1)
 

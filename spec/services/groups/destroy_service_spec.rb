@@ -78,8 +78,8 @@ describe Groups::DestroyService do
       it 'verifies original paths and projects still exist' do
         expect(gitlab_shell.exists?(project.repository_storage, group.path)).to be_truthy
         expect(gitlab_shell.exists?(project.repository_storage, remove_path)).to be_falsey
-        expect(Project.unscoped.count).to eq(1)
-        expect(Group.unscoped.count).to eq(2)
+        expect(Project.unscoped.size).to eq(1)
+        expect(Group.unscoped.size).to eq(2)
       end
     end
   end

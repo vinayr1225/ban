@@ -57,7 +57,7 @@ describe Boards::IssuesController do
 
         it 'avoids N+1 database queries' do
           create(:labeled_issue, project: project, labels: [development])
-          control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: board, list: list2) }.count
+          control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: board, list: list2) }.size
 
           # 25 issues is bigger than the page size
           # the relative position will ignore the `#make_sure_position_set` queries
@@ -68,7 +68,7 @@ describe Boards::IssuesController do
 
         it 'avoids N+1 database queries when adding a project', :request_store do
           create(:labeled_issue, project: project, labels: [development])
-          control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: group_board, list: list3) }.count
+          control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: group_board, list: list3) }.size
 
           2.times do
             p = create(:project, group: group)
@@ -86,7 +86,7 @@ describe Boards::IssuesController do
         it 'avoids N+1 database queries when adding a subgroup, project, and issue', :nested_groups do
           create(:project, group: sub_group_1)
           create(:labeled_issue, project: project, labels: [development])
-          control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: group_board, list: list3) }.count
+          control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: group_board, list: list3) }.size
           project_2 = create(:project, group: group)
 
           2.times do

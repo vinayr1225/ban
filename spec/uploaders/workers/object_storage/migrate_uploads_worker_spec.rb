@@ -100,7 +100,7 @@ describe ObjectStorage::MigrateUploadsWorker, :sidekiq do
       it 'migrates files' do
         perform(uploads)
 
-        expect(Upload.where(store: ObjectStorage::Store::LOCAL).count).to eq(0)
+        expect(Upload.where(store: ObjectStorage::Store::LOCAL).size).to eq(0)
       end
 
       context 'migration is unsuccessful' do
@@ -130,7 +130,7 @@ describe ObjectStorage::MigrateUploadsWorker, :sidekiq do
 
         more_projects = create_list(:project, 3, :with_avatar)
 
-        expected_queries_per_migration = 5 * more_projects.count
+        expected_queries_per_migration = 5 * more_projects.size
         expect { perform(Upload.all) }.not_to exceed_query_limit(query_count).with_threshold(expected_queries_per_migration)
       end
     end
@@ -161,7 +161,7 @@ describe ObjectStorage::MigrateUploadsWorker, :sidekiq do
         more_projects = create_list(:project, 3)
         more_projects.map(&method(:upload_file))
 
-        expected_queries_per_migration = 5 * more_projects.count
+        expected_queries_per_migration = 5 * more_projects.size
         expect { perform(Upload.all) }.not_to exceed_query_limit(query_count).with_threshold(expected_queries_per_migration)
       end
     end

@@ -59,7 +59,7 @@ describe Autocomplete::ActsAsTaggableOn::TagsFinder do
 
         tags = described_class.new(params: { search: 'tag' }).execute
 
-        expect(tags.count).to eq 1
+        expect(tags.size).to eq 1
       end
     end
   end

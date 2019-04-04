@@ -47,7 +47,7 @@ module Projects
       if block_given?
         super(&block)
       else
-        count_grouped_by_confidential = self.class.query(@project, public_only: false).group(:confidential).count
+        count_grouped_by_confidential = self.class.query(@project, public_only: false).group(:confidential).size
         public_count = count_grouped_by_confidential[false] || 0
         total_count = public_count + (count_grouped_by_confidential[true] || 0)
 

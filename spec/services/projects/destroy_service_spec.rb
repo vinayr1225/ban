@@ -80,7 +80,7 @@ describe Projects::DestroyService do
       let!(:async) { true }
 
       it 'destroys them' do
-        expect(RemoteMirror.count).to eq(0)
+        expect(RemoteMirror.size).to eq(0)
       end
     end
 
@@ -132,7 +132,7 @@ describe Projects::DestroyService do
       rescue ::Redis::CannotConnectError
       end
 
-      expect(project.team.members.count).to eq 2
+      expect(project.team.members.size).to eq 2
     end
   end
 

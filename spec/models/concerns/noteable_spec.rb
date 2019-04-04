@@ -67,7 +67,7 @@ describe Noteable do
     it "includes active discussions" do
       discussions = grouped_diff_discussions.values.flatten
 
-      expect(discussions.count).to eq(2)
+      expect(discussions.size).to eq(2)
       expect(discussions.map(&:id)).to eq([active_diff_note1.discussion_id, active_diff_note3.discussion_id])
       expect(discussions.all?(&:active?)).to be true
 

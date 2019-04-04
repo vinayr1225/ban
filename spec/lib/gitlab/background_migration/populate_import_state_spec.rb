@@ -22,7 +22,7 @@ describe Gitlab::BackgroundMigration::PopulateImportState, :migration, schema: 2
   end
 
   it "creates new import_state records with project's import data" do
-    expect(projects.where.not(import_status: :none).count).to eq(2)
+    expect(projects.where.not(import_status: :none).size).to eq(2)
 
     expect do
       migration.perform(1, 3)

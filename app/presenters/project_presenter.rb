@@ -282,7 +282,7 @@ class ProjectPresenter < Gitlab::View::Presenter::Delegated
                        statistic_icon + _('Add Kubernetes cluster'),
                        new_project_cluster_path(project))
       else
-        cluster_link = clusters.count == 1 ? project_cluster_path(project, clusters.first) : project_clusters_path(project)
+        cluster_link = clusters.size == 1 ? project_cluster_path(project, clusters.first) : project_clusters_path(project)
 
         AnchorData.new(false,
                        _('Kubernetes configured'),
@@ -314,8 +314,8 @@ class ProjectPresenter < Gitlab::View::Presenter::Delegated
   end
 
   def count_of_extra_topics_not_shown
-    if project.tag_list.count > MAX_TOPICS_TO_SHOW
-      project.tag_list.count - MAX_TOPICS_TO_SHOW
+    if project.tag_list.size > MAX_TOPICS_TO_SHOW
+      project.tag_list.size - MAX_TOPICS_TO_SHOW
     else
       0
     end

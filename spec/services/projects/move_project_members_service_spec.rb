@@ -18,26 +18,26 @@ describe Projects::MoveProjectMembersService do
     end
 
     it 'moves the members from one project to another' do
-      expect(project_with_users.project_members.count).to eq 4
-      expect(target_project.project_members.count).to eq 1
+      expect(project_with_users.project_members.size).to eq 4
+      expect(target_project.project_members.size).to eq 1
 
       subject.execute(project_with_users)
 
-      expect(project_with_users.project_members.count).to eq 0
-      expect(target_project.project_members.count).to eq 4
+      expect(project_with_users.project_members.size).to eq 0
+      expect(target_project.project_members.size).to eq 4
     end
 
     it 'does not move existent members to the current project' do
       target_project.add_maintainer(developer_user)
       target_project.add_developer(reporter_user)
 
-      expect(project_with_users.project_members.count).to eq 4
-      expect(target_project.project_members.count).to eq 3
+      expect(project_with_users.project_members.size).to eq 4
+      expect(target_project.project_members.size).to eq 3
 
       subject.execute(project_with_users)
 
-      expect(project_with_users.project_members.count).to eq 0
-      expect(target_project.project_members.count).to eq 4
+      expect(project_with_users.project_members.size).to eq 0
+      expect(target_project.project_members.size).to eq 4
     end
 
     it 'rollbacks changes if transaction fails' do
@@ -45,8 +45,8 @@ describe Projects::MoveProjectMembersService do
 
       expect { subject.execute(project_with_users) }.to raise_error(StandardError)
 
-      expect(project_with_users.project_members.count).to eq 4
-      expect(target_project.project_members.count).to eq 1
+      expect(project_with_users.project_members.size).to eq 4
+      expect(target_project.project_members.size).to eq 1
     end
 
     context 'when remove_remaining_elements is false' do
@@ -58,7 +58,7 @@ describe Projects::MoveProjectMembersService do
 
         subject.execute(project_with_users, options)
 
-        expect(project_with_users.project_members.count).not_to eq 0
+        expect(project_with_users.project_members.size).not_to eq 0
       end
     end
   end

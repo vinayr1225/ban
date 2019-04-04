@@ -265,7 +265,7 @@ class Issue < ApplicationRecord
   # rubocop: enable CodeReuse/ServiceClass
 
   def merge_requests_count
-    merge_requests_closing_issues.count
+    merge_requests_closing_issues.size
   end
 
   private

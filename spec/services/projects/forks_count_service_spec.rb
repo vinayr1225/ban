@@ -8,7 +8,7 @@ describe Projects::ForksCountService do
 
       allow(service).to receive(:uncached_count).and_return(1)
 
-      expect(service.count).to eq(1)
+      expect(service.size).to eq(1)
     end
   end
 end

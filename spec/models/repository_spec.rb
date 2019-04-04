@@ -1715,7 +1715,7 @@ describe Repository do
     it 'returns the number of branches' do
       expect(repository.branch_count).to be_an(Integer)
 
-      rugged_count = rugged_repo(repository).branches.count
+      rugged_count = rugged_repo(repository).branches.size
 
       expect(repository.branch_count).to eq(rugged_count)
     end
@@ -1725,7 +1725,7 @@ describe Repository do
     it 'returns the number of tags' do
       expect(repository.tag_count).to be_an(Integer)
 
-      rugged_count = rugged_repo(repository).tags.count
+      rugged_count = rugged_repo(repository).tags.size
 
       expect(repository.tag_count).to eq(rugged_count)
     end

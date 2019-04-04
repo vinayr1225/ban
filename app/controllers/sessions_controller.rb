@@ -111,7 +111,7 @@ class SessionsController < Devise::SessionsController
   # and they require a password change.
   # rubocop: disable CodeReuse/ActiveRecord
   def check_initial_setup
-    return unless User.limit(2).count == 1 # Count as much 2 to know if we have exactly one
+    return unless User.limit(2).size == 1 # Count as much 2 to know if we have exactly one
 
     user = User.admins.last
 

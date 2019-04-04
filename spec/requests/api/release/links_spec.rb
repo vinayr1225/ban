@@ -37,7 +37,7 @@ describe API::Release::Links do
       it 'returns release links ordered by created_at' do
         get api("/projects/#{project.id}/releases/v0.1/assets/links", maintainer)
 
-        expect(json_response.count).to eq(2)
+        expect(json_response.size).to eq(2)
         expect(json_response.first['name']).to eq(release_link_2.name)
         expect(json_response.second['name']).to eq(release_link_1.name)
       end

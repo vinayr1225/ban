@@ -17,13 +17,13 @@ describe Service do
       it 'includes services where confidential_note_events is true' do
         create(:service, active: true, confidential_note_events: true)
 
-        expect(described_class.confidential_note_hooks.count).to eq 1
+        expect(described_class.confidential_note_hooks.size).to eq 1
       end
 
       it 'excludes services where confidential_note_events is false' do
         create(:service, active: true, confidential_note_events: false)
 
-        expect(described_class.confidential_note_hooks.count).to eq 0
+        expect(described_class.confidential_note_hooks.size).to eq 0
       end
     end
   end

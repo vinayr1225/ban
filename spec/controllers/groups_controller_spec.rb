@@ -157,12 +157,12 @@ describe GroupsController do
               developer.update_attribute(:can_create_group, can_create_group_status)
               sign_in(developer)
 
-              previous_group_count = Group.count
+              previous_group_count = Group.size
 
               post :create, params: { group: { parent_id: group.id, path: 'subgroup' } }
 
               expect(response).to render_template(:new)
-              expect(Group.count).to eq(previous_group_count)
+              expect(Group.size).to eq(previous_group_count)
             end
           end
         end
@@ -180,11 +180,11 @@ describe GroupsController do
         end
 
         it 'creates the Group' do
-          original_group_count = Group.count
+          original_group_count = Group.size
 
           post :create, params: { group: { path: 'subgroup' } }
 
-          expect(Group.count).to eq(original_group_count + 1)
+          expect(Group.size).to eq(original_group_count + 1)
           expect(response).to be_redirect
         end
       end
@@ -195,11 +195,11 @@ describe GroupsController do
         end
 
         it 'does not create the Group' do
-          original_group_count = Group.count
+          original_group_count = Group.size
 
           post :create, params: { group: { path: 'subgroup' } }
 
-          expect(Group.count).to eq(original_group_count)
+          expect(Group.size).to eq(original_group_count)
           expect(response).to render_template(:new)
         end
       end

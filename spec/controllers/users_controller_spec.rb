@@ -162,7 +162,7 @@ describe UsersController do
 
       it 'includes forked projects' do
         get :calendar, params: { username: user.username }
-        expect(assigns(:contributions_calendar).projects.count).to eq(2)
+        expect(assigns(:contributions_calendar).projects.size).to eq(2)
       end
     end
   end

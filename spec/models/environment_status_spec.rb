@@ -115,7 +115,7 @@ describe EnvironmentStatus do
       end
 
       it 'returns environment status' do
-        expect(subject.count).to eq(1)
+        expect(subject.size).to eq(1)
         expect(subject[0].environment).to eq(environment)
         expect(subject[0].merge_request).to eq(merge_request)
         expect(subject[0].sha).to eq(sha)
@@ -137,7 +137,7 @@ describe EnvironmentStatus do
       end
 
       it 'returns environment status' do
-        expect(subject.count).to eq(1)
+        expect(subject.size).to eq(1)
         expect(subject[0].environment).to eq(environment)
         expect(subject[0].merge_request).to eq(merge_request)
         expect(subject[0].sha).to eq(sha)
@@ -147,7 +147,7 @@ describe EnvironmentStatus do
         let!(:build) { create(:ci_build, :stop_review_app, pipeline: pipeline) }
 
         it 'does not return environment status' do
-          expect(subject.count).to eq(0)
+          expect(subject.size).to eq(0)
         end
       end
 
@@ -155,7 +155,7 @@ describe EnvironmentStatus do
         let(:user) { create(:user) }
 
         it 'does not return environment status' do
-          expect(subject.count).to eq(0)
+          expect(subject.size).to eq(0)
         end
       end
 
@@ -164,7 +164,7 @@ describe EnvironmentStatus do
         let!(:build2) { create(:ci_build, :start_review_app, pipeline: pipeline2) }
 
         it 'returns deployments related to the head pipeline' do
-          expect(subject.count).to eq(1)
+          expect(subject.size).to eq(1)
           expect(subject[0].environment).to eq(environment)
           expect(subject[0].merge_request).to eq(merge_request)
           expect(subject[0].sha).to eq(sha)
@@ -175,7 +175,7 @@ describe EnvironmentStatus do
         let!(:build2) { create(:ci_build, :deploy_to_production, pipeline: pipeline) }
 
         it 'returns unique entries' do
-          expect(subject.count).to eq(1)
+          expect(subject.size).to eq(1)
           expect(subject[0].environment).to eq(environment)
           expect(subject[0].merge_request).to eq(merge_request)
           expect(subject[0].sha).to eq(sha)
@@ -188,7 +188,7 @@ describe EnvironmentStatus do
         end
 
         it 'does not return environment status' do
-          expect(subject.count).to eq(0)
+          expect(subject.size).to eq(0)
         end
       end
     end

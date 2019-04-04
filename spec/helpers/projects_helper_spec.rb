@@ -505,7 +505,7 @@ describe ProjectsHelper do
         end
       end
 
-      expect(recorder.count).to eq(1)
+      expect(recorder.size).to eq(1)
     end
   end
 

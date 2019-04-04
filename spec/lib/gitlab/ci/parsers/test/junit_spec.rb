@@ -18,7 +18,7 @@ describe Gitlab::Ci::Parsers::Test::Junit do
         it 'ignores the case' do
           expect { subject }.not_to raise_error
 
-          expect(test_cases.count).to eq(0)
+          expect(test_cases.size).to eq(0)
         end
       end
 
@@ -32,7 +32,7 @@ describe Gitlab::Ci::Parsers::Test::Junit do
         it 'ignores the case' do
           expect { subject }.not_to raise_error
 
-          expect(test_cases.count).to eq(0)
+          expect(test_cases.size).to eq(0)
         end
       end
 
@@ -90,7 +90,7 @@ describe Gitlab::Ci::Parsers::Test::Junit do
         it 'parses XML and adds a test case to a suite' do
           expect { subject }.not_to raise_error
 
-          expect(test_cases.count).to eq(1)
+          expect(test_cases.size).to eq(1)
         end
       end
 

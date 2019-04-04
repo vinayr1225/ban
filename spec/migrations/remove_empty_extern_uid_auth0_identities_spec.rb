@@ -17,6 +17,6 @@ describe RemoveEmptyExternUidAuth0Identities, :migration do
   end
 
   it 'leaves the correct github identity' do
-    expect(identities.where(provider: 'github').count).to eq(1)
+    expect(identities.where(provider: 'github').size).to eq(1)
   end
 end

@@ -145,7 +145,7 @@ describe CommitCollection do
         expect(commit.status).to eq('success')
       end
 
-      expect(recorder.count).to be_zero
+      expect(recorder.size).to be_zero
     end
   end
 

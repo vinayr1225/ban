@@ -134,7 +134,7 @@ describe ProjectWiki do
     end
 
     it "returns the correct number of pages" do
-      expect(@pages.count).to eq(1)
+      expect(@pages.size).to eq(1)
     end
   end
 
@@ -247,7 +247,7 @@ describe ProjectWiki do
 
     it "creates a new wiki page" do
       expect(subject.create_page("test page", "this is content")).not_to eq(false)
-      expect(subject.pages.count).to eq(1)
+      expect(subject.pages.size).to eq(1)
     end
 
     it "returns false when a duplicate page exists" do
@@ -337,7 +337,7 @@ describe ProjectWiki do
 
     it "deletes the page" do
       subject.delete_page(@page)
-      expect(subject.pages.count).to eq(0)
+      expect(subject.pages.size).to eq(0)
     end
 
     it 'sets the correct commit email' do

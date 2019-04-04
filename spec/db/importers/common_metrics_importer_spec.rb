@@ -33,15 +33,15 @@ describe Importers::CommonMetricsImporter do
     end
 
     it "has the same amount of groups" do
-      expect(PrometheusMetric.common.group(:group).count.count).to eq(groups.count)
+      expect(PrometheusMetric.common.group(:group).size.size).to eq(groups.size)
     end
 
     it "has the same amount of metrics" do
-      expect(PrometheusMetric.common.group(:group, :title).count.count).to eq(metrics.count)
+      expect(PrometheusMetric.common.group(:group, :title).size.size).to eq(metrics.size)
     end
 
     it "has the same amount of queries" do
-      expect(PrometheusMetric.common.count).to eq(queries.count)
+      expect(PrometheusMetric.common.size).to eq(queries.size)
     end
 
     it "does not have duplicate IDs" do

@@ -18,26 +18,26 @@ describe Projects::MoveProjectAuthorizationsService do
     end
 
     it 'moves the authorizations from one project to another' do
-      expect(project_with_users.authorized_users.count).to eq 4
-      expect(target_project.authorized_users.count).to eq 1
+      expect(project_with_users.authorized_users.size).to eq 4
+      expect(target_project.authorized_users.size).to eq 1
 
       subject.execute(project_with_users)
 
-      expect(project_with_users.authorized_users.count).to eq 0
-      expect(target_project.authorized_users.count).to eq 4
+      expect(project_with_users.authorized_users.size).to eq 0
+      expect(target_project.authorized_users.size).to eq 4
     end
 
     it 'does not move existent authorizations to the current project' do
       target_project.add_maintainer(developer_user)
       target_project.add_developer(reporter_user)
 
-      expect(project_with_users.authorized_users.count).to eq 4
-      expect(target_project.authorized_users.count).to eq 3
+      expect(project_with_users.authorized_users.size).to eq 4
+      expect(target_project.authorized_users.size).to eq 3
 
       subject.execute(project_with_users)
 
-      expect(project_with_users.authorized_users.count).to eq 0
-      expect(target_project.authorized_users.count).to eq 4
+      expect(project_with_users.authorized_users.size).to eq 0
+      expect(target_project.authorized_users.size).to eq 4
     end
 
     context 'when remove_remaining_elements is false' do
@@ -49,7 +49,7 @@ describe Projects::MoveProjectAuthorizationsService do
 
         subject.execute(project_with_users, options)
 
-        expect(project_with_users.project_authorizations.count).not_to eq 0
+        expect(project_with_users.project_authorizations.size).not_to eq 0
       end
     end
   end

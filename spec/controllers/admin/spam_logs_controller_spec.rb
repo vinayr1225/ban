@@ -30,7 +30,7 @@ describe Admin::SpamLogsController do
 
       expect(flash[:notice]).to eq "User #{user.username} was successfully removed."
       expect(response).to have_gitlab_http_status(302)
-      expect(SpamLog.count).to eq(0)
+      expect(SpamLog.size).to eq(0)
       expect { User.find(user.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end

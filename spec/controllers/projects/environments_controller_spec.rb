@@ -53,7 +53,7 @@ describe Projects::EnvironmentsController do
         end
 
         it 'responds with a flat payload describing available environments' do
-          expect(environments.count).to eq 3
+          expect(environments.size).to eq 3
           expect(environments.first).to include('name' => 'production', 'name_without_type' => 'production')
           expect(environments.second).to include('name' => 'staging/review-1', 'name_without_type' => 'review-1')
           expect(environments.third).to include('name' => 'staging/review-2', 'name_without_type' => 'review-2')
@@ -73,7 +73,7 @@ describe Projects::EnvironmentsController do
         end
 
         it 'responds with a payload containing the latest environment for each folder' do
-          expect(environments.count).to eq 2
+          expect(environments.size).to eq 2
           expect(environments.first['name']).to eq 'production'
           expect(environments.second['name']).to eq 'staging'
           expect(environments.second['size']).to eq 2
@@ -87,7 +87,7 @@ describe Projects::EnvironmentsController do
         end
 
         it 'responds with a payload describing available environments' do
-          expect(environments.count).to eq 2
+          expect(environments.size).to eq 2
           expect(environments.first['name']).to eq 'production'
           expect(environments.second['name']).to eq 'staging'
           expect(environments.second['size']).to eq 2
@@ -106,7 +106,7 @@ describe Projects::EnvironmentsController do
         end
 
         it 'responds with a payload describing stopped environments' do
-          expect(environments.count).to eq 1
+          expect(environments.size).to eq 1
           expect(environments.first['name']).to eq 'staging'
           expect(environments.first['size']).to eq 1
           expect(environments.first['latest']['name']).to eq 'staging/review-3'

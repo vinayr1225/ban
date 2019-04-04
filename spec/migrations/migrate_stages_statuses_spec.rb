@@ -35,7 +35,7 @@ describe MigrateStagesStatuses, :sidekiq, :migration do
 
   it 'correctly migrates stages statuses' do
     perform_enqueued_jobs do
-      expect(stages.where(status: nil).count).to eq 3
+      expect(stages.where(status: nil).size).to eq 3
 
       migrate!
 

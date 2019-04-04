@@ -23,11 +23,11 @@ module Gitlab
     end
 
     def snippet_titles_count
-      @snippet_titles_count ||= snippet_titles.count
+      @snippet_titles_count ||= snippet_titles.size
     end
 
     def snippet_blobs_count
-      @snippet_blobs_count ||= snippet_blobs.count
+      @snippet_blobs_count ||= snippet_blobs.size
     end
 
     private

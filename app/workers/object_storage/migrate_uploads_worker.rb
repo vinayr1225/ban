@@ -47,7 +47,7 @@ module ObjectStorage
       end
 
       def header(success, failures)
-        "Migrated #{success.count}/#{success.count + failures.count} files."
+        "Migrated #{success.size}/#{success.size + failures.size} files."
       end
 
       def failures(failures)
@@ -75,8 +75,8 @@ module ObjectStorage
       model_types = uploads.map(&:model_type).uniq
       model_has_mount = mounted_as.nil? || model_class.uploaders[mounted_as] == uploader_class
 
-      raise(SanityCheckError, "Multiple uploaders found: #{uploader_types}") unless uploader_types.count == 1
-      raise(SanityCheckError, "Multiple model types found: #{model_types}") unless model_types.count == 1
+      raise(SanityCheckError, "Multiple uploaders found: #{uploader_types}") unless uploader_types.size == 1
+      raise(SanityCheckError, "Multiple model types found: #{model_types}") unless model_types.size == 1
       raise(SanityCheckError, "Mount point #{mounted_as} not found in #{model_class}.") unless model_has_mount
     end
 
@@ -107,9 +107,9 @@ module ObjectStorage
     end
 
     def args_check!(args)
-      return if args.count == 4
+      return if args.size == 4
 
-      case args.count
+      case args.size
       when 3 then raise SanityCheckError, "Job is missing the `model_type` argument."
       else
         raise SanityCheckError, "Job has wrong arguments format."

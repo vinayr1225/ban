@@ -42,7 +42,7 @@ describe Gitlab::CurrentSettings do
         include_context 'with settings in cache'
 
         it 'fetches the settings from cache without issuing any query' do
-          expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.count).to eq(0)
+          expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.size).to eq(0)
         end
       end
 
@@ -59,7 +59,7 @@ describe Gitlab::CurrentSettings do
         end
 
         it 'does not issue any query' do
-          expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.count).to eq(0)
+          expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.size).to eq(0)
         end
       end
     end
@@ -81,7 +81,7 @@ describe Gitlab::CurrentSettings do
           expect(ActiveRecord::Base.connection).not_to receive(:active?)
           expect(ActiveRecord::Base.connection).not_to receive(:cached_table_exists?)
           expect(ActiveRecord::Migrator).not_to receive(:needs_migration?)
-          expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.count).to eq(0)
+          expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.size).to eq(0)
         end
       end
 
@@ -95,7 +95,7 @@ describe Gitlab::CurrentSettings do
           it 'fetches the settings from DB only once' do
             described_class.current_application_settings # warm the cache
 
-            expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.count).to eq(0)
+            expect(ActiveRecord::QueryRecorder.new { described_class.current_application_settings }.size).to eq(0)
           end
         end
 

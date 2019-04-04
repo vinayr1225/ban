@@ -159,7 +159,7 @@ module Ci
 
       # excluding currently started job
       running_jobs_count = job.project.builds.running.where(runner: Ci::Runner.instance_type)
-                              .limit(JOBS_RUNNING_FOR_PROJECT_MAX_BUCKET + 1).count - 1
+                              .limit(JOBS_RUNNING_FOR_PROJECT_MAX_BUCKET + 1).size - 1
       running_jobs_count < JOBS_RUNNING_FOR_PROJECT_MAX_BUCKET ? running_jobs_count : "#{JOBS_RUNNING_FOR_PROJECT_MAX_BUCKET}+"
     end
     # rubocop: enable CodeReuse/ActiveRecord

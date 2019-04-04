@@ -44,11 +44,11 @@ describe MigrateBuildStageReferenceAgain, :migration do
   end
 
   it 'correctly migrate build stage references' do
-    expect(jobs.where(stage_id: nil).count).to eq 8
+    expect(jobs.where(stage_id: nil).size).to eq 8
 
     migrate!
 
-    expect(jobs.where(stage_id: nil).count).to eq 1
+    expect(jobs.where(stage_id: nil).size).to eq 1
 
     expect(jobs.find(1).stage_id).to eq 102
     expect(jobs.find(2).stage_id).to eq 102

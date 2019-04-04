@@ -27,13 +27,13 @@ describe RemoveRedundantPipelineStages, :migration do
   end
 
   it 'removes ambiguous stages and preserves builds' do
-    expect(stages.all.count).to eq 6
-    expect(builds.all.count).to eq 6
+    expect(stages.all.size).to eq 6
+    expect(builds.all.size).to eq 6
 
     migrate!
 
-    expect(stages.all.count).to eq 1
-    expect(builds.all.count).to eq 6
+    expect(stages.all.size).to eq 1
+    expect(builds.all.size).to eq 6
     expect(builds.all.pluck(:stage_id).compact).to eq [102]
   end
 

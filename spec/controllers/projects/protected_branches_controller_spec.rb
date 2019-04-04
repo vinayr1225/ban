@@ -46,7 +46,7 @@ describe Projects::ProtectedBranchesController do
       it "prevents creation of the protected branch rule" do
         post(:create, params: project_params.merge(protected_branch: create_params))
 
-        expect(ProtectedBranch.count).to eq 0
+        expect(ProtectedBranch.size).to eq 0
       end
     end
   end

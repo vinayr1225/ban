@@ -21,7 +21,7 @@ describe Gitlab::Git::Wiki do
     end
 
     it 'returns all the pages' do
-      expect(subject.pages.count).to eq(2)
+      expect(subject.pages.size).to eq(2)
       expect(subject.pages.first.title).to eq 'page1'
       expect(subject.pages.last.title).to eq 'page2'
     end
@@ -29,7 +29,7 @@ describe Gitlab::Git::Wiki do
     it 'returns only one page' do
       pages = subject.pages(limit: 1)
 
-      expect(pages.count).to eq(1)
+      expect(pages.size).to eq(1)
       expect(pages.first.title).to eq 'page1'
     end
   end
@@ -62,7 +62,7 @@ describe Gitlab::Git::Wiki do
 
       subject.delete_page('*', commit_details('whatever'))
 
-      expect(subject.pages.count).to eq 1
+      expect(subject.pages.size).to eq 1
       expect(subject.pages.first.title).to eq 'page1'
     end
   end

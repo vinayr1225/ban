@@ -23,7 +23,7 @@ describe Projects::DeploymentsController do
 
       expect(response).to be_ok
 
-      expect(json_response['deployments'].count).to eq(2)
+      expect(json_response['deployments'].size).to eq(2)
     end
 
     it 'returns a list with deployments information' do

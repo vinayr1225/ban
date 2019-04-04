@@ -846,7 +846,7 @@ describe API::Issues do
 
       control_count = ActiveRecord::QueryRecorder.new(skip_cached: false) do
         get api("/projects/#{project.id}/issues", user)
-      end.count
+      end.size
 
       create_list(:issue, 3, project: project)
 
@@ -1259,7 +1259,7 @@ describe API::Issues do
 
         expect(response).to have_gitlab_http_status(201)
         expect(json_response['title']).to eq('new issue')
-        expect(json_response['assignees'].count).to eq(1)
+        expect(json_response['assignees'].size).to eq(1)
       end
     end
 
@@ -1554,7 +1554,7 @@ describe API::Issues do
       expect(json_response['message']).to eq({ "error" => "Spam detected" })
 
       spam_logs = SpamLog.all
-      expect(spam_logs.count).to eq(1)
+      expect(spam_logs.size).to eq(1)
       expect(spam_logs[0].title).to eq('new issue')
       expect(spam_logs[0].description).to eq('content here')
       expect(spam_logs[0].user).to eq(user)
@@ -1692,7 +1692,7 @@ describe API::Issues do
       expect(json_response['message']).to eq({ "error" => "Spam detected" })
 
       spam_logs = SpamLog.all
-      expect(spam_logs.count).to eq(1)
+      expect(spam_logs.size).to eq(1)
       expect(spam_logs[0].title).to eq('updated title')
       expect(spam_logs[0].description).to eq('content here')
       expect(spam_logs[0].user).to eq(user)

@@ -66,7 +66,7 @@ module Gitlab
     def self.num_running(job_ids)
       responses = self.job_status(job_ids)
 
-      responses.select(&:present?).count
+      responses.select(&:present?).size
     end
 
     # Returns the number of jobs that have completed.

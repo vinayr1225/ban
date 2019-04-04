@@ -81,7 +81,7 @@ describe Gitlab::BitbucketImport::Importer do
 
   let(:issues_statuses_sample_data) do
     {
-      count: sample_issues_statuses.count,
+      count: sample_issues_statuses.size,
       values: sample_issues_statuses
     }
   end
@@ -153,8 +153,8 @@ describe Gitlab::BitbucketImport::Importer do
       expect { subject.execute }.to change { MergeRequest.count }.by(1)
 
       merge_request = MergeRequest.first
-      expect(merge_request.notes.count).to eq(2)
-      expect(merge_request.notes.map(&:discussion_id).uniq.count).to eq(1)
+      expect(merge_request.notes.size).to eq(2)
+      expect(merge_request.notes.map(&:discussion_id).uniq.size).to eq(1)
 
       notes = merge_request.notes.order(:id).to_a
       start_note = notes.first

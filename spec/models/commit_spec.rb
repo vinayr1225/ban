@@ -121,7 +121,7 @@ describe Commit do
           commits.each { |c| c.author.try(:id) }
         end
 
-        expect(recorder.count).to eq(2)
+        expect(recorder.size).to eq(2)
       end
 
       it "preloads the authors for Commits matching a user's primary Email" do
@@ -166,7 +166,7 @@ describe Commit do
           eve_commit.author
         end
 
-        expect(recorder.count).to be_zero
+        expect(recorder.size).to be_zero
       end
     end
   end

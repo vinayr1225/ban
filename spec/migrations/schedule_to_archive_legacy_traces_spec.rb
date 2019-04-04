@@ -24,7 +24,7 @@ describe ScheduleToArchiveLegacyTraces, :migration do
   end
 
   it 'correctly archive legacy traces' do
-    expect(job_artifacts.count).to eq(0)
+    expect(job_artifacts.size).to eq(0)
     expect(File.exist?(legacy_trace_path(@build_success))).to be_truthy
     expect(File.exist?(legacy_trace_path(@build_failed))).to be_truthy
     expect(File.exist?(legacy_trace_path(@builds_canceled))).to be_truthy
@@ -32,7 +32,7 @@ describe ScheduleToArchiveLegacyTraces, :migration do
 
     migrate!
 
-    expect(job_artifacts.count).to eq(3)
+    expect(job_artifacts.size).to eq(3)
     expect(File.exist?(legacy_trace_path(@build_success))).to be_falsy
     expect(File.exist?(legacy_trace_path(@build_failed))).to be_falsy
     expect(File.exist?(legacy_trace_path(@builds_canceled))).to be_falsy

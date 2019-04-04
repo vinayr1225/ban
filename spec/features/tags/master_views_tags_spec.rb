@@ -33,7 +33,7 @@ describe 'Maintainer views tags' do
     end
 
     it 'avoids a N+1 query in branches index' do
-      control_count = ActiveRecord::QueryRecorder.new { visit project_tags_path(project) }.count
+      control_count = ActiveRecord::QueryRecorder.new { visit project_tags_path(project) }.size
 
       %w(one two three four five).each { |tag| repository.add_tag(user, tag, 'master', 'foo') }
 

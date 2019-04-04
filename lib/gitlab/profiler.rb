@@ -159,7 +159,7 @@ module Gitlab
       return unless logger.respond_to?(:load_times_by_model)
 
       summarised_load_times = logger.load_times_by_model.to_a.map do |(model, times)|
-        [model, times.count, times.sum]
+        [model, times.size, times.sum]
       end
 
       summarised_load_times.sort_by(&:last).reverse.each do |(model, query_count, time)|

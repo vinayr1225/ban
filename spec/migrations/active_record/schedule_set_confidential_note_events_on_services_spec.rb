@@ -32,13 +32,13 @@ describe ScheduleSetConfidentialNoteEventsOnServices, :migration, :sidekiq do
 
   it 'correctly processes services' do
     perform_enqueued_jobs do
-      expect(services_table.where(confidential_note_events: nil).count).to eq 4
-      expect(services_table.where(confidential_note_events: true).count).to eq 1
+      expect(services_table.where(confidential_note_events: nil).size).to eq 4
+      expect(services_table.where(confidential_note_events: true).size).to eq 1
 
       migrate!
 
-      expect(services_table.where(confidential_note_events: nil).count).to eq 1
-      expect(services_table.where(confidential_note_events: true).count).to eq 4
+      expect(services_table.where(confidential_note_events: nil).size).to eq 1
+      expect(services_table.where(confidential_note_events: true).size).to eq 4
     end
   end
 end

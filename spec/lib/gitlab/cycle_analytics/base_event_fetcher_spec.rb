@@ -32,7 +32,7 @@ describe Gitlab::CycleAnalytics::BaseEventFetcher do
   end
 
   it 'limits the rows to the max number' do
-    expect(subject.count).to eq(max_events)
+    expect(subject.size).to eq(max_events)
   end
 
   def setup_events(count:)

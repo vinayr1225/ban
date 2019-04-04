@@ -36,11 +36,11 @@ describe ScheduleDigestPersonalAccessTokens, :migration, :sidekiq do
     perform_enqueued_jobs do
       plain_text_token = 'token IS NOT NULL'
 
-      expect(personal_access_tokens.where(plain_text_token).count).to eq 5
+      expect(personal_access_tokens.where(plain_text_token).size).to eq 5
 
       migrate!
 
-      expect(personal_access_tokens.where(plain_text_token).count).to eq 0
+      expect(personal_access_tokens.where(plain_text_token).size).to eq 0
     end
   end
 end

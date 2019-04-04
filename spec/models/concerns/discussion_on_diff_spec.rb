@@ -10,9 +10,9 @@ describe DiscussionOnDiff do
 
     context "when diff is greater than allowed number of truncated diff lines " do
       it "returns fewer lines" do
-        expect(subject.diff_lines.count).to be > DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
+        expect(subject.diff_lines.size).to be > DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
 
-        expect(truncated_lines.count).to be <= DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
+        expect(truncated_lines.size).to be <= DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
       end
 
       context 'with truncated diff lines diff limit set' do
@@ -26,9 +26,9 @@ describe DiscussionOnDiff do
           let(:diff_limit) { DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES + 1 }
 
           it 'returns fewer lines than the default' do
-            expect(subject.diff_lines.count).to be > diff_limit
+            expect(subject.diff_lines.size).to be > diff_limit
 
-            expect(truncated_lines.count).to be <= DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
+            expect(truncated_lines.size).to be <= DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
           end
         end
 
@@ -36,9 +36,9 @@ describe DiscussionOnDiff do
           let(:diff_limit) { 3 }
 
           it 'returns fewer lines than the default' do
-            expect(subject.diff_lines.count).to be > DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
+            expect(subject.diff_lines.size).to be > DiffDiscussion::NUMBER_OF_TRUNCATED_DIFF_LINES
 
-            expect(truncated_lines.count).to be <= diff_limit
+            expect(truncated_lines.size).to be <= diff_limit
           end
         end
       end

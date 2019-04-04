@@ -42,7 +42,7 @@ module Gitlab
 
       def run_batch(range, failures)
         status_color = failures.empty? ? :green : :red
-        say "- #{range}: Failures: #{failures.count}".color(status_color)
+        say "- #{range}: Failures: #{failures.size}".color(status_color)
 
         return unless verbose?
 

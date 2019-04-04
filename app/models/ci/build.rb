@@ -350,7 +350,7 @@ module Ci
     end
 
     def retries_count
-      pipeline.builds.retried.where(name: self.name).count
+      pipeline.builds.retried.where(name: self.name).size
     end
 
     def retries_max

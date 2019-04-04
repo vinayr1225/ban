@@ -100,7 +100,7 @@ class EventsFinder
     limited_events = events.page(page).per(per_page)
     visible_events = limited_events.select { |event| event.visible_to_user?(current_user) }
 
-    Kaminari.paginate_array(visible_events, total_count: events.count)
+    Kaminari.paginate_array(visible_events, total_count: events.size)
   end
 
   def per_page

@@ -19,7 +19,7 @@ describe PruneWebHookLogsWorker do
     it 'removes all web hook logs older than 90 days' do
       described_class.new.perform
 
-      expect(WebHookLog.count).to eq(4)
+      expect(WebHookLog.size).to eq(4)
       expect(WebHookLog.last.response_status).to eq('404')
     end
   end

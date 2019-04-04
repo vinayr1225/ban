@@ -8,13 +8,13 @@ describe Gitlab::FogbugzImport::Client do
   it 'retrieves user_map with one user' do
     stub_api(one_user)
 
-    expect(client.user_map.count).to eq(1)
+    expect(client.user_map.size).to eq(1)
   end
 
   it 'retrieves user_map with two users' do
     stub_api(two_users)
 
-    expect(client.user_map.count).to eq(2)
+    expect(client.user_map.size).to eq(2)
   end
 
   def stub_api(users)

@@ -9,7 +9,7 @@ describe 'Active user sessions', :clean_gitlab_redis_shared_state do
       expect(current_path).to eq root_path
 
       sessions = ActiveSession.list(user)
-      expect(sessions.count).to eq 1
+      expect(sessions.size).to eq 1
 
       # refresh the current page updates the updated_at
       Timecop.freeze(now + 1.minute) do
@@ -59,7 +59,7 @@ describe 'Active user sessions', :clean_gitlab_redis_shared_state do
     gitlab_sign_in(user)
     expect(current_path).to eq root_path
 
-    expect(ActiveSession.list(user).count).to eq 1
+    expect(ActiveSession.list(user).size).to eq 1
 
     gitlab_sign_out
     expect(current_path).to eq new_user_session_path

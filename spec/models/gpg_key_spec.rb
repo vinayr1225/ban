@@ -46,7 +46,7 @@ describe GpgKey do
       it 'extracts the subkeys from the gpg key' do
         gpg_key = create(:gpg_key, key: GpgHelpers::User1.public_key_with_extra_signing_key)
 
-        expect(gpg_key.subkeys.count).to eq(2)
+        expect(gpg_key.subkeys.size).to eq(2)
       end
     end
   end

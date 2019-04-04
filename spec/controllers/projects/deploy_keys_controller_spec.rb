@@ -53,9 +53,9 @@ describe Projects::DeployKeysController do
         json = JSON.parse(response.body)
 
         expect(json.keys).to match_array(%w(enabled_keys available_project_keys public_keys))
-        expect(json['enabled_keys'].count).to eq(1)
-        expect(json['available_project_keys'].count).to eq(1)
-        expect(json['public_keys'].count).to eq(1)
+        expect(json['enabled_keys'].size).to eq(1)
+        expect(json['available_project_keys'].size).to eq(1)
+        expect(json['public_keys'].size).to eq(1)
       end
     end
   end
@@ -140,7 +140,7 @@ describe Projects::DeployKeysController do
           put :enable, params: { id: deploy_key.id, namespace_id: project.namespace, project_id: project }
         end.to change { DeployKeysProject.count }.by(1)
 
-        expect(DeployKeysProject.where(project_id: project.id, deploy_key_id: deploy_key.id).count).to eq(1)
+        expect(DeployKeysProject.where(project_id: project.id, deploy_key_id: deploy_key.id).size).to eq(1)
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(namespace_project_settings_repository_path(anchor: 'js-deploy-keys-settings'))
       end
@@ -162,7 +162,7 @@ describe Projects::DeployKeysController do
           put :enable, params: { id: deploy_key.id, namespace_id: project.namespace, project_id: project }
         end.to change { DeployKeysProject.count }.by(1)
 
-        expect(DeployKeysProject.where(project_id: project.id, deploy_key_id: deploy_key.id).count).to eq(1)
+        expect(DeployKeysProject.where(project_id: project.id, deploy_key_id: deploy_key.id).size).to eq(1)
         expect(response).to have_http_status(302)
         expect(response).to redirect_to(namespace_project_settings_repository_path(anchor: 'js-deploy-keys-settings'))
       end

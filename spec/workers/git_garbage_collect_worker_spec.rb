@@ -138,13 +138,13 @@ describe GitGarbageCollectWorker do
         create_objects(project)
         before_packs = packs(project)
 
-        expect(before_packs.count).to be >= 1
+        expect(before_packs.size).to be >= 1
 
         subject.perform(project.id, 'incremental_repack', lease_key, lease_uuid)
         after_packs = packs(project)
 
         # Exactly one new pack should have been created
-        expect(after_packs.count).to eq(before_packs.count + 1)
+        expect(after_packs.size).to eq(before_packs.size + 1)
 
         # Previously existing packs are still around
         expect(before_packs & after_packs).to eq(before_packs)
@@ -155,12 +155,12 @@ describe GitGarbageCollectWorker do
         subject.perform(project.id, 'incremental_repack', lease_key, lease_uuid)
         before_packs = packs(project)
 
-        expect(before_packs.count).to be >= 2
+        expect(before_packs.size).to be >= 2
 
         subject.perform(project.id, 'full_repack', lease_key, lease_uuid)
         after_packs = packs(project)
 
-        expect(after_packs.count).to eq(1)
+        expect(after_packs.size).to eq(1)
 
         # Previously existing packs should be gone now
         expect(after_packs - before_packs).to eq(after_packs)
@@ -173,13 +173,13 @@ describe GitGarbageCollectWorker do
         before_packs = packs(project)
         before_packed_refs = packed_refs(project)
 
-        expect(before_packs.count).to be >= 1
+        expect(before_packs.size).to be >= 1
 
         subject.perform(project.id, 'gc', lease_key, lease_uuid)
         after_packed_refs = packed_refs(project)
         after_packs = packs(project)
 
-        expect(after_packs.count).to eq(1)
+        expect(after_packs.size).to eq(1)
 
         # Previously existing packs should be gone now
         expect(after_packs - before_packs).to eq(after_packs)

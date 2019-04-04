@@ -20,7 +20,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).not_to include security_issue_1.iid
         expect(issues).not_to include security_issue_2.iid
-        expect(issues.count).to eq 1
+        expect(issues.size).to eq 1
       end
 
       it 'does not list project confidential issues for non project members' do
@@ -30,7 +30,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).not_to include security_issue_1.iid
         expect(issues).not_to include security_issue_2.iid
-        expect(issues.count).to eq 1
+        expect(issues.size).to eq 1
       end
 
       it 'does not list project confidential issues for project members with guest role' do
@@ -42,7 +42,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).not_to include security_issue_1.iid
         expect(issues).not_to include security_issue_2.iid
-        expect(issues.count).to eq 1
+        expect(issues.size).to eq 1
       end
 
       it 'lists project confidential issues for author' do
@@ -52,7 +52,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).to include security_issue_1.iid
         expect(issues).not_to include security_issue_2.iid
-        expect(issues.count).to eq 2
+        expect(issues.size).to eq 2
       end
 
       it 'lists project confidential issues for assignee' do
@@ -62,7 +62,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).not_to include security_issue_1.iid
         expect(issues).to include security_issue_2.iid
-        expect(issues.count).to eq 2
+        expect(issues.size).to eq 2
       end
 
       it 'lists project confidential issues for project members' do
@@ -74,7 +74,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).to include security_issue_1.iid
         expect(issues).to include security_issue_2.iid
-        expect(issues.count).to eq 3
+        expect(issues.size).to eq 3
       end
 
       it 'lists all project issues for admin' do
@@ -84,7 +84,7 @@ describe Projects::AutocompleteService do
         expect(issues).to include issue.iid
         expect(issues).to include security_issue_1.iid
         expect(issues).to include security_issue_2.iid
-        expect(issues.count).to eq 3
+        expect(issues.size).to eq 3
       end
     end
   end

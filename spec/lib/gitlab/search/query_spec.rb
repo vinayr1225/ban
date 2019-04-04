@@ -17,7 +17,7 @@ describe Gitlab::Search::Query do
   end
 
   it 'parses filters' do
-    expect(subject.filters.count).to eq(3)
+    expect(subject.filters.size).to eq(3)
     expect(subject.filters.map { |f| f[:value] }).to match_array(%w[wow MAYBE mmm])
   end
 

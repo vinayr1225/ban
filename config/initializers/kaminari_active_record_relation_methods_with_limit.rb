@@ -27,7 +27,7 @@ module Kaminari
       c = c.limit(MAX_COUNT_LIMIT + 1).count(column_name)
       @total_count =
         if c.is_a?(Hash) || c.is_a?(ActiveSupport::OrderedHash)
-          c.count
+          c.size
         elsif c.respond_to? :count
           c.count(column_name)
         else

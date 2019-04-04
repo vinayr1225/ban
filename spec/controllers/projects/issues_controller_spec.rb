@@ -612,7 +612,7 @@ describe Projects::IssuesController do
 
               spam_logs = SpamLog.all
 
-              expect(spam_logs.count).to eq(1)
+              expect(spam_logs.size).to eq(1)
               expect(spam_logs.first.title).to eq('Spam title')
               expect(spam_logs.first.recaptcha_verified).to be_falsey
             end
@@ -685,11 +685,11 @@ describe Projects::IssuesController do
         labels = create_list(:label, 10, project: project).map(&:to_reference)
         issue = create(:issue, project: project, description: 'Test issue')
 
-        control_count = ActiveRecord::QueryRecorder.new { issue.update(description: [issue.description, label].join(' ')) }.count
+        control_count = ActiveRecord::QueryRecorder.new { issue.update(description: [issue.description, label].join(' ')) }.size
 
         # Follow-up to get rid of this `2 * label.count` requirement: https://gitlab.com/gitlab-org/gitlab-ce/issues/52230
         expect { issue.update(description: [issue.description, labels].join(' ')) }
-          .not_to exceed_query_limit(control_count + 2 * labels.count)
+          .not_to exceed_query_limit(control_count + 2 * labels.size)
       end
     end
 
@@ -845,7 +845,7 @@ describe Projects::IssuesController do
             post_spam_issue
             spam_logs = SpamLog.all
 
-            expect(spam_logs.count).to eq(1)
+            expect(spam_logs.size).to eq(1)
             expect(spam_logs.first.title).to eq('Spam Title')
             expect(spam_logs.first.recaptcha_verified).to be_falsey
           end
@@ -1154,7 +1154,7 @@ describe Projects::IssuesController do
         it 'filters notes that the user should not see' do
           get :discussions, params: { namespace_id: project.namespace, project_id: project, id: issue.iid }
 
-          expect(JSON.parse(response.body).count).to eq(1)
+          expect(JSON.parse(response.body).size).to eq(1)
         end
 
         it 'does not result in N+1 queries' do
@@ -1165,7 +1165,7 @@ describe Projects::IssuesController do
 
           control_count = ActiveRecord::QueryRecorder.new do
             get :discussions, params: { namespace_id: project.namespace, project_id: project, id: issue.iid }
-          end.count
+          end.size
 
           RequestStore.clear!
 

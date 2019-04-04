@@ -45,11 +45,11 @@ describe MigrateStageIdReferenceInBackground, :migration, :sidekiq do
 
   it 'schedules background migrations' do
     perform_enqueued_jobs do
-      expect(jobs.where(stage_id: nil).count).to eq 5
+      expect(jobs.where(stage_id: nil).size).to eq 5
 
       migrate!
 
-      expect(jobs.where(stage_id: nil).count).to eq 1
+      expect(jobs.where(stage_id: nil).size).to eq 1
     end
   end
 end

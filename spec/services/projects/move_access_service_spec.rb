@@ -25,18 +25,18 @@ describe Projects::MoveAccessService do
   describe '#execute' do
     shared_examples 'move the accesses' do
       it do
-        expect(project_with_access.project_members.count).to eq 4
-        expect(project_with_access.project_group_links.count).to eq 3
-        expect(project_with_access.authorized_users.count).to eq 4
+        expect(project_with_access.project_members.size).to eq 4
+        expect(project_with_access.project_group_links.size).to eq 3
+        expect(project_with_access.authorized_users.size).to eq 4
 
         subject.execute(project_with_access)
 
-        expect(project_with_access.project_members.count).to eq 0
-        expect(project_with_access.project_group_links.count).to eq 0
-        expect(project_with_access.authorized_users.count).to eq 1
-        expect(target_project.project_members.count).to eq 4
-        expect(target_project.project_group_links.count).to eq 3
-        expect(target_project.authorized_users.count).to eq 4
+        expect(project_with_access.project_members.size).to eq 0
+        expect(project_with_access.project_group_links.size).to eq 0
+        expect(project_with_access.authorized_users.size).to eq 1
+        expect(target_project.project_members.size).to eq 4
+        expect(target_project.project_group_links.size).to eq 3
+        expect(target_project.authorized_users.size).to eq 4
       end
 
       it 'rollbacks if an exception is raised' do
@@ -44,9 +44,9 @@ describe Projects::MoveAccessService do
 
         expect { subject.execute(project_with_groups) }.to raise_error(StandardError)
 
-        expect(project_with_access.project_members.count).to eq 4
-        expect(project_with_access.project_group_links.count).to eq 3
-        expect(project_with_access.authorized_users.count).to eq 4
+        expect(project_with_access.project_members.size).to eq 4
+        expect(project_with_access.project_group_links.size).to eq 3
+        expect(project_with_access.authorized_users.size).to eq 4
       end
     end
 
@@ -91,7 +91,7 @@ describe Projects::MoveAccessService do
 
         subject.execute(project_with_access, options)
 
-        expect(project_with_access.project_members.count).not_to eq 0
+        expect(project_with_access.project_members.size).not_to eq 0
       end
 
       it 'does not remove remaining group links' do
@@ -99,7 +99,7 @@ describe Projects::MoveAccessService do
 
         subject.execute(project_with_access, options)
 
-        expect(project_with_access.project_group_links.count).not_to eq 0
+        expect(project_with_access.project_group_links.size).not_to eq 0
       end
 
       it 'does not remove remaining authorizations' do
@@ -107,7 +107,7 @@ describe Projects::MoveAccessService do
 
         subject.execute(project_with_access, options)
 
-        expect(project_with_access.project_authorizations.count).not_to eq 0
+        expect(project_with_access.project_authorizations.size).not_to eq 0
       end
     end
   end

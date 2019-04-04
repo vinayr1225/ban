@@ -698,7 +698,7 @@ describe API::MergeRequests do
     it 'avoids N+1 queries' do
       control = ActiveRecord::QueryRecorder.new do
         get api("/projects/#{project.id}/merge_requests", user)
-      end.count
+      end.size
 
       create(:merge_request, author: user, assignee: user, source_project: project, target_project: project, created_at: base_time)
 
@@ -972,7 +972,7 @@ describe API::MergeRequests do
         expect(response).to have_gitlab_http_status(200)
         expect(response).to include_pagination_headers
         expect(json_response).to be_an Array
-        expect(json_response.count).to eq(1)
+        expect(json_response.size).to eq(1)
         expect(json_response.first['id']).to eq(pipeline.id)
       end
 

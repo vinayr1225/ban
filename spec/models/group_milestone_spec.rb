@@ -44,7 +44,7 @@ describe GroupMilestone do
       it 'does not add more queries' do
         control_count = ActiveRecord::QueryRecorder.new do
           described_class.build_collection(group, projects, {})
-        end.count
+        end.size
 
         create(:milestone, title: 'This title', project: project1)
 

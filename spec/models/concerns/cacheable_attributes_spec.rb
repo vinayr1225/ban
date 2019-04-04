@@ -212,7 +212,7 @@ describe CacheableAttributes do
       end
 
       it 'retrieves the record from cache' do
-        expect(ActiveRecord::QueryRecorder.new { Appearance.cached }.count).to eq(0)
+        expect(ActiveRecord::QueryRecorder.new { Appearance.cached }.size).to eq(0)
         expect(Appearance.cached).to eq(Appearance.current_without_cache)
       end
     end

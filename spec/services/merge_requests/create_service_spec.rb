@@ -52,7 +52,7 @@ describe MergeRequests::CreateService do
           target_type: merge_request.class.name
         }
 
-        expect(Todo.where(attributes).count).to be_zero
+        expect(Todo.where(attributes).size).to be_zero
       end
 
       it 'creates exactly 1 create MR event' do
@@ -62,7 +62,7 @@ describe MergeRequests::CreateService do
           target_type: merge_request.class.name
         }
 
-        expect(Event.where(attributes).count).to eq(1)
+        expect(Event.where(attributes).size).to eq(1)
       end
 
       describe 'when marked with /wip' do
@@ -123,7 +123,7 @@ describe MergeRequests::CreateService do
             state: :pending
           }
 
-          expect(Todo.where(attributes).count).to eq 1
+          expect(Todo.where(attributes).size).to eq 1
         end
       end
 
@@ -193,7 +193,7 @@ describe MergeRequests::CreateService do
             expect(merge_request).to be_persisted
 
             merge_request.reload
-            expect(merge_request.merge_request_pipelines.count).to eq(1)
+            expect(merge_request.merge_request_pipelines.size).to eq(1)
             expect(merge_request.actual_head_pipeline).to be_detached_merge_request_pipeline
           end
 
@@ -245,7 +245,7 @@ describe MergeRequests::CreateService do
               expect(merge_request).to be_persisted
 
               merge_request.reload
-              expect(merge_request.merge_request_pipelines.count).to eq(0)
+              expect(merge_request.merge_request_pipelines.size).to eq(0)
             end
           end
 
@@ -279,7 +279,7 @@ describe MergeRequests::CreateService do
             expect(merge_request).to be_persisted
 
             merge_request.reload
-            expect(merge_request.merge_request_pipelines.count).to eq(0)
+            expect(merge_request.merge_request_pipelines.size).to eq(0)
           end
         end
       end

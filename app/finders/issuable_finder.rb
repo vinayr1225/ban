@@ -134,10 +134,10 @@ class IssuableFinder
     #
     # We always use CTE when searching in Groups if the feature flag is enabled,
     # but never when searching in Projects.
-    labels_count = label_names.any? ? label_names.count : 1
+    labels_count = label_names.any? ? label_names.size : 1
     labels_count = 1 if use_cte_for_count?
 
-    finder.execute.reorder(nil).group(:state).count.each do |key, value|
+    finder.execute.reorder(nil).group(:state).size.each do |key, value|
       counts[count_key(key)] += value / labels_count
     end
 

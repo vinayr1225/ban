@@ -306,7 +306,7 @@ module Ci
     end
 
     def stages_count
-      statuses.select(:stage).distinct.count
+      statuses.select(:stage).distinct.size
     end
 
     def total_size
@@ -507,7 +507,7 @@ module Ci
           .latest
           .failed_but_allowed
           .group(:commit_id)
-          .count
+          .size
           .each { |id, amount| loader.call(id, amount) }
       end
     end

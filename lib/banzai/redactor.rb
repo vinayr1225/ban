@@ -42,8 +42,8 @@ module Banzai
 
         doc_data = {
           document:                entry[:document],
-          total_reference_count:   nodes_for_document.count,
-          visible_reference_count: nodes_for_document.count
+          total_reference_count:   nodes_for_document.size,
+          visible_reference_count: nodes_for_document.size
         }
 
         metadata << doc_data

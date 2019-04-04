@@ -13,7 +13,7 @@ describe PipelineSchedulesFinder do
       let(:params) { { scope: nil } }
 
       it 'selects all pipeline schedules' do
-        expect(subject.count).to be(2)
+        expect(subject.size).to be(2)
         expect(subject).to include(active_schedule, inactive_schedule)
       end
     end
@@ -22,7 +22,7 @@ describe PipelineSchedulesFinder do
       let(:params) { { scope: 'active' } }
 
       it 'selects only active pipelines' do
-        expect(subject.count).to be(1)
+        expect(subject.size).to be(1)
         expect(subject).to include(active_schedule)
         expect(subject).not_to include(inactive_schedule)
       end
@@ -32,7 +32,7 @@ describe PipelineSchedulesFinder do
       let(:params) { { scope: 'inactive' } }
 
       it 'selects only inactive pipelines' do
-        expect(subject.count).to be(1)
+        expect(subject.size).to be(1)
         expect(subject).not_to include(active_schedule)
         expect(subject).to include(inactive_schedule)
       end

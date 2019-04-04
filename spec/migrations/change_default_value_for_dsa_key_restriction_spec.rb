@@ -16,7 +16,7 @@ describe ChangeDefaultValueForDsaKeyRestriction, :migration do
     application_settings.reset_column_information
     new_setting = application_settings.create!
 
-    expect(application_settings.count).to eq(2)
+    expect(application_settings.size).to eq(2)
     expect(new_setting.dsa_key_restriction).to eq(-1)
   end
 
@@ -27,7 +27,7 @@ describe ChangeDefaultValueForDsaKeyRestriction, :migration do
 
     migrate!
 
-    expect(application_settings.count).to eq(1)
+    expect(application_settings.size).to eq(1)
     expect(setting.reload.dsa_key_restriction).to eq(-1)
   end
 end

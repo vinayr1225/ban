@@ -52,7 +52,7 @@ describe Gitlab::BackgroundMigration::PrepareUntrackedUploads, :sidekiq, :migrat
       it 'adds unhashed files to the untracked_files_for_uploads table' do
         described_class.new.perform
 
-        expect(untracked_files_for_uploads.count).to eq(5)
+        expect(untracked_files_for_uploads.size).to eq(5)
       end
 
       it 'adds files with paths relative to CarrierWave.root' do
@@ -107,7 +107,7 @@ describe Gitlab::BackgroundMigration::PrepareUntrackedUploads, :sidekiq, :migrat
         it 'does not add files from /uploads/tmp' do
           described_class.new.perform
 
-          expect(untracked_files_for_uploads.count).to eq(5)
+          expect(untracked_files_for_uploads.size).to eq(5)
         end
       end
 
@@ -119,7 +119,7 @@ describe Gitlab::BackgroundMigration::PrepareUntrackedUploads, :sidekiq, :migrat
             described_class.new.perform
           end.not_to raise_error
 
-          expect(untracked_files_for_uploads.count).to eq(5)
+          expect(untracked_files_for_uploads.size).to eq(5)
         end
       end
     end

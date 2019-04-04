@@ -62,7 +62,7 @@ module Gitlab
       # rubocop: enable CodeReuse/ActiveRecord
 
       def self.relation_summary(relation_name, relation)
-        relation_count = relation.count
+        relation_count = relation.size
         $stdout.puts "* Found #{relation_count} #{relation_name}".color(:green)
 
         relation_count

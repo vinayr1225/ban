@@ -338,14 +338,14 @@ describe TodoService do
 
       describe 'cached counts' do
         it 'updates when todos change' do
-          expect(john_doe.todos.where(state: new_state).count).to eq(0)
-          expect(john_doe.todos.where(state: state).count).to eq(2)
+          expect(john_doe.todos.where(state: new_state).size).to eq(0)
+          expect(john_doe.todos.where(state: state).size).to eq(2)
           expect(john_doe).to receive(:update_todos_count_cache).and_call_original
 
           service.send(meth, collection, john_doe)
 
-          expect(john_doe.todos.where(state: new_state).count).to eq(2)
-          expect(john_doe.todos.where(state: state).count).to eq(0)
+          expect(john_doe.todos.where(state: new_state).size).to eq(2)
+          expect(john_doe.todos.where(state: state).size).to eq(0)
         end
       end
     end
@@ -878,7 +878,7 @@ describe TodoService do
 
     service.new_issue(issue, author)
 
-    expect(Todo.where(user_id: john_doe.id, state: :pending).count).to eq 1
+    expect(Todo.where(user_id: john_doe.id, state: :pending).size).to eq 1
     expect(john_doe.todos_pending_count).to eq(1)
   end
 
@@ -968,7 +968,7 @@ describe TodoService do
       state: :pending
     )
 
-    expect(Todo.where(attributes).count).to eq 1
+    expect(Todo.where(attributes).size).to eq 1
   end
 
   def should_not_create_todo(attributes = {})
@@ -978,7 +978,7 @@ describe TodoService do
       state: :pending
     )
 
-    expect(Todo.where(attributes).count).to eq 0
+    expect(Todo.where(attributes).size).to eq 0
   end
 
   def should_not_create_any_todo
