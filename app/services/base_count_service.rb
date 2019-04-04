@@ -13,6 +13,7 @@ class BaseCountService
   def count
     Rails.cache.fetch(cache_key, cache_options) { uncached_count }.to_i
   end
+  alias_method :size, :count
 
   def count_stored?
     Rails.cache.read(cache_key).present?

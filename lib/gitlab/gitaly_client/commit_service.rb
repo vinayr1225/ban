@@ -147,7 +147,7 @@ module Gitlab
         request.path = encode_binary(options[:path]) if options[:path].present?
         request.max_count = options[:max_count] if options[:max_count].present?
 
-        GitalyClient.call(@repository.storage, :commit_service, :count_commits, request, timeout: GitalyClient.medium_timeout).size
+        GitalyClient.call(@repository.storage, :commit_service, :count_commits, request, timeout: GitalyClient.medium_timeout).count # rubocop:disable Performance/SizeAll
       end
 
       def diverging_commit_count(from, to, max_count:)
