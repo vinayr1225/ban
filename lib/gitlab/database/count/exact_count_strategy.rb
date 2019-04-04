@@ -18,7 +18,7 @@ module Gitlab
 
         def count
           models.each_with_object({}) do |model, data|
-            data[model] = model.size
+            data[model] = model.count # rubocop:disable Performance/SizeAll
           end
         rescue *CONNECTION_ERRORS
           {}

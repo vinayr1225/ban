@@ -42,7 +42,7 @@ module Gitlab
 
             break counts_by_model if models_with_missing_counts.empty?
 
-            counts = strategy.new(models_with_missing_counts).size
+            counts = strategy.new(models_with_missing_counts).count # rubocop:disable Performance/SizeAll
 
             counts.each do |model, count|
               counts_by_model[model] = count

@@ -329,7 +329,7 @@ module Gitlab
 
         table = Arel::Table.new(table)
 
-        count_arel = table.project(Arel.star.size.as('count'))
+        count_arel = table.project(Arel.star.count.as('count')) # rubocop:disable Performance/SizeAll
         count_arel = yield table, count_arel if block_given?
 
         total = exec_query(count_arel.to_sql).to_hash.first['count'].to_i

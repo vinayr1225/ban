@@ -24,6 +24,7 @@ module ActiveRecord
       end
     end
 
+    alias_method :size, :count
     def count
       @log.size
     end

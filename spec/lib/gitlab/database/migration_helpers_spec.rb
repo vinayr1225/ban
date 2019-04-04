@@ -461,7 +461,7 @@ describe Gitlab::Database::MigrationHelpers do
         it 'updates the value as a SQL expression' do
           model.update_column_in_batches(:projects, :star_count, Arel.sql('1+1'))
 
-          expect(Project.sum(:star_count)).to eq(2 * Project.size)
+          expect(Project.sum(:star_count)).to eq(2 * Project.count) # rubocop:disable Performance/SizeAll
         end
       end
     end
