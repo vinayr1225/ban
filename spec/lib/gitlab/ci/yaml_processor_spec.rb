@@ -618,8 +618,8 @@ module Gitlab
           context "when a single string is provided" do
             let(:include_content) { "/local.gitlab-ci.yml" }
 
-            it "does not return any error" do
-              expect { subject }.not_to raise_error
+            it "returns a validation error" do
+              expect { subject }.to raise_error(Gitlab::Ci::YamlProcessor::ValidationError, /does not have project/)
             end
           end
 
