@@ -52,9 +52,8 @@ describe Projects::LfsPointers::LfsImportService do
       context 'when credentials are url encoded' do
         let(:import_url) { 'http://user:5iveL!fe@www.gitlab.com/demo/repo.git'}
 
-        it 'calls the LfsDownloadLinkListService with the unencoded credentials' do
+        it 'calls the LfsDownloadLinkListService with the encoded credentials' do
           expect(project.import_url).to eq 'http://user:5iveL%21fe@www.gitlab.com/demo/repo.git'
-          expect(remote_uri.password).to eq '5iveL!fe'
 
           subject.execute
         end
