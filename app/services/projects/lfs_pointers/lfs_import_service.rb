@@ -55,27 +55,34 @@ module Projects
 
       def lfsconfig_endpoint_uri
         strong_memoize(:lfsconfig_endpoint_uri) do
-          # Retrieveing the blob data from the .lfsconfig file
-          data = project.repository.lfsconfig_for(HEAD_REV)
-          # Parsing the data to retrieve the url
-          parsed_data = data&.match(LFS_ENDPOINT_PATTERN)
-
-          if parsed_data
-            Gitlab::UrlSanitizer.new(parsed_data[1]).tap do |endpoint|
-              # import_uri credentials are already url encoded
-              endpoint.user ||= import_uri.user
-              endpoint.password ||= import_uri.password
-            end
-          end
+          Addressable::URI.parse(load_lfsconfig_url)
         end
       rescue Addressable::URI::InvalidURIError
         raise LfsImportError, 'Invalid URL in .lfsconfig file'
       end
 
+      def load_lfsconfig_url
+        # Retrieveing the blob data from the .lfsconfig file
+        data = project.repository.lfsconfig_for(HEAD_REV)
+        # Parsing the data to retrieve the url
+        parsed_data = data&.match(LFS_ENDPOINT_PATTERN)
+
+        if parsed_data
+          # The url inside the .lfsconfig file can have credentials,
+          # and they may not be url encoded. We need to sanitize it first
+          Gitlab::UrlSanitizer.new(parsed_data[1]).tap do |endpoint|
+            if endpoint.credentials.compact.empty?
+              # import_uri credentials are already url encoded
+              endpoint.credentials.merge(user: import_uri.user, password: import_uri.password)
+            end
+          end.full_url
+        end
+      end
+
       def import_uri
         # project.import_url is already url encoded
-        @import_uri ||= URI.parse(project.import_url)
-      rescue URI::InvalidURIError
+        @import_uri ||= Addressable::URI.parse(project.import_url)
+      rescue Addressable::URI::InvalidURIError
         raise LfsImportError, 'Invalid project import URL'
       end
 

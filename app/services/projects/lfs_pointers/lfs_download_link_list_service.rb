@@ -10,6 +10,7 @@ module Projects
       DownloadLinksError = Class.new(StandardError)
       DownloadLinkNotFound = Class.new(StandardError)
 
+      # remote_uri is url encoded
       attr_reader :remote_uri
 
       def initialize(project, remote_uri: nil)
@@ -69,7 +70,7 @@ module Projects
       end
 
       def add_credentials(link)
-        uri = URI.parse(link)
+        uri = Addressable::URI.parse(link)
 
         if should_add_credentials?(uri)
           uri.user = remote_uri.user
