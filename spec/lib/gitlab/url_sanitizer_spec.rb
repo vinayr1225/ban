@@ -168,4 +168,19 @@ describe Gitlab::UrlSanitizer do
       expect(url_sanitizer.full_url).to eq("https://foo:b%3Fr@github.com/me/project.git")
     end
   end
+
+  context 'when url is already url encoded' do
+    where(:url) do
+      [
+        'http://root:5iveL%21fe%23b@example.com',
+        'http://root:5i%2325veL%21fe%23b@example.com'
+      ]
+    end
+
+    with_them do
+      it 'does not double encode the credentials ' do
+        expect(described_class.new(url).full_url).to eq(url)
+      end
+    end
+  end
 end

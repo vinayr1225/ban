@@ -3,6 +3,7 @@
 module Gitlab
   class UrlSanitizer
     ALLOWED_SCHEMES = %w[http https ssh git].freeze
+    DOUBLE_ESCAPED_REGEX = /%25([0-9a-f]{2})/i.freeze
 
     def self.sanitize(content)
       regexp = URI::DEFAULT_PARSER.make_regexp(ALLOWED_SCHEMES)
@@ -93,7 +94,8 @@ module Gitlab
 
     def encode_percent(string)
       # CGI.escape converts spaces to +, but this doesn't work for git clone
-      CGI.escape(string).gsub('+', '%20')
+      # We need to make sure we don't double encode the credentials
+      CGI.escape(string).gsub('+', '%20').gsub(DOUBLE_ESCAPED_REGEX, '%\1')
     end
   end
 end

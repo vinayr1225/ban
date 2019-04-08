@@ -120,7 +120,7 @@ describe Projects::LfsPointers::LfsImportService do
           context 'when url has its own credentials' do
             let(:lfs_endpoint) { "http://user1:password1@www.gitlab.com/demo/repo.git/different_endpoint" }
 
-            it 'does not add the import url credentials' do
+            it 'uses the url credentials' do
               expect(Projects::LfsPointers::LfsDownloadLinkListService)
                 .to receive(:new).with(project, remote_uri: remote_uri)
                 .and_return(service)

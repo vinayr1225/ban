@@ -61,7 +61,8 @@ module Projects
           parsed_data = data&.match(LFS_ENDPOINT_PATTERN)
 
           if parsed_data
-            Addressable::URI.parse(parsed_data[1]).tap do |endpoint|
+            Gitlab::UrlSanitizer.new(parsed_data[1]).tap do |endpoint|
+              # import_uri credentials are already url encoded
               endpoint.user ||= import_uri.user
               endpoint.password ||= import_uri.password
             end
@@ -72,16 +73,14 @@ module Projects
       end
 
       def import_uri
-        @import_uri ||= Addressable::URI.parse(project.import_url)
-      rescue Addressable::URI::InvalidURIError
+        # project.import_url is already url encoded
+        @import_uri ||= URI.parse(project.import_url)
+      rescue URI::InvalidURIError
         raise LfsImportError, 'Invalid project import URL'
       end
 
       def current_endpoint_uri
-        (lfsconfig_endpoint_uri || default_endpoint_uri).tap do |uri|
-          uri.user = CGI.unescape(uri.user) if uri.user
-          uri.password = CGI.unescape(uri.password) if uri.password
-        end
+        lfsconfig_endpoint_uri || default_endpoint_uri
       end
 
       # The import url must end with '.git' here we ensure it is
