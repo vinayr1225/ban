@@ -5,7 +5,13 @@ exclude:
   - 'vendor/**/*'
   - 'spec/**/*'
 
+require:
+  - './unwrapped_plain_node.rb'
+
 linters:
+  UnwrappedPlainNode:
+    enabled: true
+
   AltText:
     enabled: true
 
