@@ -5,8 +5,11 @@ export USE_BUNDLE_INSTALL=${USE_BUNDLE_INSTALL:-true}
 export BUNDLE_INSTALL_FLAGS="--without=production --jobs=$(nproc) --path=vendor --retry=3 --quiet"
 
 # install eatmydata
-wget http://ftp.us.debian.org/debian/pool/main/libe/libeatmydata/libeatmydata1_105-5_amd64.deb
+wget http://ftp.us.debian.org/debian/pool/main/libe/libeatmydata/libeatmydata1_105-5_amd64.deb \
+  http://ftp.us.debian.org/debian/pool/main/libe/libeatmydata/eatmydata_105-5_all.deb
+
 dpkg -i libeatmydata1_105-5_amd64.deb
+dpkg -i eatmydata_105-5_all.deb
 
 if [ "$USE_BUNDLE_INSTALL" != "false" ]; then
   bundle install --clean $BUNDLE_INSTALL_FLAGS && bundle check
