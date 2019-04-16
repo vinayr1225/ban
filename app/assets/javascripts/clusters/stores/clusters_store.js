@@ -1,6 +1,15 @@
 import { s__ } from '../../locale';
 import { parseBoolean } from '../../lib/utils/common_utils';
-import { INGRESS, JUPYTER, KNATIVE, CERT_MANAGER, RUNNER } from '../constants';
+import {
+  INGRESS,
+  JUPYTER,
+  KNATIVE,
+  CERT_MANAGER,
+  RUNNER,
+  APPLICATION_INSTALLED_STATUSES,
+} from '../constants';
+
+const isApplicationInstalled = appStatus => APPLICATION_INSTALLED_STATUSES.includes(appStatus);
 
 export default class ClusterStore {
   constructor() {
@@ -17,6 +26,7 @@ export default class ClusterStore {
           statusReason: null,
           requestStatus: null,
           requestReason: null,
+          installed: false,
         },
         ingress: {
           title: s__('ClusterIntegration|Ingress'),
@@ -26,6 +36,7 @@ export default class ClusterStore {
           requestReason: null,
           externalIp: null,
           externalHostname: null,
+          installed: false,
         },
         cert_manager: {
           title: s__('ClusterIntegration|Cert-Manager'),
@@ -34,6 +45,7 @@ export default class ClusterStore {
           requestStatus: null,
           requestReason: null,
           email: null,
+          installed: false,
         },
         runner: {
           title: s__('ClusterIntegration|GitLab Runner'),
@@ -44,6 +56,7 @@ export default class ClusterStore {
           version: null,
           chartRepo: 'https://gitlab.com/charts/gitlab-runner',
           upgradeAvailable: null,
+          installed: false,
         },
         prometheus: {
           title: s__('ClusterIntegration|Prometheus'),
@@ -51,6 +64,7 @@ export default class ClusterStore {
           statusReason: null,
           requestStatus: null,
           requestReason: null,
+          installed: false,
         },
         jupyter: {
           title: s__('ClusterIntegration|JupyterHub'),
@@ -59,6 +73,7 @@ export default class ClusterStore {
           requestStatus: null,
           requestReason: null,
           hostname: null,
+          installed: false,
         },
         knative: {
           title: s__('ClusterIntegration|Knative'),
@@ -70,6 +85,7 @@ export default class ClusterStore {
           isEditingHostName: false,
           externalIp: null,
           externalHostname: null,
+          installed: false,
         },
       },
     };
@@ -118,6 +134,7 @@ export default class ClusterStore {
         ...(this.state.applications[appId] || {}),
         status,
         statusReason,
+        installed: isApplicationInstalled(status),
       };
 
       if (appId === INGRESS) {
