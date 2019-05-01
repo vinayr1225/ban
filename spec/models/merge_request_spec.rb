@@ -2142,6 +2142,21 @@ describe MergeRequest do
         it { expect(subject.mergeable_ci_state?).to be_truthy }
       end
     end
+
+    context 'when pipelines are disabled regardless of only_allow_merge_if_pipeline_succeeds feature' do
+      context 'and a failed pipeline is associated' do
+        before do
+          pipeline.statuses << create(:commit_status, status: 'failed', project: project)
+          allow(subject).to receive(:broken?) { false }
+
+          allow(project).to receive(:builds_enabled?) { false }
+          allow(project).to receive(:only_allow_merge_if_pipeline_succeeds?) { true }
+        end
+
+        it { expect(subject.mergeable_ci_state?).to be_truthy }
+        it { expect(subject.mergeable?).to be_truthy }
+      end
+    end
   end
 
   describe '#mergeable_discussions_state?' do
