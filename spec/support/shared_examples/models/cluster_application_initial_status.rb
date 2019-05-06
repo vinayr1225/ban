@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'cluster application initial status specs' do
+shared_examples 'cluster application initial status specs' do |application_name|
   describe '#status' do
     let(:cluster) { create(:cluster, :provided_by_gcp) }
 
@@ -18,6 +18,12 @@ shared_examples 'cluster application initial status specs' do
 
     context 'when application is scheduled' do
       before do
+        if application_name == :clusters_applications_knative
+          allow_any_instance_of(Clusters::Cluster::KnativeServicesFinder)
+            .to receive(:knative_detected)
+            .and_return(Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['uninstalled'])
+        end
+
         create(:clusters_applications_helm, :installed, cluster: cluster)
       end
 

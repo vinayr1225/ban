@@ -9,7 +9,7 @@ describe Clusters::Applications::Knative do
   include_examples 'cluster application status specs', :clusters_applications_knative
   include_examples 'cluster application helm specs', :clusters_applications_knative
   include_examples 'cluster application version specs', :clusters_applications_knative
-  include_examples 'cluster application initial status specs'
+  include_examples 'cluster application initial status specs', :clusters_applications_knative
 
   before do
     allow(ClusterWaitForIngressIpAddressWorker).to receive(:perform_in)
@@ -142,5 +142,35 @@ describe Clusters::Applications::Knative do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:hostname) }
+  end
+
+  describe '#status' do
+    subject { described_class.new(cluster: cluster) }
+
+    let(:cluster) { create(:cluster, :provided_by_gcp) }
+
+    before do
+      create(:clusters_applications_helm, :installed, cluster: cluster)
+
+      allow_any_instance_of(Clusters::Cluster::KnativeServicesFinder)
+        .to receive(:knative_detected)
+        .and_return(state)
+    end
+
+    context 'when still checking for external Knative Service presence' do
+      let(:state) { Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['checking'] }
+
+      it 'sets a default status' do
+        expect(subject.status_name).to be(:not_installable)
+      end
+    end
+
+    context 'when external Knative Service exists' do
+      let(:state) { Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['installed'] }
+
+      it 'sets a default status' do
+        expect(subject.status_name).to be(:not_installable)
+      end
+    end
   end
 end

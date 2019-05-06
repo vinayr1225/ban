@@ -20,7 +20,7 @@ module Clusters
         return unless not_installable?
         return unless verify_cluster?
 
-        self.status = 'installable'
+        self.status = 'installable' unless cluster.knative_services_finder.knative_detected
       end
 
       state_machine :status do
