@@ -1,5 +1,6 @@
 extends:
   - '@gitlab'
+  - 'plugin:vue-i18n/recommended'
 globals:
   __webpack_public_path__: true
   gl: false
@@ -13,6 +14,8 @@ settings:
   import/resolver:
     webpack:
       config: './config/webpack.config.js'
+  vue-i18n:
+    localeDir: './locale'
 rules:
   "@gitlab/i18n/no-non-i18n-strings": error
   import/no-commonjs: error
@@ -33,6 +36,11 @@ rules:
   vue/no-use-v-if-with-v-for: off
   vue/no-v-html: off
   vue/use-v-on-exact: off
+  vue-i18n/no-dynamic-keys: error,
+  vue-i18n/no-unused-keys: 
+    - error
+    - extensions: .vue
+  vue/attributes-order: off
 overrides:
   files:
     # Vue is temporarily being disabled until the autofix errors are resolved
