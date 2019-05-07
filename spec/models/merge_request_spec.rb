@@ -2167,10 +2167,8 @@ describe MergeRequest do
     end
 
     context 'when pipelines are disabled' do
-      subject do
-        build(:merge_request, target_project: create(:project,
-          only_allow_merge_if_pipeline_succeeds: true,
-          builds_access_level: ProjectFeature::DISABLED))
+      before do
+        project.project_feature.update(builds_access_level: ProjectFeature::DISABLED)
       end
 
       context 'and a failed pipeline is associated' do
