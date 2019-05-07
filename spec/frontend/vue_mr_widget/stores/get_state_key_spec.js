@@ -47,7 +47,7 @@ describe('getStateKey', () => {
 
     expect(bound()).toEqual('unresolvedDiscussions');
 
-    context.isPipelineActive = true;
+    context.projectBuildsEnabled = true;
     context.onlyAllowMergeIfPipelineSucceeds = true;
     context.isPipelineFailed = true;
 
