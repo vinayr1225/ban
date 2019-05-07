@@ -21,6 +21,10 @@ export const APPLICATION_STATUS = {
   ERROR: 'errored',
 };
 
+export const APPLICATION_STATUS_REASON = {
+  EXTERNAL_KNATIVE_EXISTS: 'external_knative_exists',
+};
+
 /*
  * The application cannot be in any of the following states without
  * not being installed.
@@ -29,6 +33,7 @@ export const APPLICATION_INSTALLED_STATUSES = [
   APPLICATION_STATUS.INSTALLED,
   APPLICATION_STATUS.UPDATING,
   APPLICATION_STATUS.UNINSTALLING,
+  APPLICATION_STATUS_REASON.EXTERNAL_KNATIVE_EXISTS,
 ];
 
 // These are only used client-side

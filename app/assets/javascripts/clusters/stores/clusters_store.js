@@ -14,7 +14,9 @@ import {
 } from '../constants';
 import transitionApplicationState from '../services/application_state_machine';
 
-const isApplicationInstalled = appStatus => APPLICATION_INSTALLED_STATUSES.includes(appStatus);
+const isApplicationInstalled = (appStatus, appStatusReason) =>
+  APPLICATION_INSTALLED_STATUSES.includes(appStatus) ||
+  APPLICATION_INSTALLED_STATUSES.includes(appStatusReason);
 
 const applicationInitialState = {
   status: null,
@@ -159,7 +161,7 @@ export default class ClusterStore {
         ...currentApplicationState,
         ...nextApplicationState,
         statusReason,
-        installed: isApplicationInstalled(nextApplicationState.status),
+        installed: isApplicationInstalled(nextApplicationState.status, statusReason),
         uninstallable,
       };
 

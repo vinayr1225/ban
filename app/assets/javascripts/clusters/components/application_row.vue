@@ -131,7 +131,6 @@ export default {
     },
     canInstall() {
       return (
-        this.status === APPLICATION_STATUS.NOT_INSTALLABLE ||
         this.status === APPLICATION_STATUS.INSTALLABLE ||
         this.isUnknownStatus
       );
