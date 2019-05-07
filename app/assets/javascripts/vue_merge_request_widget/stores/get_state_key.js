@@ -16,7 +16,7 @@ export default function deviseState(data) {
   } else if (this.shouldBeRebased) {
     return stateKey.rebase;
   } else if (
-    this.isPipelineActive &&
+    this.projectBuildsEnabled &&
     this.onlyAllowMergeIfPipelineSucceeds &&
     this.isPipelineFailed
   ) {
