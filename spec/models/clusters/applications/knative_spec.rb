@@ -144,7 +144,7 @@ describe Clusters::Applications::Knative do
     it { is_expected.to validate_presence_of(:hostname) }
   end
 
-  describe '#status' do
+  describe '#set_initial_status' do
     subject { described_class.new(cluster: cluster) }
 
     let(:cluster) { create(:cluster, :provided_by_gcp) }
@@ -157,20 +157,21 @@ describe Clusters::Applications::Knative do
         .and_return(state)
     end
 
+    shared_examples 'external knative exists' do
+      it { expect(subject.status_name).to be(:not_installable) }
+      it { expect(subject.status_reason).to eq 'external_knative_exists' }
+    end
+
     context 'when still checking for external Knative Service presence' do
       let(:state) { Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['checking'] }
 
-      it 'sets a default status' do
-        expect(subject.status_name).to be(:not_installable)
-      end
+      it_behaves_like 'external knative exists'
     end
 
     context 'when external Knative Service exists' do
       let(:state) { Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['installed'] }
 
-      it 'sets a default status' do
-        expect(subject.status_name).to be(:not_installable)
-      end
+      it_behaves_like 'external knative exists'
     end
   end
 end

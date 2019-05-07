@@ -7,6 +7,7 @@ module Clusters
       REPOSITORY = 'https://storage.googleapis.com/triggermesh-charts'.freeze
       METRICS_CONFIG = 'https://storage.googleapis.com/triggermesh-charts/istio-metrics.yaml'.freeze
       FETCH_IP_ADDRESS_DELAY = 30.seconds
+      EXTERNAL_KNATIVE_EXISTS_MSG = 'external_knative_exists'.freeze
 
       self.table_name = 'clusters_applications_knative'
 
@@ -19,8 +20,9 @@ module Clusters
       def set_initial_status
         return unless not_installable?
         return unless verify_cluster?
+        return self.status_reason = EXTERNAL_KNATIVE_EXISTS_MSG if external_knative_exists?
 
-        self.status = 'installable' unless cluster.knative_services_finder.knative_detected
+        self.status = 'installable'
       end
 
       state_machine :status do
@@ -77,6 +79,10 @@ module Clusters
       end
 
       private
+
+      def external_knative_exists?
+        !cluster.application_knative_available? && cluster.knative_services_finder.knative_detected
+      end
 
       def install_knative_metrics
         ["kubectl apply -f #{METRICS_CONFIG}"] if cluster.application_prometheus_available?
