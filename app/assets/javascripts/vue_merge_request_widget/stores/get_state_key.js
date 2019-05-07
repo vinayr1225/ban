@@ -15,7 +15,11 @@ export default function deviseState(data) {
     return stateKey.workInProgress;
   } else if (this.shouldBeRebased) {
     return stateKey.rebase;
-  } else if (this.isPipelineActive && this.onlyAllowMergeIfPipelineSucceeds && this.isPipelineFailed) {
+  } else if (
+    this.isPipelineActive &&
+    this.onlyAllowMergeIfPipelineSucceeds &&
+    this.isPipelineFailed
+  ) {
     return stateKey.pipelineFailed;
   } else if (this.hasMergeableDiscussionsState) {
     return stateKey.unresolvedDiscussions;
