@@ -15,7 +15,7 @@ settings:
     webpack:
       config: './config/webpack.config.js'
   vue-i18n:
-    localeDir: './locale'
+    localeDir: './locale/*.po'
 rules:
   "@gitlab/i18n/no-non-i18n-strings": error
   import/no-commonjs: error
