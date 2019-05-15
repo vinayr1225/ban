@@ -61,7 +61,7 @@ export default {
 
 <template>
   <label class="toggle-wrapper">
-    <input v-if="name" :name="name" :value="value" type="hidden" />
+    <input v-if="name" :name="name" :value="value" type="hidden">
     <button
       :aria-label="ariaLabel"
       :class="{
@@ -73,8 +73,12 @@ export default {
       class="project-feature-toggle"
       @click="toggleFeature"
     >
-      <gl-loading-icon class="loading-icon" />
-      <span class="toggle-icon"> <icon :name="toggleIcon" css-classes="toggle-icon-svg" /> </span>
+      <gl-loading-icon class="loading-icon"/>
+      <span class="toggle-icon">
+        <icon :name="toggleIcon" css-classes="toggle-icon-svg"/>
+      </span>
+      <!-- <span>{{ __("This is a button") }}</span> -->
+      <!-- <span v-t="This is a button"></span> -->
     </button>
   </label>
 </template>

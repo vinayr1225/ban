@@ -10,12 +10,13 @@ plugins:
   - import
   - html
   - "@gitlab/i18n"
+  - vue-i18n
 settings:
   import/resolver:
     webpack:
       config: './config/webpack.config.js'
   vue-i18n:
-    localeDir: './locale/*.po'
+    localeDir: './app/assets/javascripts/locale/**/app.js'
 rules:
   "@gitlab/i18n/no-non-i18n-strings": error
   import/no-commonjs: error
@@ -39,7 +40,7 @@ rules:
   vue-i18n/no-dynamic-keys: error,
   vue-i18n/no-unused-keys: 
     - error
-    - extensions: .vue
+    - extensions: [.vue]
   vue/attributes-order: off
 overrides:
   files:

@@ -58,6 +58,8 @@ const pgettext = (keyOrContext, key) => {
 */
 const createDateTimeFormat = formatOptions => Intl.DateTimeFormat(languageCode(), formatOptions);
 
+const getEnTranslations = () => import ;
+
 export { languageCode };
 export { gettext as __ };
 export { ngettext as n__ };
