@@ -104,15 +104,13 @@ class MergeRequestWidgetEntity < IssuableEntity
     merge_request.project.only_allow_merge_if_pipeline_succeeds?
   end
 
-  expose :project_builds_enabled do |merge_request|
-    merge_request.project.builds_enabled?
-  end
-
   # CI related
   expose :has_ci?, as: :has_ci
   expose :ci_status do |merge_request|
     presenter(merge_request).ci_status
   end
+
+  expose :check_pipeline_for_merge?, as: :check_pipeline_for_merge
 
   expose :issues_links do
     expose :assign_to_closing do |merge_request|

@@ -123,7 +123,7 @@ export default class MergeRequestStore {
     this.isPipelineActive = data.pipeline ? data.pipeline.active : false;
     this.isPipelineBlocked = pipelineStatus ? pipelineStatus.group === 'manual' : false;
     this.ciStatusFaviconPath = pipelineStatus ? pipelineStatus.favicon : null;
-    this.projectBuildsEnabled = data.project_builds_enabled || false;
+    this.checkPipelineForMerge = data.check_pipeline_for_merge || false;
 
     this.testResultsPath = data.test_reports_path;
 

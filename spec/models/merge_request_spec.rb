@@ -2166,7 +2166,7 @@ describe MergeRequest do
       end
     end
 
-    context 'when pipelines are disabled' do
+    context 'when project builds are disabled' do
       before do
         project.project_feature.update(builds_access_level: ProjectFeature::DISABLED)
       end
@@ -2178,6 +2178,48 @@ describe MergeRequest do
 
         it { expect(subject.mergeable_ci_state?).to be_truthy }
       end
+    end
+  end
+
+  describe '#check_pipeline_for_merge?' do
+    let(:project) { create(:project) }
+    subject { build(:merge_request, target_project: project) }
+
+    context 'when project builds are disabled' do
+      before do 
+        project.project_feature.update(builds_access_level: ProjectFeature::DISABLED)
+      end
+
+      it { expect(subject.check_pipeline_for_merge?).to be_falsy }
+    end
+
+    context 'when project builds are enabled but only_allow_merge_if_pipeline_succeeds is disabled' do
+      before do
+        project.project_feature.update(builds_access_level: ProjectFeature::ENABLED)
+        project.update(only_allow_merge_if_pipeline_succeeds: false)
+      end
+
+      it { expect(subject.check_pipeline_for_merge?).to be_falsy }
+    end
+
+    context 'when project builds and only_allow_merge_if_pipeline_succeeds are enabled but not head pipeline' do
+      before do
+        project.project_feature.update(builds_access_level: ProjectFeature::ENABLED)
+        project.update(only_allow_merge_if_pipeline_succeeds: true)
+        subject.update(head_pipeline: nil)
+      end
+
+      it { expect(subject.check_pipeline_for_merge?).to be_falsy }
+    end
+
+    context 'when project builds and only_allow_merge_if_pipeline_succeeds are enabled and head pipeline' do
+      before do
+        project.project_feature.update(builds_access_level: ProjectFeature::ENABLED)
+        project.update(only_allow_merge_if_pipeline_succeeds: true)
+        allow(subject).to receive(:head_pipeline) { create(:ci_empty_pipeline) }
+      end
+
+      it { expect(subject.check_pipeline_for_merge?).to be_truthy }
     end
   end
 
