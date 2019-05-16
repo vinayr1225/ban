@@ -126,14 +126,14 @@ export default {
     isKnownStatus() {
       return Object.values(APPLICATION_STATUS).includes(this.status);
     },
+    notInstallable() {
+      return this.status === APPLICATION_STATUS.NOT_INSTALLABLE;
+    },
     isInstalling() {
       return this.status === APPLICATION_STATUS.INSTALLING;
     },
     canInstall() {
-      return (
-        this.status === APPLICATION_STATUS.INSTALLABLE ||
-        this.isUnknownStatus
-      );
+      return this.status === APPLICATION_STATUS.INSTALLABLE || this.isUnknownStatus;
     },
     hasLogo() {
       return Boolean(this.logoUrl);
@@ -167,7 +167,7 @@ export default {
     },
     installButtonLabel() {
       let label;
-      if (this.canInstall) {
+      if (this.notInstallable || this.canInstall) {
         label = __('Install');
       } else if (this.isInstalling) {
         label = __('Installing');
