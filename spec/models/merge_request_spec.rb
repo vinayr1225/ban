@@ -2186,7 +2186,7 @@ describe MergeRequest do
     subject { build(:merge_request, target_project: project) }
 
     context 'when project builds are disabled' do
-      before do 
+      before do
         project.project_feature.update(builds_access_level: ProjectFeature::DISABLED)
       end
 
