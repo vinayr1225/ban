@@ -1,0 +1,5 @@
+---
+title: Make MR mergeable if project has pipelines disabled
+merge_request: 28054
+author:
+type: fixed
