@@ -35,6 +35,8 @@ A first iteration of a GraphQL API includes the following queries
 
 1. `group` : Only basic group information is currently supported.
 
+1. `namespace` : Within a namespace it is also possible to fetch the `statistics` if the user owns the namespace.
+
 ## GraphiQL
 
 The API can be explored by using the GraphiQL IDE, it is available on your
