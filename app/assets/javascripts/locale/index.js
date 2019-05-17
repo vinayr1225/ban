@@ -2,6 +2,8 @@ import Jed from 'jed';
 import ensureSingleLine from './ensure_single_line';
 import sprintf from './sprintf';
 
+import en from './en/app';
+
 const languageCode = () => document.querySelector('html').getAttribute('lang') || 'en';
 const locale = new Jed(window.translations || {});
 delete window.translations;
@@ -57,8 +59,9 @@ const pgettext = (keyOrContext, key) => {
   @returns {Intl.DateTimeFormat}
 */
 const createDateTimeFormat = formatOptions => Intl.DateTimeFormat(languageCode(), formatOptions);
+export const enTranslations = () => en;
 
-const getEnTranslations = () => import ;
+console.log(enTranslations());
 
 export { languageCode };
 export { gettext as __ };
