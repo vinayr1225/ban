@@ -42,6 +42,7 @@ rules:
   vue-i18n/no-unused-keys: 
     - error
     - extensions: [.vue]
+  vue-i18n/no-bare-strings: error
   vue/attributes-order: off
 overrides:
   files:

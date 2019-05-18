@@ -17,11 +17,11 @@ export default {
 </script>
 <template>
   <div>
-    <p>{{ 'Not correctly externalized' }}</p>
     <p>{{ __('Externalized key that doesnt exist') }}</p>
     <p>{{ ('Non-Externalized key that doesnt exist') }}</p>
     <p>{{ "Bare string" }}</p>
-    <!-- supply-chain attack -->
+    <p>{{ 'Barely a string' }}</p>
+    <p>{{ `WHUT` }}</p>
     <div data-tooltip="$t('yaml invalid')">
       <h1>{{text}}</h1>
       <span>{{"Well hello there"}}</span>

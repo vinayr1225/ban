@@ -9,6 +9,7 @@
     "eslint-report": "eslint --max-warnings 0 --ext .js,.vue --format html --output-file ./eslint-report.html --no-inline-config .",
     "prejest": "yarn check-dependencies",
     "jest": "jest",
+    "eslint-vue-bad": "eslint --max-warnings 0 --report-unused-disable-directives --ext .vue ./app/assets/javascripts/vue_shared/bad.vue",
     "eslint-vue": "eslint --max-warnings 0 --report-unused-disable-directives --ext .vue .",
     "eslint-vue-fix": "eslint --max-warnings 0 --report-unused-disable-directives --ext .vue --fix .",
     "fix-i18n-imports": "jscodeshift -v 2 -t ./transform.js",
