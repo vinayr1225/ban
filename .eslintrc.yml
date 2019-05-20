@@ -39,7 +39,7 @@ rules:
   vue/use-v-on-exact: off
   vue-i18n/no-missing-keys: error
   vue-i18n/no-dynamic-keys: error
-  vue-i18n/no-unused-keys: 
+  vue-i18n/no-unused-keys:
     - error
     - extensions: [.vue]
   vue-i18n/no-bare-strings: error

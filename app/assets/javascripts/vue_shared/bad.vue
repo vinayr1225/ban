@@ -27,7 +27,7 @@ export default {
       <img v-bind:alt="boundAlt">
       <dropdown-title :can-edit="false"/>
     </div>
-    <!-- <div alt="BAD">
+    <div alt="BAD">
       <p>{{ __('Externalized key that doesnt exist') }}</p>
       <p>{{ ('Non-Externalized key that doesnt exist') }}</p>
       <p>{{ "Bare string" }}</p>
@@ -47,7 +47,7 @@ export default {
       <p v-once>Static text</p>
       <template>
         <div>Slow down, theres a bare</div>
-      </template> 
-    </div>-->
+      </template>
+    </div>
   </div>
 </template>
