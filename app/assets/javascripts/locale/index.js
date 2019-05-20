@@ -59,9 +59,6 @@ const pgettext = (keyOrContext, key) => {
   @returns {Intl.DateTimeFormat}
 */
 const createDateTimeFormat = formatOptions => Intl.DateTimeFormat(languageCode(), formatOptions);
-export const enTranslations = () => en;
-
-console.log(enTranslations());
 
 export { languageCode };
 export { gettext as __ };

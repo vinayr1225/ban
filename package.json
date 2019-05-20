@@ -173,7 +173,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-jest": "^22.3.0",
-    "eslint-plugin-vanilla-i18n": "../../eslint-plugin-vanilla-i18n",
     "eslint-plugin-vue": "^5.2.2",
     "gettext-extractor": "^3.4.3",
     "gettext-extractor-vue": "^4.0.2",

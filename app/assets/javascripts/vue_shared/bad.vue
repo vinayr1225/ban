@@ -26,7 +26,7 @@ export default {
     <div alt="GOOD">
       <img v-bind:alt="boundAlt">
       <dropdown-title :can-edit="false"/>
-    </div>
+    </div>    
     <div alt="BAD">
       <p>{{ __('Externalized key that doesnt exist') }}</p>
       <p>{{ ('Non-Externalized key that doesnt exist') }}</p>
@@ -38,7 +38,7 @@ export default {
         <span>{{"Well hello there"}}</span>
       </div>
       <div v-text="$t('Data tooltip')">
-        <p>{{`Cool kinda ${text}`}}</p>
+        <p>{{ `Cool kinda ${text}` }}</p>
       </div>
       <img alt="$t('Image alt text')">
       <div :class="text" v-data-label="wowee">
@@ -48,6 +48,24 @@ export default {
       <template>
         <div>Slow down, theres a bare</div>
       </template>
+      <p>{{ __(`WHUT`) }}</p>
+      <p>{{ `WHUT ${text}` }}</p>
     </div>
+    <span
+      v-if="failurePercent"
+      v-tooltip
+      :title="failureTooltip"
+      :style="failureBarStyle"
+      class="status-red"
+      data-placement="bottom"
+    >{{ "Totally failed" }}%</span>
+    <span
+      v-if="failurePercent"
+      v-tooltip
+      :title="failureTooltip"
+      :style="failureBarStyle"
+      class="status-red"
+      data-placement="bottom"
+    >{{ failurePercent }}%</span>
   </div>
 </template>
