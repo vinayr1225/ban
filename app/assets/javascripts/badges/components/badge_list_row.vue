@@ -57,7 +57,7 @@ export default {
           type="button"
           @click="editBadge(badge)"
         >
-          <icon :size="16" :aria-label="__('Edit')" name="pencil" />
+          <icon :size="16" :aria-label="__('Edit')" name="pencil"/>
         </button>
         <button
           :disabled="badge.isDeleting"
@@ -67,9 +67,9 @@ export default {
           data-target="#delete-badge-modal"
           @click="updateBadgeInModal(badge)"
         >
-          <icon :size="16" :aria-label="__('Delete')" name="remove" />
+          <icon :size="16" :aria-label="__('Delete')" name="remove"/>
         </button>
-        <gl-loading-icon v-show="badge.isDeleting" :inline="true" />
+        <gl-loading-icon v-show="badge.isDeleting" :inline="true"/>
       </div>
     </div>
   </div>

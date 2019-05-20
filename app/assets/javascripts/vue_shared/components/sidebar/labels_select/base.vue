@@ -132,7 +132,7 @@ export default {
       :labels="context.labels"
       @onValueClick="handleCollapsedValueClick"
     />
-    <dropdown-title :can-edit="canEdit" />
+    <dropdown-title :can-edit="canEdit"/>
     <dropdown-value
       :labels="context.labels"
       :label-filter-base-path="labelFilterBasePath"
@@ -161,14 +161,15 @@ export default {
           :enable-scoped-labels="enableScopedLabels"
         />
         <div
-          class="dropdown-menu dropdown-select dropdown-menu-paging
-dropdown-menu-labels dropdown-menu-selectable"
+          class="dropdown-menu dropdown-select dropdown-menu-paging dropdown-menu-labels dropdown-menu-selectable"
         >
           <div class="dropdown-page-one">
-            <dropdown-header v-if="showCreate" />
-            <dropdown-search-input />
+            <dropdown-header v-if="showCreate"/>
+            <dropdown-search-input/>
             <div class="dropdown-content"></div>
-            <div class="dropdown-loading"><gl-loading-icon /></div>
+            <div class="dropdown-loading">
+              <gl-loading-icon/>
+            </div>
             <dropdown-footer
               v-if="showCreate"
               :labels-web-url="labelsWebUrl"

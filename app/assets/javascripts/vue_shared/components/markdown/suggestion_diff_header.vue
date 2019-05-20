@@ -43,13 +43,18 @@ export default {
   <div class="md-suggestion-header border-bottom-0 mt-2">
     <div class="qa-suggestion-diff-header font-weight-bold">
       {{ __('Suggested change') }}
-      <a v-if="helpPagePath" :href="helpPagePath" :aria-label="__('Help')" class="js-help-btn">
-        <icon name="question-o" css-classes="link-highlight" />
+      <a
+        v-if="helpPagePath"
+        :href="helpPagePath"
+        :aria-label="__('Help')"
+        class="js-help-btn"
+      >
+        <icon name="question-o" css-classes="link-highlight"/>
       </a>
     </div>
     <span v-if="isApplied" class="badge badge-success">{{ __('Applied') }}</span>
     <div v-if="isApplying" class="d-flex align-items-center text-secondary">
-      <gl-loading-icon class="d-flex-center mr-2" />
+      <gl-loading-icon class="d-flex-center mr-2"/>
       <span>{{ __('Applying suggestion') }}</span>
     </div>
     <gl-button
@@ -59,8 +64,6 @@ export default {
       :disabled="isApplying"
       variant="success"
       @click="applySuggestion"
-    >
-      {{ __('Apply suggestion') }}
-    </gl-button>
+    >{{ __('Apply suggestion') }}</gl-button>
   </div>
 </template>
