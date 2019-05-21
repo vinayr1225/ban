@@ -23,16 +23,33 @@ export default {
 </script>
 <template>
   <div>
-    <div alt="GOOD">
+    <div>
+      <!-- Good strings -->
+      <!-- These should not error -->
       <img v-bind:alt="boundAlt">
       <dropdown-title :can-edit="false"/>
-    </div>    
+      <span aria-hidden="true">&times;</span>
+      <a :class="`js-${scope}-tab-${tab.scope}`" role="button" @click="onTabClick(tab)">
+        {{ tab.name }}
+        <span
+          v-if="shouldRenderBadge(tab.count)"
+          class="badge badge-pill"
+        >{{ tab.count }}</span>
+      </a>
+    </div>
     <div alt="BAD">
+      <!-- Bad Strings -->
+      <!-- Should all error -->
       <p>{{ __('Externalized key that doesnt exist') }}</p>
       <p>{{ ('Non-Externalized key that doesnt exist') }}</p>
+      <p>"Bare string"</p>
+      <p>'Barely a string'</p>
       <p>{{ "Bare string" }}</p>
       <p>{{ 'Barely a string' }}</p>
       <p>{{ `WHUT` }}</p>
+      <p>{{ __(`WHUT`) }}</p>
+      <p>{{ __("WHUT") }}</p>
+      <p>{{ __('WHUT') }}</p>
       <div data-tooltip="$t('yaml invalid')">
         <h1>{{text}}</h1>
         <span>{{"Well hello there"}}</span>
