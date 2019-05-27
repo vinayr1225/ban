@@ -242,9 +242,9 @@ module Issuable
 
     def with_label(title, sort = nil)
       if title.is_a?(Array) && title.size > 1
-        joins(:labels).where(labels: { title: title }).group(*grouping_columns(sort)).having("COUNT(DISTINCT labels.title) = #{title.size}")
+        where('label_titles @> ARRAY[?]', title)
       else
-        joins(:labels).where(labels: { title: title })
+        where(labels: { title: title })
       end
     end
 

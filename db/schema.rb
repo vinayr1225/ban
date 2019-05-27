@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190516011213) do
+ActiveRecord::Schema.define(version: 20190527135836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1089,6 +1089,7 @@ ActiveRecord::Schema.define(version: 20190516011213) do
     t.datetime_with_timezone "closed_at"
     t.integer "closed_by_id"
     t.integer "state_id", limit: 2
+    t.text "label_titles", array: true
     t.index ["author_id"], name: "index_issues_on_author_id", using: :btree
     t.index ["closed_by_id"], name: "index_issues_on_closed_by_id", using: :btree
     t.index ["confidential"], name: "index_issues_on_confidential", using: :btree
@@ -1347,6 +1348,7 @@ ActiveRecord::Schema.define(version: 20190516011213) do
     t.boolean "squash", default: false, null: false
     t.boolean "allow_maintainer_to_push"
     t.integer "state_id", limit: 2
+    t.text "label_titles", array: true
     t.index ["assignee_id"], name: "index_merge_requests_on_assignee_id", using: :btree
     t.index ["author_id"], name: "index_merge_requests_on_author_id", using: :btree
     t.index ["created_at"], name: "index_merge_requests_on_created_at", using: :btree
