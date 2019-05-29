@@ -14,7 +14,8 @@ class Tree
     @path = path
 
     git_repo = @repository.raw_repository
-    @entries = Gitlab::Git::Tree.where(git_repo, @sha, @path, recursive)
+    raw_entries = Gitlab::Git::Tree.where(git_repo, @sha, @path, recursive)
+    @entries = TreeEntry.decorate(raw_entries, repository)
   end
 
   def readme_path
