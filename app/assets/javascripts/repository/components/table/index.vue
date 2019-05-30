@@ -136,6 +136,7 @@ export default {
               :type="entry.type"
               :url="entry.webUrl"
               :lfs-oid="entry.lfsOid"
+              :commit="entry.commit"
             />
           </template>
         </tbody>

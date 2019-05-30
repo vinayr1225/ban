@@ -9,6 +9,7 @@ module Types
       field :type, Tree::TypeEnum, null: false
       field :path, GraphQL::STRING_TYPE, null: false
       field :flat_path, GraphQL::STRING_TYPE, null: false
+      field :commit, Types::CommitType, null: true, resolver: Resolvers::LastCommitResolver
     end
   end
 end

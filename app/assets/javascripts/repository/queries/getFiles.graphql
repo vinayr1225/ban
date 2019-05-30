@@ -2,6 +2,10 @@ fragment TreeEntry on Entry {
   id
   flatPath
   type
+  commit {
+    message
+    committedDate
+  }
 }
 
 fragment PageInfo on PageInfo {

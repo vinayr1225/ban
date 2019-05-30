@@ -1,5 +1,7 @@
 <script>
 import { GlBadge } from '@gitlab/ui';
+import { GlTooltipDirective } from '@gitlab/ui';
+import timeagoMixin from '~/vue_shared/mixins/timeago';
 import { getIconName } from '../../utils/icon';
 import getRefMixin from '../../mixins/get_ref';
 
@@ -7,7 +9,8 @@ export default {
   components: {
     GlBadge,
   },
-  mixins: [getRefMixin],
+  directives: { GlTooltip: GlTooltipDirective },
+  mixins: [timeagoMixin, getRefMixin],
   props: {
     id: {
       type: String,
@@ -34,6 +37,10 @@ export default {
       type: String,
       required: false,
       default: null,
+    commit: {
+      type: Object,
+      required: false,
+      default: () => ({}),
     },
   },
   computed: {
@@ -83,7 +90,13 @@ export default {
         @ <a href="#" class="commit-sha">{{ shortSha }}</a>
       </template>
     </td>
-    <td class="d-none d-sm-table-cell tree-commit"></td>
-    <td class="tree-time-ago text-right"></td>
+    <td class="d-none d-sm-table-cell tree-commit">
+      <span class="str-truncated">{{ commit.message }}</span>
+    </td>
+    <td class="tree-time-ago text-right">
+      <time v-gl-tooltip.top.viewport :datetime="commit.committedDate" :title="tooltipTitle(commit.committedDate)">
+        {{ timeFormated(commit.committedDate) }}
+      </time>
+    </td>
   </tr>
 </template>
