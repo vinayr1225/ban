@@ -1,5 +1,5 @@
 import ClustersStore from '~/clusters/stores/clusters_store';
-import { APPLICATION_INSTALLED_STATUSES, APPLICATION_STATUS, RUNNER } from '~/clusters/constants';
+import { APPLICATION_INSTALLED_STATUSES, APPLICATION_STATUS, KNATIVE } from '~/clusters/constants';
 import { CLUSTERS_MOCK_DATA } from '../services/mock_data';
 
 describe('Clusters Store', () => {
@@ -155,13 +155,14 @@ describe('Clusters Store', () => {
       it('marks application as installed', () => {
         const mockResponseData =
           CLUSTERS_MOCK_DATA.GET['/gitlab-org/gitlab-shell/clusters/2/status.json'].data;
-        const runnerAppIndex = 2;
+        const knativeAppIndex = 5;
 
-        mockResponseData.applications[runnerAppIndex].status = status;
+        mockResponseData.applications[knativeAppIndex].status = status;
+        mockResponseData.applications[knativeAppIndex].status_reason = status;
 
         store.updateStateFromServer(mockResponseData);
 
-        expect(store.state.applications[RUNNER].installed).toBe(true);
+        expect(store.state.applications[KNATIVE].installed).toBe(true);
       });
     });
 
