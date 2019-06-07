@@ -19,9 +19,9 @@ shared_examples 'cluster application initial status specs' do |application_name|
     context 'when application is scheduled' do
       before do
         if application_name == :clusters_applications_knative
-          allow_any_instance_of(Clusters::Cluster::KnativeServicesFinder)
+          allow_any_instance_of(::Clusters::KnativeServicesFinder)
             .to receive(:knative_detected)
-            .and_return(Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['uninstalled'])
+            .and_return(Clusters::KnativeServicesFinder::KNATIVE_STATES['uninstalled'])
         end
 
         create(:clusters_applications_helm, :installed, cluster: cluster)

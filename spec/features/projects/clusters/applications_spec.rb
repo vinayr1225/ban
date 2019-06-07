@@ -13,6 +13,9 @@ describe 'Clusters Applications', :js do
 
   describe 'Installing applications' do
     before do
+      allow_any_instance_of(::Clusters::KnativeServicesFinder)
+        .to receive(:knative_detected)
+        .and_return(Clusters::KnativeServicesFinder::KNATIVE_STATES['uninstalled'])
       visit project_cluster_path(project, cluster)
     end
 
@@ -42,16 +45,14 @@ describe 'Clusters Applications', :js do
       context 'when user installs Helm' do
         before do
           allow(ClusterInstallAppWorker).to receive(:perform_async)
-
-          page.within('.js-cluster-application-row-helm') do
-            page.find(:css, '.js-cluster-application-install-button').click
-          end
-
           wait_for_requests
         end
 
         it 'they see status transition' do
           page.within('.js-cluster-application-row-helm') do
+            page.find(:css, '.js-cluster-application-install-button').click
+            wait_for_requests
+
             # FE sends request and gets the response, then the buttons is "Installing"
             expect(page.find(:css, '.js-cluster-application-install-button')['disabled']).to eq('true')
             expect(page).to have_css('.js-cluster-application-install-button', exact_text: 'Installing')

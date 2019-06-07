@@ -152,7 +152,7 @@ describe Clusters::Applications::Knative do
     before do
       create(:clusters_applications_helm, :installed, cluster: cluster)
 
-      allow_any_instance_of(Clusters::Cluster::KnativeServicesFinder)
+      allow_any_instance_of(::Clusters::KnativeServicesFinder)
         .to receive(:knative_detected)
         .and_return(state)
     end
@@ -163,13 +163,13 @@ describe Clusters::Applications::Knative do
     end
 
     context 'when still checking for external Knative Service presence' do
-      let(:state) { Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['checking'] }
+      let(:state) { ::Clusters::KnativeServicesFinder::KNATIVE_STATES['checking'] }
 
       it_behaves_like 'external knative exists'
     end
 
     context 'when external Knative Service exists' do
-      let(:state) { Clusters::Cluster::KnativeServicesFinder::KNATIVE_STATES['installed'] }
+      let(:state) { ::Clusters::KnativeServicesFinder::KNATIVE_STATES['installed'] }
 
       it_behaves_like 'external knative exists'
     end

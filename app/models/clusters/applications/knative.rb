@@ -20,6 +20,7 @@ module Clusters
       def set_initial_status
         return unless not_installable?
         return unless verify_cluster?
+
         return self.status_reason = EXTERNAL_KNATIVE_EXISTS_MSG if external_knative_exists?
 
         self.status = 'installable'
@@ -81,7 +82,7 @@ module Clusters
       private
 
       def external_knative_exists?
-        !cluster.application_knative_available? && cluster.knative_services_finder.knative_detected
+        !cluster.application_knative_available? && knative_installed_or_checking?
       end
 
       def install_knative_metrics
@@ -90,6 +91,15 @@ module Clusters
 
       def verify_cluster?
         cluster&.application_helm_available? && cluster&.platform_kubernetes_rbac?
+      end
+
+      def knative_installed_or_checking?
+        [
+          ::Clusters::KnativeServicesFinder::KNATIVE_STATES['installed'],
+          ::Clusters::KnativeServicesFinder::KNATIVE_STATES['checking']
+        ].include?(
+          cluster.knative_services_finder(cluster.projects.first).knative_detected
+        )
       end
     end
   end

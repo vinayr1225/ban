@@ -115,6 +115,9 @@ describe Clusters::Applications::CreateService do
         end
 
         before do
+          allow_any_instance_of(::Clusters::KnativeServicesFinder)
+            .to receive(:knative_detected)
+            .and_return(::Clusters::KnativeServicesFinder::KNATIVE_STATES['not_found'])
           expect_any_instance_of(Clusters::Applications::Knative)
             .to receive(:make_scheduled!)
             .and_call_original
