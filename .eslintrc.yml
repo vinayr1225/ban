@@ -16,7 +16,7 @@ settings:
     webpack:
       config: './config/webpack.config.js'
   vue-i18n:
-    localeDir: './app/assets/javascripts/locale/de/app.json'
+    localeDir: './app/assets/javascripts/locale/gitlab.pot'
 rules:
   "@gitlab/i18n/no-non-i18n-strings": error
   import/no-commonjs: error
@@ -48,7 +48,7 @@ overrides:
   files:
     # Vue is temporarily being disabled until the autofix errors are resolved
     # Follow up issue https://gitlab.com/gitlab-org/gitlab-ce/issues/57969
-    - '*.vue'
+    # - '*.vue'
     - '**/spec/**/*'
   rules:
     "@gitlab/i18n/no-non-i18n-strings": off
