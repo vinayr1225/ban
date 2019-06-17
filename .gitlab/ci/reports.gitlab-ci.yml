@@ -18,6 +18,7 @@ sast:
   variables:
     # Replaces .dedicated-no-docs-no-db-pull-cache-job
     SETUP_DB: "false"
+    SAST_EXCLUDED_PATHS: "/doc,/specs,ee/specs"
 
 dependency_scanning:
   extends: .dedicated-no-docs-no-db-pull-cache-job
