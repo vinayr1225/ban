@@ -5,13 +5,13 @@ module Types
       graphql_name 'Tree'
 
       field :trees, Types::Tree::TreeEntryType.connection_type, null: false, resolve: -> (obj, args, ctx) do
-        Gitlab::Graphql::Representation::TreeEntry.decorate(obj.trees, obj.repository)
+        Gitlab::Graphql::Representation::TreeEntry.decorate(obj.trees, obj)
       end
 
       field :submodules, Types::Tree::SubmoduleType.connection_type, null: false
 
       field :blobs, Types::Tree::BlobType.connection_type, null: false, resolve: -> (obj, args, ctx) do
-        Gitlab::Graphql::Representation::TreeEntry.decorate(obj.blobs, obj.repository)
+        Gitlab::Graphql::Representation::TreeEntry.decorate(obj.blobs, obj)
       end
     end
   end
