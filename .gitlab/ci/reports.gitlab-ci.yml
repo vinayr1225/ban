@@ -3,12 +3,16 @@ include:
   - template: Security/SAST.gitlab-ci.yml
 
 code_quality:
-  extends: .dedicated-no-docs-no-db-pull-cache-job
   # gitlab-org runners set `privileged: false` but we need to have it set to true
   # since we're using Docker in Docker
   tags: []
   before_script: []
-  cache: {}
+  cache:
+    key: "debian-stretch-ruby-2.6.3-node-12.x"
+    paths:
+      - vendor/ruby
+      - .yarn-cache/
+      - vendor/gitaly-ruby
   dependencies: []
   variables:
     SETUP_DB: "false"
