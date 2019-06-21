@@ -143,7 +143,7 @@ describe PipelineSerializer do
         # Since RequestStore.active? is true we have to allow the
         # gitaly calls in this block
         # Issue: https://gitlab.com/gitlab-org/gitlab-ce/issues/37772
-        Gitlab::GitalyClient.allow_n_plus_1_calls do
+        Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#37772") do
           Ci::Pipeline::COMPLETED_STATUSES.each do |status|
             create_pipeline(status)
           end

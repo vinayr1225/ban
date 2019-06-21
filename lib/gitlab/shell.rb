@@ -262,7 +262,7 @@ module Gitlab
     #
     def add_namespace(storage, name)
       # https://gitlab.com/gitlab-org/gitlab-ce/issues/58012
-      Gitlab::GitalyClient.allow_n_plus_1_calls do
+      Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#58012") do
         Gitlab::GitalyClient::NamespaceService.new(storage).add(name)
       end
     rescue GRPC::InvalidArgument => e

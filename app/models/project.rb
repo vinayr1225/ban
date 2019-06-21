@@ -2292,7 +2292,7 @@ class Project < ApplicationRecord
       next false if empty_repo?
 
       # Issue for N+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/49322
-      Gitlab::GitalyClient.allow_n_plus_1_calls do
+      Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#49322") do
         merge_requests_allowing_collaboration(branch_name).any? do |merge_request|
           merge_request.can_be_merged_by?(user)
         end

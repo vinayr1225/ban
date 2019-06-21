@@ -607,7 +607,7 @@ class Repository
 
   def avatar
     # n+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/38327
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#38327") do
       if tree = file_on_head(:avatar)
         tree.path
       end

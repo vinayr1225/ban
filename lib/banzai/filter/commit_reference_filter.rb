@@ -23,7 +23,7 @@ module Banzai
 
         if project && project.valid_repo?
           # n+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/43894
-          Gitlab::GitalyClient.allow_n_plus_1_calls { project.commit(id) }
+          Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#43894") { project.commit(id) }
         end
       end
 
