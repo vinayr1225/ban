@@ -38,6 +38,14 @@ module Gitlab
       base_labels Gitlab::Metrics::Transaction::BASE_LABELS.merge(gitaly_service: nil, rpc: nil)
     end
 
+    define_histogram :n_plus_one_histogram do
+      docstring "Time spent in Gitaly n plus one blocks, in seconds"
+    end
+
+    define_counter :n_plus_one_call_counter do
+      docstring "Calls made in Gitaly n plus one blocks"
+    end
+
     def self.stub(name, storage)
       MUTEX.synchronize do
         @stubs ||= {}
@@ -285,15 +293,18 @@ module Gitlab
     end
     private_class_method :enforce_gitaly_request_limits?
 
-    def self.allow_n_plus_1_calls
-      return yield unless Gitlab::SafeRequestStore.active?
+    def self.allow_n_plus_1_calls(call_site)
+      increment_call_count(:gitaly_call_count_exception_block_depth) if Gitlab::SafeRequestStore.active?
+      start_time = Gitlab::Metrics::System.monotonic_time
+      start_call_count = get_request_count
+      yield
+    ensure
+      labels = current_transaction_labels.merge(transaction: Gitlab::Database.inside_transaction? ? 1 : 0, call_site: call_site)
 
-      begin
-        increment_call_count(:gitaly_call_count_exception_block_depth)
-        yield
-      ensure
-        decrement_call_count(:gitaly_call_count_exception_block_depth)
-      end
+      n_plus_one_histogram.observe(labels, Gitlab::Metrics::System.monotonic_time - start_time)
+      n_plus_one_call_counter.increment(labels, get_request_count - start_call_count)
+
+      decrement_call_count(:gitaly_call_count_exception_block_depth) if Gitlab::SafeRequestStore.active?
     end
 
     # Normally a FindCommit RPC will cache the commit with its SHA

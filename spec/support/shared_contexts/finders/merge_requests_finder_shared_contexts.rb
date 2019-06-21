@@ -8,7 +8,7 @@ RSpec.shared_context 'MergeRequestsFinder multiple projects with merge requests 
   # but we don't care about potential N+1s when we're just creating several
   # projects in the setup phase.
   def allow_gitaly_n_plus_1
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("MergeRequestsFinderSpec") do
       yield
     end
   end

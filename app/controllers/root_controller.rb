@@ -16,7 +16,7 @@ class RootController < Dashboard::ProjectsController
 
   def index
     # n+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/40260
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#40260.2") do
       super
     end
   end

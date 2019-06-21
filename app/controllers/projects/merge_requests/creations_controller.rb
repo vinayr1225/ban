@@ -13,7 +13,7 @@ class Projects::MergeRequests::CreationsController < Projects::MergeRequests::Ap
 
   def new
     # n+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/40934
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#40934") do
       define_new_vars
     end
   end
@@ -91,7 +91,7 @@ class Projects::MergeRequests::CreationsController < Projects::MergeRequests::Ap
     params[:merge_request] ||= ActionController::Parameters.new(source_project: @project)
 
     # Gitaly N+1 issue: https://gitlab.com/gitlab-org/gitlab-ce/issues/58096
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#58096") do
       @merge_request = ::MergeRequests::BuildService.new(project, current_user, merge_request_params.merge(diff_options: diff_options)).execute
     end
   end

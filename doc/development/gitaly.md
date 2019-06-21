@@ -135,8 +135,8 @@ of the [Gitaly Team](https://gitlab.com/groups/gl-gitaly/group_members) for assi
 Once the source has been found, wrap it in an `allow_n_plus_1_calls` block, as follows:
 
 ```ruby
-# n+1: link to n+1 issue
-Gitlab::GitalyClient.allow_n_plus_1_calls do
+# n+1: link to n+1 issue: gitlab.com/gitlab-org/gitlab-ce/issues/123
+Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#123") do
   # original code
   commits.each { |commit| ... }
 end

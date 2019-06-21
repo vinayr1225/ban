@@ -667,7 +667,7 @@ class MergeRequest < ApplicationRecord
     fetch_ref!
 
     # n+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/37435
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#38327") do
       merge_request_diffs.create!
       reload_merge_request_diff
     end

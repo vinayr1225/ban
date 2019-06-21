@@ -131,13 +131,13 @@ describe Gitlab::GitalyClient do
   describe 'allow_n_plus_1_calls' do
     context 'when RequestStore is enabled', :request_store do
       it 'returns the result of the allow_n_plus_1_calls block' do
-        expect(described_class.allow_n_plus_1_calls { "result" }).to eq("result")
+        expect(described_class.allow_n_plus_1_calls("spec") { "result" }).to eq("result")
       end
     end
 
     context 'when RequestStore is not active' do
       it 'returns the result of the allow_n_plus_1_calls block' do
-        expect(described_class.allow_n_plus_1_calls { "something" }).to eq("something")
+        expect(described_class.allow_n_plus_1_calls("spec") { "something" }).to eq("something")
       end
     end
   end
@@ -218,7 +218,7 @@ describe Gitlab::GitalyClient do
 
       it 'allows the maximum number of calls to be exceeded within an allow_n_plus_1_calls block' do
         expect do
-          described_class.allow_n_plus_1_calls do
+          described_class.allow_n_plus_1_calls("spec") do
             call_gitaly(Gitlab::GitalyClient::MAXIMUM_GITALY_CALLS + 1)
           end
         end.not_to raise_error
@@ -226,7 +226,7 @@ describe Gitlab::GitalyClient do
 
       context 'when the maximum number of calls has been reached within an allow_n_plus_1_calls block' do
         before do
-          described_class.allow_n_plus_1_calls do
+          described_class.allow_n_plus_1_calls("spec") do
             call_gitaly(Gitlab::GitalyClient::MAXIMUM_GITALY_CALLS)
           end
         end
@@ -274,7 +274,7 @@ describe Gitlab::GitalyClient do
 
       it 'does not fail when the maximum number of calls is exceeded within an allow_n_plus_1_calls block' do
         expect do
-          described_class.allow_n_plus_1_calls do
+          described_class.allow_n_plus_1_calls("spec") do
             call_gitaly(Gitlab::GitalyClient::MAXIMUM_GITALY_CALLS + 1)
           end
         end.not_to raise_error
@@ -297,7 +297,7 @@ describe Gitlab::GitalyClient do
       context 'when enforce_gitaly_request_limits is called inside and outside of allow_n_plus_1_calls blocks' do
         before do
           described_class.enforce_gitaly_request_limits(:call)
-          described_class.allow_n_plus_1_calls do
+          described_class.allow_n_plus_1_calls("spec") do
             described_class.enforce_gitaly_request_limits(:call)
           end
         end

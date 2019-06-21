@@ -1,6 +1,6 @@
 module ProjectForksHelper
   def fork_project(project, user = nil, params = {})
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("ProjectForksHelper#fork_project") do
       fork_project_direct(project, user, params)
     end
   end
@@ -50,7 +50,7 @@ module ProjectForksHelper
   end
 
   def fork_project_with_submodules(project, user = nil, params = {})
-    Gitlab::GitalyClient.allow_n_plus_1_calls do
+    Gitlab::GitalyClient.allow_n_plus_1_calls("ProjectForksHelper#fork_project_with_submodules") do
       forked_project = fork_project_direct(project, user, params)
       TestEnv.copy_repo(
         forked_project,

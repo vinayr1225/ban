@@ -153,7 +153,7 @@ module Banzai
 
       def uri_type(path)
         # https://gitlab.com/gitlab-org/gitlab-ce/issues/58657
-        Gitlab::GitalyClient.allow_n_plus_1_calls do
+        Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#58657") do
           @uri_types[path] ||= current_commit.uri_type(path)
         end
       end

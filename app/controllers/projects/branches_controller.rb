@@ -26,7 +26,7 @@ class Projects::BranchesController < Projects::ApplicationController
         @merged_branch_names = repository.merged_branch_names(@branches.map(&:name))
 
         # n+1: https://gitlab.com/gitlab-org/gitlab-ce/issues/48097
-        Gitlab::GitalyClient.allow_n_plus_1_calls do
+        Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#48097.1") do
           @max_commits = @branches.reduce(0) do |memo, branch|
             diverging_commit_counts = repository.diverging_commit_counts(branch)
             [memo, diverging_commit_counts.values_at(:behind, :ahead, :distance)]
@@ -35,7 +35,7 @@ class Projects::BranchesController < Projects::ApplicationController
         end
 
         # https://gitlab.com/gitlab-org/gitlab-ce/issues/48097
-        Gitlab::GitalyClient.allow_n_plus_1_calls do
+        Gitlab::GitalyClient.allow_n_plus_1_calls("gitlab-ce#48097.2") do
           render
         end
       end
