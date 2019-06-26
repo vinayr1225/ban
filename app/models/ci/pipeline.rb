@@ -480,6 +480,10 @@ module Ci
       project.commit(git_ref) == commit
     end
 
+    def project_commit(git_ref)
+      @project_lazy_commit ||= project.lazy_commit(git_ref)
+    end
+
     def retried
       @retried ||= (statuses.order(id: :desc) - statuses.latest)
     end

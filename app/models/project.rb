@@ -731,6 +731,14 @@ class Project < ApplicationRecord
     repository.commit(ref)
   end
 
+  def lazy_commit(ref = 'HEAD')
+    BatchLoader.for(ref).batch do |refs, loader|
+      repository.commits_by(oids: refs).each_with_index do |commit, i|
+        loader.call(refs[i], commit) if commit
+      end
+    end
+  end
+
   def commit_by(oid:)
     repository.commit_by(oid: oid)
   end
