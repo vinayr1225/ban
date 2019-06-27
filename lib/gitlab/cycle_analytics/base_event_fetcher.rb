@@ -40,7 +40,7 @@ module Gitlab
       end
 
       def events_query
-        diff_fn = subtract_datetimes_diff(base_query, @options[:start_time_attrs], @options[:end_time_attrs])
+        diff_fn = subtract_datetimes_diff(@options[:start_time_attrs], @options[:end_time_attrs])
 
         base_query.project(extract_diff_epoch(diff_fn).as('total_time'), *projections).order(order.desc).take(MAX_EVENTS)
       end

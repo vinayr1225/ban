@@ -4,6 +4,7 @@ module Gitlab
   module CycleAnalytics
     class BaseStage
       include BaseQuery
+      attr_reader :project
 
       def initialize(project: nil, options:)
         @project = project
