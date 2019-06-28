@@ -5,6 +5,7 @@ import FunctionRow from './function_row.vue';
 import EnvironmentRow from './environment_row.vue';
 import EmptyState from './empty_state.vue';
 import { CHECKING_INSTALLED } from '../constants';
+import { sprintf, s__ } from '~/locale'
 
 export default {
   components: {
@@ -37,6 +38,9 @@ export default {
     isInstalled() {
       return this.installed === true;
     },
+    namespaceCluster(){
+      return sprintf(s__('Serverless|The functions listed in the %{startTag}serverless.yml%{endTag} file don\'t match the namespace of your cluster.'), { startTag: '<code>', endTag: '</code>' })
+    }
   },
   created() {
     this.fetchFunctions({
@@ -88,12 +92,13 @@ export default {
           </p>
           <ul>
             <li>Your repository does not have a corresponding <code>serverless.yml</code> file.</li>
-            <li>Your <code>.gitlab-ci.yml</code> file is not properly configured.</li>
             <li>
-              The functions listed in the <code>serverless.yml</code> file don't match the namespace
-              of your cluster.
+              {{sprintf(s__('Serverless|Your %{startTag}.gitlab-ci.yml%{endTag} file is not properly configured.'), { startTag: '<code>', endTag: '</code>' })}}
+              </li>
+            <li>
+              {{ namespaceCluster }}
             </li>
-            <li>The deploy job has not finished.</li>
+            <li>{{ sprintf(__('The deploy job has not finished. %{something}'), { something: 'SOME STRING'}) }}</li >
           </ul>
 
           <p>

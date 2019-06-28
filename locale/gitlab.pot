@@ -9154,6 +9154,9 @@ msgstr ""
 msgid "Serverless|No functions available"
 msgstr ""
 
+msgid "Serverless|The functions listed in the %{startTag}serverless.yml%{endTag} file don't match the namespace of your cluster."
+msgstr ""
+
 msgid "Serverless|There is currently no function data available from Knative. This could be for a variety of reasons including:"
 msgstr ""
 
@@ -10119,6 +10122,9 @@ msgid "The collection of events added to the data gathered for that stage."
 msgstr ""
 
 msgid "The content of this page is not encoded in UTF-8. Edits can only be made via the Git repository."
+msgstr ""
+
+msgid "The deploy job has not finished. %{something}"
 msgstr ""
 
 msgid "The deployment of this job to %{environmentLink} did not succeed."
