@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import { GlButton } from '@gitlab/ui';
 import initAvatarPicker from '~/avatar_picker';
 import TransferDropdown from '~/groups/transfer_dropdown';
 import initConfirmDangerModal from '~/confirm_danger_modal';
@@ -22,4 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
   groupsSelect();
 
   projectSelect();
+});
+
+// eslint-disable-next-line no-new
+new Vue({
+  el: '#content-body',
+  components: {
+    GlButton,
+  },
 });

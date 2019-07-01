@@ -7,7 +7,7 @@
   .settings-header
     %h4.settings-title.js-settings-toggle.js-settings-toggle-trigger-only{ role: 'button' }
       = _('Naming, visibility')
-    %button.btn.js-settings-toggle{ type: 'button' }
+    %gl-button.js-settings-toggle{ type: 'button' }
       = _('Collapse')
     %p
       = _('Update your group name, description, avatar, and visibility.')
@@ -18,7 +18,7 @@
   .settings-header
     %h4.settings-title.js-settings-toggle.js-settings-toggle-trigger-only{ role: 'button' }
       = _('Permissions, LFS, 2FA')
-    %button.btn.js-settings-toggle{ type: 'button' }
+    %gl-button.js-settings-toggle{ type: 'button' }
       = expanded ? _('Collapse') : _('Expand')
     %p
       = _('Advanced permissions, Large File Storage and Two-Factor authentication settings.')
@@ -31,8 +31,8 @@
   .settings-header
     %h4.settings-title.js-settings-toggle.js-settings-toggle-trigger-only{ role: 'button' }
       = s_('GroupSettings|Badges')
-    %button.btn.js-settings-toggle{ type: 'button' }
-      = expanded ? 'Collapse' : 'Expand'
+    %gl-button.js-settings-toggle{ type: 'button' }
+      = expanded ? _('Collapse') : _('Expand')
     %p
       = s_('GroupSettings|Customize your group badges.')
       = link_to s_('GroupSettings|Learn more about badges.'), help_page_path('user/project/badges')
@@ -46,7 +46,7 @@
   .settings-header
     %h4.settings-title.js-settings-toggle.js-settings-toggle-trigger-only{ role: 'button' }
       = _('Path, transfer, remove')
-    %button.btn.js-settings-toggle{ type: 'button' }
+    %gl-button.js-settings-toggle{ type: 'button' }
       = expanded ? _('Collapse') : _('Expand')
     %p
       = _('Perform advanced options such as changing path, transferring, or removing the group.')
