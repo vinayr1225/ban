@@ -1,0 +1,10 @@
+.dropdown{ class: container }
+  %button.dropdown-menu-toggle{ type: "button", data: { toggle: "dropdown"} }
+    %span.dropdown-toggle-text
+      = placeholder
+    = icon("chevron-down")
+  .dropdown-menu.dropdown-select.dropdown-menu-selectable.dropdown-menu-right
+    = dropdown_title(_("Filter results"))
+    = dropdown_filter(_("Search"))
+    = dropdown_content
+    = dropdown_loading
