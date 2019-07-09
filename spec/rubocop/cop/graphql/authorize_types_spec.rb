@@ -62,5 +62,17 @@ describe RuboCop::Cop::Graphql::AuthorizeTypes do
         end
       TYPE
     end
+
+    it 'does not add an offense for types that are named `InputType`' do
+      expect_no_offenses(<<~TYPE.strip)
+        module Types
+          class MyInputType < MyInputTypeBase
+            graphql_name 'MyInput'
+
+            argument :a_thing
+          end
+        end
+      TYPE
+    end
   end
 end
