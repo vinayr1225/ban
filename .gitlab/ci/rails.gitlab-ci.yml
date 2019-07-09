@@ -209,6 +209,15 @@ downtime_check:
   dependencies:
     - setup-test-env
 
+mr_downtime_check:
+  extends: .dedicated-no-docs-no-db-pull-cache-job
+  script:
+    - bundle exec rake downtime_check[$CI_COMMIT_REF_NAME,$CI_MERGE_REQUEST_TARGET_BRANCH_SHA]
+  only:
+    - merge_requests
+  dependencies:
+    - setup-test-env
+
 ee_compat_check:
   <<: *rake-exec
   dependencies: []

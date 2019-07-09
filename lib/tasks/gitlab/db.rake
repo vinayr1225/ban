@@ -63,14 +63,15 @@ namespace :gitlab do
     end
 
     desc 'Checks if migrations require downtime or not'
-    task :downtime_check, [:ref] => :environment do |_, args|
-      abort 'You must specify a Git reference to compare with' unless args[:ref]
+    task :downtime_check, [:source_ref, :target_ref] => :environment do |_, args|
+      abort 'You must specify a Git reference to compare with' if args[:source_ref].blank?
 
       require 'shellwords'
 
-      ref = Shellwords.escape(args[:ref])
+      source_ref = Shellwords.escape(args[:source_ref])
+      target_ref = Shellwords.escape(args[:target_ref])
 
-      migrations = `git diff #{ref}.. --diff-filter=A --name-only -- db/migrate`.lines
+      migrations = `git diff #{source_ref}..#{target_ref} --diff-filter=A --name-only -- db/migrate`.lines
         .map { |file| Rails.root.join(file.strip).to_s }
         .select { |file| File.file?(file) }
         .select { |file| /\A[0-9]+.*\.rb\z/ =~ File.basename(file) }
