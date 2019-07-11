@@ -705,10 +705,9 @@
   resolved "https://registry.yarnpkg.com/@gitlab/svgs/-/svgs-1.67.0.tgz#c7b94eca13b99fd3aaa737fb6dcc0abc41d3c579"
   integrity sha512-hJOmWEs6RkjzyKkb1vc9wwKGZIBIP0coHkxu/KgOoxhBVudpGk4CH7xJ6UuB2TKpb0SEh5CC1CzRZfBYaFhsaA==
 
-"@gitlab/ui@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@gitlab/ui/-/ui-5.5.0.tgz#2000b2ed0c3825dd8c4430191023f4d03c923ecb"
-  integrity sha512-6e/AFFLDk/gm4wKnHM9rcpTRqCsWkPKW/Vjsnd6h4wyfif2/TusHeIn/jedQxUaORbO/XZKzg4V5COhXXbCx4w==
+"@gitlab/ui@https://gitlab.com/gitlab-org/gitlab-ui/-/jobs/249614709/artifacts/raw/gitlab-ui.remove-unused-search-component.tgz":
+  version "5.6.0"
+  resolved "https://gitlab.com/gitlab-org/gitlab-ui/-/jobs/249614709/artifacts/raw/gitlab-ui.remove-unused-search-component.tgz#86ab23401fe1141750152eed938d5a1eadc98195"
   dependencies:
     "@babel/standalone" "^7.0.0"
     "@gitlab/vue-toasted" "^1.2.1"
