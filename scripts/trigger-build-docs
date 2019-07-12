@@ -13,7 +13,7 @@ end
 #
 # The remote docs project
 #
-GITLAB_DOCS_REPO = 'gitlab-com/gitlab-docs'.freeze
+GITLAB_DOCS_REPO = 'gitlab-org/gitlab-docs'.freeze
 
 #
 # Truncate the remote docs branch name otherwise we hit the filesystem
