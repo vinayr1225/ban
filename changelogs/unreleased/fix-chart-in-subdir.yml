@@ -1,0 +1,5 @@
+---
+title: Don't break when AUTO_DEVOPS_CHART points to a subdirectory.
+merge_request: gitlab-org/gitlab-ce!30733
+author: Elric Milon
+type: fixed
