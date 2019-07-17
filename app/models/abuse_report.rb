@@ -16,6 +16,7 @@ class AbuseReport < ApplicationRecord
   # For CacheMarkdownField
   alias_method :author, :reporter
 
+
   def remove_user(deleted_by:)
     user.delete_async(deleted_by: deleted_by, params: { hard_delete: true })
   end
