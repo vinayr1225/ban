@@ -215,7 +215,6 @@
     vertical-align: middle;
     margin-right: 0.15em;
     font-size: 1.5em;
-    line-height: 1;
   }
 
   .award-control-icon-loading {
@@ -240,8 +239,8 @@
   .award-control-icon-super-positive {
     @include transition(opacity, transform);
     position: absolute;
-    left: 10px;
-    bottom: 6px;
+    left: 11px;
+    bottom: 7px;
     opacity: 0;
 
     path {
