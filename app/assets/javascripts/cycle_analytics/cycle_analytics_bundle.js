@@ -4,6 +4,8 @@ import Cookies from 'js-cookie';
 import Flash from '../flash';
 import Translate from '../vue_shared/translate';
 import banner from './components/banner.vue';
+// TODO: should the be capitalized?
+import addStageForm from './components/add_stage_form.vue';
 import stageCodeComponent from './components/stage_code_component.vue';
 import stageComponent from './components/stage_component.vue';
 import stageReviewComponent from './components/stage_review_component.vue';
@@ -25,6 +27,7 @@ export default () => {
     name: 'CycleAnalytics',
     components: {
       banner,
+      addStageForm,
       'stage-issue-component': stageComponent,
       'stage-plan-component': stageComponent,
       'stage-code-component': stageCodeComponent,
@@ -63,6 +66,8 @@ export default () => {
       // variable itself can be completely removed.
       // Follow up issue: https://gitlab.com/gitlab-org/gitlab-ce/issues/64490
       if (cycleAnalyticsEl.dataset.requestPath) this.fetchCycleAnalyticsData();
+      // TODO: remove
+      this.addStageForm = true;
     },
     methods: {
       handleError() {
