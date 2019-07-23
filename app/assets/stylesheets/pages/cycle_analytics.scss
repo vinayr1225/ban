@@ -202,6 +202,21 @@
       .not-available {
         color: $gl-text-color-secondary;
       }
+
+      &.stage-ghost {
+        border: dashed 2px $gray-500;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+
+        &:hover {
+          /* TODO: replace with utilities */
+          background: $blue-100;
+          border: $blue-500 solid 1px;
+          border-bottom-width: 1px;
+          border-left-width: 2px;
+        }
+      }
     }
   }
 

@@ -44,7 +44,7 @@
               %li.median-header
                 %span.stage-name
                   {{ __('Median') }}
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: _("The value lying at the midpoint of a series of observed values. E.g., between 3, 5, 9, the median is 5. Between 3, 5, 7, 8, the median is (5+7)/2 = 6."), "aria-hidden" => "true" }
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "toxp", title: _("The value lying at the midpoint of a series of observed values. E.g., between 3, 5, 9, the median is 5. Between 3, 5, 7, 8, the median is (5+7)/2 = 6."), "aria-hidden" => "true" }
               %li.event-header
                 %span.stage-name
                   {{ currentStage ? __(currentStage.legend) : __('Related Issues') }}
@@ -68,6 +68,8 @@
                   %template{ "v-else" => true }
                     %span.not-available
                       {{ __('Not available') }}
+              %li.stage-nav-item.stage-ghost
+                {{ s__("CustomCycleAnalytics|Add a stage") }}
           .section.stage-events
             %template{ "v-if" => "isLoadingStage" }
               = icon("spinner spin")
