@@ -68,7 +68,8 @@
                   %template{ "v-else" => true }
                     %span.not-available
                       {{ __('Not available') }}
-              %li.stage-nav-item.stage-ghost
+              -# TODO: Feature flag
+              %li.stage-nav-item.stage-ghost{ '@click' => 'showAddStageForm()', }
                 {{ s__("CustomCycleAnalytics|Add a stage") }}
           .section.stage-events
             %template{ "v-if" => "isLoadingStage" }
@@ -76,7 +77,9 @@
             %template{ "v-if" => "currentStage && !currentStage.isUserAllowed" }
               = render partial: "no_access"
             %template{ "v-else" => true }
-              %template{ "v-if" => "isEmptyStage && !isLoadingStage" }
+              %template{ "v-if" => "isEmptyStage && !isLoadingStage && !isCustomStageForm" }
                 = render partial: "empty_stage"
               %template{ "v-if" => "state.events.length && !isLoadingStage && !isEmptyStage" }
                 %component{ ":is" => "currentStage.component", ":stage" => "currentStage", ":items" => "state.events" }
+              -# TODO: Feature flag
+              %custom-stage-form{ "v-if" => "isCustomStageForm" }
