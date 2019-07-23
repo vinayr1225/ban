@@ -1,54 +1,103 @@
 <script>
+import { __ } from '~/locale';
+import { GlButton, GlFormGroup, GlFormInput, GlFormSelect } from '@gitlab/ui';
+
 export default {
-  props: {},
-  computed() {
-    return {
-      isComplete() {
-        return false;
-      },
-    };
+  components: {
+    GlButton,
+    GlFormGroup,
+    GlFormInput,
+    GlFormSelect,
+  },
+  props: {
+    name: {
+      type: String,
+      default: null,
+    },
+    objectType: {
+      type: String,
+      default: null,
+    },
+    startEvent: {
+      type: String,
+      default: null,
+    },
+    stopEvent: {
+      type: String,
+      default: null,
+    },
+    isComplete: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    // TODO: might not need to be computed
+    startEventOptions() {
+      return [{ value: null, text: __('Select start event') }];
+    },
+    stopEventOptions() {
+      return [{ value: null, text: __('Select stop event') }];
+    },
+    objectTypeOptions() {
+      return [{ value: null, text: __('Select one or more objects') }];
+    },
   },
 };
 </script>
 <template>
-  <form class="add-stage-form">
-    <div>
-      <h2>New stage</h2>
+  <form class="add-stage-form m-4">
+    <div class="mb-1">
+      <h4>New stage</h4>
     </div>
-    <div>
-      <label class="form-section-title label-bold" for="add-stage-name">Name</label>
-      <input
+    <gl-form-group>
+      <gl-form-input
+        v-model="name"
         class="form-control"
         type="text"
         value=""
         name="add-stage-name"
+        :label="__('Name')"
         :placeholder="__('Enter a name for the stage')"
+        required
       />
-    </div>
+    </gl-form-group>
     <!-- 
         TODO: Double check if we need this 
         - Does this filter the list of start / stop events.... 🤔
       -->
-    <div>
-      <label class="form-section-title label-bold" for="add-stage-object-type">Object type</label>
-      <select class="form-control" name="add-stage-object-type">
-        <option>Select one or more objects</option>
-      </select>
-      <span>{{ __('Choose which object types will trigger this stage') }} </span>
-    </div>
-    <div>
-      <label class="form-section-title label-bold" for="add-stage-start-event">Start event</label>
-      <select class="form-control" name="add-stage-start-event">
-        <option>Select start event</option>
-      </select>
-    </div>
-    <div>
-      <label class="form-section-title label-bold" for="add-stage-stop-event">Stop event</label>
-      <select class="form-control" name="add-stage-stop-event">
-        <option>Select stop event</option>
-      </select>
-      <span>{{ __('Please select a start event first') }}</span>
-    </div>
+    <gl-form-group>
+      <gl-form-select
+        v-model="objectType"
+        :label="__('Object type')"
+        name="add-stage-object-type"
+        :required="true"
+        :options="objectTypeOptions"
+      />
+
+      <p class="form-text text-muted">
+        {{ __('Choose which object types will trigger this stage') }}
+      </p>
+    </gl-form-group>
+    <gl-form-group>
+      <gl-form-select
+        v-model="startEvent"
+        :label="__('Start event')"
+        name="add-stage-start-event"
+        :required="true"
+        :options="startEventOptions"
+      />
+    </gl-form-group>
+    <gl-form-group>
+      <gl-form-select
+        v-model="stopEvent"
+        :label="__('Stop event')"
+        name="add-stage-stop-event"
+        :options="stopEventOptions"
+        :required="true"
+      />
+      <p class="form-text text-muted">{{ __('Please select a start event first') }}</p>
+    </gl-form-group>
     <div class="add-stage-form-actions clearfix">
       <!-- 
           TODO: what does the cancel button do?
