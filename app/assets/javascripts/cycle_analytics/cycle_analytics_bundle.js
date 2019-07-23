@@ -69,8 +69,6 @@ export default () => {
       // variable itself can be completely removed.
       // Follow up issue: https://gitlab.com/gitlab-org/gitlab-ce/issues/64490
       if (cycleAnalyticsEl.dataset.requestPath) this.fetchCycleAnalyticsData();
-      // TODO: remove
-      this.addStageForm = true;
     },
     methods: {
       handleError() {
@@ -143,6 +141,10 @@ export default () => {
             this.isLoadingStage = false;
           });
       },
+      dismissOverviewDialog() {
+        this.isOverviewDialogDismissed = true;
+        Cookies.set(OVERVIEW_DIALOG_COOKIE, '1', { expires: 365 });
+      },
       showAddStageForm() {
         console.log('cycle_analytics_bundle::showAddStageForm', this);
         // TODO: should these eventually be moved to actions for a vuex store
@@ -154,12 +156,8 @@ export default () => {
         // TODO: perhaps could be something more like this.activeStage('stage-name') ie loading, empty, custom form etc
 
         // Should eventually be actions emitted to the vuex store
-        this.isCustomStageForm = true;
+        this.addStageForm = true;
         this.isLoadingStage = false;
-      },
-      dismissOverviewDialog() {
-        this.isOverviewDialogDismissed = true;
-        Cookies.set(OVERVIEW_DIALOG_COOKIE, '1', { expires: 365 });
       },
     },
   });
