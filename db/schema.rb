@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_090456) do
+ActiveRecord::Schema.define(version: 2019_07_30_152006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1983,7 +1983,6 @@ ActiveRecord::Schema.define(version: 2019_07_29_090456) do
     t.string "source_branch", null: false
     t.integer "source_project_id"
     t.integer "author_id"
-    t.integer "assignee_id"
     t.string "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -2017,7 +2016,6 @@ ActiveRecord::Schema.define(version: 2019_07_29_090456) do
     t.integer "state_id", limit: 2
     t.integer "approvals_before_merge"
     t.string "rebase_jid"
-    t.index ["assignee_id"], name: "index_merge_requests_on_assignee_id"
     t.index ["author_id"], name: "index_merge_requests_on_author_id"
     t.index ["created_at"], name: "index_merge_requests_on_created_at"
     t.index ["description"], name: "index_merge_requests_on_description_trigram", opclass: :gin_trgm_ops, using: :gin
@@ -3808,7 +3806,6 @@ ActiveRecord::Schema.define(version: 2019_07_29_090456) do
   add_foreign_key "merge_requests", "milestones", name: "fk_6a5165a692", on_delete: :nullify
   add_foreign_key "merge_requests", "projects", column: "source_project_id", name: "fk_3308fe130c", on_delete: :nullify
   add_foreign_key "merge_requests", "projects", column: "target_project_id", name: "fk_a6963e8447", on_delete: :cascade
-  add_foreign_key "merge_requests", "users", column: "assignee_id", name: "fk_6149611a04", on_delete: :nullify
   add_foreign_key "merge_requests", "users", column: "author_id", name: "fk_e719a85f8a", on_delete: :nullify
   add_foreign_key "merge_requests", "users", column: "merge_user_id", name: "fk_ad525e1f87", on_delete: :nullify
   add_foreign_key "merge_requests", "users", column: "updated_by_id", name: "fk_641731faff", on_delete: :nullify

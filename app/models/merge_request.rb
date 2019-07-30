@@ -16,6 +16,9 @@ class MergeRequest < ApplicationRecord
   include ReactiveCaching
   include FromUnion
   include DeprecatedAssignee
+  include IgnorableColumn
+
+  ignore_column :assignee_id
 
   self.reactive_cache_key = ->(model) { [model.project.id, model.iid] }
   self.reactive_cache_refresh_interval = 10.minutes
