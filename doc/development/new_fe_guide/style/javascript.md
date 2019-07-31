@@ -137,6 +137,10 @@ parseInt('10', 10);
 If a CSS class is only being used in JavaScript as a reference to the element, prefix
 the class name with `js-`.
 
+Please note: `js-` is only needed when a CSS class has no other purpose but to be
+used by JavaScript. It's okay for JavaScript to reference CSS classes without the
+`js-` selector if it makes semantic sense.
+
 ```html
 // bad
 <button class="add-user"></button>
