@@ -11,10 +11,9 @@ import MonitorSingleStatChart from './charts/single_stat.vue';
 import PanelType from './panel_type.vue';
 import GraphGroup from './graph_group.vue';
 import EmptyState from './empty_state.vue';
-import { timeWindows, timeWindowsKeyNames } from '../constants';
+import { sidebarAnimationDuration, timeWindows, timeWindowsKeyNames } from '../constants';
 import { getTimeDiff } from '../utils';
 
-const sidebarAnimationDuration = 150;
 let sidebarMutationObserver;
 
 export default {
@@ -158,9 +157,6 @@ export default {
       'multipleDashboardsEnabled',
       'additionalPanelTypesEnabled',
     ]),
-    groupsWithData() {
-      return this.groups.filter(group => this.chartsWithData(group.metrics).length > 0);
-    },
     selectedDashboardText() {
       return this.currentDashboard || (this.allDashboards[0] && this.allDashboards[0].display_name);
     },
@@ -256,6 +252,9 @@ export default {
     },
     setTimeWindowParameter(key) {
       return `?time_window=${key}`;
+    },
+    groupHasData(group) {
+      return this.chartsWithData(group.metrics).length > 0;
     },
   },
   addMetric: {
@@ -370,17 +369,19 @@ export default {
     </div>
     <div v-if="!showEmptyState">
       <graph-group
-        v-for="(groupData, index) in groupsWithData"
-        :key="index"
+        v-for="(groupData, index) in groups"
+        :key="`${groupData.group}.${groupData.priority}`"
         :name="groupData.group"
         :show-panels="showPanels"
+        :collapse-group="groupHasData(groupData)"
       >
         <template v-if="additionalPanelTypesEnabled">
           <panel-type
-            v-for="(graphData, graphIndex) in chartsWithData(groupData.metrics)"
+            v-for="(graphData, graphIndex) in groupData.metrics"
             :key="`panel-type-${graphIndex}`"
             :graph-data="graphData"
             :dashboard-width="elWidth"
+            :index="`${index}-${graphIndex}`"
           />
         </template>
         <template v-else>
@@ -399,6 +400,7 @@ export default {
               :alerts-endpoint="alertsEndpoint"
               :relevant-queries="graphData.queries"
               :alerts-to-manage="getGraphAlerts(graphData.queries)"
+              :modal-id="`alert-modal-${index}-${graphIndex}`"
               @setAlerts="setAlerts"
             />
           </monitor-area-chart>

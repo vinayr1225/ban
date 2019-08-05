@@ -85,7 +85,7 @@ describe Boards::IssuesController do
           expect { list_issues(user: user, board: group_board, list: list3) }.not_to exceed_query_limit(control_count + (2 * 8 - 1))
         end
 
-        it 'avoids N+1 database queries when adding a subgroup, project, and issue', :nested_groups do
+        it 'avoids N+1 database queries when adding a subgroup, project, and issue' do
           create(:project, group: sub_group_1)
           create(:labeled_issue, project: project, labels: [development])
           control_count = ActiveRecord::QueryRecorder.new { list_issues(user: user, board: group_board, list: list3) }.count
@@ -160,7 +160,7 @@ describe Boards::IssuesController do
       end
     end
 
-    describe 'PUT move_multiple' do
+    describe 'PUT bulk_move' do
       let(:todo) { create(:group_label, group: group, name: 'Todo') }
       let(:development) { create(:group_label, group: group, name: 'Development') }
       let(:user) { create(:group_member, :maintainer, user: create(:user), group: group ).user }
@@ -194,6 +194,20 @@ describe Boards::IssuesController do
       shared_examples 'move issues endpoint provider' do
         before do
           sign_in(signed_in_user)
+        end
+
+        it 'responds as expected' do
+          put :bulk_move, params: move_issues_params
+          expect(response).to have_gitlab_http_status(expected_status)
+
+          if expected_status == 200
+            expect(json_response).to include(
+              'count' => move_issues_params[:ids].size,
+              'success' => true
+            )
+
+            expect(json_response['issues'].pluck('id')).to match_array(move_issues_params[:ids])
+          end
         end
 
         it 'moves issues as expected' do

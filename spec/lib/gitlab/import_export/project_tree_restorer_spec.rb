@@ -272,7 +272,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
     end
 
     it 'has label priorities' do
-      expect(project.labels.first.priorities).not_to be_empty
+      expect(project.labels.find_by(title: 'A project label').priorities).not_to be_empty
     end
 
     it 'has milestones' do
@@ -325,7 +325,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
 
       it_behaves_like 'restores project correctly',
                       issues: 1,
-                      labels: 1,
+                      labels: 2,
                       milestones: 1,
                       first_issue_labels: 1,
                       services: 1
@@ -402,7 +402,7 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       it_behaves_like 'restores project successfully'
       it_behaves_like 'restores project correctly',
                       issues: 2,
-                      labels: 1,
+                      labels: 2,
                       milestones: 2,
                       first_issue_labels: 1
 
@@ -496,6 +496,18 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
       end
     end
 
+    context 'with restricted internal visibility' do
+      describe 'internal project' do
+        let(:visibility) { Gitlab::VisibilityLevel::INTERNAL }
+
+        it 'uses private visibility' do
+          stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::INTERNAL])
+
+          expect(restorer.restored_project.visibility_level).to eq(Gitlab::VisibilityLevel::PRIVATE)
+        end
+      end
+    end
+
     context 'with group visibility' do
       before do
         group = create(:group, visibility_level: group_visibility)
@@ -527,6 +539,14 @@ describe Gitlab::ImportExport::ProjectTreeRestorer do
 
         it 'uses the group visibility' do
           expect(restorer.restored_project.visibility_level).to eq(group_visibility)
+        end
+
+        context 'with restricted internal visibility' do
+          it 'sets private visibility' do
+            stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::INTERNAL])
+
+            expect(restorer.restored_project.visibility_level).to eq(Gitlab::VisibilityLevel::PRIVATE)
+          end
         end
       end
     end

@@ -7,7 +7,6 @@ class MergeRequest < ApplicationRecord
   include Noteable
   include Referable
   include Presentable
-  include IgnorableColumn
   include TimeTrackable
   include ManualInverseAssociation
   include EachBatch
@@ -23,10 +22,6 @@ class MergeRequest < ApplicationRecord
   self.reactive_cache_lifetime = 10.minutes
 
   SORTING_PREFERENCE_FIELD = :merge_requests_sort
-
-  ignore_column :locked_at,
-                :ref_fetched,
-                :deleted_at
 
   belongs_to :target_project, class_name: "Project"
   belongs_to :source_project, class_name: "Project"
@@ -757,7 +752,7 @@ class MergeRequest < ApplicationRecord
   end
 
   def check_mergeability
-    MergeRequests::MergeabilityCheckService.new(self).execute
+    MergeRequests::MergeabilityCheckService.new(self).execute(retry_lease: false)
   end
   # rubocop: enable CodeReuse/ServiceClass
 
@@ -1254,15 +1249,8 @@ class MergeRequest < ApplicationRecord
   end
 
   def all_commits
-    # MySQL doesn't support LIMIT in a subquery.
-    diffs_relation = if Gitlab::Database.postgresql?
-                       merge_request_diffs.recent
-                     else
-                       merge_request_diffs
-                     end
-
     MergeRequestDiffCommit
-      .where(merge_request_diff: diffs_relation)
+      .where(merge_request_diff: merge_request_diffs.recent)
       .limit(10_000)
   end
 

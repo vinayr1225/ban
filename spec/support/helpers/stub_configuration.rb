@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/hash/transform_values'
 require 'active_support/hash_with_indifferent_access'
 require 'active_support/dependencies'
@@ -63,6 +65,10 @@ module StubConfiguration
 
   def stub_artifacts_setting(messages)
     allow(Gitlab.config.artifacts).to receive_messages(to_settings(messages))
+  end
+
+  def stub_pages_setting(messages)
+    allow(Gitlab.config.pages).to receive_messages(to_settings(messages))
   end
 
   def stub_storage_settings(messages)

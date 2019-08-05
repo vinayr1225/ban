@@ -2,6 +2,19 @@
 
 module API
   module Entities
+    class BlameRangeCommit < Grape::Entity
+      expose :id
+      expose :parent_ids
+      expose :message
+      expose :authored_date, :author_name, :author_email
+      expose :committed_date, :committer_name, :committer_email
+    end
+
+    class BlameRange < Grape::Entity
+      expose :commit, using: BlameRangeCommit
+      expose :lines
+    end
+
     class WikiPageBasic < Grape::Entity
       expose :format
       expose :slug
@@ -294,7 +307,6 @@ module API
       expose :statistics, using: 'API::Entities::ProjectStatistics', if: -> (project, options) {
         options[:statistics] && Ability.allowed?(options[:current_user], :read_statistics, project)
       }
-      expose :external_authorization_classification_label
       expose :auto_devops_enabled?, as: :auto_devops_enabled
       expose :auto_devops_deploy_strategy do |project, options|
         project.auto_devops.nil? ? 'continuous' : project.auto_devops.deploy_strategy
@@ -367,10 +379,7 @@ module API
       end
       expose :request_access_enabled
       expose :full_name, :full_path
-
-      if ::Group.supports_nested_objects?
-        expose :parent_id
-      end
+      expose :parent_id
 
       expose :custom_attributes, using: 'API::Entities::CustomAttribute', if: :with_custom_attributes
 
@@ -1053,15 +1062,8 @@ module API
       # rubocop: disable CodeReuse/ActiveRecord
       def self.preload_relation(projects_relation, options = {})
         relation = super(projects_relation, options)
-
-        # MySQL doesn't support LIMIT inside an IN subquery
-        if Gitlab::Database.mysql?
-          project_ids = relation.pluck('projects.id')
-          namespace_ids = relation.pluck(:namespace_id)
-        else
-          project_ids = relation.select('projects.id')
-          namespace_ids = relation.select(:namespace_id)
-        end
+        project_ids = relation.select('projects.id')
+        namespace_ids = relation.select(:namespace_id)
 
         options[:project_members] = options[:current_user]
           .project_members
@@ -1160,6 +1162,7 @@ module API
         attributes = ::ApplicationSettingsHelper.visible_attributes
         attributes.delete(:performance_bar_allowed_group_path)
         attributes.delete(:performance_bar_enabled)
+        attributes.delete(:allow_local_requests_from_hooks_and_services)
 
         attributes
       end
@@ -1178,6 +1181,7 @@ module API
       # support legacy names, can be removed in v5
       expose :password_authentication_enabled_for_web, as: :password_authentication_enabled
       expose :password_authentication_enabled_for_web, as: :signin_enabled
+      expose :allow_local_requests_from_web_hooks_and_services, as: :allow_local_requests_from_hooks_and_services
     end
 
     # deprecated old Release representation

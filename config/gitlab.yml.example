@@ -400,6 +400,15 @@ production: &base
     # path: shared/registry
     # issuer: gitlab-issuer
 
+    # Add notification settings if you plan to use Geo Replication for the registry
+    # notifications:
+    # - name: geo_event
+    #   url: https://example.com/api/v4/container_registry_event/events
+    #   timeout: 2s
+    #   threshold: 5
+    #   backoff: 1s
+    #   headers:
+    #     Authorization: secret_phrase
 
   ## Error Reporting and Logging with Sentry
   sentry:
@@ -417,6 +426,11 @@ production: &base
     #
     # If it is blank, it defaults to external_url.
     node_name: ''
+
+    registry_replication:
+      # enabled: true
+      # primary_api_url: http://localhost:5000/ # internal address to the primary registry, will be used by GitLab to directly communicate with primary registry API
+
 
   #
   # 2. GitLab CI settings
@@ -952,6 +966,16 @@ production: &base
     #  address: localhost
     #  port: 3807
 
+  ## Prometheus settings
+  # Do not modify these settings here. They should be modified in /etc/gitlab/gitlab.rb
+  # if you installed GitLab via Omnibus.
+  # If you installed from source, you need to install and configure Prometheus
+  # yourself, and then update the values here.
+  # https://docs.gitlab.com/ee/administration/monitoring/prometheus/
+  prometheus:
+    # enable: true
+    # listen_address: 'localhost:9090'
+
   #
   # 5. Extra customization
   # ==========================
@@ -1158,6 +1182,9 @@ test:
         user_filter: ''
         group_base: 'ou=groups,dc=example,dc=com'
         admin_group: ''
+  prometheus:
+    enable: true
+    listen_address: 'localhost:9090'
 
 staging:
   <<: *base

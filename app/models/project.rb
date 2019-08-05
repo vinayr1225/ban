@@ -31,7 +31,6 @@ class Project < ApplicationRecord
   include FeatureGate
   include OptionallySearch
   include FromUnion
-  include IgnorableColumn
   extend Gitlab::Cache::RequestCache
 
   extend Gitlab::ConfigHelper
@@ -55,8 +54,6 @@ class Project < ApplicationRecord
 
   VALID_MIRROR_PORTS = [22, 80, 443].freeze
   VALID_MIRROR_PROTOCOLS = %w(http https ssh git).freeze
-
-  ignore_column :import_status, :import_jid, :import_error
 
   cache_markdown_field :description, pipeline: :description
 
@@ -280,7 +277,7 @@ class Project < ApplicationRecord
   has_many :project_deploy_tokens
   has_many :deploy_tokens, through: :project_deploy_tokens
 
-  has_one :auto_devops, class_name: 'ProjectAutoDevops'
+  has_one :auto_devops, class_name: 'ProjectAutoDevops', inverse_of: :project, autosave: true
   has_many :custom_attributes, class_name: 'ProjectCustomAttribute'
 
   has_many :project_badges, class_name: 'ProjectBadge'
@@ -360,6 +357,7 @@ class Project < ApplicationRecord
   scope :sorted_by_activity, -> { reorder(Arel.sql("GREATEST(COALESCE(last_activity_at, '1970-01-01'), COALESCE(last_repository_updated_at, '1970-01-01')) DESC")) }
   scope :sorted_by_stars_desc, -> { reorder(star_count: :desc) }
   scope :sorted_by_stars_asc, -> { reorder(star_count: :asc) }
+  scope :sorted_by_name_asc_limited, ->(limit) { reorder(name: :asc).limit(limit) }
 
   scope :in_namespace, ->(namespace_ids) { where(namespace_id: namespace_ids) }
   scope :personal, ->(user) { where(namespace_id: user.namespace_id) }
@@ -417,12 +415,6 @@ class Project < ApplicationRecord
     .where(project_ci_cd_settings: { group_runners_enabled: true })
   end
 
-  scope :missing_kubernetes_namespace, -> (kubernetes_namespaces) do
-    subquery = kubernetes_namespaces.select('1').where('clusters_kubernetes_namespaces.project_id = projects.id')
-
-    where('NOT EXISTS (?)', subquery)
-  end
-
   enum auto_cancel_pending_pipelines: { disabled: 0, enabled: 1 }
 
   chronic_duration_attr :build_timeout_human_readable, :build_timeout,
@@ -442,22 +434,6 @@ class Project < ApplicationRecord
   # id - The ID of the project to retrieve.
   def self.find_without_deleted(id)
     without_deleted.find_by_id(id)
-  end
-
-  # Paginates a collection using a `WHERE id < ?` condition.
-  #
-  # before - A project ID to use for filtering out projects with an equal or
-  #      greater ID. If no ID is given, all projects are included.
-  #
-  # limit - The maximum number of rows to include.
-  def self.paginate_in_descending_order_using_id(
-    before: nil,
-    limit: Kaminari.config.default_per_page
-  )
-    relation = order_id_desc.limit(limit)
-    relation = relation.where('projects.id < ?', before) if before
-
-    relation
   end
 
   def self.eager_load_namespace_and_owner
@@ -737,16 +713,27 @@ class Project < ApplicationRecord
     repository.commits_by(oids: oids)
   end
 
-  # ref can't be HEAD, can only be branch/tag name or SHA
-  def latest_successful_build_for(job_name, ref = default_branch)
-    latest_pipeline = ci_pipelines.latest_successful_for(ref)
+  # ref can't be HEAD, can only be branch/tag name
+  def latest_successful_build_for_ref(job_name, ref = default_branch)
+    return unless ref
+
+    latest_pipeline = ci_pipelines.latest_successful_for_ref(ref)
     return unless latest_pipeline
 
     latest_pipeline.builds.latest.with_artifacts_archive.find_by(name: job_name)
   end
 
-  def latest_successful_build_for!(job_name, ref = default_branch)
-    latest_successful_build_for(job_name, ref) || raise(ActiveRecord::RecordNotFound.new("Couldn't find job #{job_name}"))
+  def latest_successful_build_for_sha(job_name, sha)
+    return unless sha
+
+    latest_pipeline = ci_pipelines.latest_successful_for_sha(sha)
+    return unless latest_pipeline
+
+    latest_pipeline.builds.latest.with_artifacts_archive.find_by(name: job_name)
+  end
+
+  def latest_successful_build_for_ref!(job_name, ref = default_branch)
+    latest_successful_build_for_ref(job_name, ref) || raise(ActiveRecord::RecordNotFound.new("Couldn't find job #{job_name}"))
   end
 
   def merge_base_commit(first_commit_id, second_commit_id)
@@ -1499,12 +1486,20 @@ class Project < ApplicationRecord
     !namespace.share_with_group_lock
   end
 
-  def pipeline_for(ref, sha = nil)
+  def pipeline_for(ref, sha = nil, id = nil)
+    if id.present?
+      pipelines_for(ref, sha).find_by(id: id)
+    else
+      pipelines_for(ref, sha).take
+    end
+  end
+
+  def pipelines_for(ref, sha = nil)
     sha ||= commit(ref).try(:sha)
 
     return unless sha
 
-    ci_pipelines.order(id: :desc).find_by(sha: sha, ref: ref)
+    ci_pipelines.order(id: :desc).where(sha: sha, ref: ref)
   end
 
   def latest_successful_pipeline_for_default_branch
@@ -1513,12 +1508,12 @@ class Project < ApplicationRecord
     end
 
     @latest_successful_pipeline_for_default_branch =
-      ci_pipelines.latest_successful_for(default_branch)
+      ci_pipelines.latest_successful_for_ref(default_branch)
   end
 
   def latest_successful_pipeline_for(ref = nil)
     if ref && ref != default_branch
-      ci_pipelines.latest_successful_for(ref)
+      ci_pipelines.latest_successful_for_ref(ref)
     else
       latest_successful_pipeline_for_default_branch
     end
@@ -1872,16 +1867,24 @@ class Project < ApplicationRecord
   end
 
   def append_or_update_attribute(name, value)
-    old_values = public_send(name.to_s) # rubocop:disable GitlabSecurity/PublicSend
+    if Project.reflect_on_association(name).try(:macro) == :has_many
+      # if this is 1-to-N relation, update the parent object
+      value.each do |item|
+        item.update!(
+          Project.reflect_on_association(name).foreign_key => id)
+      end
 
-    if Project.reflect_on_association(name).try(:macro) == :has_many && old_values.any?
-      update_attribute(name, old_values + value)
+      # force to drop relation cache
+      public_send(name).reset # rubocop:disable GitlabSecurity/PublicSend
+
+      # succeeded
+      true
     else
+      # if this is another relation or attribute, update just object
       update_attribute(name, value)
     end
-
-  rescue ActiveRecord::RecordNotSaved => e
-    handle_update_attribute_error(e, value)
+  rescue ActiveRecord::RecordInvalid => e
+    raise e, "Failed to set #{name}: #{e.message}"
   end
 
   # Tries to set repository as read_only, checking for existing Git transfers in progress beforehand
@@ -2268,18 +2271,6 @@ class Project < ApplicationRecord
     return false unless Gitlab.config.registry.enabled
 
     ContainerRepository.build_root_repository(self).has_tags?
-  end
-
-  def handle_update_attribute_error(ex, value)
-    if ex.message.start_with?('Failed to replace')
-      if value.respond_to?(:each)
-        invalid = value.detect(&:invalid?)
-
-        raise ex, ([ex.message] + invalid.errors.full_messages).join(' ') if invalid
-      end
-    end
-
-    raise ex
   end
 
   def fetch_branch_allows_collaboration(user, branch_name = nil)

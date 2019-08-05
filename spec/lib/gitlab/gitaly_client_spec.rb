@@ -17,6 +17,16 @@ describe Gitlab::GitalyClient do
     })
   end
 
+  describe '.filesystem_id_from_disk' do
+    it 'catches errors' do
+      [Errno::ENOENT, Errno::EACCES, JSON::ParserError].each do |error|
+        allow(File).to receive(:read).with(described_class.storage_metadata_file_path('default')).and_raise(error)
+
+        expect(described_class.filesystem_id_from_disk('default')).to be_nil
+      end
+    end
+  end
+
   describe '.stub_class' do
     it 'returns the gRPC health check stub' do
       expect(described_class.stub_class(:health_check)).to eq(::Grpc::Health::V1::Health::Stub)
@@ -115,6 +125,19 @@ describe Gitlab::GitalyClient do
         expect(Gitaly::CommitService::Stub).to receive(:new).with(address, any_args)
 
         described_class.stub(:commit_service, 'default')
+      end
+    end
+  end
+
+  describe '.can_use_disk?' do
+    it 'properly caches a false result' do
+      # spec_helper stubs this globally
+      allow(described_class).to receive(:can_use_disk?).and_call_original
+      expect(described_class).to receive(:filesystem_id).once
+      expect(described_class).to receive(:filesystem_id_from_disk).once
+
+      2.times do
+        described_class.can_use_disk?('unknown')
       end
     end
   end

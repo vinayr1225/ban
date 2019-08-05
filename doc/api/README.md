@@ -29,6 +29,7 @@ The following API resources are available in the project context:
 | [Commits](commits.md)                                               | `/projects/:id/repository/commits`, `/projects/:id/statuses`                                                                                                                                          |
 | [Container Registry](container_registry.md)                         | `/projects/:id/registry/repositories`                                                                                                                                                                 |
 | [Custom attributes](custom_attributes.md)                           | `/projects/:id/custom_attributes` (also available for groups and users)                                                                                                                               |
+| [Dependencies](dependencies.md) **(ULTIMATE)**                      | `/projects/:id/dependencies`
 | [Deploy keys](deploy_keys.md)                                       | `/projects/:id/deploy_keys` (also available standalone)                                                                                                                                               |
 | [Deployments](deployments.md)                                       | `/projects/:id/deployments`                                                                                                                                                                           |
 | [Discussions](discussions.md) (threaded comments)                   | `/projects/:id/issues/.../discussions`, `/projects/:id/snippets/.../discussions`, `/projects/:id/merge_requests/.../discussions`, `/projects/:id/commits/.../discussions` (also available for groups) |
@@ -271,6 +272,12 @@ Example of using the personal access token in a header:
 curl --header "Private-Token: <your_access_token>" https://gitlab.example.com/api/v4/projects
 ```
 
+You can also use personal access tokens with OAuth-compliant headers:
+
+```shell
+curl --header "Authorization: Bearer <your_access_token>" https://gitlab.example.com/api/v4/projects
+```
+
 Read more about [personal access tokens][pat].
 
 ### Session cookie
@@ -508,7 +515,7 @@ more than 10,000, the `X-Total` and `X-Total-Pages` headers as well as the
 
 ## Namespaced path encoding
 
-If using namespaced API calls, make sure that the `NAMESPACE/PROJECT_NAME` is
+If using namespaced API calls, make sure that the `NAMESPACE/PROJECT_PATH` is
 URL-encoded.
 
 For example, `/` is represented by `%2F`:
@@ -516,6 +523,11 @@ For example, `/` is represented by `%2F`:
 ```
 GET /api/v4/projects/diaspora%2Fdiaspora
 ```
+
+NOTE: **Note:**
+A project's **path** is not necessarily the same as its **name**.  A
+project's path can found in the project's URL or in the project's settings
+under **General > Advanced > Change path**.
 
 ## Branches and tags name encoding
 
@@ -682,6 +694,13 @@ The correct encoding for the query parameter would be:
 
 There are many unofficial GitLab API Clients for most of the popular
 programming languages. Visit the [GitLab website] for a complete list.
+
+## Rate limits
+
+For administrator documentation on rate limit settings, check out
+[Rate limits](../security/rate_limits.md). To find the settings that are
+specifically used by GitLab.com, see
+[GitLab.com-specific rate limits](../user/gitlab_com/index.md).
 
 [GitLab website]: https://about.gitlab.com/applications/#api-clients "Clients using the GitLab API"
 [lib-api-url]: https://gitlab.com/gitlab-org/gitlab-ce/tree/master/lib/api/api.rb

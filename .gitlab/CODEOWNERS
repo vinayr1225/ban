@@ -9,8 +9,12 @@
 app/assets/ @ClemMakesApps @fatihacet @filipa @iamphill @mikegreiling @timzallmann @kushalpandya @pslaughter
 *.scss @annabeldunstone @ClemMakesApps @fatihacet @filipa @iamphill @mikegreiling @timzallmann @kushalpandya @pslaughter
 
-# Someone from the database team should review changes in `db/`
-db/ @abrandl @NikolayS
+# Maintainers from the Database team should review changes in `db/`
+db/ @gl-database
+lib/gitlab/background_migration/ @gl-database
+lib/gitlab/database/ @gl-database
+lib/gitlab/sql/ @gl-database
+/ee/db/ @gl-database
 
 # Feature specific owners
 /ee/lib/gitlab/code_owners/ @reprazent

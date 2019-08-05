@@ -8,12 +8,9 @@ class Namespace < ApplicationRecord
   include AfterCommitQueue
   include Storage::LegacyNamespace
   include Gitlab::SQL::Pattern
-  include IgnorableColumn
   include FeatureGate
   include FromUnion
   include Gitlab::Utils::StrongMemoize
-
-  ignore_column :deleted_at
 
   # Prevent users from creating unreasonably deep level of nesting.
   # The number 20 was taken based on maximum nesting level of
@@ -335,8 +332,6 @@ class Namespace < ApplicationRecord
   end
 
   def force_share_with_group_lock_on_descendants
-    return unless Group.supports_nested_objects?
-
     # We can't use `descendants.update_all` since Rails will throw away the WITH
     # RECURSIVE statement. We also can't use WHERE EXISTS since we can't use
     # different table aliases, hence we're just using WHERE IN. Since we have a

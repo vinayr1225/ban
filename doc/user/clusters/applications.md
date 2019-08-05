@@ -5,11 +5,12 @@ be added directly to your configured cluster. These applications are
 needed for [Review Apps](../../ci/review_apps/index.md) and
 [deployments](../../ci/environments.md) when using [Auto DevOps](../../topics/autodevops/index.md).
 You can install them after you
-[create a cluster](../project/clusters/index.md#adding-and-creating-a-new-gke-cluster-via-gitlab).
+[create a cluster](../project/clusters/index.md#add-new-gke-cluster).
 
 ## Installing applications
 
 Applications managed by GitLab will be installed onto the `gitlab-managed-apps` namespace.
+
 This namespace:
 
 - Is different from the namespace used for project deployments.
@@ -19,8 +20,8 @@ This namespace:
 To see a list of available applications to install:
 
 1. For a:
-    - Project-level cluster, navigate to your project's **Operations > Kubernetes**.
-    - Group-level cluster, navigate to your group's **Kubernetes** page.
+   - Project-level cluster, navigate to your project's **Operations > Kubernetes**.
+   - Group-level cluster, navigate to your group's **Kubernetes** page.
 
 Install Helm first as it's used to install other applications.
 
@@ -94,7 +95,7 @@ CI/CD](../../ci/README.md), the open-source continuous integration
 service included with GitLab that coordinates the jobs. When installing
 the GitLab Runner via the applications, it will run in **privileged
 mode** by default. Make sure you read the [security
-implications](../project/clusters/index.md/#security-implications) before doing so.
+implications](../project/clusters/index.md#security-implications) before doing so.
 
 NOTE: **Note:**
 The
@@ -232,8 +233,8 @@ The applications below can be upgraded.
 To upgrade an application:
 
 1. For a:
-    - Project-level cluster, navigate to your project's **Operations > Kubernetes**.
-    - Group-level cluster, navigate to your group's **Kubernetes** page.
+   - Project-level cluster, navigate to your project's **Operations > Kubernetes**.
+   - Group-level cluster, navigate to your group's **Kubernetes** page.
 1. Select your cluster.
 1. If an upgrade is available, the **Upgrade** button is displayed. Click the button to upgrade.
 
@@ -251,15 +252,19 @@ The applications below can be uninstalled.
 
 | Application | GitLab version | Notes |
 | ----------- | -------------- | ----- |
+| Cert-Manager | 12.2+         | The associated private key will be deleted and cannot be restored. Deployed applications will continue to use HTTPS, but certificates will not be renewed. Before uninstalling, you may wish to [back up your configuration](https://docs.cert-manager.io/en/latest/tasks/backup-restore-crds.html) or [revoke your certificates](https://letsencrypt.org/docs/revoking/) |
+| GitLab Runner  | 12.2+         | Any running pipelines will be canceled. |
+| Helm  | 12.2+         | The associated Tiller pod will be deleted and cannot be restored. |
 | Ingress  | 12.1+         | The associated load balancer and IP will be deleted and cannot be restored. Furthermore, it can only be uninstalled if JupyterHub is not installed. |
 | JupyterHub  | 12.1+         | All data not committed to GitLab will be deleted and cannot be restored. |
+| Knative  | 12.1+         | The associated IP will be deleted and cannot be restored. |
 | Prometheus  | 11.11+         | All data will be deleted and cannot be restored. |
 
 To uninstall an application:
 
 1. For a:
-    - Project-level cluster, navigate to your project's **Operations > Kubernetes**.
-    - Group-level cluster, navigate to your group's **Kubernetes** page.
+   - Project-level cluster, navigate to your project's **Operations > Kubernetes**.
+   - Group-level cluster, navigate to your group's **Kubernetes** page.
 1. Select your cluster.
 1. Click the **Uninstall** button for the application.
 

@@ -36,17 +36,17 @@ For the Troubleshooting sections, people in GitLab Support can merge additions t
 
 Include any media types/sources if the content is relevant to readers. You can freely include or link presentations, diagrams, videos, etc.; no matter who it was originally composed for, if it is helpful to any of our audiences, we can include it.
 
-   - If you use an image that has a separate source file (for example, a vector or diagram format), link the image to the source file so that it may be reused or updated by anyone.
-   - Do not copy and paste content from other sources unless it is a limited quotation with the source cited. Typically it is better to either rephrase relevant information in your own words or link out to the other source.
+- If you use an image that has a separate source file (for example, a vector or diagram format), link the image to the source file so that it may be reused or updated by anyone.
+- Do not copy and paste content from other sources unless it is a limited quotation with the source cited. Typically it is better to either rephrase relevant information in your own words or link out to the other source.
 
 ### No special types
 
 In the software industry, it is a best practice to organize documentatioin in different types. For example, [Divio recommends](https://www.divio.com/blog/documentation/):
 
 1. Tutorials
-2. How-to guides
-3. Explanation
-4. Reference (for example, a glossary)
+1. How-to guides
+1. Explanation
+1. Reference (for example, a glossary)
 
 At GitLab, we have so many product changes in our monthly releases that we can't afford to continually update multiple types of information.
 If we have multiple types, the information will become outdated. Therefore, we have a [single template](structure.md) for documentation.
@@ -107,6 +107,22 @@ Hard-coded HTML is valid, although it's discouraged to be used while we have `/h
 - Special styling is required.
 - Reviewed and approved by a technical writer.
 
+### Markdown Rules
+
+GitLab ensures that the Markdown used across all documentation is consistent, as
+well as easy to review and maintain, by testing documentation changes with
+[Markdownlint (mdl)](https://github.com/markdownlint/markdownlint). This lint test
+checks many common problems with Markdown, and fails when any document has an issue
+with Markdown formatting that may cause the page to render incorrectly within GitLab.
+It will also fail when a document is using non-standard Markdown (which may render
+correctly, but is not the current standard in GitLab documentation).
+
+Each formatting issue that mdl checks has an associated [rule](https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md),
+and the rules that are currently enabled for GitLab documentation are listed in the
+[`.mdlrc.style`](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/.mdlrc.style) file.
+Configuration options are set in the [`.mdlrc`](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/.mdlrc.style)
+file.
+
 ## Structure
 
 ### Organize by topic, not by type
@@ -142,9 +158,9 @@ The table below shows what kind of documentation goes where.
 ### Working with directories and files
 
 1. When you create a new directory, always start with an `index.md` file.
-  Do not use another file name and **do not** create `README.md` files.
+   Do not use another file name and **do not** create `README.md` files.
 1. **Do not** use special characters and spaces, or capital letters in file names,
-  directory names, branch names, and anything that generates a path.
+   directory names, branch names, and anything that generates a path.
 1. When creating a new document and it has more than one word in its name,
    make sure to use underscores instead of spaces or dashes (`-`). For example,
    a proper naming would be `import_projects_from_github.md`. The same rule
@@ -221,14 +237,14 @@ Do not include the same information in multiple places. [Link to a SSOT instead.
 - Use sentence case for titles, headings, labels, menu items, and buttons.
 - Insert an empty line between different markups (e.g., after every paragraph, header, list, etc). Example:
 
-    ```md
-    ## Header
+  ```md
+  ## Header
 
-    Paragraph.
+  Paragraph.
 
-    - List item 1
-    - List item 2
-    ```
+  - List item 1
+  - List item 2
+  ```
 
 ### Tables overlapping the TOC
 
@@ -287,12 +303,12 @@ Check specific punctuation rules for [list items](#list-items) below.
 - Be consistent throughout the list: if the majority of the items do not end in a period, do not end any of the items in a period, even if they consist of a complete sentence. The opposite is also valid: if the majority of the items end with a period, end all with a period.
 - Separate list items from explanatory text with a colon (`:`). For example:
 
-    ```md
-    The list is as follows:
+  ```md
+  The list is as follows:
 
-    - First item: this explains the first item.
-    - Second item: this explains the second item.
-    ```
+  - First item: this explains the first item.
+  - Second item: this explains the second item.
+  ```
 
 **Examples:**
 
@@ -504,16 +520,16 @@ To embed a video, follow the instructions below and make sure
 you have your MR reviewed and approved by a technical writer.
 
 1. Copy the code below and paste it into your markdown file.
-  Leave a blank line above and below it. Do NOT edit the code
-  (don't remove or add any spaces, etc).
+   Leave a blank line above and below it. Do NOT edit the code
+   (don't remove or add any spaces, etc).
 1. On YouTube, visit the video URL you want to display. Copy
-  the regular URL from your browser (`https://www.youtube.com/watch?v=VIDEO-ID`)
-  and replace the video title and link in the line under `<div class="video-fallback">`.
+   the regular URL from your browser (`https://www.youtube.com/watch?v=VIDEO-ID`)
+   and replace the video title and link in the line under `<div class="video-fallback">`.
 1. On YouTube, click **Share**, then **Embed**.
 1. Copy the `<iframe>` source (`src`) **URL only**
-  (`https://www.youtube.com/embed/VIDEO-ID`),
-  and paste it, replacing the content of the `src` field in the
-  `iframe` tag.
+   (`https://www.youtube.com/embed/VIDEO-ID`),
+   and paste it, replacing the content of the `src` field in the
+   `iframe` tag.
 
 ```html
 leave a blank line here
@@ -595,7 +611,7 @@ In most cases, content considered for a note should be included:
 #### When to use
 
 Use a note when there is a reason that most or all readers who browse the
-section should see the content. That is, if missed, it’s likely to cause 
+section should see the content. That is, if missed, it’s likely to cause
 major trouble for a minority of users or significant trouble for a majority
 of users.
 
@@ -731,24 +747,24 @@ a helpful link back to how the feature was developed.
 - For features that need to declare the GitLab version that the feature was introduced. Text similar
   to the following should be added immediately below the heading as a blockquote:
 
-    ```md
-    > Introduced in GitLab 11.3.
-    ```
+  ```md
+  > Introduced in GitLab 11.3.
+  ```
 
 - Whenever possible, version text should have a link to the issue, merge request, or epic that introduced the feature.
   An issue is preferred over a merge request, and a merge request is preferred over an epic. For example:
 
-    ```md
-    > [Introduced](<link-to-issue>) in GitLab 11.3.
-    ```
+  ```md
+  > [Introduced](<link-to-issue>) in GitLab 11.3.
+  ```
 
 - If the feature is only available in GitLab Enterprise Edition, mention
   the [paid tier](https://about.gitlab.com/handbook/marketing/product-marketing/#tiers)
   the feature is available in:
 
-    ```md
-    > [Introduced](<link-to-issue>) in [GitLab Starter](https://about.gitlab.com/pricing/) 11.3.
-    ```
+  ```md
+  > [Introduced](<link-to-issue>) in [GitLab Starter](https://about.gitlab.com/pricing/) 11.3.
+  ```
 
 ### Removing version text
 
@@ -855,14 +871,14 @@ When there is a list of steps to perform, usually that entails editing the
 configuration file and reconfiguring/restarting GitLab. In such case, follow
 the style below as a guide:
 
-```md
+````md
 **For Omnibus installations**
 
 1. Edit `/etc/gitlab/gitlab.rb`:
 
-    ```ruby
-    external_url "https://gitlab.example.com"
-    ```
+   ```ruby
+   external_url "https://gitlab.example.com"
+   ```
 
 1. Save the file and [reconfigure] GitLab for the changes to take effect.
 
@@ -872,17 +888,16 @@ the style below as a guide:
 
 1. Edit `config/gitlab.yml`:
 
-    ```yaml
-    gitlab:
-      host: "gitlab.example.com"
-    ```
+   ```yaml
+   gitlab:
+     host: "gitlab.example.com"
+   ```
 
 1. Save the file and [restart] GitLab for the changes to take effect.
 
-
 [reconfigure]: path/to/administration/restart_gitlab.md#omnibus-gitlab-reconfigure
 [restart]: path/to/administration/restart_gitlab.md#installations-from-source
-```
+````
 
 In this case:
 
@@ -901,9 +916,9 @@ on this document. Further explanation is given below.
 
 - Every method must have the REST API request. For example:
 
-    ```
-    GET /projects/:id/repository/branches
-    ```
+  ```
+  GET /projects/:id/repository/branches
+  ```
 
 - Every method must have a detailed
   [description of the parameters](#method-description).
@@ -955,7 +970,7 @@ You can use the following fake tokens as examples.
 
 | Token type            | Token value                                                        |
 |:----------------------|:-------------------------------------------------------------------|
-| Private user token    | `<your_access_token>`                                             |
+| Private user token    | `<your_access_token>`                                              |
 | Personal access token | `n671WNGecHugsdEDPsyo`                                             |
 | Application ID        | `2fcb195768c39e9a94cec2c2e32c59c0aad7a3365c10892e8116b5d83d4096b6` |
 | Application secret    | `04f294d1eaca42b8692017b426d53bbc8fe75f827734f0260710b83a556082df` |
@@ -1076,6 +1091,6 @@ curl --request PUT --header "PRIVATE-TOKEN: <your_access_token>" --data "domain_
 
 [cURL]: http://curl.haxx.se/ "cURL website"
 [single spaces]: http://www.slate.com/articles/technology/technology/2011/01/space_invaders.html
-[gfm]: https://docs.gitlab.com/ce/user/markdown.html#newlines "GitLab flavored markdown documentation"
+[gfm]: ../../user/markdown.md#newlines "GitLab flavored markdown documentation"
 [ce-1242]: https://gitlab.com/gitlab-org/gitlab-ce/issues/1242
 [doc-restart]: ../../administration/restart_gitlab.md "GitLab restart documentation"

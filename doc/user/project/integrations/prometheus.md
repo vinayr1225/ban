@@ -98,7 +98,10 @@ You can view the performance dashboard for an environment by [clicking on the mo
 
 > [Introduced](https://gitlab.com/gitlab-org/gitlab-ee/merge_requests/3799) in [GitLab Premium](https://about.gitlab.com/pricing/) 10.6.
 
-Additional metrics can be monitored by adding them on the Prometheus integration page. Once saved, they will be displayed on the environment performance dashboard.
+Custom metrics can be monitored by adding them on the Prometheus integration page. Once saved, they will be displayed on the environment performance dashboard provided that either:
+
+- A [connected Kubernetes cluster](../clusters/index.md#adding-and-removing-clusters) with the environment scope of `*` is used and [Prometheus installed on the cluster](#enabling-prometheus-integration), or
+- Prometheus is [manually configured](#manual-configuration-of-prometheus).
 
 ![Add New Metric](img/prometheus_add_metric.png)
 
@@ -145,7 +148,6 @@ To configure a custom dashboard:
 
    ```yaml
    dashboard: 'Dashboard Title'
-   priority: 2
    panel_groups:
      - group: 'Group Title'
        panels:
@@ -178,7 +180,6 @@ The following tables outline the details of expected properties.
 | Property | Type | Required | Description |
 | ------ | ------ | ------ | ------ |
 | `dashboard` | string | yes | Heading for the dashboard. Only one dashboard should be defined per file. |
-| `priority` | number | no, default to definition order | Order to appear in dashboard dropdown. Lower number means higher priority, which will be higher in the dropdown. Numbers do not need to be consecutive. |
 | `panel_groups` | array | yes | The panel groups which should be on the dashboard. |
 
 **Panel group (`panel_groups`) properties:**
@@ -186,14 +187,14 @@ The following tables outline the details of expected properties.
 | Property | Type | Required | Description |
 | ------ | ------ | ------ | ------ |
 | `group` | string | required | Heading for the panel group. |
-| `priority` | number | optional, defaults to order in file | Order to appear on the dashboard. Lower number means higher priority, which will be higher on the page. Numbers do not need to be consecutive. |
+| `priority` | number | optional, defaults to order in file | Order to appear on the dashboard. Higher number means higher priority, which will be higher on the page. Numbers do not need to be consecutive. |
 | `panels` | array | required | The panels which should be in the panel group. |
 
 **Panel (`panels`) properties:**
 
 | Property | Type | Required | Description |
 | ------ | ------ | ------ | ------- |
-| `type` | enum | no, defaults to `area-chart` | Specifies the chart type to use. Only `area-chart` is currently supported. |
+| `type` | enum | no, defaults to `area-chart` | Specifies the chart type to use. |
 | `title` | string | yes | Heading for the panel. |
 | `y_label` | string | no, but highly encouraged | Y-Axis label for the panel. |
 | `weight` | number | no, defaults to order in file | Order to appear within the grouping. Lower number means higher priority, which will be higher on the page. Numbers do not need to be consecutive. |
@@ -208,6 +209,65 @@ The following tables outline the details of expected properties.
 | `label` | string | no, but highly encouraged | Defines the legend-label for the query. Should be unique within the panel's metrics. |
 | `query` | string | yes if `query_range` is not defined | Defines the Prometheus query to be used to populate the chart/panel. If defined, the `query` endpoint of the [Prometheus API](https://prometheus.io/docs/prometheus/latest/querying/api/) will be utilized. |
 | `query_range` | string | yes if `query` is not defined | Defines the Prometheus query to be used to populate the chart/panel. If defined, the `query_range` endpoint of the [Prometheus API](https://prometheus.io/docs/prometheus/latest/querying/api/) will be utilized. |
+
+#### Panel types for dashboards
+
+The below panel types are supported in monitoring dashboards.
+
+##### Area
+
+To add an area panel type to a dashboard, look at the following sample dashboard file:
+
+```yaml
+dashboard: 'Dashboard Title'
+panel_groups:
+  - group: 'Group Title'
+    panels:
+      - type: area-chart
+        title: "Chart Title"
+        y_label: "Y-Axis"
+        metrics:
+          - id: 10
+            query_range: 'http_requests_total'
+            label: "Metric of Ages"
+            unit: "count"
+```
+
+Note the following properties:
+
+| Property | Type | Required | Description |
+| ------ | ------ | ------ | ------ |
+| type | string | no | Type of panel to be rendered. Optional for area panel types |
+| query_range | yes | required | For area panel types, you must use a [range query](https://prometheus.io/docs/prometheus/latest/querying/api/#range-queries) |
+
+![area panel type](img/prometheus_dashboard_area_panel_type.png)
+
+##### Single Stat
+
+To add a single stat panel type to a dashboard, look at the following sample dashboard file:
+
+```yaml
+dashboard: 'Dashboard Title'
+panel_groups:
+  - group: 'Group Title'
+    panels:
+      - title: "Single Stat"
+        type: "single-stat"
+        metrics:
+        - id: 10
+          query: 'max(go_memstats_alloc_bytes{job="prometheus"})'
+          unit: MB
+          label: "Total"
+```
+
+Note the following properties:
+
+| Property | Type | Required | Description |
+| ------ | ------ | ------ | ------ |
+| type | string | yes | Type of panel to be rendered. For single stat panel types, set to `single-stat` |
+| query | string | yes | For single stat panel types, you must use an [instant query](https://prometheus.io/docs/prometheus/latest/querying/api/#instant-queries) |
+
+![single stat panel type](img/prometheus_dashboard_single_stat_panel_type.png)
 
 ### Setting up alerts for Prometheus metrics **(ULTIMATE)**
 
@@ -266,8 +326,11 @@ Once enabled, an issue will be opened automatically when an alert is triggered w
   - `starts_at`: Alert start time via `startsAt`
   - `full_query`: Alert query extracted from `generatorURL`
   - Optional list of attached annotations extracted from `annotations/*`
+- Alert [GFM](../../markdown.md): GitLab Flavored Markdown from `annotations/gitlab_incident_markdown`
 
-To further customize the issue, you can add labels, mentions, or any other supported [quick action](../quick_actions.md) in the selected issue template.
+To further customize the issue, you can add labels, mentions, or any other supported [quick action](../quick_actions.md) in the selected issue template, which will apply to all incidents. To limit quick actions or other information to only specific types of alerts, use the `annotations/gitlab_incident_markdown` field.
+
+Since [version 12.2](https://gitlab.com/gitlab-org/gitlab-ce/issues/63373), GitLab will tag each incident issue with the `incident` label automatically. If the label does not yet exist, it will be created automatically as well.
 
 If the metric exceeds the threshold of the alert for over 5 minutes, an email will be sent to all [Maintainers and Owners](../../permissions.md#project-members-permissions) of the project.
 

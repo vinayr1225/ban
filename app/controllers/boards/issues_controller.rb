@@ -26,7 +26,7 @@ module Boards
       list_service = Boards::Issues::ListService.new(board_parent, current_user, filter_params)
       issues = list_service.execute
       issues = issues.page(params[:page]).per(params[:per] || 20).without_count
-      Issue.move_to_end(issues) if Gitlab::Database.read_write?
+      Issue.move_nulls_to_end(issues) if Gitlab::Database.read_write?
       issues = issues.preload(:milestone,
                               :assignees,
                               project: [
@@ -58,11 +58,8 @@ module Boards
       service = Boards::Issues::MoveService.new(board_parent, current_user, move_params(true))
 
       issues = Issue.find(params[:ids])
-      if service.execute_multiple(issues)
-        head :ok
-      else
-        head :unprocessable_entity
-      end
+
+      render json: service.execute_multiple(issues)
     end
 
     def update
