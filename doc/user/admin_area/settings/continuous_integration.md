@@ -135,11 +135,10 @@ sourced from:
 
 To set required pipeline configuration:
 
-
 1. **Create a group** (I.E. `project_templates`) and a **sub group** that will contain the required job definitions called `ci_templates`.
 1. Create a YML file inside `ci_templates` that will contain the job to include (I.E. `forced_include.yml`)
 1. Go to **Admin area > Settings > CI/CD**.
-1. Expand the **Required pipeline configuration** section and select `forced_include` from the `instance` sub-section
+1. Expand the **Required pipeline configuration** section and select [`forced_include` from the `instance` sub-section](../img/required_pipeline_select.png)
 1. Select the required configuration from the provided dropdown.
 1. Click **Save changes**.
 
