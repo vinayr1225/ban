@@ -312,14 +312,14 @@ class Commit
     end
   end
 
-  def status(ref = nil)
+  def status(current_user, ref = nil)
     return @statuses[ref] if @statuses.key?(ref)
 
-    @statuses[ref] = status_for_project(ref, project)
+    @statuses[ref] = status_for_project(ref, project, current_user)
   end
 
-  def status_for_project(ref, pipeline_project)
-    pipeline_project.ci_pipelines.latest_status_per_commit(id, ref)[id]
+  def status_for_project(ref, pipeline_project, current_user)
+    pipeline_project.ci_pipelines.latest_status_per_commit(id, current_user, ref)[id]
   end
 
   def set_status_for_ref(ref, status)

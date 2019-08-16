@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe CommitCollection do
+  let(:user) { create(:user) }
   let(:project) { create(:project, :repository) }
   let(:commit) { project.commit("c1c67abbaf91f624347bb3ae96eabe3a1b742478") }
 
@@ -139,10 +140,10 @@ describe CommitCollection do
       )
 
       collection = described_class.new(project, [commit])
-      collection.with_pipeline_status
+      collection.with_pipeline_status(user)
 
       recorder = ActiveRecord::QueryRecorder.new do
-        expect(commit.status).to eq('success')
+        expect(commit.status).to have_attributes(group: 'success')
       end
 
       expect(recorder.count).to be_zero

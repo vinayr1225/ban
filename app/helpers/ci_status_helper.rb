@@ -64,7 +64,7 @@ module CiStatusHelper
 
   def ci_icon_for_status(status, size: 16)
     if detailed_status?(status)
-      return sprite_icon(status.icon)
+      return sprite_icon(status.icon, size: size)
     end
 
     icon_name =
@@ -112,7 +112,7 @@ module CiStatusHelper
   end
 
   def render_status_with_link(status, path = nil, type: _('pipeline'), tooltip_placement: 'left', cssclass: '', container: 'body', icon_size: 16)
-    klass = "ci-status-link ci-status-icon-#{status.dasherize} d-inline-flex #{cssclass}"
+    klass = "ci-status-link ci-status-icon ci-status-icon-#{status.group} d-inline-flex #{cssclass}"
     title = "#{type.titleize}: #{ci_label_for_status(status)}"
     data = { toggle: 'tooltip', placement: tooltip_placement, container: container }
 

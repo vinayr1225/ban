@@ -1955,13 +1955,20 @@ describe Ci::Pipeline, :mailer do
 
     context 'without a ref' do
       it 'returns a Hash containing the latest status per commit for all refs' do
-        expect(described_class.latest_status_per_commit(%w[123 456]))
-          .to eq({ '123' => 'manual', '456' => 'failed' })
+        statuses = described_class.latest_status_per_commit(%w[123 456], user)
+
+        expect(statuses).to match(
+          '123' => have_attributes(group: 'manual'),
+          '456' => have_attributes(group: 'failed')
+        )
       end
 
       it 'only includes the status of the given commit SHAs' do
-        expect(described_class.latest_status_per_commit(%w[123]))
-          .to eq({ '123' => 'manual' })
+        statuses = described_class.latest_status_per_commit(%w[123], user)
+
+        expect(statuses).to match(
+          '123' => have_attributes(group: 'manual')
+        )
       end
 
       context 'when there are two pipelines for a ref and SHA' do
@@ -1974,16 +1981,22 @@ describe Ci::Pipeline, :mailer do
             project: project
           )
 
-          expect(described_class.latest_status_per_commit(%w[123]))
-            .to eq({ '123' => 'failed' })
+          statuses = described_class.latest_status_per_commit(%w[123], user)
+
+          expect(statuses).to match(
+            '123' => have_attributes(group: 'failed')
+          )
         end
       end
     end
 
     context 'with a ref' do
       it 'only includes the pipelines for the given ref' do
-        expect(described_class.latest_status_per_commit(%w[123 456], 'master'))
-          .to eq({ '123' => 'manual' })
+        statuses = described_class.latest_status_per_commit(%w[123 456], user, 'master')
+
+        expect(statuses).to match(
+          '123' => have_attributes(group: 'manual')
+        )
       end
     end
   end
