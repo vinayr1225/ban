@@ -62,6 +62,7 @@ module Projects
 
       new_project = CreateService.new(current_user, new_params).execute
       return new_project unless new_project.persisted?
+      return new_project if new_project.errors.any?
 
       # Set the forked_from_project relation after saving to avoid having to
       # reload the project to reset the association information and cause an
