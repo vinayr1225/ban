@@ -10681,6 +10681,9 @@ msgstr ""
 msgid "Spam log successfully submitted as ham."
 msgstr ""
 
+msgid "Special characters should be encoded"
+msgstr ""
+
 msgid "Specific Runners"
 msgstr ""
 
