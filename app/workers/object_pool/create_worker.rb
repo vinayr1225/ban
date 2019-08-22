@@ -8,6 +8,8 @@ module ObjectPool
 
     attr_reader :pool
 
+    NotCreated = Class.new(StandardError)
+
     def perform(pool_id)
       @pool = PoolRepository.find_by_id(pool_id)
       return unless pool
@@ -28,9 +30,10 @@ module ObjectPool
 
       pool.create_object_pool
       pool.mark_ready
-    rescue => e
+    rescue
+      msg = pool.inspect
       pool.mark_failed
-      raise e
+      raise NotCreated, msg
     end
 
     def lease_key
