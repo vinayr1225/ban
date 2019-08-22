@@ -6,7 +6,7 @@ class CommitPresenter < Gitlab::View::Presenter::Delegated
   presents :commit
 
   def status_for(ref)
-    can?(current_user, :read_commit_status, commit.project) && commit.status(ref)
+    can?(current_user, :read_commit_status, commit.project) && commit.latest_pipeline(ref)&.detailed_status(current_user)
   end
 
   def any_pipelines?

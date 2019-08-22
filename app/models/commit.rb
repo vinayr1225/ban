@@ -120,7 +120,7 @@ class Commit
 
     @raw = raw_commit
     @project = project
-    @statuses = {}
+    @latest_pipelines = {}
     @gpg_commit = Gitlab::Gpg::Commit.new(self) if project
   end
 
@@ -312,18 +312,22 @@ class Commit
     end
   end
 
-  def status(current_user, ref = nil)
-    return @statuses[ref] if @statuses.key?(ref)
+  def latest_pipeline(ref = nil)
+    return @latest_pipelines[ref] if @latest_pipelines.key?(ref)
 
-    @statuses[ref] = status_for_project(ref, project, current_user)
+    @latest_pipelines[ref] = latest_pipeline_for_project(ref, project)
   end
 
-  def status_for_project(ref, pipeline_project, current_user)
-    pipeline_project.ci_pipelines.latest_status_per_commit(id, current_user, ref)[id]
+  def latest_pipeline_for_project(ref, pipeline_project)
+    pipeline_project.ci_pipelines.latest_pipeline_per_commit(id, ref)[id]
   end
 
-  def set_status_for_ref(ref, status)
-    @statuses[ref] = status
+  def set_latest_pipeline_for_ref(ref, pipeline)
+    @latest_pipelines[ref] = pipeline
+  end
+
+  def status(ref = nil)
+    latest_pipeline(ref)&.status
   end
 
   def signature

@@ -481,56 +481,112 @@ eos
     end
   end
 
-  describe '#status' do
+  describe '#latest_pipeline' do
+    let(:pipeline) { double }
+
     context 'without ref argument' do
-      before do
-        %w[success failed created pending].each do |status|
-          create(:ci_empty_pipeline,
-                 project: project,
-                 sha: commit.sha,
-                 status: status)
-        end
+      let(:result) { commit.latest_pipeline }
+
+      it 'returns the latest pipeline for the project' do
+        expect(commit)
+          .to receive(:latest_pipeline_for_project)
+          .with(nil, project)
+          .and_return(pipeline)
+
+        expect(result).to eq(pipeline)
       end
 
-      it 'gives compound status from latest pipelines' do
-        expect(commit.status).to eq(Ci::Pipeline.latest_status)
-        expect(commit.status).to eq('pending')
+      it 'returns the memoized pipeline for the key of nil' do
+        commit.set_latest_pipeline_for_ref(nil, pipeline)
+
+        expect(commit)
+          .not_to receive(:latest_pipeline_for_project)
+
+        expect(result).to eq(pipeline)
       end
     end
 
     context 'when a particular ref is specified' do
-      let!(:pipeline_from_master) do
-        create(:ci_empty_pipeline,
-               project: project,
-               sha: commit.sha,
-               ref: 'master',
-               status: 'failed')
+      let(:ref) { 'master' }
+      let(:result) { commit.latest_pipeline(ref) }
+
+      it 'returns the latest pipeline for the given ref of the project' do
+        expect(commit)
+          .to receive(:latest_pipeline_for_project)
+          .with(ref, project)
+          .and_return(pipeline)
+
+        expect(result).to eq(pipeline)
       end
 
-      let!(:pipeline_from_fix) do
-        create(:ci_empty_pipeline,
-               project: project,
-               sha: commit.sha,
-               ref: 'fix',
-               status: 'success')
-      end
+      it 'returns the memoized pipeline for the key that matches the ref' do
+        commit.set_latest_pipeline_for_ref(ref, pipeline)
 
-      it 'gives pipelines from a particular branch' do
-        expect(commit.status('master')).to eq(pipeline_from_master.status)
-        expect(commit.status('fix')).to eq(pipeline_from_fix.status)
-      end
+        expect(commit)
+          .not_to receive(:latest_pipeline_for_project)
 
-      it 'gives compound status from latest pipelines if ref is nil' do
-        expect(commit.status(nil)).to eq(pipeline_from_fix.status)
+        expect(result).to eq(pipeline)
       end
     end
   end
 
-  describe '#set_status_for_ref' do
-    it 'sets the status for a given reference' do
-      commit.set_status_for_ref('master', 'failed')
+  describe '#latest_pipeline_for_project' do
+    let(:project_pipelines) { double }
+    let(:pipeline_project) { double }
+    let(:pipeline) { double }
+    let(:ref) { 'master' }
+    let(:result) { commit.latest_pipeline_for_project(ref, pipeline_project) }
 
-      expect(commit.status('master')).to eq('failed')
+    before do
+      allow(pipeline_project).to receive(:ci_pipelines).and_return(project_pipelines)
+    end
+
+    it 'returns the latest pipeline of the commit for the given ref and project' do
+      expect(project_pipelines)
+        .to receive(:latest_pipeline_per_commit)
+        .with(commit.id, ref)
+        .and_return(commit.id => pipeline)
+
+      expect(result).to eq(pipeline)
+    end
+  end
+
+  describe '#set_latest_pipeline_for_ref' do
+    let(:pipeline) { double }
+
+    it 'sets the latest pipeline for a given reference' do
+      commit.set_latest_pipeline_for_ref('master', pipeline)
+
+      expect(commit.latest_pipeline('master')).to eq(pipeline)
+    end
+  end
+
+  describe "#status" do
+    it 'returns the status of the latest pipeline for the given ref' do
+      expect(commit)
+        .to receive(:latest_pipeline)
+        .with('master')
+        .and_return(double(status: 'success'))
+
+      expect(commit.status('master')).to eq('success')
+    end
+
+    it 'returns nil when latest pipeline is not present for the given ref' do
+      expect(commit)
+        .to receive(:latest_pipeline)
+        .with('master')
+        .and_return(nil)
+
+      expect(commit.status('master')).to eq(nil)
+    end
+
+    it 'returns the status of the latest pipeline when no ref is given' do
+      expect(commit)
+        .to receive(:latest_pipeline)
+        .with(nil)
+        .and_return(double(status: 'success'))
+
+      expect(commit.status).to eq('success')
     end
   end
 

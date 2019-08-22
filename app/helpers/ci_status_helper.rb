@@ -96,6 +96,12 @@ module CiStatusHelper
     sprite_icon(icon_name, size: size)
   end
 
+  def ci_icon_class_for_status(status)
+    group = detailed_status?(status) ? status.group : status.dasherize
+
+    "ci-status-icon-#{group}"
+  end
+
   def pipeline_status_cache_key(pipeline_status)
     "pipeline-status/#{pipeline_status.sha}-#{pipeline_status.status}"
   end
@@ -105,14 +111,14 @@ module CiStatusHelper
     path = pipelines_project_commit_path(project, commit, ref: ref)
 
     render_status_with_link(
-      commit.status(ref),
+      commit.status_for(ref),
       path,
       tooltip_placement: tooltip_placement,
       icon_size: 24)
   end
 
   def render_status_with_link(status, path = nil, type: _('pipeline'), tooltip_placement: 'left', cssclass: '', container: 'body', icon_size: 16)
-    klass = "ci-status-link ci-status-icon ci-status-icon-#{status.group} d-inline-flex #{cssclass}"
+    klass = "ci-status-link #{ci_icon_class_for_status(status)} d-inline-flex #{cssclass}"
     title = "#{type.titleize}: #{ci_label_for_status(status)}"
     data = { toggle: 'tooltip', placement: tooltip_placement, container: container }
 
@@ -127,6 +133,7 @@ module CiStatusHelper
 
   def detailed_status?(status)
     status.respond_to?(:text) &&
+      status.respond_to?(:group) &&
       status.respond_to?(:label) &&
       status.respond_to?(:icon)
   end

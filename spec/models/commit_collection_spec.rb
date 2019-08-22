@@ -3,7 +3,6 @@
 require 'spec_helper'
 
 describe CommitCollection do
-  let(:user) { create(:user) }
   let(:project) { create(:project, :repository) }
   let(:commit) { project.commit("c1c67abbaf91f624347bb3ae96eabe3a1b742478") }
 
@@ -126,27 +125,6 @@ describe CommitCollection do
 
         collection.enrich!
       end
-    end
-  end
-
-  describe '#with_pipeline_status' do
-    it 'sets the pipeline status for every commit so no additional queries are necessary' do
-      create(
-        :ci_empty_pipeline,
-        ref: 'master',
-        sha: commit.id,
-        status: 'success',
-        project: project
-      )
-
-      collection = described_class.new(project, [commit])
-      collection.with_pipeline_status(user)
-
-      recorder = ActiveRecord::QueryRecorder.new do
-        expect(commit.status).to have_attributes(group: 'success')
-      end
-
-      expect(recorder.count).to be_zero
     end
   end
 
