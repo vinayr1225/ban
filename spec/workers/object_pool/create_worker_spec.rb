@@ -24,7 +24,7 @@ describe ObjectPool::CreateWorker do
       it 'cleans up the pool' do
         expect do
           subject.perform(pool.id)
-        end.to raise_error(GRPC::FailedPrecondition)
+        end.to raise_error(described_class::NotCreated)
 
         expect(pool.reload.failed?).to be(true)
       end
@@ -38,7 +38,7 @@ describe ObjectPool::CreateWorker do
       it 'marks the pool as failed' do
         expect do
           subject.perform(pool.id)
-        end.to raise_error(GRPC::Internal)
+        end.to raise_error(have_attributes(cause: GRPC::Internal))
 
         expect(pool.reload.failed?).to be(true)
       end
