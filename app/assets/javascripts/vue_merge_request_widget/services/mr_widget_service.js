@@ -5,6 +5,10 @@ export default class MRWidgetService {
     this.endpoints = endpoints;
   }
 
+  addEndpoints(endpoints) {
+    Object.assign(this.endpoints, endpoints);
+  }
+
   merge(data) {
     return axios.post(this.endpoints.mergePath, data);
   }
@@ -29,6 +33,10 @@ export default class MRWidgetService {
     });
   }
 
+  fetchWidgetData() {
+    return axios.get(this.endpoints.mergeRequestWidgetPath);
+  }
+
   poll() {
     return axios.get(this.endpoints.mergeRequestBasicPath);
   }
@@ -38,7 +46,7 @@ export default class MRWidgetService {
     // one which is etag-cached and invalidated and another one which is not cached
     // the idea is to move all the fields to etag-cached endpoint and then perform only one request
     // https://gitlab.com/gitlab-org/gitlab-ce/issues/61559#note_188801390
-    const getData = axios.get(this.endpoints.mergeRequestWidgetPath);
+    const getData = axios.get(this.endpoints.mergeRequestPollWidgetPath);
     const getCachedData = axios.get(this.endpoints.mergeRequestCachedWidgetPath);
 
     return axios

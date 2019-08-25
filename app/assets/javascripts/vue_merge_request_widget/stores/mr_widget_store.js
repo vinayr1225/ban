@@ -8,7 +8,7 @@ import { ATMTWPS_MERGE_STRATEGY, MT_MERGE_STRATEGY, MWPS_MERGE_STRATEGY } from '
 export default class MergeRequestStore {
   constructor(data) {
     this.sha = data.diff_head_sha;
-    this.gitlabLogo = data.gitlabLogo;
+    this.gitlabLogo = gon.gitlab_logo;
 
     this.setPaths(data);
 
@@ -157,7 +157,7 @@ export default class MergeRequestStore {
     this.squashBeforeMergeHelpPath = data.squash_before_merge_help_path;
     this.troubleshootingDocsPath = data.troubleshooting_docs_path;
     this.mergeRequestBasicPath = data.merge_request_basic_path;
-    this.mergeRequestWidgetPath = data.merge_request_widget_path;
+    this.mergeRequestPollWidgetPath = data.merge_request_widget_path;
     this.mergeRequestCachedWidgetPath = data.merge_request_cached_widget_path;
     this.emailPatchesPath = data.email_patches_path;
     this.plainDiffPath = data.plain_diff_path;

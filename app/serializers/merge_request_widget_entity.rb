@@ -43,6 +43,14 @@ class MergeRequestWidgetEntity < Grape::Entity
     help_page_path('ci/merge_request_pipelines/index.md')
   end
 
+  expose :squash_before_merge_help_path do |merge_request|
+    help_page_path("user/project/merge_requests/squash_and_merge")
+  end
+
+  expose :troubleshooting_docs_path do |merge_request|
+    help_page_path('user/project/merge_requests/index.md', anchor: 'troubleshooting')
+  end
+
   expose :ci_environments_status_path do |merge_request|
     ci_environments_status_project_merge_request_path(merge_request.project, merge_request)
   end

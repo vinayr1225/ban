@@ -78,13 +78,23 @@ export default {
       required: false,
       default: null,
     },
+    mr: {
+      type: Object,
+      required: false,
+      default: null,
+    },
+    store: {
+      type: Object,
+      required: false,
+      default: null,
+    },
   },
   data() {
-    const store = new MRWidgetStore(this.mrData || window.gl.mrWidgetData);
-    const service = this.createService(store);
+    const data = this.mrData || window.gl.mrWidgetData;
+    const service = new MRWidgetService(data);
+
     return {
-      mr: store,
-      state: store.state,
+      isLoaded: false,
       service,
     };
   },
@@ -134,17 +144,26 @@ export default {
     },
   },
   created() {
-    this.initPolling();
-    this.bindEventHubListeners();
-    eventHub.$on('mr.discussion.updated', this.checkStatus);
-  },
-  mounted() {
-    this.setFaviconHelper();
-    this.initDeploymentsPolling();
+    this.service
+      .fetchWidgetData()
+      .then(({ data }) => {
+        this.init(data);
 
-    if (this.shouldRenderMergedPipeline) {
-      this.initPostMergeDeploymentsPolling();
-    }
+        this.initPolling();
+
+        this.bindEventHubListeners();
+        eventHub.$on('mr.discussion.updated', this.checkStatus);
+
+        this.setFaviconHelper();
+        this.initDeploymentsPolling();
+
+        if (this.shouldRenderMergedPipeline) {
+          this.initPostMergeDeploymentsPolling();
+        }
+
+        this.isLoaded = true;
+      })
+      .catch(() => createFlash(__('Something went wrong. Please try again.')));
   },
   beforeDestroy() {
     eventHub.$off('mr.discussion.updated', this.checkStatus);
@@ -156,6 +175,13 @@ export default {
     }
   },
   methods: {
+    init(data) {
+      const store = new MRWidgetStore(data);
+
+      this.mr = store;
+      this.state = store.state;
+      this.service.addEndpoints(this.getServiceEndpoints(store));
+    },
     getServiceEndpoints(store) {
       return {
         mergePath: store.mergePath,
@@ -165,14 +191,11 @@ export default {
         sourceBranchPath: store.sourceBranchPath,
         ciEnvironmentsStatusPath: store.ciEnvironmentsStatusPath,
         mergeRequestBasicPath: store.mergeRequestBasicPath,
-        mergeRequestWidgetPath: store.mergeRequestWidgetPath,
+        mergeRequestPollWidgetPath: store.mergeRequestPollWidgetPath,
         mergeRequestCachedWidgetPath: store.mergeRequestCachedWidgetPath,
         mergeActionsContentPath: store.mergeActionsContentPath,
         rebasePath: store.rebasePath,
       };
-    },
-    createService(store) {
-      return new MRWidgetService(this.getServiceEndpoints(store));
     },
     checkStatus(cb, isRebased) {
       return this.service
@@ -319,7 +342,7 @@ export default {
 };
 </script>
 <template>
-  <div class="mr-state-widget prepend-top-default">
+  <div v-if="isLoaded" class="mr-state-widget prepend-top-default">
     <mr-widget-header :mr="mr" />
     <mr-widget-pipeline-container
       v-if="shouldRenderPipelines"

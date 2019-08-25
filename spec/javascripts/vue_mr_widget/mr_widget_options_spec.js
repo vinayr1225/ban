@@ -4,7 +4,9 @@ import eventHub from '~/vue_merge_request_widget/event_hub';
 import notify from '~/lib/utils/notify';
 import { stateKey } from '~/vue_merge_request_widget/stores/state_maps';
 import mountComponent from 'spec/helpers/vue_mount_component_helper';
+import MockAdapter from 'axios-mock-adapter';
 import mockData from './mock_data';
+import axios from '~/lib/utils/axios_utils';
 import { faviconDataUrl, overlayDataUrl } from '../lib/utils/mock_data';
 
 const returnPromise = data =>
@@ -15,23 +17,31 @@ const returnPromise = data =>
   });
 
 describe('mrWidgetOptions', () => {
+  let axiosMock;
   let vm;
   let MrWidgetOptions;
 
+  const mergeRequestWidgetPath = '/merge/request/widget/path';
   const COLLABORATION_MESSAGE = 'Allows commits from members who can merge to the target branch';
 
-  beforeEach(() => {
+  beforeEach(done => {
     // Prevent component mounting
     delete mrWidgetOptions.el;
 
+    axiosMock = new MockAdapter(axios);
+    axiosMock.onGet(mergeRequestWidgetPath).reply(200, mockData);
+
     MrWidgetOptions = Vue.extend(mrWidgetOptions);
     vm = mountComponent(MrWidgetOptions, {
-      mrData: { ...mockData },
+      mrData: { mergeRequestWidgetPath },
     });
+
+    done();
   });
 
   afterEach(() => {
     vm.$destroy();
+    axiosMock.restore();
   });
 
   describe('data', () => {

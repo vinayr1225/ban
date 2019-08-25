@@ -20,10 +20,9 @@
     = javascript_tag nonce: true do
       :plain
         window.gl = window.gl || {};
-        window.gl.mrWidgetData = #{serialize_issuable(@merge_request, serializer: 'widget', issues_links: true)}
+        window.gl.mrWidgetData = window.gl.mrWidgetData || {}
 
-        window.gl.mrWidgetData.squash_before_merge_help_path = '#{help_page_path("user/project/merge_requests/squash_and_merge")}';
-        window.gl.mrWidgetData.troubleshooting_docs_path = '#{help_page_path('user/project/merge_requests/index.md', anchor: 'troubleshooting')}';
+        window.gl.mrWidgetData.mergeRequestWidgetPath = "#{project_merge_request_path(@merge_request.target_project, @merge_request, serializer: :widget, format: :json)}";
 
     #js-vue-mr-widget.mr-widget
 

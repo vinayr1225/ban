@@ -1,0 +1,5 @@
+---
+title: Render MR widget info asynchronously
+merge_request: 32190
+author:
+type: performance
