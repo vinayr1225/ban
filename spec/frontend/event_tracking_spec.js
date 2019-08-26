@@ -1,20 +1,17 @@
 import $ from 'jquery';
 import { setHTMLFixture } from './helpers/fixtures';
 
-import Tracking from '~/tracking';
+import EventTracking from '~/event_tracking';
 
-describe('Tracking', () => {
+describe('EventTracking', () => {
+  let snowplowSpy;
+
   beforeEach(() => {
     window.snowplow = window.snowplow || (() => {});
+    snowplowSpy = jest.spyOn(window, 'snowplow');
   });
 
-  describe('.event', () => {
-    let snowplowSpy = null;
-
-    beforeEach(() => {
-      snowplowSpy = jest.spyOn(window, 'snowplow');
-    });
-
+  describe('.track', () => {
     afterEach(() => {
       window.doNotTrack = undefined;
       navigator.doNotTrack = undefined;
@@ -22,9 +19,9 @@ describe('Tracking', () => {
     });
 
     it('tracks to snowplow (our current tracking system)', () => {
-      Tracking.event('_category_', '_eventName_', { label: '_label_' });
+      EventTracking.track('_category_', '_action_', { label: '_label_' });
 
-      expect(snowplowSpy).toHaveBeenCalledWith('trackStructEvent', '_category_', '_eventName_', {
+      expect(snowplowSpy).toHaveBeenCalledWith('trackStructEvent', '_category_', '_action_', {
         label: '_label_',
         property: '',
         value: '',
@@ -33,74 +30,84 @@ describe('Tracking', () => {
 
     it('skips tracking if snowplow is unavailable', () => {
       window.snowplow = false;
-      Tracking.event('_category_', '_eventName_');
+      EventTracking.track('_category_', '_action_');
 
       expect(snowplowSpy).not.toHaveBeenCalled();
     });
 
     it('skips tracking if the user does not want to be tracked (general spec)', () => {
       window.doNotTrack = '1';
-      Tracking.event('_category_', '_eventName_');
+      EventTracking.track('_category_', '_action_');
 
       expect(snowplowSpy).not.toHaveBeenCalled();
     });
 
     it('skips tracking if the user does not want to be tracked (firefox legacy)', () => {
       navigator.doNotTrack = 'yes';
-      Tracking.event('_category_', '_eventName_');
+      EventTracking.track('_category_', '_action_');
 
       expect(snowplowSpy).not.toHaveBeenCalled();
     });
 
     it('skips tracking if the user does not want to be tracked (IE legacy)', () => {
       navigator.msDoNotTrack = '1';
-      Tracking.event('_category_', '_eventName_');
+      EventTracking.track('_category_', '_action_');
 
       expect(snowplowSpy).not.toHaveBeenCalled();
     });
   });
 
   describe('tracking interface events', () => {
-    let eventSpy = null;
-    let subject = null;
+    let eventSpy;
 
     beforeEach(() => {
-      eventSpy = jest.spyOn(Tracking, 'event');
-      subject = new Tracking('_category_');
+      eventSpy = jest.spyOn(EventTracking, 'track');
       setHTMLFixture(`
-        <input data-track-event="click_input1" data-track-label="_label_" value="_value_"/>
-        <input data-track-event="click_input2" data-track-value="_value_override_" value="_value_"/>
-        <input type="checkbox" data-track-event="toggle_checkbox" value="_value_" checked/>
-        <input class="dropdown" data-track-event="toggle_dropdown"/>
+        <input data-track-action="click_input1" data-track-label="_label_" value="_value_"/>
+        <input data-track-action="click_input2" data-track-value="_value_override_" value="_value_"/>
+        <input data-track-action="click_input3" data-track-context="{foo: 'bar'}"/>
+        <input type="checkbox" data-track-action="toggle_checkbox" value="_value_" checked/>
+        <input class="dropdown" data-track-action="toggle_dropdown"/>
         <div class="js-projects-list-holder"></div>
       `);
+      new EventTracking('_category_').bind();
     });
 
-    it('binds to clicks on elements matching [data-track-event]', () => {
-      subject.bind(document);
-      $('[data-track-event="click_input1"]').click();
+    it('binds to clicks on elements matching [data-track-action]', () => {
+      $('[data-track-action="click_input1"]').click();
 
       expect(eventSpy).toHaveBeenCalledWith('_category_', 'click_input1', {
         label: '_label_',
         value: '_value_',
         property: '',
+        context: undefined,
       });
     });
 
     it('allows value override with the data-track-value attribute', () => {
-      subject.bind(document);
-      $('[data-track-event="click_input2"]').click();
+      $('[data-track-action="click_input2"]').click();
 
       expect(eventSpy).toHaveBeenCalledWith('_category_', 'click_input2', {
         label: '',
         value: '_value_override_',
         property: '',
+        context: undefined,
+      });
+    });
+
+    it('allows providing context for the tracking call', () => {
+      $('[data-track-action="click_input3"]').click();
+
+      expect(eventSpy).toHaveBeenCalledWith('_category_', 'click_input3', {
+        label: '',
+        property: '',
+        value: '',
+        context: "{foo: 'bar'}",
       });
     });
 
     it('handles checkbox values correctly', () => {
-      subject.bind(document);
-      const $checkbox = $('[data-track-event="toggle_checkbox"]');
+      const $checkbox = $('[data-track-action="toggle_checkbox"]');
 
       $checkbox.click(); // unchecking
 
@@ -120,8 +127,7 @@ describe('Tracking', () => {
     });
 
     it('handles bootstrap dropdowns', () => {
-      new Tracking('_category_').bind(document);
-      const $dropdown = $('[data-track-event="toggle_dropdown"]');
+      const $dropdown = $('[data-track-action="toggle_dropdown"]');
 
       $dropdown.trigger('show.bs.dropdown'); // showing
 

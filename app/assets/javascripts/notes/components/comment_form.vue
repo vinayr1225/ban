@@ -384,7 +384,7 @@ append-right-10 comment-type-dropdown js-comment-type-dropdown droplab-dropdown"
                     qa-comment-button"
                   type="submit"
                   :data-track-label="trackingLabel"
-                  data-track-event="click_button"
+                  data-track-action="click_button"
                   @click.prevent="handleSave()"
                 >
                   {{ commentButtonTitle }}

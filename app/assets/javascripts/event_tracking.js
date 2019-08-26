@@ -1,20 +1,21 @@
 import $ from 'jquery';
 
 const extractData = (el, opts = {}) => {
-  const { trackEvent, trackLabel = '', trackProperty = '' } = el.dataset;
+  const { trackAction, trackLabel = '', trackProperty = '', trackContext } = el.dataset;
   let trackValue = el.dataset.trackValue || el.value || '';
   if (el.type === 'checkbox' && !el.checked) trackValue = false;
   return [
-    trackEvent + (opts.suffix || ''),
+    trackAction + (opts.suffix || ''),
     {
       label: trackLabel,
       property: trackProperty,
       value: trackValue,
+      context: trackContext,
     },
   ];
 };
 
-export default class Tracking {
+export default class EventTracking {
   static trackable() {
     return !['1', 'yes'].includes(
       window.doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack,
@@ -25,7 +26,7 @@ export default class Tracking {
     return typeof window.snowplow === 'function' && this.trackable();
   }
 
-  static event(category = document.body.dataset.page, event = 'generic', data = {}) {
+  static track(category = document.body.dataset.page, action = 'generic', data = {}) {
     if (!this.enabled()) return false;
     // eslint-disable-next-line @gitlab/i18n/no-non-i18n-strings
     if (!category) throw new Error('Tracking: no category provided for tracking.');
@@ -33,8 +34,8 @@ export default class Tracking {
     return window.snowplow(
       'trackStructEvent',
       category,
-      event,
-      Object.assign({}, { label: '', property: '', value: '' }, data),
+      action,
+      Object.assign({}, { label: '', property: '', value: '', context: undefined }, data),
     );
   }
 
@@ -44,7 +45,7 @@ export default class Tracking {
 
   bind(container = document) {
     if (!this.constructor.enabled()) return;
-    container.querySelectorAll(`[data-track-event]`).forEach(el => {
+    container.querySelectorAll(`[data-track-action]`).forEach(el => {
       if (this.customHandlingFor(el)) return;
       // jquery is required for select2, so we use it always
       // see: https://github.com/select2/select2/issues/4686
@@ -67,7 +68,7 @@ export default class Tracking {
 
   eventHandler(category = null, opts = {}) {
     return e => {
-      this.constructor.event(category || this.category, ...extractData(e.currentTarget, opts));
+      this.constructor.track(category || this.category, ...extractData(e.currentTarget, opts));
     };
   }
 }
