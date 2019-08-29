@@ -22,8 +22,6 @@ class MergeRequestPollCachedWidgetEntity < IssuableEntity
   expose :cannot_be_merged?, as: :has_conflicts
   expose :can_be_merged?, as: :can_be_merged
   expose :remove_source_branch?, as: :remove_source_branch
-  expose :source_branch_exists?, as: :source_branch_exists
-  expose :branch_missing?, as: :branch_missing
 
   expose :commits_without_merge_commits, using: MergeRequestWidgetCommitEntity do |merge_request|
     merge_request.commits.without_merge_commits

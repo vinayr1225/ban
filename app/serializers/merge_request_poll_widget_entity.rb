@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class MergeRequestPollWidgetEntity < IssuableEntity
+  expose :source_branch_exists?, as: :source_branch_exists
+  expose :branch_missing?, as: :branch_missing
+
   expose :auto_merge_strategy
   expose :available_auto_merge_strategies do |merge_request|
     AutoMergeService.new(merge_request.project, current_user).available_strategies(merge_request) # rubocop: disable CodeReuse/ServiceClass

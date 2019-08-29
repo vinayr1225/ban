@@ -5,6 +5,8 @@
     "iid": { "type": "integer" },
     "description": { "type": ["string", "null"] },
     "title": { "type": "string" },
+    "source_branch_exists": { "type": "boolean" },
+    "branch_missing": { "type": "boolean" },
     "auto_merge_strategy": { "type": ["string", "null"] },
     "available_auto_merge_strategies": { "type": "array" },
     "source_branch_protected": { "type": "boolean" },
