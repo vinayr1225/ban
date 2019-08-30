@@ -122,7 +122,7 @@ module Gitlab
           helpers :before_script, :script, :stage, :type, :after_script,
                   :cache, :image, :services, :only, :except, :variables,
                   :artifacts, :environment, :coverage, :retry,
-                  :parallel, :needs
+                  :parallel, :needs, :rules
 
           attributes :script, :tags, :allow_failure, :when, :dependencies,
                      :needs, :retry, :parallel, :extends, :start_in, :rules
@@ -207,6 +207,7 @@ module Gitlab
               coverage: coverage_defined? ? coverage_value : nil,
               retry: retry_defined? ? retry_value : nil,
               parallel: parallel_defined? ? parallel_value.to_i : nil,
+              rules: rules_defined? ? rules_value : nil,
               artifacts: artifacts_value,
               after_script: after_script_value,
               ignore: ignored?,

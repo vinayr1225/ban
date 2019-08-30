@@ -26,6 +26,12 @@ module Gitlab
               end
             end
           end
+
+          def value
+            # the super returns `Hash`:
+            # {0=>{:when=>"manual"}}
+            super.values
+          end
         end
       end
     end

@@ -488,16 +488,46 @@ describe Ci::CreatePipelineService do
     end
 
     context 'with manual actions' do
-      before do
-        config = YAML.dump({ deploy: { script: 'ls', when: 'manual' } })
-        stub_ci_pipeline_yaml_file(config)
+      context 'when using when:' do
+        before do
+          config = YAML.dump(
+            deploy: {
+              script: 'ls',
+              when: 'manual'
+            }
+          )
+  
+          stub_ci_pipeline_yaml_file(config)
+        end
+
+        it 'does not create a new pipeline' do
+          result = execute_service
+
+          expect(result).to be_persisted
+          expect(result.manual_actions).not_to be_empty
+        end
       end
 
-      it 'does not create a new pipeline' do
-        result = execute_service
+      context 'when using rules:when:' do
+        before do
+          config = YAML.dump(
+            deploy: {
+              script: 'ls',
+              rules: [
+                { when: 'manual' }
+              ]
+            }
+          )
+  
+          stub_ci_pipeline_yaml_file(config)
+        end
 
-        expect(result).to be_persisted
-        expect(result.manual_actions).not_to be_empty
+        it 'does not create a new pipeline' do
+          result = execute_service
+
+          expect(result).to be_persisted
+          expect(result.manual_actions).not_to be_empty
+        end
       end
     end
 

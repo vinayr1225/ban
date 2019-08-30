@@ -74,6 +74,7 @@ module Gitlab
             attributes
               .merge(only: job.fetch(:only, {}))
               .merge(except: job.fetch(:except, {}))
+              .merge(rules: job.fetch(:rules, {}))
           end
 
           { name: stage, index: @stages.index(stage), builds: seeds }
