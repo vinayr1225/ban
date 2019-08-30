@@ -6,7 +6,11 @@ module Clusters
       extend ActiveSupport::Concern
 
       included do
-        belongs_to :cluster, class_name: 'Clusters::Cluster', foreign_key: :cluster_id
+        def self.application_name
+          self.to_s.demodulize.underscore
+        end
+
+        belongs_to :cluster, class_name: 'Clusters::Cluster', foreign_key: :cluster_id, inverse_of: :"application_#{application_name}"
 
         validates :cluster, presence: true
 
