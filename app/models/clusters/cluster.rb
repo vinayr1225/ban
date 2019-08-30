@@ -37,13 +37,13 @@ module Clusters
 
     has_one :platform_kubernetes, class_name: 'Clusters::Platforms::Kubernetes', inverse_of: :cluster, autosave: true
 
-    has_one :application_helm, class_name: 'Clusters::Applications::Helm'
-    has_one :application_ingress, class_name: 'Clusters::Applications::Ingress'
-    has_one :application_cert_manager, class_name: 'Clusters::Applications::CertManager'
-    has_one :application_prometheus, class_name: 'Clusters::Applications::Prometheus'
-    has_one :application_runner, class_name: 'Clusters::Applications::Runner'
-    has_one :application_jupyter, class_name: 'Clusters::Applications::Jupyter'
-    has_one :application_knative, class_name: 'Clusters::Applications::Knative'
+    has_one :application_helm, class_name: 'Clusters::Applications::Helm', inverse_of: :cluster
+    has_one :application_ingress, class_name: 'Clusters::Applications::Ingress', inverse_of: :cluster
+    has_one :application_cert_manager, class_name: 'Clusters::Applications::CertManager', inverse_of: :cluster
+    has_one :application_prometheus, class_name: 'Clusters::Applications::Prometheus', inverse_of: :cluster
+    has_one :application_runner, class_name: 'Clusters::Applications::Runner', inverse_of: :cluster
+    has_one :application_jupyter, class_name: 'Clusters::Applications::Jupyter', inverse_of: :cluster
+    has_one :application_knative, class_name: 'Clusters::Applications::Knative', inverse_of: :cluster
 
     has_many :kubernetes_namespaces
 
@@ -98,6 +98,14 @@ module Clusters
     scope :gcp_provided, -> { where(provider_type: ::Clusters::Cluster.provider_types[:gcp]) }
     scope :gcp_installed, -> { gcp_provided.includes(:provider_gcp).where(cluster_providers_gcp: { status: ::Clusters::Providers::Gcp.state_machines[:status].states[:created].value }) }
     scope :managed, -> { where(managed: true) }
+    scope :preload_applications, -> {
+      associations = [:platform_kubernetes]
+      associations << Clusters::Cluster::APPLICATIONS
+        .keys
+        .map { |app_name| :"application_#{app_name}" }
+
+      eager_load(*associations)
+    }
 
     scope :default_environment, -> { where(environment_scope: DEFAULT_ENVIRONMENT) }
 
@@ -126,16 +134,16 @@ module Clusters
       { connection_status: retrieve_connection_status }
     end
 
+    def preloaded_applications
+      Clusters::Cluster::APPLICATIONS.keys.map do |app_name|
+        public_send("application_#{app_name}")  # rubocop:disable GitlabSecurity/PublicSend
+      end.compact
+    end
+
     def applications
-      [
-        application_helm || build_application_helm,
-        application_ingress || build_application_ingress,
-        application_cert_manager || build_application_cert_manager,
-        application_prometheus || build_application_prometheus,
-        application_runner || build_application_runner,
-        application_jupyter || build_application_jupyter,
-        application_knative || build_application_knative
-      ]
+      Clusters::Cluster::APPLICATIONS.keys.map do |app_name|
+        public_send("application_#{app_name}") || public_send("build_application_#{app_name}") # rubocop:disable GitlabSecurity/PublicSend
+      end
     end
 
     def provider

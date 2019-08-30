@@ -432,6 +432,42 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
     end
   end
 
+  describe '#preloaded_applications' do
+    set(:cluster) { create(:cluster) }
+    let(:cluster_preloaded) { described_class.preload_applications.find(cluster.id) }
+
+    subject { cluster_preloaded.preloaded_applications }
+
+    context 'when all applications are created' do
+      let!(:helm) { create(:clusters_applications_helm, cluster: cluster) }
+      let!(:ingress) { create(:clusters_applications_ingress, cluster: cluster) }
+      let!(:cert_manager) { create(:clusters_applications_cert_manager, cluster: cluster) }
+      let!(:prometheus) { create(:clusters_applications_prometheus, cluster: cluster) }
+      let!(:runner) { create(:clusters_applications_runner, cluster: cluster) }
+      let!(:jupyter) { create(:clusters_applications_jupyter, cluster: cluster) }
+      let!(:knative) { create(:clusters_applications_knative, cluster: cluster) }
+
+      it 'returns a list of created applications' do
+        is_expected.to contain_exactly(helm, ingress, cert_manager, prometheus, runner, jupyter, knative)
+      end
+
+      it 'does only 1 query' do
+        query_count = ActiveRecord::QueryRecorder.new { subject }.count
+
+        expect(query_count).to eq(1)
+      end
+    end
+
+    context 'when not all were created' do
+      let!(:helm) { create(:clusters_applications_helm, cluster: cluster) }
+      let!(:ingress) { create(:clusters_applications_ingress, cluster: cluster) }
+
+      it 'returns a list of created applications' do
+        is_expected.to contain_exactly(helm, ingress)
+      end
+    end
+  end
+
   describe '#applications' do
     set(:cluster) { create(:cluster) }
 
