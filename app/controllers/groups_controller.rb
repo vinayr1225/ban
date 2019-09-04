@@ -198,15 +198,14 @@ class GroupsController < Groups::ApplicationController
   def load_events
     params[:sort] ||= 'latest_activity_desc'
 
-    options = {}
-    options[:include_subgroups] = true
-
-    @projects = GroupProjectsFinder.new(params: params, group: group, options: options, current_user: current_user)
-                  .execute
-                  .includes(:namespace)
+    options = { include_subgroups: true }
+    projects = GroupProjectsFinder.new(params: params, group: group, options: options, current_user: current_user)
+                 .execute
+                 .includes(:namespace)
+    groups = @group.self_and_descendants.public_or_visible_to_user(current_user)
 
     @events = EventCollection
-                .new(@projects, offset: params[:offset].to_i, filter: event_filter)
+                .new(projects, offset: params[:offset].to_i, filter: event_filter, groups: groups)
                 .to_a
 
     Events::RenderService

@@ -125,7 +125,7 @@ describe GroupsController do
     end
 
     context 'as json' do
-      it 'includes all projects from groups and subgroups in event feed' do
+      it 'includes events from all projects in group and subgroups' do
         2.times do
           project = create(:project, group: group)
           create(:event, project: project)
@@ -139,6 +139,19 @@ describe GroupsController do
         expect(response).to have_gitlab_http_status(200)
         expect(json_response['count']).to eq(3)
         expect(assigns(:projects).limit_value).to be_nil
+      end
+
+      it 'includes events from group and subgroups' do
+        subgroup = create(:group, parent: group)
+        subgroup2 = create(:group, parent: subgroup)
+        create(:event, project: nil, group: group)
+        create(:event, project: nil, group: subgroup)
+        create(:event, project: nil, group: subgroup2)
+
+        get :activity, params: { id: group.to_param }, format: :json
+
+        expect(response).to have_gitlab_http_status(200)
+        expect(json_response['count']).to eq(3)
       end
     end
   end
