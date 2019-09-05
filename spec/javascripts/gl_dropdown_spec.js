@@ -243,14 +243,23 @@ describe('glDropdown', function describeDropdown() {
   });
 
   describe('renderItem', () => {
+    function dropdownWithOptions(options) {
+      const $dropdownDiv = $('<div />');
+
+      $dropdownDiv.glDropdown(options);
+
+      return $dropdownDiv.data('glDropdown');
+    }
+
+    function basicDropdown() {
+      return dropdownWithOptions({});
+    }
+
     describe('without selected value', () => {
       let dropdown;
 
       beforeEach(() => {
-        const dropdownOptions = {};
-        const $dropdownDiv = $('<div />');
-        $dropdownDiv.glDropdown(dropdownOptions);
-        dropdown = $dropdownDiv.data('glDropdown');
+        dropdown = basicDropdown();
       });
 
       it('marks items without ID as active', () => {
@@ -274,6 +283,68 @@ describe('glDropdown', function describeDropdown() {
 
         expect(link).not.toHaveClass('is-active');
       });
+    });
+
+    it('should return an empty .separator li when when appropriate', () => {
+      const dropdown = basicDropdown();
+      const sep = { type: 'separator' };
+      const li = dropdown.renderItem(sep);
+
+      expect(li).toHaveClass('separator');
+      expect(li.childNodes.length).toEqual(0);
+    });
+
+    it('should return an empty .divider li when when appropriate', () => {
+      const dropdown = basicDropdown();
+      const div = { type: 'divider' };
+      const li = dropdown.renderItem(div);
+
+      expect(li).toHaveClass('divider');
+      expect(li.childNodes.length).toEqual(0);
+    });
+
+    it('should return a .dropdown-header li with the correct content when when appropriate', () => {
+      const dropdown = basicDropdown();
+      const text = 'My Header';
+      const header = { type: 'header', content: text };
+      const li = dropdown.renderItem(header);
+
+      expect(li).toHaveClass('dropdown-header');
+      expect(li.childNodes.length).toEqual(1);
+      expect(li.textContent).toEqual(text);
+    });
+
+    it('should short-circuit other logic when rendering a hidden item', () => {
+      const dropdown = dropdownWithOptions({
+        hideRow() {
+          return true;
+        },
+      });
+      const sep = { type: 'separator' };
+      const div = { type: 'divider' };
+      const header = { type: 'header', content: 'anything' };
+      const dummy = {};
+      const dummyPlainText = 'My Item To Render';
+
+      const hidden1 = dropdown.renderItem(dummy);
+      const hidden2 = dropdown.renderItem(sep);
+      const hidden3 = dropdown.renderItem(div);
+      const hidden4 = dropdown.renderItem(header);
+      const hidden5 = dropdown.renderItem(dummyPlainText);
+
+      // They should all be hidden
+      expect(hidden1.style.display).toEqual('none');
+      expect(hidden2.style.display).toEqual('none');
+      expect(hidden3.style.display).toEqual('none');
+      expect(hidden4.style.display).toEqual('none');
+      expect(hidden5.style.display).toEqual('none');
+
+      // They should all be empty (because all the other logic is skipped)
+      expect(hidden1.childNodes.length).toEqual(0);
+      expect(hidden2.childNodes.length).toEqual(0);
+      expect(hidden3.childNodes.length).toEqual(0);
+      expect(hidden4.childNodes.length).toEqual(0);
+      expect(hidden5.childNodes.length).toEqual(0);
     });
   });
 
