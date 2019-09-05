@@ -7,7 +7,7 @@ const TEST_TEMPLATE = 'TEST_TEMPLATE';
 const TEST_SEARCH = 'lor';
 
 const createTestData = () => [
-  { header: 'Lorem' },
+  { type: 'header', content: 'Lorem' },
   { text: 'Any' },
   { id: '1', text: 'Lorem', template: TEST_TEMPLATE, icon: '😀' },
   { id: 2, text: 'Ipsum', template: TEST_TEMPLATE, icon: '' },
@@ -18,14 +18,14 @@ const createTestData = () => [
   { id: 7, icon: '😀' },
   { id: 8 },
   { id: 9, text: 'Am\'i"t' },
-  { id: 15, text: 'Consecutur', header: 'More things' },
-  'divider',
+  { id: 15, text: 'Consecutur', type: 'header', content: 'More things' },
+  { type: 'divider' },
   { id: '10', text: 'Nu<strong>n</strong>c', bogus: '123', template: TEST_TEMPLATE, icon: '😀' },
   { id: 11, text: 'Praesent Lorr', bogus: '456', template: TEST_TEMPLATE, icon: '' },
   { id: 12, text: 'Proin', bogus: '789', icon: '😀' },
   { text: 'Sed', bogus: '101', icon: '' },
   { text: 'Fusce' },
-  'separator',
+  { type: 'separator' },
 ];
 
 const testRenderRow = (data, instance) => `<div>renderRow: ${data.text} ${instance.bogus}</div>`;
