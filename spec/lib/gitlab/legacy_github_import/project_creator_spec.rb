@@ -69,8 +69,8 @@ describe Gitlab::LegacyGithubImport::ProjectCreator do
     context 'when visibility level is restricted' do
       context 'when GitHub project is private' do
         before do
-          stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::PRIVATE])
-          allow_any_instance_of(ApplicationSetting).to receive(:default_project_visibility).and_return(Gitlab::VisibilityLevel::INTERNAL)
+          stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::PRIVATE],
+                                   default_project_visibility: Gitlab::VisibilityLevel::INTERNAL)
         end
 
         it 'sets project visibility to the default project visibility' do
@@ -84,8 +84,8 @@ describe Gitlab::LegacyGithubImport::ProjectCreator do
 
       context 'when GitHub project is public' do
         before do
-          stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::PUBLIC])
-          allow_any_instance_of(ApplicationSetting).to receive(:default_project_visibility).and_return(Gitlab::VisibilityLevel::INTERNAL)
+          stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::PUBLIC],
+                                   default_project_visibility: Gitlab::VisibilityLevel::INTERNAL)
         end
 
         it 'sets project visibility to the default project visibility' do

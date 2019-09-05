@@ -612,7 +612,7 @@ describe 'Git HTTP requests' do
 
               context 'when internal auth is disabled' do
                 before do
-                  allow_any_instance_of(ApplicationSetting).to receive(:password_authentication_enabled_for_git?) { false }
+                  stub_application_setting(password_authentication_enabled_for_git: false)
                 end
 
                 it 'rejects pulls with personal access token error message' do

@@ -1040,7 +1040,7 @@ describe Projects::IssuesController do
     context 'properly submits to Akismet' do
       before do
         allow_any_instance_of(AkismetService).to receive_messages(submit_spam: true)
-        allow_any_instance_of(ApplicationSetting).to receive_messages(akismet_enabled: true)
+        stub_application_setting(akismet_enabled: true)
       end
 
       def post_spam

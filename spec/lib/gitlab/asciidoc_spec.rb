@@ -7,10 +7,6 @@ module Gitlab
   describe Asciidoc do
     include FakeBlobHelpers
 
-    before do
-      allow_any_instance_of(ApplicationSetting).to receive(:current).and_return(::ApplicationSetting.create_from_defaults)
-    end
-
     context "without project" do
       let(:input) { '<b>ascii</b>' }
       let(:context) { {} }

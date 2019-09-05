@@ -290,7 +290,7 @@ describe Gitlab::Auth do
     end
 
     it 'throws an error suggesting user create a PAT when internal auth is disabled' do
-      allow_any_instance_of(ApplicationSetting).to receive(:password_authentication_enabled_for_git?) { false }
+      stub_application_setting(password_authentication_enabled_for_git: false)
 
       expect { gl_auth.find_for_git_client('foo', 'bar', project: nil, ip: 'ip') }.to raise_error(Gitlab::Auth::MissingPersonalAccessTokenError)
     end

@@ -17,7 +17,7 @@ describe Groups::CreateService, '#execute' do
 
     context "cannot create group with restricted visibility level" do
       before do
-        allow_any_instance_of(ApplicationSetting).to receive(:restricted_visibility_levels).and_return([Gitlab::VisibilityLevel::PUBLIC])
+        stub_application_setting(restricted_visibility_levels: [Gitlab::VisibilityLevel::PUBLIC])
       end
 
       it { is_expected.not_to be_persisted }

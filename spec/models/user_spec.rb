@@ -243,7 +243,7 @@ describe User do
     describe 'email' do
       context 'when no signup domains whitelisted' do
         before do
-          allow_any_instance_of(ApplicationSetting).to receive(:domain_whitelist).and_return([])
+          stub_application_setting(domain_whitelist: [])
         end
 
         it 'accepts any email' do
@@ -254,7 +254,7 @@ describe User do
 
       context 'when a signup domain is whitelisted and subdomains are allowed' do
         before do
-          allow_any_instance_of(ApplicationSetting).to receive(:domain_whitelist).and_return(['example.com', '*.example.com'])
+          stub_application_setting(domain_whitelist: ['example.com', '*.example.com'])
         end
 
         it 'accepts info@example.com' do
@@ -275,7 +275,7 @@ describe User do
 
       context 'when a signup domain is whitelisted and subdomains are not allowed' do
         before do
-          allow_any_instance_of(ApplicationSetting).to receive(:domain_whitelist).and_return(['example.com'])
+          stub_application_setting(domain_whitelist: ['example.com'])
         end
 
         it 'accepts info@example.com' do
@@ -301,8 +301,8 @@ describe User do
 
       context 'domain blacklist' do
         before do
-          allow_any_instance_of(ApplicationSetting).to receive(:domain_blacklist_enabled?).and_return(true)
-          allow_any_instance_of(ApplicationSetting).to receive(:domain_blacklist).and_return(['example.com'])
+          stub_application_setting(domain_blacklist_enabled: true)
+          stub_application_setting(domain_blacklist: ['example.com'])
         end
 
         context 'when a signup domain is blacklisted' do
@@ -324,8 +324,8 @@ describe User do
 
         context 'when a signup domain is blacklisted but a wildcard subdomain is allowed' do
           before do
-            allow_any_instance_of(ApplicationSetting).to receive(:domain_blacklist).and_return(['test.example.com'])
-            allow_any_instance_of(ApplicationSetting).to receive(:domain_whitelist).and_return(['*.example.com'])
+            stub_application_setting(domain_blacklist: ['test.example.com'])
+            stub_application_setting(domain_whitelist: ['*.example.com'])
           end
 
           it 'gives priority to whitelist and allow info@test.example.com' do
@@ -336,7 +336,7 @@ describe User do
 
         context 'with both lists containing a domain' do
           before do
-            allow_any_instance_of(ApplicationSetting).to receive(:domain_whitelist).and_return(['test.com'])
+            stub_application_setting(domain_whitelist: ['test.com'])
           end
 
           it 'accepts info@test.com' do
@@ -845,7 +845,7 @@ describe User do
 
   describe '#confirm' do
     before do
-      allow_any_instance_of(ApplicationSetting).to receive(:send_user_confirmation_email).and_return(true)
+      stub_application_setting(send_user_confirmation_email: true)
     end
 
     let(:user) { create(:user, confirmed_at: nil, unconfirmed_email: 'test@gitlab.com') }
