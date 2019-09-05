@@ -162,11 +162,12 @@ function createLink(url, selected, options) {
   const link = document.createElement('a');
 
   link.href = url;
-  link.classList.toggle('is-active', selected);
 
   if (options.icon) {
     link.classList.add('d-flex', 'align-items-center');
   }
+
+  link.classList.toggle('is-active', selected);
 
   return link;
 }
@@ -200,12 +201,12 @@ function generateLink(row, chunk, options) {
   return row;
 }
 
-function standardRender(li, chunk, options) {
+function standardRender(li, chunk, options, instance) {
   let row;
 
   if (options.renderRow) {
     // Arbitrary consumer override
-    row = options.renderRow(chunk);
+    row = options.renderRow(chunk, instance);
   } else {
     // Default render logic
     row = generateLink(li, chunk, options);
@@ -214,16 +215,24 @@ function standardRender(li, chunk, options) {
   return row;
 }
 
-export default function item({ data: chunk, options = {}, group = false, index = false }) {
+export default function item({
+  data: chunk,
+  options = {},
+  group = false,
+  index = false,
+  instance,
+}) {
   const opts = ingestOptions(options, group, index);
   let li = document.createElement('li');
 
   if (shouldHide(chunk, opts)) {
     li = hideElement(li);
-  } else if (specialProcessors.has(chunk.type)) {
+  }
+
+  if (specialProcessors.has(chunk.type)) {
     li = specialProcessors.get(chunk.type)(li, chunk);
   } else {
-    li = standardRender(li, chunk, opts);
+    li = standardRender(li, chunk, opts, instance);
   }
 
   return li;

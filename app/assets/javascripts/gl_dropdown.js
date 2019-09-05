@@ -697,6 +697,7 @@ const GitLabDropdown = (function() {
       data,
       group,
       index,
+      instance: this,
     });
   };
 
