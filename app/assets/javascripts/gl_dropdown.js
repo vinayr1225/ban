@@ -8,7 +8,7 @@ import axios from './lib/utils/axios_utils';
 import { visitUrl } from './lib/utils/url_utility';
 import { isObject } from './lib/utils/type_utility';
 
-var GitLabDropdown, GitLabDropdownFilter, GitLabDropdownRemote, GitLabDropdownInput;
+var GitLabDropdownFilter, GitLabDropdownRemote, GitLabDropdownInput;
 
 GitLabDropdownInput = (function() {
   function GitLabDropdownInput(input, options) {
@@ -261,7 +261,7 @@ GitLabDropdownRemote = (function() {
   return GitLabDropdownRemote;
 })();
 
-GitLabDropdown = (function() {
+const GitLabDropdown = (function() {
   var ACTIVE_CLASS,
     FILTER_INPUT,
     NO_FILTER_INPUT,
@@ -1104,3 +1104,6 @@ $.fn.glDropdown = function(opts) {
     }
   });
 };
+
+// eslint-disable-next-line import/prefer-default-export
+export { GitLabDropdown };

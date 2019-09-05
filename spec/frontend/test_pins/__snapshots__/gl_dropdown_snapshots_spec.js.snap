@@ -1,0 +1,7095 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow ([Function testRenderRow]) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow ([Function testRenderRow]) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      text: Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      text: Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      text: Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      text: Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        text: Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        text: Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        text: Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        text: Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        text: Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        text: Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      text: Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        text: Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Lorem
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        "
+        <b>
+          text: Ipsum
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit 
+        <b>
+          L
+        </b>
+        <b>
+          o
+        </b>
+        <b>
+          r
+        </b>
+        rr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        "
+        <b>
+          text: Praesent Lorr
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+    style="display: none;"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("") with renderRow (null) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow ([Function testRenderRow]) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow ([Function testRenderRow]) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      text: Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      text: Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      text: Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      text: Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        text: Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        text: Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        text: Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        text: Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        text: Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        text: Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      text: Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        text: Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Lorem
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        "
+        <b>
+          text: Ipsum
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit 
+        <b>
+          L
+        </b>
+        <b>
+          o
+        </b>
+        <b>
+          r
+        </b>
+        rr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        "
+        <b>
+          text: Praesent Lorr
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="http://example.com/thing/4"
+    >
+      Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="http://example.com/thing/5"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="http://example.com/thing/6"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+    style="display: none;"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (TEST_GROUP) and selection ("12") with renderRow (null) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="1"
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="2"
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="3"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="4"
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="5"
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="6"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="7"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="8"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="9"
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="10"
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="13"
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="14"
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      class="is-active"
+      data-group="TEST_GROUP"
+      data-index="15"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="16"
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      data-group="TEST_GROUP"
+      data-index="17"
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow ([Function testRenderRow]) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow ([Function testRenderRow]) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      text: Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/2"
+    >
+      text: Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      text: Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      text: Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        text: Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        text: Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        text: Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        text: Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        text: Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        text: Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      text: Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        text: Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Lorem
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        "
+        <b>
+          text: Ipsum
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit 
+        <b>
+          L
+        </b>
+        <b>
+          o
+        </b>
+        <b>
+          r
+        </b>
+        rr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        "
+        <b>
+          text: Praesent Lorr
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/2"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/6"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/8"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+    style="display: none;"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("") with renderRow (null) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow ([Function testRenderRow]) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow ([Function testRenderRow]) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  "<div>renderRow: Any instance</div>",
+  "<div>renderRow: Lorem instance</div>",
+  "<div>renderRow: Ipsum instance</div>",
+  "<div>renderRow: Dolar instance</div>",
+  "<div>renderRow: Sit Lorrr instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow:  instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: undefined instance</div>",
+  "<div>renderRow: Am'i\\"t instance</div>",
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  "<div>renderRow: Nu<strong>n</strong>c instance</div>",
+  "<div>renderRow: Praesent Lorr instance</div>",
+  "<div>renderRow: Proin instance</div>",
+  "<div>renderRow: Sed instance</div>",
+  "<div>renderRow: Fusce instance</div>",
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      text: Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      href="http://example.com/thing/2"
+    >
+      text: Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      text: Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    >
+      text: 
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      text: Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        text: Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center is-active"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        text: Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        text: 
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        text: Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        text: Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        text: Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        text: Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      text: Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      text: Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    >
+      "
+      <b>
+        text: 
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    >
+      text: undefined
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      text: Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        text: Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      text: Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      text: Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text ([Function testText]) and highlight (true) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Lorem
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center is-active"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        "
+        <b>
+          text: Ipsum
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        text: Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        text: Sit 
+        <b>
+          L
+        </b>
+        <b>
+          o
+        </b>
+        <b>
+          r
+        </b>
+        rr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/6"
+    >
+      <span>
+        "
+        <b>
+          text: 
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/8"
+    >
+      <span>
+        text: undefined
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        text: Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        "
+        <b>
+          text: Nu&lt;strong&gt;n&lt;/strong&gt;c
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        "
+        <b>
+          text: Praesent Lorr
+        </b>
+        " TEST_TEMPLATE
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        text: Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        text: Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      href="http://example.com/thing/2"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (false) and icon (true) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Any
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/1"
+    >
+      😀
+      <span>
+        Lorem
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center is-active"
+      href="http://example.com/thing/2"
+    >
+      <span>
+        Ipsum
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/3"
+    >
+      😀
+      <span>
+        Dolar
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/4"
+    >
+      <span>
+        Sit Lorrr
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/5"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/6"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/7"
+    >
+      😀
+      <span />
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/8"
+    >
+      <span />
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/9"
+    >
+      <span>
+        Am'i"t
+      </span>
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/10"
+    >
+      😀
+      <span>
+        Nu
+        <strong>
+          n
+        </strong>
+        c
+      </span>
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/11"
+    >
+      <span>
+        Praesent Lorr
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/12"
+    >
+      😀
+      <span>
+        Proin
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Sed
+      </span>
+    </a>
+  </li>,
+  <li>
+    <a
+      class="d-flex align-items-center"
+      href="http://example.com/thing/undefined"
+    >
+      <span>
+        Fusce
+      </span>
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url ([Function testUrl]) and text (null) and highlight (true) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/1"
+    >
+      "
+      <b>
+        Lorem
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      href="http://example.com/thing/2"
+    >
+      "
+      <b>
+        Ipsum
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/3"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/4"
+    >
+      Sit 
+      <b>
+        L
+      </b>
+      <b>
+        o
+      </b>
+      <b>
+        r
+      </b>
+      rr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/5"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/6"
+    >
+      "
+      <b />
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/7"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/8"
+    />
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/9"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="http://example.com/thing/10"
+    >
+      "
+      <b>
+        Nu&lt;strong&gt;n&lt;/strong&gt;c
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="http://example.com/thing/11"
+    >
+      "
+      <b>
+        Praesent Lorr
+      </b>
+      " TEST_TEMPLATE
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/12"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="http://example.com/thing/undefined"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id ([Function testId]) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow ([Function testHideRow]) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+    style="display: none;"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li
+    style="display: none;"
+  >
+    <a
+      class="is-active"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
+
+exports[`gl_dropdown snapshots renderData with group (null) and selection ("12") with renderRow (null) and hideRow (null) and id (null) and url (null) and text (null) and highlight (false) and icon (false) should match snapshot 1`] = `
+Array [
+  <li
+    class="dropdown-header"
+  >
+    Lorem
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Any
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Lorem
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Ipsum
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Dolar
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sit Lorrr
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    />
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Am'i"t
+    </a>
+  </li>,
+  <li
+    class="dropdown-header"
+  >
+    More things
+  </li>,
+  <li
+    class="divider"
+  />,
+  <li>
+    <a
+      href="#"
+    >
+      Nu&lt;strong&gt;n&lt;/strong&gt;c
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Praesent Lorr
+    </a>
+  </li>,
+  <li>
+    <a
+      class="is-active"
+      href="#"
+    >
+      Proin
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Sed
+    </a>
+  </li>,
+  <li>
+    <a
+      href="#"
+    >
+      Fusce
+    </a>
+  </li>,
+  <li
+    class="separator"
+  />,
+]
+`;
