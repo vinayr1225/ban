@@ -106,12 +106,12 @@ module CiStatusHelper
     "pipeline-status/#{pipeline_status.sha}-#{pipeline_status.status}"
   end
 
-  def render_commit_status(commit, ref: nil, tooltip_placement: 'left')
+  def render_commit_status(commit, status, ref: nil, tooltip_placement: 'left')
     project = commit.project
     path = pipelines_project_commit_path(project, commit, ref: ref)
 
     render_status_with_link(
-      commit.status_for(ref),
+      status,
       path,
       tooltip_placement: tooltip_placement,
       icon_size: 24)

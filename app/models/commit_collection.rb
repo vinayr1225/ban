@@ -41,11 +41,13 @@ class CommitCollection
   def with_latest_pipeline(ref = nil)
     pipelines = project.ci_pipelines.latest_pipeline_per_commit(map(&:id), ref)
 
-    each do |commit|
-      commit.set_latest_pipeline_for_ref(ref, pipelines[commit.id])
+    commits_with_pipeline = map do |commit|
+      CommitWithPipeline.new(commit).tap do |commit_with_pipeline|
+        commit_with_pipeline.set_latest_pipeline_for_ref(ref, pipelines[commit.id])
+      end
     end
 
-    self
+    self.class.new(project, commits_with_pipeline, ref)
   end
 
   def unenriched

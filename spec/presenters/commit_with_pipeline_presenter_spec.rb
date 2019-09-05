@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-describe CommitPresenter do
+describe CommitWithPipelinePresenter do
   let(:project) { create(:project, :repository) }
-  let(:commit) { project.commit }
+  let(:commit) { CommitWithPipeline.new(project.commit) }
   let(:user) { create(:user) }
   let(:presenter) { described_class.new(commit, current_user: user) }
 

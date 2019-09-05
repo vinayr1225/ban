@@ -51,6 +51,30 @@ describe CommitCollection do
     end
   end
 
+  describe '#with_latest_pipeline' do
+    let!(:pipeline) do
+      create(
+        :ci_empty_pipeline,
+        ref: 'master',
+        sha: commit.id,
+        status: 'success',
+        project: project
+      )
+    end
+
+    it 'sets the latest pipeline for every commit so no additional queries are necessary' do
+      collection = described_class.new(project, [commit])
+      collection = collection.with_latest_pipeline('master')
+
+      recorder = ActiveRecord::QueryRecorder.new do
+        expect(collection.map {|c| c.latest_pipeline('master') })
+          .to eq([pipeline])
+      end
+
+      expect(recorder.count).to be_zero
+    end
+  end
+
   describe 'enrichment methods' do
     let(:gitaly_commit) { commit }
     let(:hash_commit) { Commit.from_hash(gitaly_commit.to_hash, project) }
