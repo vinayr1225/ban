@@ -16,8 +16,10 @@ class ClusterRemoveWorker
   #
   # This limit should be at least higher than the number of uninstall
   # dependencies of an applications.
-  EXECUTION_LIMIT = 5
-  EXECUTION_INTERVAL = 10.seconds
+  EXECUTION_LIMIT = 10
+  EXECUTION_INTERVAL = 20.seconds
+
+  ExceededExecutionLimitError = Class.new(StandardError)
 
   def perform(cluster_id, execution_count = 0)
     @execution_count = execution_count
@@ -25,11 +27,9 @@ class ClusterRemoveWorker
     # needs to be manually retried.
     #
     # https://gitlab.com/gitlab-org/gitlab-ce/issues/66729
-    return if exceeded_execution_limit?
+    return log_exceeded_execution_limit_error if exceeded_execution_limit?
 
     @cluster = Clusters::Cluster.preload_applications.find_by_id(cluster_id)
-
-    return unless @cluster
 
     uninstallable_apps = @cluster.preloaded_applications.select(&:can_uninstall?)
 
@@ -65,6 +65,21 @@ class ClusterRemoveWorker
     application.make_scheduled!
 
     Clusters::Applications::UninstallService.new(application).execute
+  end
+
+  def logger
+    @logger ||= Gitlab::Kubernetes::Logger.build
+  end
+
+  def log_exceeded_execution_limit_error
+    logger.error({
+      exception: ExceededExecutionLimitError.name,
+      status_code: nil,
+      namespace: nil,
+      class_name: self.class.name,
+      event: :failed_to_remove_cluster_and_resources,
+      message: "retried too many times"
+    })
   end
 
   # def delete_roles_and_namespaces
