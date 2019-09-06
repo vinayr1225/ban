@@ -76,6 +76,107 @@ describe Gitlab::Ci::Parsers::Test::Junit do
         end
       end
 
+      context 'testcase data' do
+        context 'has failure' do
+          let(:junit) do
+            <<-EOF.strip_heredoc
+              <testsuite>
+                <testcase classname='Calculator' name='sumTest1' time='0.01'>
+                  <failure>Some failure</failure>
+                </testcase>
+              </testsuite>
+            EOF
+          end
+          let(:test_case) { test_cases[0] }
+
+          before do
+            expect { subject }.not_to raise_error
+          end
+
+          it 'has failed as status' do
+            expect(test_case.status).to eq(::Gitlab::Ci::Reports::TestCase::STATUS_FAILED)
+          end
+
+          it 'has the system output' do
+            expect(test_case.system_output).to eq('Some failure')
+          end
+        end
+
+        context 'has error' do
+          let(:junit) do
+            <<-EOF.strip_heredoc
+              <testsuite>
+                <testcase classname='Calculator' name='sumTest1' time='0.01'>
+                  <error>Some error</error>
+                </testcase>
+              </testsuite>
+            EOF
+          end
+          let(:test_case) { test_cases[0] }
+
+          before do
+            expect { subject }.not_to raise_error
+          end
+
+          it 'has failed as status' do
+            expect(test_case.status).to eq(::Gitlab::Ci::Reports::TestCase::STATUS_FAILED)
+          end
+
+          it 'has the system output' do
+            expect(test_case.system_output).to eq('Some error')
+          end
+        end
+
+        context 'is unknown' do
+          let(:junit) do
+            <<-EOF.strip_heredoc
+              <testsuite>
+                <testcase classname='Calculator' name='sumTest1' time='0.01'>
+                  <foo>Some foo</foo>
+                </testcase>
+              </testsuite>
+            EOF
+          end
+          let(:test_case) { test_cases[0] }
+
+          before do
+            expect { subject }.not_to raise_error
+          end
+
+          it 'has success as status' do
+            expect(test_case.status).to eq(::Gitlab::Ci::Reports::TestCase::STATUS_SUCCESS)
+          end
+
+          it 'has no system output' do
+            expect(test_case.system_output).to be_nil
+          end
+        end
+
+        context 'is empty' do
+          let(:junit) do
+            <<-EOF.strip_heredoc
+              <testsuite>
+                <testcase classname='Calculator' name='sumTest1' time='0.01'>
+                </testcase>
+              </testsuite>
+            EOF
+          end
+          let(:test_case) { test_cases[0] }
+
+          before do
+            expect { subject }.not_to raise_error
+          end
+
+          it 'has success as status' do
+            expect(test_case.status).to eq(::Gitlab::Ci::Reports::TestCase::STATUS_SUCCESS)
+          end
+
+          it 'has no system output' do
+            expect(test_case.system_output).to be_nil
+          end
+        end
+      end
+
       context 'PHPUnit' do
         let(:junit) do
           <<-EOF.strip_heredoc

@@ -49,6 +49,9 @@ module Gitlab
             if data['failure']
               status = ::Gitlab::Ci::Reports::TestCase::STATUS_FAILED
               system_output = data['failure']
+            elsif data['error']
+              status = ::Gitlab::Ci::Reports::TestCase::STATUS_FAILED
+              system_output = data['error']
             else
               status = ::Gitlab::Ci::Reports::TestCase::STATUS_SUCCESS
               system_output = nil
