@@ -136,7 +136,7 @@ module Clusters
 
     def preloaded_applications
       Clusters::Cluster::APPLICATIONS.keys.map do |app_name|
-        public_send("application_#{app_name}")  # rubocop:disable GitlabSecurity/PublicSend
+        public_send("application_#{app_name}") # rubocop:disable GitlabSecurity/PublicSend
       end.compact
     end
 
