@@ -68,6 +68,11 @@ module Clusters
         ca_key.present? && ca_cert.present?
       end
 
+      def post_uninstall
+        cluster.kubeclient.delete_namespace(Gitlab::Kubernetes::Helm::NAMESPACE)
+      rescue Kubeclient::ResourceNotFoundError
+      end
+
       private
 
       def files
