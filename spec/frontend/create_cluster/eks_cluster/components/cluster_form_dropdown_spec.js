@@ -1,13 +1,13 @@
 import { shallowMount } from '@vue/test-utils';
 
-import EksDropdown from '~/create_cluster/eks_cluster/components/eks_dropdown.vue';
+import ClusterFormDropdown from '~/create_cluster/eks_cluster/components/cluster_form_dropdown.vue';
 import DropdownButton from '~/vue_shared/components/dropdown/dropdown_button.vue';
 import DropdownSearchInput from '~/vue_shared/components/dropdown/dropdown_search_input.vue';
 import DropdownHiddenInput from '~/vue_shared/components/dropdown/dropdown_hidden_input.vue';
 
-describe('EksDropdown', () => {
+describe('ClusterFormDropdown', () => {
   const buildVM = (props = {}) =>
-    shallowMount(EksDropdown, {
+    shallowMount(ClusterFormDropdown, {
       propsData: props,
     });
 
@@ -28,14 +28,14 @@ describe('EksDropdown', () => {
       vm = buildVM({});
 
       vm.setData({ selectedItem });
-    })
+    });
     it('displays selected item label', () => {
       expect(vm.find(DropdownButton).props('toggleText')).toEqual(selectedItem.name);
     });
 
     it('sets selected value to dropdown hidden input', () => {
       expect(vm.find(DropdownHiddenInput).props('value')).toEqual(selectedItem.value);
-    })
+    });
   });
 
   describe('when an item is selected and has a custom label property', () => {
