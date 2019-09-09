@@ -44,7 +44,8 @@ class ClusterRemoveWorker
     # for them to finish their uninstallation.
     return schedule_next_execution if @cluster.preloaded_applications.present?
 
-    # delete_roles_and_namespaces
+    delete_deployed_namespaces
+    delete_gitlab_service_account
 
     @cluster.destroy
   end
@@ -82,6 +83,27 @@ class ClusterRemoveWorker
     })
   end
 
-  # def delete_roles_and_namespaces
-  # end
+  def kubeclient
+    @cluster.kubeclient
+  end
+
+  def delete_deployed_namespaces
+    @cluster.kubernetes_namespaces.each do |kubernetes_namespace|
+      kubeclient_delete_namespace(kubernetes_namespace.namespace)
+      kubernetes_namespace.destroy!
+    end
+  end
+
+  def kubeclient_delete_namespace(namespace)
+    kubeclient.delete_namespace(namespace)
+  rescue Kubeclient::ResourceNotFoundError
+  end
+
+  def delete_gitlab_service_account
+    kubeclient.delete_service_account(
+      ::Clusters::Kubernetes::GITLAB_SERVICE_ACCOUNT_NAME,
+      ::Clusters::Kubernetes::GITLAB_SERVICE_ACCOUNT_NAMESPACE
+    )
+  rescue Kubeclient::ResourceNotFoundError
+  end
 end

@@ -6,16 +6,35 @@ describe ClusterRemoveWorker do
   describe '#perform' do
     subject { described_class.new.perform(cluster.id) }
 
-    let!(:cluster) { create(:cluster, provider_type: :gcp) }
+    let!(:cluster) { create(:cluster, :project, provider_type: :gcp) }
 
     context 'when cluster has no applications or roles' do
+      let(:kubeclient_intance_double) do
+        instance_double(Gitlab::Kubernetes::KubeClient, delete_namespace: nil, delete_service_account: nil)
+      end
+
+      before do
+        allow_any_instance_of(Clusters::Cluster).to receive(:kubeclient).and_return(kubeclient_intance_double)
+
+        %i(staging production).each do |environment|
+          environment = create(:environment, name: environment, project: cluster.project)
+
+          create(:cluster_kubernetes_namespace,
+            cluster: cluster,
+            cluster_project: cluster.cluster_project,
+            project: cluster.cluster_project.project,
+            environment: environment)
+        end
+      end
+
+      it 'deletes namespaces' do
+        expect { subject }.to change { Clusters::KubernetesNamespace.count }.by(-2)
+      end
+
       it 'deletes cluster' do
         expect { subject }.to change { Clusters::Cluster.count }.by(-1)
       end
     end
-
-    # context 'when cluster has roles' do
-    # end
 
     context 'when cluster has uninstallable applications' do
       context 'has applications with dependencies' do
