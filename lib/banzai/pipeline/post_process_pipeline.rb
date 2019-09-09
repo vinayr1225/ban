@@ -5,6 +5,7 @@ module Banzai
     class PostProcessPipeline < BasePipeline
       def self.filters
         @filters ||= FilterArray[
+          Filter::DateTimeFilter,
           *internal_link_filters,
           Filter::AbsoluteLinkFilter
         ]
