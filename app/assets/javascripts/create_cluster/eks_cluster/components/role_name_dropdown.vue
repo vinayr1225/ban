@@ -1,5 +1,4 @@
 <script>
-import _ from 'underscore';
 import { sprintf, s__ } from '~/locale';
 
 import ClusterFormDropdown from './cluster_form_dropdown.vue';
@@ -50,7 +49,7 @@ export default {
       :placeholder="s__('ClusterIntergation|Select role name')"
       :search-field-placeholder="s__('ClusterIntegration|Search IAM Roles')"
       :empty-text="s__('ClusterIntegration|No IAM Roles found')"
-    ></cluster-form-dropdown>
+    />
     <p class="form-text text-muted" v-html="helpText"></p>
   </div>
 </template>

@@ -19,7 +19,7 @@ export default {
       <label class="label-bold" name="role" for="eks-role">
         {{ s__('ClusterIntegration|Role name') }}
       </label>
-      <role-name-dropdown></role-name-dropdown>
+      <role-name-dropdown />
     </div>
   </form>
 </template>
