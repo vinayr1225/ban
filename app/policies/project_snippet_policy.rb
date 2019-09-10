@@ -45,4 +45,5 @@ class ProjectSnippetPolicy < BasePolicy
   end
 
   rule { ~can?(:read_project_snippet) }.prevent :create_note
+  rule { external_user }.prevent :create_project_snippet
 end

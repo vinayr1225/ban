@@ -41,6 +41,7 @@ describe ProjectSnippetPolicy do
 
       it do
         expect_allowed(:read_project_snippet, :create_note)
+        expect_disallowed(:create_project_snippet)
         expect_disallowed(*author_permissions)
       end
     end
@@ -72,6 +73,7 @@ describe ProjectSnippetPolicy do
 
       it do
         expect_disallowed(:read_project_snippet, :create_note)
+        expect_disallowed(:create_project_snippet)
         expect_disallowed(*author_permissions)
       end
 
@@ -139,6 +141,7 @@ describe ProjectSnippetPolicy do
 
         it do
           expect_allowed(:read_project_snippet, :create_note)
+          expect_disallowed(:create_project_snippet)
           expect_disallowed(*author_permissions)
         end
       end

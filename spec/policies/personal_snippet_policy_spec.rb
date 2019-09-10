@@ -43,6 +43,18 @@ describe PersonalSnippetPolicy do
       end
     end
 
+    context 'external user' do
+      subject { permissions(external_user) }
+
+      it do
+        is_expected.to be_allowed(:read_personal_snippet)
+        is_expected.to be_disallowed(:create_personal_snippet)
+        is_expected.to be_allowed(:create_note)
+        is_expected.to be_allowed(:award_emoji)
+        is_expected.to be_disallowed(*author_permissions)
+      end
+    end
+
     context 'author' do
       subject { permissions(snippet.author) }
 
@@ -85,6 +97,7 @@ describe PersonalSnippetPolicy do
 
       it do
         is_expected.to be_disallowed(:read_personal_snippet)
+        is_expected.to be_disallowed(:create_personal_snippet)
         is_expected.to be_disallowed(:create_note)
         is_expected.to be_disallowed(:award_emoji)
         is_expected.to be_disallowed(*author_permissions)
@@ -144,6 +157,7 @@ describe PersonalSnippetPolicy do
 
       it do
         is_expected.to be_disallowed(:read_personal_snippet)
+        is_expected.to be_disallowed(:create_personal_snippet)
         is_expected.to be_disallowed(:create_note)
         is_expected.to be_disallowed(:award_emoji)
         is_expected.to be_disallowed(*author_permissions)
