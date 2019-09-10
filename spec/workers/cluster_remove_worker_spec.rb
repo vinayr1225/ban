@@ -8,6 +8,14 @@ describe ClusterRemoveWorker do
 
     let!(:cluster) { create(:cluster, :project, provider_type: :gcp) }
 
+    shared_examples 'removing cluster' do
+      it 'sets cluster as removing' do
+        expect_any_instance_of(Clusters::Cluster).to receive(:removing!)
+
+        subject
+      end
+    end
+
     context 'when cluster has no applications or roles' do
       let(:kubeclient_intance_double) do
         instance_double(Gitlab::Kubernetes::KubeClient, delete_namespace: nil, delete_service_account: nil)
@@ -25,6 +33,14 @@ describe ClusterRemoveWorker do
             project: cluster.cluster_project.project,
             environment: environment)
         end
+      end
+
+      it_behaves_like 'removing cluster'
+
+      it 'stops removin cluster' do
+        expect_any_instance_of(Clusters::Cluster).to receive(:stop_removing!)
+
+        subject
       end
 
       it 'deletes namespaces' do
@@ -52,6 +68,8 @@ describe ClusterRemoveWorker do
         let!(:ingress) { create(:clusters_applications_ingress, :installed, cluster: cluster) }
         let!(:cert_manager) { create(:clusters_applications_cert_manager, :installed, cluster: cluster) }
         let!(:jupyter) { create(:clusters_applications_jupyter, :installed, cluster: cluster) }
+
+        it_behaves_like 'removing cluster'
 
         it 'only uninstalls apps that are not dependencies for other installed apps' do
           expect(Clusters::Applications::UninstallService)
@@ -91,6 +109,14 @@ describe ClusterRemoveWorker do
     end
 
     context 'when exceeded the execution limit' do
+      subject { described_class.new.perform(cluster.id, described_class::EXECUTION_LIMIT) }
+
+      it 'stops removing cluster' do
+        expect_any_instance_of(Clusters::Cluster).to receive(:stop_removing!)
+
+        subject
+      end
+
       it 'logs the error' do
         expect_any_instance_of(Gitlab::Kubernetes::Logger).to receive(:error).with(
           hash_including(
@@ -103,7 +129,7 @@ describe ClusterRemoveWorker do
           )
         )
 
-        described_class.new.perform(cluster.id, described_class::EXECUTION_LIMIT)
+        subject
       end
     end
   end

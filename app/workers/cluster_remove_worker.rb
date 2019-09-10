@@ -23,13 +23,15 @@ class ClusterRemoveWorker
 
   def perform(cluster_id, execution_count = 0)
     @execution_count = execution_count
+    @cluster = Clusters::Cluster.preload_applications.find_by_id(cluster_id)
+
     # TODO: Log error and notify user that the cluster uninstall failed and
     # needs to be manually retried.
     #
     # https://gitlab.com/gitlab-org/gitlab-ce/issues/66729
-    return log_exceeded_execution_limit_error if exceeded_execution_limit?
+    return exceeded_execution_limit if exceeded_execution_limit?
 
-    @cluster = Clusters::Cluster.preload_applications.find_by_id(cluster_id)
+    @cluster.removing!
 
     uninstallable_apps = @cluster.preloaded_applications.select(&:can_uninstall?)
 
@@ -47,6 +49,7 @@ class ClusterRemoveWorker
     delete_deployed_namespaces
     delete_gitlab_service_account
 
+    @cluster.stop_removing!
     @cluster.destroy
   end
 
@@ -70,6 +73,12 @@ class ClusterRemoveWorker
 
   def logger
     @logger ||= Gitlab::Kubernetes::Logger.build
+  end
+
+  def exceeded_execution_limit
+    log_exceeded_execution_limit_error
+
+    @cluster.stop_removing!
   end
 
   def log_exceeded_execution_limit_error
