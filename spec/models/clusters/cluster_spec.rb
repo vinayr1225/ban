@@ -783,4 +783,50 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
       end
     end
   end
+
+  describe '#removing!' do
+    it 'persists removing key' do
+      subject.removing!
+
+      Gitlab::Redis::SharedState.with do |redis|
+        expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq "1"
+      end
+    end
+
+    it 'sets expiration time to 10 minutes if key is not set' do
+      expect_any_instance_of(Redis)
+        .to receive(:set)
+        .with(
+          "gitlab:cluster:#{subject.id}:removing",
+          1,
+          ex: 10.minutes,
+          nx: true
+        )
+
+      subject.removing!
+    end
+  end
+
+  describe '#stop_removing!' do
+    it 'removes persisted key' do
+      subject.removing!
+      subject.stop_removing!
+
+      Gitlab::Redis::SharedState.with do |redis|
+        expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq nil
+      end
+    end
+  end
+
+  describe '#removing?' do
+    it "returns true when it's being removed" do
+      subject.removing!
+
+      expect(subject.removing?).to be_truthy
+    end
+
+    it "returns false when it's not being removed" do
+      expect(subject.removing?).to be_truthy
+    end
+  end
 end

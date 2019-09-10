@@ -22,6 +22,7 @@ module Clusters
     }.merge(PROJECT_ONLY_APPLICATIONS).freeze
     DEFAULT_ENVIRONMENT = '*'
     KUBE_INGRESS_BASE_DOMAIN = 'KUBE_INGRESS_BASE_DOMAIN'
+    REMOVAL_TIME_LIMIT = 10.minutes
 
     belongs_to :user
 
@@ -203,7 +204,29 @@ module Clusters
       end
     end
 
+    def stop_removing!
+      Gitlab::Redis::SharedState.with do |redis|
+        redis.del(removing_key)
+      end
+    end
+
+    def removing!
+      Gitlab::Redis::SharedState.with do |redis|
+        redis.set(removing_key, 1, ex: REMOVAL_TIME_LIMIT, nx: true)
+      end
+    end
+
+    def removing?
+      Gitlab::Redis::SharedState.with do |redis|
+        redis.exists(removing_key)
+      end
+    end
+
     private
+
+    def removing_key
+      "gitlab:cluster:#{id}:removing"
+    end
 
     def instance_domain
       @instance_domain ||= Gitlab::CurrentSettings.auto_devops_domain
