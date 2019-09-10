@@ -204,6 +204,14 @@ describe('Time series component', () => {
       });
 
       describe('chartOptions', () => {
+        describe('dataZoom', () => {
+          it('contains an svg object within an array to properly render icon', () => {
+            const dataZoomObject = [{}];
+
+            expect(timeSeriesChart.vm.chartOptions.dataZoom).toEqual(dataZoomObject);
+          });
+        });
+
         describe('yAxis formatter', () => {
           let format;
 
