@@ -120,7 +120,7 @@ module Clusters
     end
 
     def status_name
-      provider&.status_name || connection_status.presence || :created
+      provider&.status_name || connection_status.presence || removing_status || :created
     end
 
     def connection_status
@@ -216,9 +216,9 @@ module Clusters
       end
     end
 
-    def removing?
+    def removing_status
       Gitlab::Redis::SharedState.with do |redis|
-        redis.exists(removing_key)
+        return :removing if redis.exists(removing_key)
       end
     end
 

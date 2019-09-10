@@ -680,6 +680,14 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
       end
 
       it { is_expected.to eq :created }
+
+      context 'when cluster is removing' do
+        it 'returns removing' do
+          cluster.removing!
+
+          is_expected.to eq :removing
+        end
+      end
     end
   end
 
@@ -784,49 +792,57 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
     end
   end
 
-  describe '#removing!' do
-    it 'persists removing key' do
-      subject.removing!
-
+  describe 'remove methods' do
+    after do
       Gitlab::Redis::SharedState.with do |redis|
-        expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq "1"
+        expect(redis.del("gitlab:cluster:#{subject.id}:removing"))
       end
     end
 
-    it 'sets expiration time to 10 minutes if key is not set' do
-      expect_any_instance_of(Redis)
-        .to receive(:set)
-        .with(
-          "gitlab:cluster:#{subject.id}:removing",
-          1,
-          ex: 10.minutes,
-          nx: true
-        )
+    describe '#removing!' do
+      it 'persists removing key' do
+        subject.removing!
 
-      subject.removing!
-    end
-  end
+        Gitlab::Redis::SharedState.with do |redis|
+          expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq "1"
+        end
+      end
 
-  describe '#stop_removing!' do
-    it 'removes persisted key' do
-      subject.removing!
-      subject.stop_removing!
+      it 'sets expiration time to 10 minutes if key is not set' do
+        expect_any_instance_of(Redis)
+          .to receive(:set)
+          .with(
+            "gitlab:cluster:#{subject.id}:removing",
+            1,
+            ex: 10.minutes,
+            nx: true
+          )
 
-      Gitlab::Redis::SharedState.with do |redis|
-        expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq nil
+        subject.removing!
       end
     end
-  end
 
-  describe '#removing?' do
-    it "returns true when it's being removed" do
-      subject.removing!
+    describe '#stop_removing!' do
+      it 'removes persisted key' do
+        subject.removing!
+        subject.stop_removing!
 
-      expect(subject.removing?).to be_truthy
+        Gitlab::Redis::SharedState.with do |redis|
+          expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq nil
+        end
+      end
     end
 
-    it "returns false when it's not being removed" do
-      expect(subject.removing?).to be_truthy
+    describe '#removing_status' do
+      it "returns :removing when it's being removed" do
+        subject.removing!
+
+        expect(subject.removing_status).to eq :removing
+      end
+
+      it "returns nil when it's not being removed" do
+        expect(subject.removing_status).to be_nil
+      end
     end
   end
 end
