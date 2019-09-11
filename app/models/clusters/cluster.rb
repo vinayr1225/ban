@@ -120,7 +120,7 @@ module Clusters
     end
 
     def status_name
-      provider&.status_name || connection_status.presence || removing_status || :created
+      removing_status || provider&.status_name || connection_status.presence || :created
     end
 
     def connection_status

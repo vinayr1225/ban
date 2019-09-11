@@ -660,6 +660,14 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
       end
 
       it { is_expected.to eq :errored }
+
+      context 'when cluster is removing' do
+        it "returns removing since this info has priority" do
+          cluster.removing!
+
+          is_expected.to eq :removing
+        end
+      end
     end
 
     context 'there is a cached connection status' do
@@ -680,14 +688,6 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
       end
 
       it { is_expected.to eq :created }
-
-      context 'when cluster is removing' do
-        it 'returns removing' do
-          cluster.removing!
-
-          is_expected.to eq :removing
-        end
-      end
     end
   end
 
