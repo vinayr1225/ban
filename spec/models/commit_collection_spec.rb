@@ -61,13 +61,13 @@ describe CommitCollection do
         project: project
       )
     end
+    let(:collection) { described_class.new(project, [commit]) }
 
     it 'sets the latest pipeline for every commit so no additional queries are necessary' do
-      collection = described_class.new(project, [commit])
-      collection = collection.with_latest_pipeline('master')
+      commits = collection.with_latest_pipeline('master')
 
       recorder = ActiveRecord::QueryRecorder.new do
-        expect(collection.map {|c| c.latest_pipeline('master') })
+        expect(commits.map { |c| c.latest_pipeline('master') })
           .to eq([pipeline])
       end
 

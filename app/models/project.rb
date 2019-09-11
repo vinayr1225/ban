@@ -314,6 +314,7 @@ class Project < ApplicationRecord
   delegate :add_master, to: :team # @deprecated
   delegate :group_runners_enabled, :group_runners_enabled=, :group_runners_enabled?, to: :ci_cd_settings
   delegate :root_ancestor, to: :namespace, allow_nil: true
+  delegate :last_pipeline, to: :commit, allow_nil: true
   delegate :external_dashboard_url, to: :metrics_setting, allow_nil: true, prefix: true
   delegate :default_git_depth, :default_git_depth=, to: :ci_cd_settings, prefix: :ci
 
@@ -2204,12 +2205,6 @@ class Project < ApplicationRecord
 
   def pages_lookup_path(domain: nil)
     Pages::LookupPath.new(self, domain: domain)
-  end
-
-  def last_pipeline
-    return unless commit
-
-    CommitWithPipeline.new(commit).last_pipeline
   end
 
   private

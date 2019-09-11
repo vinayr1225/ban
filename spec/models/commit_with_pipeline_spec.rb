@@ -28,33 +28,8 @@ describe CommitWithPipeline do
   describe '#latest_pipeline' do
     let(:pipeline) { double }
 
-    context 'without ref argument' do
-      let(:result) { commit.latest_pipeline }
-
+    shared_examples_for 'fetching latest pipeline' do |ref|
       it 'returns the latest pipeline for the project' do
-        expect(commit)
-          .to receive(:latest_pipeline_for_project)
-          .with(nil, project)
-          .and_return(pipeline)
-
-        expect(result).to eq(pipeline)
-      end
-
-      it 'returns the memoized pipeline for the key of nil' do
-        commit.set_latest_pipeline_for_ref(nil, pipeline)
-
-        expect(commit)
-          .not_to receive(:latest_pipeline_for_project)
-
-        expect(result).to eq(pipeline)
-      end
-    end
-
-    context 'when a particular ref is specified' do
-      let(:ref) { 'master' }
-      let(:result) { commit.latest_pipeline(ref) }
-
-      it 'returns the latest pipeline for the given ref of the project' do
         expect(commit)
           .to receive(:latest_pipeline_for_project)
           .with(ref, project)
@@ -63,7 +38,7 @@ describe CommitWithPipeline do
         expect(result).to eq(pipeline)
       end
 
-      it 'returns the memoized pipeline for the key that matches the ref' do
+      it "returns the memoized pipeline for the key of #{ref}" do
         commit.set_latest_pipeline_for_ref(ref, pipeline)
 
         expect(commit)
@@ -71,6 +46,18 @@ describe CommitWithPipeline do
 
         expect(result).to eq(pipeline)
       end
+    end
+
+    context 'without ref argument' do
+      let(:result) { commit.latest_pipeline }
+
+      it_behaves_like 'fetching latest pipeline', nil
+    end
+
+    context 'when a particular ref is specified' do
+      let(:result) { commit.latest_pipeline('master') }
+
+      it_behaves_like 'fetching latest pipeline', 'master'
     end
   end
 
@@ -133,5 +120,4 @@ describe CommitWithPipeline do
       expect(commit.status).to eq('success')
     end
   end
-
 end

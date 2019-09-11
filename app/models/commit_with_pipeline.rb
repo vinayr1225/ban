@@ -19,9 +19,9 @@ class CommitWithPipeline < SimpleDelegator
   end
 
   def latest_pipeline(ref = nil)
-    return @latest_pipelines[ref] if @latest_pipelines.key?(ref)
-
-    @latest_pipelines[ref] = latest_pipeline_for_project(ref, project)
+    @latest_pipelines.fetch(ref) do |ref|
+      @latest_pipelines[ref] = latest_pipeline_for_project(ref, project)
+    end
   end
 
   def latest_pipeline_for_project(ref, pipeline_project)

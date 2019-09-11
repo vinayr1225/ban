@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-describe CommitWithPipelinePresenter do
+describe CommitPresenter do
   let(:project) { create(:project, :repository) }
-  let(:commit) { CommitWithPipeline.new(project.commit) }
+  let(:commit) { project.commit }
   let(:user) { create(:user) }
   let(:presenter) { described_class.new(commit, current_user: user) }
 
@@ -28,8 +28,8 @@ describe CommitWithPipelinePresenter do
     end
 
     context 'when user can not read_commit_status' do
-      it 'is false' do
-        is_expected.to eq(false)
+      it 'is nil' do
+        is_expected.to eq(nil)
       end
     end
   end

@@ -123,6 +123,19 @@ class Commit
     @gpg_commit = Gitlab::Gpg::Commit.new(self) if project
   end
 
+  delegate \
+    :pipelines,
+    :last_pipeline,
+    :latest_pipeline,
+    :latest_pipeline_for_project,
+    :set_latest_pipeline_for_ref,
+    :status,
+    to: :with_pipeline
+
+  def with_pipeline
+    @with_pipeline ||= CommitWithPipeline.new(self)
+  end
+
   def id
     raw.id
   end

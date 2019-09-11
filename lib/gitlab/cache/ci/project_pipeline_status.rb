@@ -115,8 +115,7 @@ module Gitlab
 
         def commit
           strong_memoize(:commit) do
-            project_commit = project.commit
-            CommitWithPipeline.new(project_commit) if project_commit
+            project.commit
           end
         end
       end
