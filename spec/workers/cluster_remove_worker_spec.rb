@@ -34,6 +34,13 @@ describe ClusterRemoveWorker do
         subject
       end
 
+      it 'deletes namespaces' do
+        expect(kubeclient_intance_double).to receive(:delete_namespace).with(cluster.kubernetes_namespaces[0].namespace)
+        expect(kubeclient_intance_double).to receive(:delete_namespace).with(cluster.kubernetes_namespaces[1].namespace)
+
+        subject
+      end
+
       it 'deletes cluster' do
         expect { subject }.to change { Clusters::Cluster.count }.by(-1)
       end
