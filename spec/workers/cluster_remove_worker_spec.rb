@@ -42,7 +42,9 @@ describe ClusterRemoveWorker do
       end
 
       it 'deletes cluster' do
-        expect { subject }.to change { Clusters::Cluster.count }.by(-1)
+        subject
+
+        expect(Clusters::Cluster.where(id: cluster.id).exists?).to eq(false)
       end
     end
 
