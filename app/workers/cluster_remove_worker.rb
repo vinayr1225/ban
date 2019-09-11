@@ -60,10 +60,9 @@ class ClusterRemoveWorker
   end
 
   def schedule_next_execution
-    @execution_count += 1
-
-    ClusterRemoveWorker.perform_in(EXECUTION_INTERVAL, @cluster.id, @execution_count)
+    ClusterRemoveWorker.perform_in(EXECUTION_INTERVAL, @cluster.id, @execution_count + 1)
   end
+
 
   def uninstall_app_async(application)
     application.make_scheduled!
