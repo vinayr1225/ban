@@ -34,10 +34,6 @@ describe ClusterRemoveWorker do
         subject
       end
 
-      it 'deletes namespaces' do
-        expect { subject }.to change { Clusters::KubernetesNamespace.count }.by(-2)
-      end
-
       it 'deletes cluster' do
         expect { subject }.to change { Clusters::Cluster.count }.by(-1)
       end

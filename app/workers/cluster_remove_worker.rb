@@ -96,7 +96,6 @@ class ClusterRemoveWorker
   def delete_deployed_namespaces
     @cluster.kubernetes_namespaces.each do |kubernetes_namespace|
       kubeclient_delete_namespace(kubernetes_namespace.namespace)
-      kubernetes_namespace.destroy!
     end
   end
 
