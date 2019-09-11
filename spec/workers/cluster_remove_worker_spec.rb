@@ -37,7 +37,7 @@ describe ClusterRemoveWorker do
 
       it_behaves_like 'removing cluster'
 
-      it 'stops removin cluster' do
+      it 'stops removing cluster' do
         expect_any_instance_of(Clusters::Cluster).to receive(:stop_removing!)
 
         subject
