@@ -63,7 +63,6 @@ class ClusterRemoveWorker
     ClusterRemoveWorker.perform_in(EXECUTION_INTERVAL, @cluster.id, @execution_count + 1)
   end
 
-
   def uninstall_app_async(application)
     application.make_scheduled!
 
@@ -83,8 +82,7 @@ class ClusterRemoveWorker
   def log_exceeded_execution_limit_error
     logger.error({
       exception: ExceededExecutionLimitError.name,
-      status_code: nil,
-      namespace: nil,
+      cluster_id: @cluster&.id,
       class_name: self.class.name,
       event: :failed_to_remove_cluster_and_resources,
       message: "retried too many times"

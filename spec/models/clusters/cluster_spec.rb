@@ -828,7 +828,7 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
         subject.stop_removing!
 
         Gitlab::Redis::SharedState.with do |redis|
-          expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to eq nil
+          expect(redis.get("gitlab:cluster:#{subject.id}:removing")).to be_nil
         end
       end
     end

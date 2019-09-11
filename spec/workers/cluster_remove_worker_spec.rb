@@ -121,8 +121,7 @@ describe ClusterRemoveWorker do
         expect_any_instance_of(Gitlab::Kubernetes::Logger).to receive(:error).with(
           hash_including(
             exception: 'ClusterRemoveWorker::ExceededExecutionLimitError',
-            status_code: nil,
-            namespace: nil,
+            cluster_id: kind_of(Integer),
             class_name: described_class.name,
             event: :failed_to_remove_cluster_and_resources,
             message: 'retried too many times'
