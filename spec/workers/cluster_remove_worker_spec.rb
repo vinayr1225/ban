@@ -17,22 +17,13 @@ describe ClusterRemoveWorker do
     end
 
     context 'when cluster has no applications or roles' do
+      let!(:cluster) { create(:cluster, :with_environments) }
       let(:kubeclient_intance_double) do
         instance_double(Gitlab::Kubernetes::KubeClient, delete_namespace: nil, delete_service_account: nil)
       end
 
       before do
         allow_any_instance_of(Clusters::Cluster).to receive(:kubeclient).and_return(kubeclient_intance_double)
-
-        %i(staging production).each do |environment|
-          environment = create(:environment, name: environment, project: cluster.project)
-
-          create(:cluster_kubernetes_namespace,
-            cluster: cluster,
-            cluster_project: cluster.cluster_project,
-            project: cluster.cluster_project.project,
-            environment: environment)
-        end
       end
 
       it_behaves_like 'removing cluster'
