@@ -56,7 +56,7 @@ class ClusterRemoveWorker
   private
 
   def exceeded_execution_limit?
-    EXECUTION_LIMIT == @execution_count
+    @execution_count >= EXECUTION_LIMIT
   end
 
   def schedule_next_execution
