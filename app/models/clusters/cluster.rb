@@ -38,13 +38,13 @@ module Clusters
 
     has_one :platform_kubernetes, class_name: 'Clusters::Platforms::Kubernetes', inverse_of: :cluster, autosave: true
 
-    has_one :application_helm, class_name: 'Clusters::Applications::Helm', inverse_of: :cluster
-    has_one :application_ingress, class_name: 'Clusters::Applications::Ingress', inverse_of: :cluster
-    has_one :application_cert_manager, class_name: 'Clusters::Applications::CertManager', inverse_of: :cluster
-    has_one :application_prometheus, class_name: 'Clusters::Applications::Prometheus', inverse_of: :cluster
-    has_one :application_runner, class_name: 'Clusters::Applications::Runner', inverse_of: :cluster
-    has_one :application_jupyter, class_name: 'Clusters::Applications::Jupyter', inverse_of: :cluster
-    has_one :application_knative, class_name: 'Clusters::Applications::Knative', inverse_of: :cluster
+    has_one :application_helm, class_name: 'Clusters::Applications::Helm'
+    has_one :application_ingress, class_name: 'Clusters::Applications::Ingress'
+    has_one :application_cert_manager, class_name: 'Clusters::Applications::CertManager'
+    has_one :application_prometheus, class_name: 'Clusters::Applications::Prometheus'
+    has_one :application_runner, class_name: 'Clusters::Applications::Runner'
+    has_one :application_jupyter, class_name: 'Clusters::Applications::Jupyter'
+    has_one :application_knative, class_name: 'Clusters::Applications::Knative'
 
     has_many :kubernetes_namespaces
 

@@ -450,12 +450,6 @@ describe Clusters::Cluster, :use_clean_rails_memory_store_caching do
       it 'returns a list of created applications' do
         is_expected.to contain_exactly(helm, ingress, cert_manager, prometheus, runner, jupyter, knative)
       end
-
-      it 'does only 1 query' do
-        query_count = ActiveRecord::QueryRecorder.new { subject }.count
-
-        expect(query_count).to eq(1)
-      end
     end
 
     context 'when not all were created' do
