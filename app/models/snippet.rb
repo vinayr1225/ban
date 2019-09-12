@@ -112,6 +112,8 @@ class Snippet < ApplicationRecord
   end
 
   def self.visible_to_or_authored_by(user)
+    return all if user.admin?
+
     where(
       'snippets.visibility_level IN (?) OR snippets.author_id = ?',
       Gitlab::VisibilityLevel.levels_for_user(user),
