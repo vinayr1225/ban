@@ -36,7 +36,11 @@ class ClusterRemoveWorker
     uninstallable_apps = @cluster.preloaded_applications.select(&:can_uninstall?)
 
     if uninstallable_apps.present?
-      uninstallable_apps.each { |app| uninstall_app_async(app) }
+      uninstallable_apps.each do |app|
+        log_event(:uninstalling_app, application: app.class.application_name)
+
+        uninstall_app_async(app)
+      end
 
       return schedule_next_execution
     end
@@ -50,16 +54,31 @@ class ClusterRemoveWorker
     delete_gitlab_service_account
 
     @cluster.stop_removing!
+
+    log_event(:deleting_cluster_reference)
     @cluster.destroy
   end
 
   private
+
+  def log_event(event, extra_data = {})
+    meta = {
+      service: self.class.name,
+      cluster_id: @cluster.id,
+      execution_count: @execution_count,
+      event: event
+    }
+
+    logger.info(meta.merge(extra_data))
+  end
 
   def exceeded_execution_limit?
     @execution_count >= EXECUTION_LIMIT
   end
 
   def schedule_next_execution
+    log_event(:scheduling_execution, next_execution: @execution_count + 1)
+
     ClusterRemoveWorker.perform_in(EXECUTION_INTERVAL, @cluster.id, @execution_count + 1)
   end
 
@@ -95,6 +114,8 @@ class ClusterRemoveWorker
 
   def delete_deployed_namespaces
     @cluster.kubernetes_namespaces.each do |kubernetes_namespace|
+      log_event(:deleting_namespace, namespace: kubernetes_namespace.namespace)
+
       kubeclient_delete_namespace(kubernetes_namespace.namespace)
     end
   end
@@ -105,6 +126,8 @@ class ClusterRemoveWorker
   end
 
   def delete_gitlab_service_account
+    log_event(:deleting_gitlab_service_account)
+
     kubeclient.delete_service_account(
       ::Clusters::Kubernetes::GITLAB_SERVICE_ACCOUNT_NAME,
       ::Clusters::Kubernetes::GITLAB_SERVICE_ACCOUNT_NAMESPACE

@@ -4,9 +4,18 @@ require 'spec_helper'
 
 describe ClusterRemoveWorker do
   describe '#perform' do
-    subject { described_class.new.perform(cluster.id) }
+    subject { worker_instance.perform(cluster.id) }
 
+    let!(:worker_instance) { described_class.new }
     let!(:cluster) { create(:cluster, :project, provider_type: :gcp) }
+    let!(:logger) { worker_instance.send(:logger) }
+    let(:log_meta) do
+      {
+        service: described_class.name,
+        cluster_id: cluster.id,
+        execution_count: 0
+      }
+    end
 
     shared_examples 'removing cluster' do
       it 'sets cluster as removing' do
@@ -46,6 +55,19 @@ describe ClusterRemoveWorker do
 
         expect(Clusters::Cluster.where(id: cluster.id).exists?).to eq(false)
       end
+
+      it 'logs all events' do
+        expect(logger).to receive(:info)
+          .with(log_meta.merge(event: :deleting_namespace, namespace: cluster.kubernetes_namespaces[0].namespace))
+        expect(logger).to receive(:info)
+          .with(log_meta.merge(event: :deleting_namespace, namespace: cluster.kubernetes_namespaces[1].namespace))
+        expect(logger).to receive(:info)
+          .with(log_meta.merge(event: :deleting_gitlab_service_account))
+        expect(logger).to receive(:info)
+          .with(log_meta.merge(event: :deleting_cluster_reference))
+
+        subject
+      end
     end
 
     context 'when cluster has uninstallable applications' do
@@ -82,6 +104,11 @@ describe ClusterRemoveWorker do
             .to receive(:new).with(jupyter)
             .and_call_original
         end
+
+        it 'logs application uninstalls' do
+          expect(logger).to receive(:info)
+            .with(log_meta.merge(event: :uninstalling_app, application: kind_of(String))).exactly(2).times
+        end
       end
     end
 
@@ -105,7 +132,10 @@ describe ClusterRemoveWorker do
     end
 
     context 'when exceeded the execution limit' do
-      subject { described_class.new.perform(cluster.id, described_class::EXECUTION_LIMIT) }
+      subject { worker_instance.perform(cluster.id, described_class::EXECUTION_LIMIT) }
+
+      let(:worker_instance) { described_class.new }
+      let(:logger) { worker_instance.send(:logger) }
 
       it 'stops removing cluster' do
         expect_any_instance_of(Clusters::Cluster).to receive(:stop_removing!)
@@ -114,7 +144,8 @@ describe ClusterRemoveWorker do
       end
 
       it 'logs the error' do
-        expect_any_instance_of(Gitlab::Kubernetes::Logger).to receive(:error).with(
+        expect(logger).to receive(:error)
+        .with(
           hash_including(
             exception: 'ClusterRemoveWorker::ExceededExecutionLimitError',
             cluster_id: kind_of(Integer),
