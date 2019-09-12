@@ -9,55 +9,42 @@ describe('RegionDropdown', () => {
       propsData: props,
     });
 
+  const getClusterFormDropdown = vm => vm.find(ClusterFormDropdown);
+
   it('renders a cluster-form-dropdown', () => {
-    expect(
-      buildVM()
-        .find(ClusterFormDropdown)
-        .exists(),
-    ).toBe(true);
+    expect(getClusterFormDropdown(buildVM()).exists()).toBe(true);
   });
 
   it('sets regions to cluster-form-dropdown items property', () => {
     const regions = [{ name: 'basic' }];
-    const vm = buildVM({ regions });
 
-    expect(vm.find(ClusterFormDropdown).props('items')).toEqual(regions);
+    expect(getClusterFormDropdown(buildVM({ regions })).props('items')).toEqual(regions);
   });
 
   it('sets a loading text', () => {
-    const vm = buildVM();
-
-    expect(vm.find(ClusterFormDropdown).props('loadingText')).toEqual('Loading Regions');
+    expect(getClusterFormDropdown(buildVM()).props('loadingText')).toEqual('Loading Regions');
   });
 
   it('sets a placeholder', () => {
-    const vm = buildVM();
-
-    expect(vm.find(ClusterFormDropdown).props('placeholder')).toEqual('Select a region');
+    expect(getClusterFormDropdown(buildVM()).props('placeholder')).toEqual('Select a region');
   });
 
   it('sets an empty results text', () => {
-    const vm = buildVM();
-
-    expect(vm.find(ClusterFormDropdown).props('emptyText')).toEqual('No region found');
+    expect(getClusterFormDropdown(buildVM()).props('emptyText')).toEqual('No region found');
   });
 
   it('sets a search field placeholder', () => {
-    const vm = buildVM();
-
-    expect(vm.find(ClusterFormDropdown).props('searchFieldPlaceholder')).toEqual('Search regions');
+    expect(getClusterFormDropdown(buildVM()).props('searchFieldPlaceholder')).toEqual(
+      'Search regions',
+    );
   });
 
   it('sets hasErrors property', () => {
-    const vm = buildVM({ error: {} });
-
-    expect(vm.find(ClusterFormDropdown).props('hasErrors')).toEqual(true);
+    expect(getClusterFormDropdown(buildVM({ error: {} })).props('hasErrors')).toEqual(true);
   });
 
   it('sets an error message', () => {
-    const vm = buildVM();
-
-    expect(vm.find(ClusterFormDropdown).props('errorMessage')).toEqual(
+    expect(getClusterFormDropdown(buildVM()).props('errorMessage')).toEqual(
       'Could not load regions from your AWS account',
     );
   });
