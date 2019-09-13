@@ -78,10 +78,6 @@ describe ClusterRemoveWorker do
             .with(20.seconds, cluster.id, 1)
         end
 
-        after do
-          subject
-        end
-
         let!(:helm) { create(:clusters_applications_helm, :installed, cluster: cluster) }
         let!(:ingress) { create(:clusters_applications_ingress, :installed, cluster: cluster) }
         let!(:cert_manager) { create(:clusters_applications_cert_manager, :installed, cluster: cluster) }
@@ -103,11 +99,17 @@ describe ClusterRemoveWorker do
           expect(Clusters::Applications::UninstallService)
             .to receive(:new).with(jupyter)
             .and_call_original
+
+          subject
         end
 
-        it 'logs application uninstalls' do
+        it 'logs application uninstalls and next execution' do
           expect(logger).to receive(:info)
             .with(log_meta.merge(event: :uninstalling_app, application: kind_of(String))).exactly(2).times
+          expect(logger).to receive(:info)
+            .with(log_meta.merge(event: :scheduling_execution, next_execution: 1))
+
+          subject
         end
       end
     end
