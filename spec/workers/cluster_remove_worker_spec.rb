@@ -71,19 +71,30 @@ describe ClusterRemoveWorker do
     end
 
     context 'when cluster has uninstallable applications' do
-      context 'has applications with dependencies' do
-        before do
+      before do
+        allow(described_class)
+          .to receive(:perform_in)
+          .with(20.seconds, cluster.id, 1)
+      end
+
+      shared_examples 'reschedules itself' do
+        it 'reschedules itself' do
           expect(described_class)
             .to receive(:perform_in)
             .with(20.seconds, cluster.id, 1)
-        end
 
+          subject
+        end
+      end
+
+      context 'has applications with dependencies' do
         let!(:helm) { create(:clusters_applications_helm, :installed, cluster: cluster) }
         let!(:ingress) { create(:clusters_applications_ingress, :installed, cluster: cluster) }
         let!(:cert_manager) { create(:clusters_applications_cert_manager, :installed, cluster: cluster) }
         let!(:jupyter) { create(:clusters_applications_jupyter, :installed, cluster: cluster) }
 
         it_behaves_like 'removing cluster'
+        it_behaves_like 'reschedules itself'
 
         it 'only uninstalls apps that are not dependencies for other installed apps' do
           expect(Clusters::Applications::UninstallService)
@@ -112,24 +123,20 @@ describe ClusterRemoveWorker do
           subject
         end
       end
-    end
 
-    context 'when applications are still uninstalling/scheduled' do
-      after do
-        subject
-      end
+      context 'when applications are still uninstalling/scheduled' do
+        let!(:helm) { create(:clusters_applications_helm, :installed, cluster: cluster) }
+        let!(:ingress) { create(:clusters_applications_ingress, :scheduled, cluster: cluster) }
+        let!(:runner) { create(:clusters_applications_runner, :uninstalling, cluster: cluster) }
 
-      let!(:helm) { create(:clusters_applications_helm, :installed, cluster: cluster) }
-      let!(:ingress) { create(:clusters_applications_ingress, :scheduled, cluster: cluster) }
-      let!(:runner) { create(:clusters_applications_runner, :uninstalling, cluster: cluster) }
+        it_behaves_like 'reschedules itself'
 
-      it 'reschedules the worker to proceed the uninstallation later' do
-        expect(Clusters::Applications::UninstallService)
-          .not_to receive(:new)
+        it 'does not call the uninstallation service' do
+          expect(Clusters::Applications::UninstallService)
+            .not_to receive(:new)
 
-        expect(described_class)
-          .to receive(:perform_in)
-          .with(20.seconds, cluster.id, 1)
+          subject
+        end
       end
     end
 
