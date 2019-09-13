@@ -48,6 +48,12 @@ class ClusterRemoveWorker
     # This is necessary in case the only applications left are stil in a
     # not uninstallable state (scheduled|uninstalling). So we give more time
     # for them to finish their uninstallation.
+    #
+    # TODO: Check for applications.any?(:transitioning?)
+    # where transition states are [:installing, :updating, :uninstalling, scheduled]
+    #
+    # We can't guarantee that in the future someone wont persist applications
+    # that are not installed.
     return schedule_next_execution if @cluster.preloaded_applications.present?
 
     delete_deployed_namespaces
