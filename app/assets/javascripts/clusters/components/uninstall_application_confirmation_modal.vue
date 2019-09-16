@@ -7,7 +7,7 @@ import { HELM, INGRESS, CERT_MANAGER, PROMETHEUS, RUNNER, KNATIVE, JUPYTER } fro
 const CUSTOM_APP_WARNING_TEXT = {
   [HELM]: sprintf(
     s__(
-      'ClusterIntegration|The associated Tiller pod, the %{gitlabManagedAppsNamespace} namespace and all resources that belongs to it will be deleted and cannot be restored.',
+      'ClusterIntegration|The associated Tiller pod, the %{gitlabManagedAppsNamespace} namespace, and all of its resources will be deleted and cannot be restored.',
     ),
     {
       gitlabManagedAppsNamespace: '<code>gitlab-managed-apps</code>',
