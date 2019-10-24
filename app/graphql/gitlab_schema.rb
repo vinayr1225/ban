@@ -11,6 +11,7 @@ class GitlabSchema < GraphQL::Schema
   AUTHENTICATED_MAX_DEPTH = 20
 
   use BatchLoader::GraphQL
+  #use Gitlab::Graphql::AuthorizedBatchLoader
   use Gitlab::Graphql::Authorize
   use Gitlab::Graphql::Present
   use Gitlab::Graphql::CallsGitaly

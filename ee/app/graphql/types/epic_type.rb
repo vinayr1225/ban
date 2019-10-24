@@ -65,9 +65,10 @@ module Types
       complexity: 5,
       description: 'Boolean flag for whether the currently logged in user is subscribed to this epic'
 
-    field :issues, # rubocop:disable Graphql/Descriptions
+    field :issues,
           Types::EpicIssueType.connection_type,
           null: true,
+          description: 'A list of issues associated with the epic',
           resolver: Resolvers::EpicIssuesResolver
   end
 end

@@ -76,7 +76,11 @@ module Gitlab
           elsif @field.connection?
             # A connection with pagination, modify the visible nodes on the
             # connection type in place
-            resolved_type.object.edge_nodes.to_a.keep_if { |node| allowed_access?(current_user, node) }
+            unless resolved_type.is_a?(GraphQL::Execution::Lazy)
+              # Lazy values (batch loaded fields) are not loaded yet,
+              # we can authorize only not-lazy values here.
+              resolved_type.object.edge_nodes.to_a.keep_if { |node| allowed_access?(current_user, node) }
+            end
             resolved_type
           elsif resolved_type.is_a? Array
             # A simple list of rendered types  each object being an object to authorize

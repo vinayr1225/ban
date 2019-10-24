@@ -7,7 +7,7 @@ module Resolvers
     alias_method :epic, :object
 
     def resolve(**args)
-      epic.issues_readable_by(context[:current_user])
+      Gitlab::Graphql::Loaders::BatchEpicIssuesLoader.new(epic.id, context[:current_user]).find
     end
   end
 end
