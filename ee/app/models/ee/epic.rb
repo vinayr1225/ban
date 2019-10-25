@@ -191,6 +191,14 @@ module EE
         )
       end
 
+      def related_issues(ids:, preload: nil)
+        ::Issue.select('issues.*, epic_issues.id as epic_issue_id, epic_issues.relative_position, epic_issues.epic_id as epic_id')
+          .joins(:epic_issue)
+          .preload(preload)
+          .where("epic_issues.epic_id": ids)
+          .order('epic_issues.relative_position, epic_issues.id')
+      end
+
       private
 
       def start_date_milestone_query
@@ -330,12 +338,8 @@ module EE
     end
 
     def issues_readable_by(current_user, preload: nil)
-      related_issues = ::Issue.select('issues.*, epic_issues.id as epic_issue_id, epic_issues.relative_position')
-        .joins(:epic_issue)
-        .preload(preload)
-        .where("epic_issues.epic_id = #{id}")
-        .order('epic_issues.relative_position, epic_issues.id')
-
+      related_issues = self.class.related_issues(ids: id, preload: preload)
+      
       Ability.issues_readable_by_user(related_issues, current_user)
     end
 

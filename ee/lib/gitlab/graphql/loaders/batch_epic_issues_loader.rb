@@ -9,17 +9,14 @@ module Gitlab
           @user = user
         end
 
-        # rubocop: disable CodeReuse/ActiveRecord
         def find
           BatchLoader::GraphQL.for(@model_id).batch(default_value: nil) do |ids, loader|
-            results = ::Issue.select('issues.*, epic_issues.epic_id as epic_id')
-              .joins(:epic_issue)
-              .where("epic_issues.epic_id": ids)
+            issues = ::Epic.related_issues(ids: ids, preload: { project: :namespace })
 
-            results.each do |record|
-              loader.call(record.epic_id) do |memo|
-                memo ||= Gitlab::Graphql::Authorize::AuthorizeArray.new(filter_authorized)
-                memo << record
+            issues.each do |issue|
+              loader.call(issue.epic_id) do |memo|
+                memo ||= Gitlab::Graphql::FilterableArray.new(filter_authorized)
+                memo << issue
               end
             end
           end
@@ -30,7 +27,6 @@ module Gitlab
             Ability.issues_readable_by_user(issues, @user)
           end
         end
-        # rubocop: enable CodeReuse/ActiveRecord
       end
     end
   end

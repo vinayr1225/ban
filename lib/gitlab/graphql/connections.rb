@@ -9,8 +9,8 @@ module Gitlab
           Gitlab::Graphql::Connections::KeysetConnection
         )
         GraphQL::Relay::BaseConnection.register_connection_implementation(
-          Gitlab::Graphql::Authorize::AuthorizeArray,
-          Gitlab::Graphql::Connections::AuthorizeArrayConnection
+          Gitlab::Graphql::FilterableArray,
+          Gitlab::Graphql::Connections::FilterableArrayConnection
         )
       end
     end
